@@ -1,0 +1,240 @@
+---
+// Dienstpagina-template — CLAUDE.md § 8: H1 dienst + Schilde · antwoord eerst · voor wie · werkwijze ·
+// offerte · premies [te controleren] · realisaties · FAQ · CTA + jobs-teaser. Schema: Service + FAQPage + Breadcrumb.
+import Base from '../../layouts/Base.astro';
+import Kruimels from '../../components/Kruimels.astro';
+import Faq from '../../components/Faq.astro';
+import FotoPlaceholder from '../../components/FotoPlaceholder.astro';
+import StroomLijn from '../../components/StroomLijn.astro';
+import { SITE_URL, business, areas, services, serviceUrl, job } from '../../data/site';
+import { diensten, STANDAARD_STAPPEN, OFFERTE_NOOT, type Dienst } from '../../data/diensten';
+import { breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { metTodo } from '../../lib/tekst';
+
+export function getStaticPaths() {
+  return diensten.map((d) => ({ params: { slug: d.slug }, props: { dienst: d } }));
+}
+
+const { dienst } = Astro.props as { dienst: Dienst };
+const url = serviceUrl(dienst.slug);
+const stappen = dienst.stappen ?? STANDAARD_STAPPEN;
+const anderen = services.filter((s) => s.slug !== dienst.slug);
+const bijgewerkt = new Date(dienst.bijgewerkt).toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const kruimels = [
+  { naam: 'Home', url: '/' },
+  { naam: 'Diensten', url: '/diensten/' },
+  { naam: dienst.naam, url },
+];
+
+const serviceSchema = {
+  '@type': 'Service',
+  '@id': `${SITE_URL}${url}#service`,
+  name: dienst.naam,
+  serviceType: dienst.serviceType,
+  description: dienst.antwoord.replace(/\s*\[[^\]]*\]/g, ''),
+  url: `${SITE_URL}${url}`,
+  provider: { '@id': `${SITE_URL}/#organization` },
+  areaServed: areas.map((a) => ({ '@type': 'City', name: a.name })),
+};
+---
+
+<Base
+  title={dienst.metaTitle}
+  description={dienst.metaDescription}
+  schema={[serviceSchema, faqSchema(dienst.faq), breadcrumbSchema(kruimels)]}
+>
+  <!-- HERO: antwoord eerst -->
+  <section class="relative overflow-clip">
+    <div class="container-site grid gap-12 py-12 sm:py-16 lg:grid-cols-[1.5fr_1fr] lg:gap-16 lg:py-20">
+      <div>
+        <Kruimels kruimels={kruimels} class="fade-up text-muted" />
+        <h1 class="fade-up mt-6 text-[clamp(2.25rem,1.5rem+3vw,4rem)] leading-[1.03] tracking-tight" style="--d:80ms">{dienst.h1}</h1>
+        <p class="fade-up mt-6 max-w-2xl text-xl leading-relaxed" style="--d:200ms" set:html={metTodo(dienst.antwoord)} />
+        <p class="fade-up mt-6 flex items-center gap-3 text-sm text-muted" style="--d:300ms">
+          <span class="grid size-9 place-items-center rounded-full bg-ink font-display font-semibold text-accent" aria-hidden="true">B</span>
+          <span>Geschreven door <a href="/over-bert/" class="font-semibold text-ink underline-offset-4 hover:underline">{business.owner}</a>, erkend elektricien in Schilde · bijgewerkt op <time datetime={dienst.bijgewerkt}>{bijgewerkt}</time></span>
+        </p>
+      </div>
+
+      <aside class="fade-up on-ink self-start rounded-3xl bg-ink p-7 text-white lg:sticky lg:top-28" style="--d:350ms" aria-label="Contact">
+        <p class="font-display text-2xl font-semibold">Vraag een gratis offerte</p>
+        <p class="mt-2 text-on-ink-muted">Ik kom zelf langs voor het eerste bezoek en de inschatting.</p>
+        <div class="mt-6 grid gap-3">
+          <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
+          <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
+          <a href={`/offerte/?dienst=${dienst.slug}`} class="btn btn-ghost">Offerte aanvragen</a>
+        </div>
+        <p class="mt-6 border-t border-white/10 pt-4 text-sm text-on-ink-muted">
+          Open {business.hours.label}.<br /><span class="text-white">{business.hours.urgent}</span>
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- VOOR WIE -->
+  <section class="section border-t border-ink/10 bg-white/60" aria-labelledby="voor-wie">
+    <div class="container-site">
+      <h2 id="voor-wie" class="h2 reveal">Voor wie is dit?</h2>
+      <ul class="reveal-stagger mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {dienst.voorWie.map((v, i) => (
+          <li class="rounded-3xl border border-ink/10 bg-white p-6" style={`--i:${i}`}>
+            <svg viewBox="0 0 24 24" class="size-6 text-brand" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></svg>
+            <p class="mt-4 text-lg" set:html={metTodo(v)} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- WERKWIJZE -->
+  <section class="section" aria-labelledby="werkwijze">
+    <div class="container-site">
+      <h2 id="werkwijze" class="h2 reveal">Hoe verloopt het?</h2>
+      <ol class="stappen reveal-stagger relative mt-12 grid gap-8 md:grid-cols-4 md:gap-6">
+        {stappen.map((s, i) => (
+          <li class="relative pl-16 md:pt-16 md:pl-0" style={`--i:${i}`}>
+            <span class="stap-nr absolute top-0 left-0 grid size-12 place-items-center rounded-2xl bg-ink font-display text-xl font-semibold text-accent" aria-hidden="true">{i + 1}</span>
+            <h3 class="font-display text-xl font-semibold">{s.titel}</h3>
+            <p class="mt-2 text-muted" set:html={metTodo(s.tekst)} />
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- OFFERTE + PREMIES -->
+  <section class="section pt-0" aria-labelledby="offerte">
+    <div class="container-site grid gap-6 lg:grid-cols-2">
+      <div class="reveal rounded-3xl border border-ink/10 bg-white p-7 sm:p-10">
+        <h2 id="offerte" class="font-display text-3xl font-semibold">Wat staat er in uw offerte?</h2>
+        <ul class="mt-6 space-y-3">
+          {dienst.inOfferte.map((it) => (
+            <li class="flex gap-3">
+              <svg viewBox="0 0 24 24" class="mt-0.5 size-5 shrink-0 text-brand" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10" /></svg>
+              <span set:html={metTodo(it)} />
+            </li>
+          ))}
+        </ul>
+        <p class="mt-6 text-sm text-muted">Geen bedragen online: elke situatie is anders. Na het bezoek krijgt u een gratis offerte. <span set:html={metTodo(OFFERTE_NOOT)} /></p>
+      </div>
+
+      {dienst.premies ? (
+        <div class="reveal rounded-3xl bg-sand/60 p-7 sm:p-10">
+          <h2 class="font-display text-3xl font-semibold">{dienst.premies.titel}</h2>
+          <p class="mt-4 text-lg" set:html={metTodo(dienst.premies.tekst)} />
+          <p class="mt-6 text-sm font-semibold tracking-wider text-muted uppercase">Officiële bronnen</p>
+          <ul class="mt-2 space-y-2">
+            {dienst.premies.bronnen.map((b) => (
+              <li><a href={b.url} class="inline-flex items-center gap-2 font-semibold text-brand underline-offset-4 hover:underline" target="_blank" rel="noopener">{b.naam} <span aria-hidden="true">↗</span></a></li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div class="reveal grid gap-4 sm:grid-cols-2">
+          {dienst.fotoLabels.map((l) => <FotoPlaceholder label={l} class="aspect-[4/5] sm:aspect-auto" />)}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- REALISATIES (als het premiekader de plaats van de foto's innam) -->
+  {dienst.premies && (
+    <section class="section pt-0" aria-labelledby="realisaties">
+      <div class="container-site">
+        <div class="reveal flex flex-wrap items-end justify-between gap-4">
+          <h2 id="realisaties" class="h2">Realisaties</h2>
+          <a href="/realisaties/" class="inline-flex items-center gap-2 font-display font-semibold text-brand">Alle realisaties <span aria-hidden="true">→</span></a>
+        </div>
+        <ul class="mt-8 grid gap-6 md:grid-cols-2">
+          {dienst.fotoLabels.map((l) => (
+            <li class="reveal">
+              <FotoPlaceholder label={l} class="aspect-[16/10]" />
+              <p class="mt-3 font-display text-lg font-semibold"><mark class="todo">[AANVULLEN: titel met gemeente]</mark></p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  <section class="section bg-white/60" aria-labelledby="faq">
+    <div class="container-site grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Veelgestelde vragen</p>
+        <h2 id="faq" class="h2 mt-3">{dienst.naam}: kort antwoord</h2>
+      </div>
+      <Faq vragen={dienst.faq} class="reveal" />
+    </div>
+  </section>
+
+  <!-- ANDERE DIENSTEN (interne links, § 12) -->
+  <section class="py-14" aria-label="Andere diensten">
+    <div class="container-site reveal flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+      <p class="shrink-0 font-display font-semibold">Andere diensten:</p>
+      <ul class="flex flex-wrap gap-2">
+        {anderen.map((s) => (
+          <li><a href={serviceUrl(s.slug)} class="inline-flex rounded-full border border-ink/15 bg-white px-4 py-2 font-medium hover:border-brand hover:text-brand">{s.name}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA + JOBS-TEASER → stroomlijn naar de stopcontact-knop in de footer -->
+  <section class="on-ink relative bg-ink text-white" aria-labelledby="cta">
+    <StroomLijn doel points={[[4, 0], [4, 88], [92, 88], [92, 100]]} />
+    <div class="container-site relative grid gap-10 py-20 sm:py-24 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+      <div class="reveal rounded-3xl bg-ink py-2">
+        <h2 id="cta" class="h2">Vraag uw gratis offerte aan</h2>
+        <p class="mt-4 max-w-xl text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een offerte. Ik kom zelf langs voor het eerste bezoek.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
+          <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
+          <a href={`/offerte/?dienst=${dienst.slug}`} class="btn btn-ghost">Gratis offerte</a>
+        </div>
+      </div>
+      <a href={job.url} class="jobs-teaser reveal group block rounded-3xl border border-white/15 bg-ink p-7 hover:border-accent">
+        <p class="eyebrow">Jobs</p>
+        <p class="mt-2 font-display text-2xl font-semibold">Zin om dit zelf te leren?</p>
+        <p class="mt-2 text-on-ink-muted">Ik zoek een junior elektricien in de regio Schilde.</p>
+        <span class="mt-5 inline-flex items-center gap-2 font-display font-semibold text-accent">Bekijk de job <span class="pijl" aria-hidden="true">→</span></span>
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Werkwijze: de stappen hangen aan een kabel (verticaal op mobiel, horizontaal vanaf md). */
+  .stappen::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 24px;
+    bottom: 24px;
+    width: 3px;
+    background: var(--color-accent);
+    border-radius: 3px;
+  }
+  @media (min-width: 48rem) {
+    .stappen::before { left: 24px; right: 24px; top: 23px; bottom: auto; width: auto; height: 3px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .stappen::before {
+        transform-origin: left top;
+        animation: kabel-groei linear both;
+        animation-timeline: view();
+        animation-range: entry 30% cover 50%;
+      }
+    }
+    .stap-nr { transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s; }
+    li:hover > .stap-nr { transform: rotate(-8deg) scale(1.08); background: var(--color-brand); color: white; }
+    .pijl { display: inline-block; transition: transform 0.3s; }
+    .jobs-teaser:hover .pijl { transform: translateX(4px); }
+  }
+  @keyframes kabel-groei { from { scale: 1 0; } to { scale: 1 1; } }
+  @media (min-width: 48rem) {
+    @keyframes kabel-groei { from { scale: 0 1; } to { scale: 1 1; } }
+  }
+</style>

@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "scrape": "python3 scrape/scrape.py"
+    "scrape": "python3 scrape/scrape.py",
+    "check": "astro check && astro build && node scripts/check-links.mjs",
+    "fotos": "node scripts/fotos.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

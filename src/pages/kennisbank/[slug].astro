@@ -1,0 +1,72 @@
+---
+// Kennisbankartikel — vraaggerichte koppen met antwoord eerst, auteur + datum (E-E-A-T), bronnen.
+// Schema: Article met author → #bert.
+import Base from '../../layouts/Base.astro';
+import Kruimels from '../../components/Kruimels.astro';
+import { SITE_URL, business } from '../../data/site';
+import { artikels, artikelUrl, type Artikel } from '../../data/kennisbank';
+import { breadcrumbSchema } from '../../lib/schema';
+import { metTodo } from '../../lib/tekst';
+
+export function getStaticPaths() {
+  return artikels.map((a) => ({ params: { slug: a.slug }, props: { a } }));
+}
+const { a } = Astro.props as { a: Artikel };
+const url = artikelUrl(a.slug);
+const datum = (d: string) => new Date(d).toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' });
+const kruimels = [
+  { naam: 'Home', url: '/' },
+  { naam: 'Kennisbank', url: '/kennisbank/' },
+  { naam: a.titel, url },
+];
+const schema = {
+  '@type': 'Article',
+  '@id': `${SITE_URL}${url}#artikel`,
+  headline: a.titel,
+  description: a.beschrijving,
+  url: `${SITE_URL}${url}`,
+  datePublished: a.gepubliceerd,
+  dateModified: a.bijgewerkt,
+  inLanguage: 'nl-BE',
+  author: { '@id': `${SITE_URL}/over-bert/#bert` },
+  publisher: { '@id': `${SITE_URL}/#organization` },
+  image: `${SITE_URL}/og/bert.jpg`,
+};
+---
+
+<Base title={a.titel.length > 60 ? a.titel.slice(0, 57) + '…' : a.titel} description={a.beschrijving} ogImage="/og/bert.jpg" schema={[schema, breadcrumbSchema(kruimels)]}>
+  <article class="container-site max-w-3xl py-12 sm:py-16 lg:py-20">
+    <Kruimels kruimels={kruimels} class="text-muted" />
+    <h1 class="fade-up mt-6 text-[clamp(2.25rem,1.5rem+3vw,3.75rem)] leading-[1.05] tracking-tight">{a.titel}</h1>
+    <p class="fade-up mt-6 flex items-center gap-3 text-sm text-muted" style="--d:150ms">
+      <span class="grid size-9 place-items-center rounded-full bg-ink font-display font-semibold text-accent" aria-hidden="true">B</span>
+      <span>Geschreven door <a href="/over-bert/" class="font-semibold text-ink underline-offset-4 hover:underline">{business.owner}</a>, erkend elektricien in Schilde · bijgewerkt op <time datetime={a.bijgewerkt}>{datum(a.bijgewerkt)}</time></span>
+    </p>
+    <p class="fade-up mt-8 text-xl leading-relaxed" style="--d:250ms">{a.intro}</p>
+
+    <nav class="reveal mt-10 rounded-2xl bg-sand/60 p-6" aria-label="Inhoud">
+      <p class="font-semibold">In dit artikel</p>
+      <ol class="mt-3 list-decimal space-y-1 pl-5">
+        {a.secties.map((s, i) => <li><a href={`#v${i + 1}`} class="underline-offset-4 hover:text-brand hover:underline">{s.vraag}</a></li>)}
+      </ol>
+    </nav>
+
+    {a.secties.map((s, i) => (
+      <section id={`v${i + 1}`} class="reveal mt-12 scroll-mt-28">
+        <h2 class="font-display text-3xl font-semibold">{s.vraag}</h2>
+        <p class="mt-4 text-lg leading-relaxed" set:html={metTodo(s.antwoord)} />
+        {s.meer && <ul class="mt-4 list-disc space-y-1 pl-5 text-muted">{s.meer.map((m) => <li set:html={metTodo(m)} />)}</ul>}
+      </section>
+    ))}
+
+    <aside class="reveal mt-16 rounded-3xl bg-accent p-8 text-ink">
+      <p class="font-display text-2xl font-semibold">{a.cta.tekst}</p>
+      <a href={a.cta.href} class="btn mt-5 bg-ink text-white hover:bg-ink-soft">{a.cta.knop}</a>
+    </aside>
+
+    <h2 class="mt-12 font-display text-xl font-semibold">Bronnen</h2>
+    <ul class="mt-3 space-y-1">
+      {a.bronnen.map((b) => <li><a href={b.url} class="font-semibold text-brand underline-offset-4 hover:underline" target="_blank" rel="noopener">{b.naam} ↗</a></li>)}
+    </ul>
+  </article>
+</Base>

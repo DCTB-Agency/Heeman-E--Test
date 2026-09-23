@@ -1,0 +1,78 @@
+---
+// /realisaties/ — overzicht van projecten met filter per dienst (CLAUDE.md § 5, § 8).
+import Base from '../../layouts/Base.astro';
+import Kruimels from '../../components/Kruimels.astro';
+import Foto from '../../components/Foto.astro';
+import { services } from '../../data/site';
+import { realisaties, realisatieUrl } from '../../data/realisaties';
+import { breadcrumbSchema } from '../../lib/schema';
+import { metTodo } from '../../lib/tekst';
+
+const kruimels = [
+  { naam: 'Home', url: '/' },
+  { naam: 'Realisaties', url: '/realisaties/' },
+];
+const dienstNaam = (slug: string) => services.find((s) => s.slug === slug)!.name;
+const gebruikteDiensten = [...new Set(realisaties.map((r) => r.dienst))];
+---
+
+<Base
+  title="Realisaties elektricien Schilde · Heeman Electrics"
+  description="Bekijk laadpalen, verdeelkasten en domotica-projecten die ik plaatste in Schilde en omgeving. Echte foto's, voor en na."
+  ogImage="/og/laadpaal.jpg"
+  schema={[breadcrumbSchema(kruimels)]}
+>
+  <section class="container-site py-12 sm:py-16 lg:py-20">
+    <Kruimels kruimels={kruimels} class="fade-up text-muted" />
+    <h1 class="mt-6 text-display">
+      <span class="line-mask"><span style="--i:1">Realisaties</span></span>
+    </h1>
+    <p class="fade-up mt-6 max-w-2xl text-lg text-muted" style="--d:250ms">Echte projecten, echte foto’s. Geen stockbeelden.</p>
+
+    <div class="fade-up mt-10 flex flex-wrap gap-2" role="group" aria-label="Filter op dienst" style="--d:350ms">
+      <button type="button" class="filter is-actief" data-filter="alle" aria-pressed="true">Alle</button>
+      {gebruikteDiensten.map((d) => <button type="button" class="filter" data-filter={d} aria-pressed="false">{dienstNaam(d)}</button>)}
+    </div>
+
+    <ul class="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+      {realisaties.map((r, i) => (
+        <li class="reveal" data-dienst={r.dienst} style={`--i:${i}`}>
+          <a href={realisatieUrl(r.slug)} class="group block">
+            <div class="relative">
+              <Foto id={r.fotos.hoofd} class="aspect-[4/5]" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw" />
+              {r.fotos.voor && <span class="absolute top-4 left-4 rounded-full bg-ink/80 px-3 py-1 text-xs font-semibold text-white">Voor / na</span>}
+            </div>
+            <p class="mt-4 text-sm font-semibold text-brand">{dienstNaam(r.dienst)}</p>
+            <h2 class="mt-1 font-display text-xl font-semibold group-hover:text-brand">{r.titel}</h2>
+            <p class="mt-1 text-sm text-muted" set:html={metTodo(r.gemeente)} />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .filter {
+    border-radius: 999px;
+    border: 1.5px solid rgb(28 13 10 / 0.15);
+    background: white;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .filter:hover { border-color: var(--color-brand); color: var(--color-brand); }
+  .filter.is-actief { background: var(--color-ink); border-color: var(--color-ink); color: white; }
+</style>
+
+<script>
+  const knoppen = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const items = document.querySelectorAll<HTMLElement>('[data-dienst]');
+  knoppen.forEach((k) =>
+    k.addEventListener('click', () => {
+      const f = k.dataset.filter;
+      knoppen.forEach((x) => { x.classList.toggle('is-actief', x === k); x.setAttribute('aria-pressed', String(x === k)); });
+      items.forEach((it) => { it.hidden = f !== 'alle' && it.dataset.dienst !== f; });
+    }),
+  );
+</script>

@@ -1,0 +1,65 @@
+---
+// /veelgestelde-vragen/ — alle FAQ's gebundeld per onderwerp (CLAUDE.md § 5, § 11.3 AEO).
+// Bron: dezelfde data als op de home-, dienst- en jobpagina's, zodat de antwoorden overal identiek zijn.
+import Base from '../../layouts/Base.astro';
+import Kruimels from '../../components/Kruimels.astro';
+import Faq from '../../components/Faq.astro';
+import { business, serviceUrl, job } from '../../data/site';
+import { homeFaq } from '../../data/home';
+import { diensten } from '../../data/diensten';
+import { vacature } from '../../data/vacature';
+import { breadcrumbSchema, faqSchema, type Vraag } from '../../lib/schema';
+
+const kruimels = [
+  { naam: 'Home', url: '/' },
+  { naam: 'Veelgestelde vragen', url: '/veelgestelde-vragen/' },
+];
+
+const groepen: { id: string; titel: string; vragen: Vraag[]; link?: { href: string; tekst: string } }[] = [
+  { id: 'algemeen', titel: 'Algemeen', vragen: homeFaq },
+  ...diensten.map((d) => ({ id: d.slug, titel: d.naam, vragen: d.faq, link: { href: serviceUrl(d.slug), tekst: `Meer over ${d.naam.toLowerCase()}` } })),
+  { id: 'jobs', titel: 'Werken bij Heeman Electrics', vragen: vacature.faq, link: { href: job.url, tekst: 'Bekijk de vacature' } },
+];
+
+// Schema: elke vraag één keer.
+const uniek = [...new Map(groepen.flatMap((g) => g.vragen).map((v) => [v.vraag, v])).values()];
+---
+
+<Base
+  title="Veelgestelde vragen elektricien · Heeman Electrics"
+  description="Antwoorden op vragen over laadpalen, keuring, domotica en renovatie van uw elektrische installatie in Schilde en omgeving."
+  schema={[faqSchema(uniek), breadcrumbSchema(kruimels)]}
+>
+  <section class="container-site py-12 sm:py-16 lg:py-20">
+    <Kruimels kruimels={kruimels} class="fade-up text-muted" />
+    <h1 class="mt-6 text-display">
+      <span class="line-mask"><span style="--i:1">Veelgestelde</span></span>
+      <span class="line-mask"><span style="--i:2">vragen</span></span>
+    </h1>
+    <p class="fade-up mt-6 max-w-2xl text-lg text-muted" style="--d:300ms">
+      Kort en eerlijk antwoord op wat klanten mij het vaakst vragen. Staat uw vraag er niet bij?
+      Bel <a href={business.phone.href} class="font-semibold text-brand underline-offset-4 hover:underline" data-event="click_to_call">{business.phone.display}</a>.
+    </p>
+
+    <div class="mt-14 grid gap-12 lg:grid-cols-[16rem_1fr] lg:gap-16">
+      <nav aria-label="Onderwerpen" class="lg:sticky lg:top-28 lg:self-start">
+        <p class="text-sm font-semibold tracking-widest text-muted uppercase">Onderwerpen</p>
+        <ul class="mt-3 flex flex-wrap gap-2 lg:flex-col lg:gap-1">
+          {groepen.map((g) => (
+            <li><a href={`#${g.id}`} class="inline-block rounded-full border border-ink/15 bg-white px-4 py-2 text-sm font-medium hover:border-brand hover:text-brand lg:rounded-lg lg:border-0 lg:bg-transparent lg:px-2 lg:py-1.5 lg:text-base">{g.titel}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="space-y-16">
+        {groepen.map((g) => (
+          <section id={g.id} class="reveal scroll-mt-28" aria-labelledby={`${g.id}-titel`}>
+            <h2 id={`${g.id}-titel`} class="font-display text-3xl font-semibold">{g.titel}</h2>
+            <Faq vragen={g.vragen} class="mt-6" />
+            {g.link && <a href={g.link.href} class="mt-5 inline-flex items-center gap-2 font-display font-semibold text-brand">{g.link.tekst} <span aria-hidden="true">→</span></a>}
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

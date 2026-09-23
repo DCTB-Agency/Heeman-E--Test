@@ -1,7 +1,11 @@
 """Genereer public/_redirects (Netlify-formaat) uit scrape/redirects.csv."""
 import csv, pathlib, re
 root = pathlib.Path(__file__).resolve().parent.parent
-lines = ["# Gegenereerd door scripts/build-redirects.py uit scrape/redirects.csv — niet met de hand wijzigen."]
+lines = [
+    "# Gegenereerd door scripts/build-redirects.py uit scrape/redirects.csv — niet met de hand wijzigen.",
+    "# Eén domeinvariant: alles naar https://www.heeman-electrics.be (CLAUDE.md § 4).",
+    "https://heeman-electrics.be/*  https://www.heeman-electrics.be/:splat  301!",
+]
 for row in csv.DictReader(open(root / "scrape/redirects.csv", encoding="utf-8")):
     old, new, status = row["oude_url"], row["nieuwe_url"], row["status"]
     if status != "301" or old == new:

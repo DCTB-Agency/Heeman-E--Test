@@ -43,6 +43,7 @@ const werkwijze = [
 <Base
   title="Over Bert Heeman · Elektricien in Schilde"
   description="Ik ben Bert Heeman, erkend elektricien in Schilde met meer dan 10 jaar ervaring. Persoonlijk contact, net werk. Maak kennis."
+  ogImage="/og/bert.jpg"
   schema={[...profielSchema, breadcrumbSchema(kruimels)]}
 >
   <section class="container-site grid items-center gap-12 py-12 sm:py-16 lg:grid-cols-[1.3fr_1fr] lg:gap-16 lg:py-20">
@@ -100,6 +101,7 @@ const werkwijze = [
         <h2 class="h2 mt-3">Ik zoek iemand die dit vak met dezelfde zorg wil doen.</h2>
         <p class="mt-5 text-lg text-on-ink-muted">Het werk groeit. Daarom zoek ik een junior elektricien die het vak van mij wil leren, met een vast, voltijds contract.</p>
         <a href={job.url} class="btn btn-accent mt-8">Bekijk de vacature</a>
+        <p class="mt-10 text-sm text-on-ink-muted">Alle feiten op een rij: <a href="/over-bert/kerngegevens/" class="font-semibold text-white underline underline-offset-4">kerngegevens van Heeman Electrics</a>.</p>
       </div>
       <InHetKort items={inHetKort} class="reveal" />
     </div>

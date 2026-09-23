@@ -20,6 +20,9 @@ const { title, description, ogImage = '/og/home.jpg', noindex = false, schema = 
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
 const isJobs = Astro.url.pathname.startsWith('/jobs/');
 const is404 = Astro.url.pathname.startsWith('/404');
+// Vóór livegang (PUBLIEK !== 'true') staat alles op noindex, zodat de Netlify-preview niet in Google komt.
+const publiek = import.meta.env.PUBLIEK === 'true' || process.env.PUBLIEK === 'true';
+const robots = noindex || !publiek ? 'noindex,follow' : 'index,follow,max-image-preview:large';
 
 // Sitebrede graaf (CLAUDE.md § 10) — vaste @id's zodat alles aan elkaar hangt.
 const orgId = `${SITE_URL}/#organization`;
@@ -98,7 +101,7 @@ const graph = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {!is404 && <link rel="canonical" href={canonical} />}
-    <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
+    <meta name="robots" content={robots} />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="nl_BE" />

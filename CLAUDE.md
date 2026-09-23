@@ -334,7 +334,7 @@ Regels:
 ## 8. Paginacontent (structuur + kernboodschap)
 
 ### Home `/`
-- **H1:** Elektricien met persoonlijk contact en 10+ jaar vakkennis (Schilde staat in eyebrow, sub en title-tag)
+- **H1:** Elektricien met 10+ jaar vakkennis in uw regio. (Schilde staat in eyebrow, sub en title-tag)
 - Sub: Laadpalen, keuringsklare installaties, Niko Home Control en renovatie in Schilde, 's-Gravenwezel, Wijnegem, Schoten, Brasschaat, Zoersel, Zandhoven en Ranst.
 - CTA's: Bel 0485 19 00 27 · WhatsApp · Gratis offerte
 - USP-rij: **Persoonlijk contact** (Bert doet bezoek, inschatting, opstart, oplevering en kwaliteitscontrole) · **Vakkennis** · **Netjes afgewerkt**

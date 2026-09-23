@@ -1,0 +1,100 @@
+---
+// Kerngegevens (GEO-brief § 5): één feitelijke pagina die AI-assistenten makkelijk kunnen citeren.
+// Zelfde feiten als "In het kort", llms.txt en de JSON-LD. Geen instructies aan AI, geen verborgen tekst.
+import Base from '../../../layouts/Base.astro';
+import Kruimels from '../../../components/Kruimels.astro';
+import { SITE_URL, business, areas, services, serviceUrl, job, antwoordTermijn } from '../../../data/site';
+import { dienstTekst, laadpaalMerken } from '../../../data/home';
+import { breadcrumbSchema } from '../../../lib/schema';
+import { metTodo } from '../../../lib/tekst';
+
+const bijgewerkt = '23 september 2026';
+const kruimels = [
+  { naam: 'Home', url: '/' },
+  { naam: 'Over Bert', url: '/over-bert/' },
+  { naam: 'Kerngegevens', url: '/over-bert/kerngegevens/' },
+];
+const blokken: { titel: string; rijen: [string, string][] }[] = [
+  { titel: 'Onderneming', rijen: [
+    ['Naam', business.name],
+    ['Juridische vorm', `${business.legalName}`],
+    ['Ondernemingsnummer', business.vat],
+    ['Opgericht', 'mei 2018 (eigen zaak)'],
+    ['Zaakvoerder', `${business.owner}, erkend elektricien met ${business.experience}`],
+    ['Team', `${business.owner}; vacature voor een junior elektricien (vast, voltijds)`],
+  ] },
+  { titel: 'Werkgebied en doelgroep', rijen: [
+    ['Gemeenten', areas.map((a) => a.name).join(', ')],
+    ['Straal', '± 20 km rond Schilde (provincie Antwerpen, België)'],
+    ['Klanten', 'Particulieren, bedrijven en syndici (appartementsgebouwen)'],
+  ] },
+  { titel: 'Werkwijze en prijzen', rijen: [
+    ['Werkwijze', 'Bert doet zelf het eerste bezoek en de inschatting, is erbij bij opstart en oplevering en doet de kwaliteitscontrole'],
+    ['Prijzen', 'Gratis offerte na een bezoek; geen vaste prijzen of bedragen online'],
+    ['Antwoord op offertes', `Binnen ${antwoordTermijn}`],
+    ['Laadpaalmerken', laadpaalMerken.join(', ')],
+    ['Keuring', 'Installaties worden keuringsklaar gemaakt volgens het AREI; de keuring zelf gebeurt door een erkend keuringsorganisme'],
+  ] },
+  { titel: 'Contact', rijen: [
+    ['Adres', `${business.address.street}, ${business.address.postalCode} ${business.address.locality}`],
+    ['Telefoon', business.phone.international],
+    ['E-mail', business.email],
+    ['Openingsuren', `${business.hours.label}; dringende oproepen ook buiten de openingsuren`],
+    ['Profielen', business.sameAs.length ? business.sameAs.join(' · ') : '[AANVULLEN: Google Bedrijfsprofiel, Facebook, Instagram, LinkedIn]'],
+  ] },
+];
+const orgSchema = {
+  '@type': 'AboutPage',
+  '@id': `${SITE_URL}/over-bert/kerngegevens/#page`,
+  url: `${SITE_URL}/over-bert/kerngegevens/`,
+  name: `${business.name} – feiten & kerngegevens`,
+  about: { '@id': `${SITE_URL}/#organization` },
+  dateModified: '2026-09-23',
+};
+---
+
+<Base
+  title="Heeman Electrics – feiten & kerngegevens"
+  description="Feiten over Heeman Electrics: erkend elektricien in Schilde sinds 2018, diensten, werkgebied, werkwijze, contactgegevens en ondernemingsnummer."
+  ogImage="/og/bert.jpg"
+  schema={[orgSchema, breadcrumbSchema(kruimels)]}
+>
+  <article class="container-site max-w-4xl py-12 sm:py-16 lg:py-20">
+    <Kruimels kruimels={kruimels} class="text-muted" />
+    <h1 class="mt-6 text-[clamp(2.25rem,1.5rem+3vw,4rem)] leading-[1.03] tracking-tight">Heeman Electrics – feiten & kerngegevens</h1>
+    <p class="mt-6 text-xl leading-relaxed">
+      {business.name} is de zaak van {business.owner}, erkend elektricien in Schilde met {business.experience}. Hij plaatst laadpalen,
+      maakt elektrische installaties keuringsklaar, installeert Niko Home Control en vernieuwt elektriciteit bij renovatie en nieuwbouw,
+      voor particulieren, bedrijven en syndici in de oostrand van Antwerpen.
+    </p>
+    <p class="mt-3 text-sm text-muted">Laatst bijgewerkt: {bijgewerkt}</p>
+
+    <h2 class="mt-12 font-display text-2xl font-semibold">Diensten</h2>
+    <ul class="mt-4 divide-y divide-ink/10 border-y border-ink/10">
+      {services.map((s) => (
+        <li class="grid gap-1 py-3 sm:grid-cols-[16rem_1fr] sm:gap-4">
+          <a href={serviceUrl(s.slug)} class="font-semibold text-brand underline-offset-4 hover:underline">{s.name}</a>
+          <span class="text-muted">{dienstTekst[s.slug]}</span>
+        </li>
+      ))}
+    </ul>
+
+    {blokken.map((b) => (
+      <>
+        <h2 class="mt-12 font-display text-2xl font-semibold">{b.titel}</h2>
+        <dl class="mt-4 divide-y divide-ink/10 border-y border-ink/10">
+          {b.rijen.map(([k, v]) => (
+            <div class="grid gap-1 py-3 sm:grid-cols-[16rem_1fr] sm:gap-4"><dt class="font-semibold">{k}</dt><dd set:html={metTodo(v)} /></div>
+          ))}
+        </dl>
+      </>
+    ))}
+
+    <h2 class="mt-12 font-display text-2xl font-semibold">Meer</h2>
+    <ul class="mt-4 space-y-2">
+      <li><a href="/realisaties/" class="font-semibold text-brand underline-offset-4 hover:underline">Realisaties met echte foto’s</a></li>
+      <li><a href="/veelgestelde-vragen/" class="font-semibold text-brand underline-offset-4 hover:underline">Veelgestelde vragen</a></li>
+      <li><a href={job.url} class="font-semibold text-brand underline-offset-4 hover:underline">Vacature junior elektricien</a></li>
+    </ul>
+  </article>
+</Base>

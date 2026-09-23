@@ -1,4 +1,6 @@
 # Gegenereerd door scripts/build-redirects.py uit scrape/redirects.csv — niet met de hand wijzigen.
+# Eén domeinvariant: alles naar https://www.heeman-electrics.be (CLAUDE.md § 4).
+https://heeman-electrics.be/*  https://www.heeman-electrics.be/:splat  301!
 /over/  /over-bert/  301
 /laadpaal-installatie-in-schilde/  /diensten/laadpaal-installeren/  301
 /sitemap.xml  /sitemap-index.xml  301

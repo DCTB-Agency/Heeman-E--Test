@@ -43,6 +43,7 @@ const serviceSchema = {
 <Base
   title={dienst.metaTitle}
   description={dienst.metaDescription}
+  ogImage={typeof dienst.fotos[0] === 'string' ? `/og/${dienst.fotos[0]}.jpg` : undefined}
   schema={[serviceSchema, faqSchema(dienst.faq), breadcrumbSchema(kruimels)]}
 >
   <!-- HERO: antwoord eerst -->

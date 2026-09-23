@@ -1,0 +1,56 @@
+---
+// Voor/na-slider (CLAUDE.md § 7.3): twee foto's over elkaar, een schuifregelaar toont meer "voor" of "na".
+// Toegankelijk: echte <input type="range"> (toetsenbord, schermlezer). Zonder JS: 50/50.
+import { Image } from 'astro:assets';
+import { fotos, type FotoId } from '../data/fotos';
+
+interface Props {
+  voor: FotoId;
+  na: FotoId;
+  class?: string;
+}
+const { voor, na, class: className = '' } = Astro.props;
+const v = fotos[voor], n = fotos[na];
+const img = 'absolute inset-0 size-full object-cover';
+---
+
+<div class:list={['voorna relative isolate overflow-hidden rounded-3xl bg-sand select-none', className]} style="--pos: 50%">
+  <Image src={n.src} alt={`Na: ${n.alt}`} widths={[500, 900, 1300]} sizes="(min-width: 1024px) 60vw, 100vw" class={img} style={`object-position:${n.focus}`} />
+  <div class="voor absolute inset-0">
+    <Image src={v.src} alt={`Voor: ${v.alt}`} widths={[500, 900, 1300]} sizes="(min-width: 1024px) 60vw, 100vw" class={img} style={`object-position:${v.focus}`} />
+  </div>
+  <span class="label left-4">Tijdens</span>
+  <span class="label right-4">Na</span>
+  <div class="greep pointer-events-none absolute inset-y-0 w-1 -translate-x-1/2 bg-white shadow-[0_0_0_1px_rgb(0_0_0/0.15)]" aria-hidden="true">
+    <span class="absolute top-1/2 left-1/2 grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-accent text-ink shadow-lg">
+      <svg viewBox="0 0 24 24" class="size-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6-6 6 6 6M15 6l6 6-6 6" /></svg>
+    </span>
+  </div>
+  <input type="range" min="0" max="100" value="50" aria-label="Vergelijk tijdens en na: schuif naar links voor meer 'na', naar rechts voor meer 'tijdens'" class="absolute inset-0 z-10 size-full cursor-ew-resize opacity-0" />
+</div>
+
+<style>
+  .voor { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+  .greep { left: var(--pos); }
+  .label {
+    position: absolute;
+    top: 1rem;
+    z-index: 5;
+    border-radius: 999px;
+    background: rgb(28 13 10 / 0.75);
+    padding: 0.35rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+  }
+  .voorna:has(input:focus-visible) .greep span { outline: 3px solid white; outline-offset: 3px; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.voorna').forEach((el) => {
+    const input = el.querySelector('input')!;
+    const zet = () => el.style.setProperty('--pos', `${input.value}%`);
+    input.addEventListener('input', zet);
+    zet();
+  });
+</script>

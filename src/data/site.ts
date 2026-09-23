@@ -76,6 +76,13 @@ export const services = [
   { slug: 'dringende-herstellingen', name: 'Dringende herstellingen', priority: 9 },
 ] as const;
 
+// Groepering van de diensten in het mobiele menu (23-09-2026).
+export const dienstGroepen = [
+  { titel: 'Laden & energie', slugs: ['laadpaal-installeren', 'zonnepanelen-thuisbatterij'] },
+  { titel: 'Installatie & keuring', slugs: ['elektrische-keuring', 'renovatie-elektriciteit', 'nieuwbouw', 'dringende-herstellingen'] },
+  { titel: 'Comfort & slim wonen', slugs: ['domotica-niko-home-control', 'video-parlofonie', 'verlichtingsadvies'] },
+] as const;
+
 export const serviceUrl = (slug: string) => `/diensten/${slug}/`;
 export const areaUrl = (slug: string) => `/regio/${slug}/`;
 

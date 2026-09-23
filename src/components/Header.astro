@@ -1,7 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo-heeman-electrics.png';
-import { business, nav, services, serviceUrl } from '../data/site';
+import { business, nav, services, serviceUrl, dienstGroepen } from '../data/site';
+import DienstIcoon from './DienstIcoon.astro';
 
 const path = Astro.url.pathname;
 const isActive = (href: string) => path.startsWith(href);
@@ -11,8 +12,9 @@ const extra = services.filter((s) => s.priority > 5);
 
 <header class="header-scroll sticky top-0 z-50 border-b border-ink/10 bg-paper/95 backdrop-blur supports-[backdrop-filter]:bg-paper/80">
   <div class="container-site flex h-16 items-center gap-6 lg:h-20">
-    <a href="/" class="shrink-0" aria-label={`${business.name} — naar de homepage`}>
+    <a href="/" class="logo-link relative shrink-0" aria-label={`${business.name} — naar de homepage`}>
       <Image src={logo} alt={business.name} width={190} height={60} class="logo-shrink h-9 w-auto lg:h-11" loading="eager" fetchpriority="high" />
+      <span class="logo-vonk lg:hidden" aria-hidden="true"></span>
     </a>
 
     <!-- Desktop -->
@@ -75,21 +77,41 @@ const extra = services.filter((s) => s.priority > 5);
       aria-label="Menu openen"
       data-mobile-trigger
     >
-      <svg viewBox="0 0 24 24" class="size-6" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+      <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
     </button>
   </div>
 
-  <nav id="menu-mobiel" hidden aria-label="Hoofdmenu" class="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-ink/10 bg-paper lg:hidden">
+  <!-- Mobiel: stroomkabel die zich vult terwijl je door de pagina scrolt -->
+  <div class="scroll-kabel lg:hidden" aria-hidden="true"><span></span></div>
+
+  <nav id="menu-mobiel" hidden aria-label="Hoofdmenu" class="menu-mobiel max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-ink/10 bg-paper lg:hidden">
     <div class="container-site py-4">
-      <p class="px-2 pb-1 text-xs font-semibold tracking-widest text-muted uppercase">Diensten</p>
-      <ul class="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
-        {services.map((s) => (
-          <li><a href={serviceUrl(s.slug)} class="block rounded-lg px-2 py-2.5 font-medium">{s.name}</a></li>
-        ))}
-      </ul>
-      <ul class="mt-3 border-t border-ink/10 pt-3">
-        {nav.map((item) => (
-          <li>
+      <details class="menu-item diensten-menu group/d" style="--n:0">
+        <summary class="flex cursor-pointer list-none items-center justify-between rounded-lg px-2 py-3 font-display text-lg font-semibold">
+          Diensten
+          <svg viewBox="0 0 20 20" class="size-5 transition-transform group-open/d:rotate-180" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5.5 7.5 10 12l4.5-4.5" /></svg>
+        </summary>
+        <div class="grid gap-5 pt-1 pb-4 sm:grid-cols-3">
+          {dienstGroepen.map((g) => (
+            <div>
+              <p class="px-2 pb-1 text-xs font-semibold tracking-widest text-muted uppercase">{g.titel}</p>
+              <ul>
+                {g.slugs.map((slug) => (
+                  <li>
+                    <a href={serviceUrl(slug)} class="flex items-center gap-3 rounded-xl px-2 py-2 font-medium active:bg-ink/5">
+                      <span class="grid size-9 shrink-0 place-items-center rounded-lg bg-brand/10 text-brand"><DienstIcoon slug={slug} class="size-6" /></span>
+                      {services.find((s) => s.slug === slug)!.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </details>
+      <ul class="border-t border-ink/10 pt-2">
+        {nav.map((item, i) => (
+          <li class="menu-item" style={`--n:${i + 1}`}>
             <a href={item.href} class="flex items-center gap-2 rounded-lg px-2 py-3 font-display text-lg font-semibold">
               {item.label}
               {'badge' in item && <span class="rounded-full bg-ink px-2 py-0.5 text-xs text-accent">{item.badge}</span>}
@@ -109,6 +131,53 @@ const extra = services.filter((s) => s.priority > 5);
   .job-badge {
     animation: spark 2.4s ease-in-out infinite;
   }
+
+  /* --- Mobiel --- */
+  /* Hamburger → kruis */
+  .hamburger { position: relative; display: block; width: 22px; height: 16px; }
+  .hamburger span {
+    position: absolute; left: 0; height: 2px; width: 100%; border-radius: 2px; background: currentColor;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s, width 0.3s;
+  }
+  .hamburger span:nth-child(1) { top: 0; }
+  .hamburger span:nth-child(2) { top: 7px; width: 70%; left: 30%; background: var(--color-brand); }
+  .hamburger span:nth-child(3) { top: 14px; }
+  [aria-expanded='true'] .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  [aria-expanded='true'] .hamburger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  [aria-expanded='true'] .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Vonk op de stekker van het logo */
+  .logo-vonk {
+    position: absolute; right: -3px; top: 38%; width: 7px; height: 7px; border-radius: 999px;
+    background: var(--color-accent); opacity: 0; pointer-events: none;
+  }
+
+  /* Stroomkabel onder de header: vult zich met de scrollvoortgang, met een gloeiend puntje */
+  .scroll-kabel { position: absolute; inset: auto 0 -1px 0; height: 3px; overflow: visible; pointer-events: none; }
+  .scroll-kabel span {
+    position: absolute; inset: 0; background: var(--color-accent); transform-origin: left center; transform: scaleX(0);
+  }
+  .scroll-kabel span::after {
+    content: ''; position: absolute; right: -4px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 999px;
+    background: #ffd2bd; box-shadow: 0 0 8px 2px var(--color-accent);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .logo-vonk { animation: logo-vonk 4.5s ease-out 1.5s infinite; }
+    @supports (animation-timeline: scroll()) {
+      .scroll-kabel span { animation: kabel-vul linear both; animation-timeline: scroll(root); }
+    }
+    .menu-mobiel:not([hidden]) .menu-item { animation: menu-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: calc(var(--n) * 55ms); }
+  }
+  @keyframes logo-vonk {
+    0%, 70%, 100% { opacity: 0; transform: scale(0.4); box-shadow: 0 0 0 0 rgb(255 90 31 / 0); }
+    74% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px 3px rgb(255 90 31 / 0.8); }
+    78% { opacity: 0.3; }
+    82% { opacity: 1; transform: scale(1); }
+    90% { opacity: 0; transform: scale(0.6); }
+  }
+  @keyframes kabel-vul { to { transform: scaleX(1); } }
+  @keyframes menu-in { from { opacity: 0; translate: 0 -8px; } to { opacity: 1; translate: none; } }
 </style>
 
 <script>

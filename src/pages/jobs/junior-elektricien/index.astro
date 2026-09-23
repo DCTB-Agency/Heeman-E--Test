@@ -2,7 +2,6 @@
 // /jobs/junior-elektricien/ — CLAUDE.md § 6.3–6.4. Tekst en JobPosting-schema komen uit data/vacature.ts.
 import Base from '../../../layouts/Base.astro';
 import Kruimels from '../../../components/Kruimels.astro';
-import InHetKort from '../../../components/InHetKort.astro';
 import DagTijdlijn from '../../../components/DagTijdlijn.astro';
 import Faq from '../../../components/Faq.astro';
 import Foto from '../../../components/Foto.astro';
@@ -81,7 +80,7 @@ const blokken = [
           <a href={business.phone.href} class="btn btn-ghost" data-event="job_call_click">Bel {business.phone.display}</a>
         </div>
       </div>
-      <div class="fade-up self-start [&_h2_svg]:text-ink" style="--d:300ms"><InHetKort items={vacature.inHetKort} /></div>
+      <Foto id="bert" class="fade-up aspect-[4/5] self-start shadow-[0_30px_60px_-30px_rgb(28_13_10/0.6)] lg:aspect-auto lg:h-full lg:min-h-[28rem]" eager focus="50% 20%" sizes="(min-width: 1024px) 40vw, 100vw" />
     </div>
   </section>
 

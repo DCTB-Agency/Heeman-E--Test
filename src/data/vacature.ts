@@ -16,14 +16,6 @@ export const vacature = {
   intro:
     'Ik ben Bert, elektricien in Schilde met meer dan 10 jaar ervaring. Het werk groeit: laadpalen, Niko Home Control, zonnepanelen, renovaties. Daarom zoek ik een junior elektricien die met mij mee op de baan gaat en het vak écht wil leren. Geen groot bedrijf, geen callcenter: jij, ik en de klant.',
 
-  inHetKort: [
-    { label: 'Functie', waarde: 'Junior elektricien (m/v/x)' },
-    { label: 'Plaats', waarde: `Schilde + werven in ${areas.map((a) => a.name).join(', ')}` },
-    { label: 'Contract', waarde: 'Vast, voltijds' },
-    { label: 'Start', waarde: '[AANVULLEN: zo snel mogelijk / datum]' },
-    { label: 'Solliciteren', waarde: 'Formulier (1 minuut), WhatsApp, bellen of mail met cv' },
-  ],
-
   taken: [
     'Samen met mij laadpalen plaatsen bij particulieren en bedrijven.',
     'Elektrische installaties vernieuwen en keuringsklaar maken volgens het AREI.',

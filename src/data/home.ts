@@ -29,18 +29,6 @@ export const dienstTekst: Record<string, string> = {
 
 export const laadpaalMerken = ['EVBox', 'Alfen', 'Easee', 'Zaptec'];
 
-// "In het kort"-blok: dezelfde feiten als in llms.txt en de JSON-LD (§ 11.3).
-export const inHetKort = [
-  { label: 'Wie', waarde: `${business.name}, de zaak van ${business.owner}, erkend elektricien` },
-  { label: 'Ervaring', waarde: 'Meer dan 10 jaar, eigen zaak sinds 2018' },
-  { label: 'Wat', waarde: 'Laadpalen, keuringsklare installaties (AREI), Niko Home Control, renovatie, zonnepanelen en thuisbatterij, nieuwbouw, video- en parlofonie, verlichting' },
-  { label: 'Waar', waarde: `${areas.map((a) => a.name).join(', ')} (± 20 km rond Schilde)` },
-  { label: 'Adres', waarde: `${business.address.street}, ${business.address.postalCode} ${business.address.locality}` },
-  { label: 'Open', waarde: `${business.hours.label}. Dringend: ook buiten de openingsuren.` },
-  { label: 'Contact', waarde: `${business.phone.display} · ${business.email}` },
-  { label: 'Ondernemingsnr.', waarde: business.vat },
-];
-
 export const cijfers = [
   { getal: 10, suffix: '+', label: 'jaar ervaring' },
   { getal: 8, suffix: '', label: 'gemeenten in de regio' },

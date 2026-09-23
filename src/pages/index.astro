@@ -4,14 +4,13 @@ import Base from '../layouts/Base.astro';
 import StroomLijn from '../components/StroomLijn.astro';
 import ScrollKabel from '../components/ScrollKabel.astro';
 import JobsBlok from '../components/JobsBlok.astro';
-import InHetKort from '../components/InHetKort.astro';
 import Foto from '../components/Foto.astro';
 import DienstIcoon from '../components/DienstIcoon.astro';
 import { realisaties, realisatieUrl } from '../data/realisaties';
 import Werkgebied from '../components/Werkgebied.astro';
 import Faq from '../components/Faq.astro';
 import { business, areas, areaUrl, services, serviceUrl, antwoordTermijn } from '../data/site';
-import { usps, dienstTekst, laadpaalMerken, inHetKort, cijfers, homeFaq } from '../data/home';
+import { usps, dienstTekst, laadpaalMerken, cijfers, homeFaq } from '../data/home';
 import { faqSchema } from '../lib/schema';
 import { metTodo } from '../lib/tekst';
 
@@ -30,7 +29,7 @@ const extra = services.filter((s) => s.priority > 5);
   <ScrollKabel />
   <section class="relative overflow-clip">
     <div class="container-site relative py-16 sm:py-24 lg:py-32">
-      <p class="eyebrow fade-up">Erkend elektricien in Schilde</p>
+      <p class="eyebrow fade-up">Bert Heeman</p>
       <h1 class="mt-4 max-w-4xl text-display">
         <span class="line-mask"><span style="--i:1">Elektricien met</span></span>
         <span class="line-mask"><span style="--i:2"><span class="relative whitespace-nowrap text-brand">10+ jaar vakkennis<svg class="absolute -bottom-[0.12em] left-0 h-[0.3em] w-full overflow-visible" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path class="draw-in" style="--d:900ms;--dur:0.9s" d="M2 12 C 40 4, 80 18, 120 10 S 180 6, 198 12" pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="5" stroke-linecap="round" /></svg></span></span></span>
@@ -130,9 +129,9 @@ const extra = services.filter((s) => s.priority > 5);
   <!-- JOBS -->
   <JobsBlok />
 
-  <!-- IN HET KORT + CIJFERS -->
-  <section class="section on-ink bg-ink text-white" aria-label="Heeman Electrics in het kort">
-    <div class="container-site grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+  <!-- OVER BERT + CIJFERS -->
+  <section class="section on-ink bg-ink text-white" aria-label="Over Heeman Electrics">
+    <div class="container-site grid items-center gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
       <div class="reveal">
         <p class="eyebrow">Over Heeman Electrics</p>
         <h2 class="h2 mt-3">Eén vast aanspreekpunt: Bert.</h2>
@@ -140,21 +139,20 @@ const extra = services.filter((s) => s.priority > 5);
           Ik ben Bert Heeman, erkend elektricien in Schilde. U belt mij, ik kom zelf kijken en maak de inschatting. Bij de opstart
           en de oplevering ben ik erbij, en de kwaliteitscontrole doe ik zelf.
         </p>
-        <dl class="cijfers mt-10 grid grid-cols-3 gap-4">
+        <a href="/over-bert/" class="mt-10 inline-flex items-center gap-2 font-display font-semibold text-accent hover:text-white">Maak kennis met Bert <span aria-hidden="true">→</span></a>
+      </div>
+      <dl class="cijfers reveal grid grid-cols-3 gap-6 lg:grid-cols-1 lg:gap-8 lg:border-l lg:border-white/15 lg:pl-16">
           {cijfers.map((c) => (
             <div>
               <dt class="sr-only">{c.label}</dt>
               <dd>
-                <span class="teller block font-display text-4xl font-semibold text-accent tabular-nums sm:text-5xl" style={`--doel:${c.getal};--van:${c.van ?? 0}`} data-suffix={c.suffix} aria-hidden="true"></span>
+                <span class="teller block font-display text-4xl font-semibold text-accent tabular-nums sm:text-6xl" style={`--doel:${c.getal};--van:${c.van ?? 0}`} data-suffix={c.suffix} aria-hidden="true"></span>
                 <span class="sr-only">{c.getal}{c.suffix}</span>
-                <span class="mt-1 block text-sm text-on-ink-muted" aria-hidden="true">{c.label}</span>
+                <span class="mt-1 block text-sm text-on-ink-muted sm:text-base" aria-hidden="true">{c.label}</span>
               </dd>
             </div>
           ))}
-        </dl>
-        <a href="/over-bert/" class="mt-10 inline-flex items-center gap-2 font-display font-semibold text-accent hover:text-white">Maak kennis met Bert <span aria-hidden="true">→</span></a>
-      </div>
-      <InHetKort items={inHetKort} class="reveal" />
+      </dl>
     </div>
   </section>
 
@@ -201,7 +199,7 @@ const extra = services.filter((s) => s.priority > 5);
         <p class="mt-5 text-lg text-on-ink-muted">Vanuit Schilde werk ik in een straal van ± 20 km. Kort op de baan, dus snel ter plaatse.</p>
         <ul class="mt-8 grid grid-cols-2 gap-x-6 gap-y-2">
           {areas.map((a) => (
-            <li><a href={areaUrl(a.slug)} class="group inline-flex items-center gap-2 py-1 font-medium hover:text-accent"><span class="size-2 rounded-full bg-accent" aria-hidden="true"></span>Elektricien {a.name}</a></li>
+            <li><a href={areaUrl(a.slug)} class="group inline-flex items-center gap-2 py-1 font-medium hover:text-accent"><span class="size-2 rounded-full bg-accent" aria-hidden="true"></span>{a.name}</a></li>
           ))}
         </ul>
       </div>

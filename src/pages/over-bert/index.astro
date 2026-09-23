@@ -1,11 +1,10 @@
 ---
-// /over-bert/ — CLAUDE.md § 8 (Over Bert) + § 11.3 (In het kort) + E-E-A-T. Person-schema via ProfilePage.
+// /over-bert/ — CLAUDE.md § 8 (Over Bert) + E-E-A-T. Person-schema via ProfilePage.
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
-import InHetKort from '../../components/InHetKort.astro';
 import Foto from '../../components/Foto.astro';
 import { SITE_URL, business, job } from '../../data/site';
-import { inHetKort, laadpaalMerken } from '../../data/home';
+import { laadpaalMerken } from '../../data/home';
 import { breadcrumbSchema } from '../../lib/schema';
 
 const kruimels = [
@@ -95,7 +94,7 @@ const werkwijze = [
   </section>
 
   <section class="section on-ink bg-ink text-white">
-    <div class="container-site grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+    <div class="container-site grid items-center gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
       <div class="reveal">
         <p class="eyebrow">Ik zoek versterking</p>
         <h2 class="h2 mt-3">Ik zoek iemand die dit vak met dezelfde zorg wil doen.</h2>
@@ -103,7 +102,7 @@ const werkwijze = [
         <a href={job.url} class="btn btn-accent mt-8">Bekijk de vacature</a>
         <p class="mt-10 text-sm text-on-ink-muted">Alle feiten op een rij: <a href="/over-bert/kerngegevens/" class="font-semibold text-white underline underline-offset-4">kerngegevens van Heeman Electrics</a>.</p>
       </div>
-      <InHetKort items={inHetKort} class="reveal" />
+      <Foto id="schakelaars" class="reveal aspect-[4/3]" sizes="(min-width: 1024px) 35vw, 100vw" />
     </div>
   </section>
 </Base>

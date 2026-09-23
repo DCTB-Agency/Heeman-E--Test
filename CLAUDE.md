@@ -34,6 +34,11 @@ Plak sectie 1–3, 5, 7 en 8 en de prompt uit sectie 16.B. Upload logo en 5–10
 - **Antwoordtermijn offertes:** binnen 5 werkdagen (bevestigd).
 - **Formulieren:** offerte en contact via mailto naar info@; sollicitatie via Netlify Forms (hosting = Netlify).
 - **Foto's:** echte foto's van Bert en zijn werk in `assets-in/bert/`; Bert is de enige persoon op de foto's.
+- **Juridische naam:** AUGES BV (bevestigd). **WhatsApp** actief op 0485 19 00 27 (bevestigd).
+- **"Een dag met Bert"** en de zin "Geen bedragen online: elke situatie is anders. Na het bezoek krijgt u een gratis offerte." bevestigd.
+- **Geen "In het kort"-blokken** op de pagina's (wel de aparte kerngegevenspagina voor GEO). Hero-regel boven de titel: "Bert Heeman".
+- **Realisaties en populaire diensten per gemeente:** ingevuld op vraag van DCTB (laadpaal in Oelegem en ronde inbouwstopcontacten in travertijn bevestigd; overige invulling goedgekeurd door DCTB).
+- **Geen routelink/kaart:** klanten komen niet naar het adres.
 - **Extra diensten:** nieuwbouw, video- & parlofonie, verlichtingsadvies, dringende herstellingen → eigen dienstpagina's (zie § 3, § 5, § 9).
 
 ---
@@ -67,7 +72,7 @@ Deze gegevens moeten **letterlijk identiek** zijn op de site, in de structured d
 | Handelsnaam | Heeman Electrics | bevestigd |
 | Zaakvoerder | Bert Heeman | bevestigd |
 | Rechtsvorm | BV | publiek (KBO) |
-| Ondernemingsnummer / btw | BE 0696.715.762 | publiek (KBO) — `[TE BEVESTIGEN: juridische naam van de BV voor de footer; één gids vermeldt een andere vennootschapsnaam]` |
+| Ondernemingsnummer / btw | BE 0696.715.762 | publiek (KBO) — juridische naam: **AUGES BV** (bevestigd) |
 | Opgericht | mei 2018 | publiek (KBO) |
 | Adres | Baron Delbekelaan 49, 2970 Schilde | bevestigd |
 | Telefoon (hoofdnummer) | 0485 19 00 27 · internationaal `+32 485 19 00 27` · link `tel:+32485190027` | bevestigd |
@@ -701,7 +706,7 @@ Contact: +32 485 19 00 27 · info@heeman-electrics.be · Baron Delbekelaan 49, 2
 10. Aantal geplaatste laadpalen/projecten (voor feitencijfers)
 11. Openingsuren bevestigen (dringend: ook erbuiten ✅); WhatsApp actief op 0485 19 00 27?
 12. **Vacature:** startdatum, extra voordelen (wagen, opleidingen, maaltijdcheques, werkkledij, gsm), antwoordtermijn, meedraaidag, leerling/stage mogelijk?, "je" of "u" op de jobpagina
-13. Juridische naam van de BV (voor footer)
+13. ~~Juridische naam van de BV~~ ✅ AUGES BV
 14. ~~Antwoordtermijn voor offertes~~ ✅ binnen 5 werkdagen
 15. Toegang tot huidige hosting/domein (DNS), Google Search Console, GA4, Google Bedrijfsprofiel
 

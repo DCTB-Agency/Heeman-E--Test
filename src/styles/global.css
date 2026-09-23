@@ -140,10 +140,17 @@
     width: 3px;
     height: 5px;
     border-radius: 0 0 2px 2px;
-    background: var(--color-ink);
+    background: var(--gat, var(--color-ink));
   }
   .stopcontact::before { left: calc(50% - 5.5px); }
   .stopcontact::after { left: calc(50% + 2.5px); }
+  /* Groot los stopcontact (1,5 ×) voor de hero-kabel: donker met lichte gaatjes, groeit vanaf de onderrand. */
+  .stopcontact-groot {
+    scale: 1.5;
+    transform-origin: 50% 100%;
+    background: var(--color-ink);
+    --gat: var(--color-paper);
+  }
   /* Op mobiel staat de knop onder de tekst: ruimte maken voor stekker + kabel, alleen als er een stroomlijn is. */
   @media (width < 40rem) {
     body:has(.stroomlijn[data-doel]) .stopcontact-knop { margin-top: 4.5rem; }

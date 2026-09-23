@@ -1,0 +1,172 @@
+---
+// Zwevende kabel uit de header (vervangt de vaste hero-kabel).
+// - De kabel hangt aan de onderkant van de (sticky) header; de stekker bengelt vrij in de hero.
+// - Hoe verder je scrolt, hoe meer de kabel naar rechts schuift, richting het stopcontact bovenop het
+//   volgende blok ([data-kabel-socket]). Komt dat blok bij de stekker, dan steekt die erin: vonk,
+//   stroompuls en de klasse `aan` op de zone (voor effecten op het blok zelf).
+// - Een veer geeft de stekker gewicht: hij valt bij het laden met een veerkracht naar beneden,
+//   schommelt licht en zwiept mee bij snel scrollen.
+// - Reduced motion: stilstaand, meteen ingeplugd.
+// Plaats dit component als eerste kind van een `relative` wrapper rond de hero én het volgende blok.
+---
+
+<div class="scrollkabel pointer-events-none absolute inset-0 z-10 hidden lg:block" aria-hidden="true">
+  <svg class="absolute inset-0 size-full overflow-visible">
+    <path class="sk-kabel" fill="none" stroke="var(--color-brand)" stroke-width="6" stroke-linecap="round" />
+    <path class="sk-puls" pathLength="1" fill="none" stroke="#ffd2bd" stroke-width="7" stroke-linecap="round" />
+  </svg>
+  <!-- Stekker 54 × 60 px (viewBox 36 × 40 × 1,5): pinnen op ± 6 px van het midden, zoals .stopcontact-groot -->
+  <svg class="sk-stekker absolute top-0 left-0" width="54" height="60" viewBox="0 0 36 40">
+    <path d="M18 0v10" stroke="var(--color-brand)" stroke-width="4" stroke-linecap="round" />
+    <path d="M7 9h22v10a10 10 0 0 1-10 10h-2a10 10 0 0 1-10-10z" fill="var(--color-brand)" />
+    <rect x="12.5" y="28" width="3" height="12" rx="1" fill="#8f8581" />
+    <rect x="20.5" y="28" width="3" height="12" rx="1" fill="#8f8581" />
+    <g class="sk-vonk" stroke="var(--color-accent)" stroke-width="2.2" stroke-linecap="round">
+      <path d="M18 44v6M8 41l-5 4M28 41l5 4M4 36H-2M32 36h6" />
+    </g>
+  </svg>
+</div>
+
+<style>
+  .sk-stekker {
+    transform-origin: 27px 0;
+    will-change: transform;
+    overflow: visible;
+  }
+  .sk-puls {
+    display: none;
+    stroke-dasharray: 0.08 1;
+    filter: drop-shadow(0 0 6px #ff5a1f);
+  }
+  .sk-vonk {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: 50% 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.aan) .sk-puls {
+      display: block;
+      animation: flow 1.8s linear infinite;
+    }
+    :global(.aan) .sk-vonk {
+      animation: flicker 0.9s ease-out 1;
+    }
+  }
+</style>
+
+<script>
+  const PLUG_W = 54, PLUG_H = 60, HALF = PLUG_W / 2;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('.scrollkabel').forEach((el) => {
+    const zone = el.parentElement!;
+    const header = document.querySelector('header');
+    const socket = zone.querySelector<HTMLElement>('[data-kabel-socket]');
+    const kabel = el.querySelector<SVGPathElement>('.sk-kabel')!;
+    const puls = el.querySelector<SVGPathElement>('.sk-puls')!;
+    const stekker = el.querySelector<SVGSVGElement>('.sk-stekker')!;
+    if (!header || !socket) return;
+
+    // Toestand van de stekker (bovenkant-midden, in zone-coördinaten) + snelheid.
+    let x = NaN, y = NaN, vx = 0, vy = 0;
+    let ingeplugd = false;
+    let vorige = performance.now();
+    let draait = false;
+
+    const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
+    const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
+
+    function doelen() {
+      const zr = zone.getBoundingClientRect();
+      const hb = header!.getBoundingClientRect().bottom;
+      const sr = socket!.getBoundingClientRect();
+      const w = zr.width;
+      const socketX = sr.left + sr.width / 2 - zr.left;
+      const ingeplugdY = sr.top - zr.top - PLUG_H; // pinnen raken de bovenkant van het stopcontact
+      const xs = w * 0.74;
+
+      if (reduce) {
+        return { ankerX: socketX, ankerY: 0, tx: socketX, ty: ingeplugdY, plug: true, p: 1, zichtbaar: zr.bottom > 0 };
+      }
+      const ankerY = hb - zr.top;
+      const hangY = ankerY + Math.min(innerHeight * 0.42, 340);
+      const gap = ingeplugdY - hangY; // wordt kleiner naarmate je scrolt
+      const p = clamp(scrollY / Math.max(1, gap + scrollY), 0, 1);
+      const plug = gap <= 0;
+      const ankerX = xs + (socketX - xs) * p;
+      const tx = xs + (socketX - xs) * ease(p);
+      return { ankerX, ankerY, tx, ty: plug ? ingeplugdY : hangY, plug, p, zichtbaar: zr.bottom > 0 };
+    }
+
+    function frame(nu: number) {
+      // Echte verstreken tijd (max. 0,25 s), geïntegreerd in vaste kleine stappen: de veer beweegt even snel
+      // op 30, 60 of 120 Hz, en blijft stabiel als de browser frames overslaat.
+      const totaal = Math.min(0.25, (nu - vorige) / 1000);
+      vorige = nu;
+      const d = doelen();
+
+      if (Number.isNaN(x)) {
+        x = d.tx;
+        y = reduce ? d.ty : d.ankerY - PLUG_H; // start net onder de header: stekker valt naar beneden
+      }
+
+      if (d.plug) {
+        // Ingeplugd: exact vast op het stopcontact.
+        x = d.tx; y = d.ty; vx = vy = 0;
+      } else {
+        // Veer met lichte demping; kleine schommeling als hij vrij hangt.
+        const zwaai = Math.sin(nu / 900) * 5 * (1 - d.p);
+        const STAP = 1 / 240;
+        for (let t = 0; t < totaal; t += STAP) {
+          const dt = Math.min(STAP, totaal - t);
+          const ax = 140 * (d.tx + zwaai - x) - 11 * vx;
+          const ay = 110 * (d.ty - y) - 9 * vy;
+          vx += ax * dt; vy += ay * dt;
+          x += vx * dt; y += vy * dt;
+        }
+      }
+
+      if (d.plug !== ingeplugd) {
+        ingeplugd = d.plug;
+        zone.classList.toggle('aan', ingeplugd);
+      }
+
+      // Hoek: stekker volgt de richting van de kabel, plus een zwiep bij snelheid.
+      const hoek = d.plug ? 0 : clamp(Math.atan2(x - d.ankerX, Math.max(1, y - d.ankerY)) * 0.5 - vx * 0.0006, -0.45, 0.45);
+      stekker.style.transform = `translate(${x - HALF}px, ${y}px) rotate(${hoek}rad)`;
+
+      const L = y - d.ankerY;
+      if (L > 2) {
+        const c1y = d.ankerY + L * 0.5;
+        const c2x = x - Math.sin(hoek) * L * 0.45;
+        const c2y = y - Math.cos(hoek) * L * 0.45;
+        const pad = `M ${d.ankerX} ${d.ankerY - 60} L ${d.ankerX} ${d.ankerY} C ${d.ankerX} ${c1y}, ${c2x} ${c2y}, ${x} ${y}`;
+        kabel.setAttribute('d', pad);
+        puls.setAttribute('d', pad);
+      } else {
+        kabel.setAttribute('d', '');
+        puls.setAttribute('d', '');
+      }
+
+      // Door blijven lopen zolang de stekker beweegt of vrij (zichtbaar) hangt; ingeplugd volstaat één frame per scroll.
+      const beweegt = Math.abs(vx) > 0.5 || Math.abs(vy) > 0.5;
+      const vrij = !d.plug && !reduce && d.zichtbaar;
+      if (beweegt || vrij) requestAnimationFrame(frame);
+      else draait = false;
+    }
+
+    function start() {
+      if (getComputedStyle(el).display === 'none') return;
+      if (!draait) {
+        draait = true;
+        vorige = performance.now();
+        requestAnimationFrame(frame);
+      }
+    }
+
+    addEventListener('scroll', start, { passive: true });
+    addEventListener('resize', start);
+    document.fonts?.ready.then(start);
+    start();
+  });
+</script>

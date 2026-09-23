@@ -2,7 +2,7 @@
 // Homepage — CLAUDE.md § 8. Volgorde: jobs-blok hoog, direct na de diensten (§ 6.1).
 import Base from '../layouts/Base.astro';
 import StroomLijn from '../components/StroomLijn.astro';
-import HeroKabel from '../components/HeroKabel.astro';
+import ScrollKabel from '../components/ScrollKabel.astro';
 import JobsBlok from '../components/JobsBlok.astro';
 import InHetKort from '../components/InHetKort.astro';
 import FotoPlaceholder from '../components/FotoPlaceholder.astro';
@@ -28,18 +28,19 @@ const icoon: Record<string, string> = {
 
 <Base
   title="Elektricien Schilde · Laadpalen & domotica · Heeman"
-  description="Elektricien in Schilde en omgeving. Ik plaats laadpalen, Niko Home Control en maak uw installatie keuringsklaar. Vaste prijs. Bel 0485 19 00 27."
+  description="Erkend elektricien in Schilde: laadpalen, Niko Home Control en keuringsklare installaties. Persoonlijk contact, gratis offerte. Bel 0485 19 00 27."
   schema={[faqSchema(homeFaq)]}
 >
-  <!-- HERO -->
+  <!-- HERO + USP: de kabel hangt uit de header en plugt in op het stopcontact bovenop de USP-rij -->
+  <div class="kabel-zone relative">
+  <ScrollKabel />
   <section class="relative overflow-clip">
-    <HeroKabel class="absolute top-0 right-[4%] hidden h-full max-h-[34rem] w-auto lg:block xl:right-[8%]" />
     <div class="container-site relative py-16 sm:py-24 lg:py-32">
-      <p class="eyebrow fade-up">Erkend elektricien · {business.experience}</p>
+      <p class="eyebrow fade-up">Elektricien in Schilde · erkend · {business.experience}</p>
       <h1 class="mt-4 max-w-4xl text-display">
-        <span class="line-mask"><span style="--i:1">Elektricien in Schilde</span></span>
-        <span class="line-mask"><span style="--i:2">die <span class="relative whitespace-nowrap text-brand">zelf komt<svg class="absolute -bottom-[0.12em] left-0 h-[0.3em] w-full overflow-visible" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path class="draw-in" style="--d:900ms;--dur:0.9s" d="M2 12 C 40 4, 80 18, 120 10 S 180 6, 198 12" pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="5" stroke-linecap="round" /></svg></span>,</span></span>
-        <span class="line-mask"><span style="--i:3">met een vaste prijs</span></span>
+        <span class="line-mask"><span style="--i:1">Elektricien met</span></span>
+        <span class="line-mask"><span style="--i:2"><span class="relative whitespace-nowrap text-brand">persoonlijk contact<svg class="absolute -bottom-[0.12em] left-0 h-[0.3em] w-full overflow-visible" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path class="draw-in" style="--d:900ms;--dur:0.9s" d="M2 12 C 40 4, 80 18, 120 10 S 180 6, 198 12" pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="5" stroke-linecap="round" /></svg></span></span></span>
+        <span class="line-mask"><span style="--i:3">en 10+ jaar vakkennis</span></span>
       </h1>
       <p class="fade-up mt-6 max-w-2xl text-lg text-muted" style="--d:550ms">
         Laadpalen, keuringsklare installaties, Niko Home Control en renovatie in {areas.map((a) => a.name).slice(0, -1).join(', ')} en {areas.at(-1)!.name}.
@@ -56,7 +57,8 @@ const icoon: Record<string, string> = {
   </section>
 
   <!-- USP-RIJ -->
-  <section class="border-y border-ink/10 bg-white/60" aria-label="Waarom Heeman Electrics">
+  <section class="usp-band relative border-y border-ink/10 bg-white/60" aria-label="Waarom Heeman Electrics">
+    <span class="stopcontact stopcontact-groot hidden lg:block" style="left: 88%" data-kabel-socket aria-hidden="true"></span>
     <ol class="reveal-stagger container-site grid gap-8 py-12 sm:grid-cols-3 sm:gap-10">
       {usps.map((u, i) => (
         <li style={`--i:${i}`}>
@@ -67,6 +69,7 @@ const icoon: Record<string, string> = {
       ))}
     </ol>
   </section>
+  </div>
 
   <!-- DIENSTEN -->
   <section class="section" aria-labelledby="diensten">
@@ -123,8 +126,8 @@ const icoon: Record<string, string> = {
         <p class="eyebrow">Over Heeman Electrics</p>
         <h2 class="h2 mt-3">Eén vast aanspreekpunt: Bert.</h2>
         <p class="mt-5 max-w-xl text-lg text-on-ink-muted">
-          Ik ben Bert Heeman, erkend elektricien in Schilde. U belt mij, ik kom kijken, u krijgt een vaste prijs en ik
-          sta zelf mee op de werf.
+          Ik ben Bert Heeman, erkend elektricien in Schilde. U belt mij, ik kom zelf kijken en maak de inschatting. Bij de opstart
+          en de oplevering ben ik erbij, en de kwaliteitscontrole doe ik zelf.
         </p>
         <dl class="cijfers mt-10 grid grid-cols-3 gap-4">
           {cijfers.map((c) => (
@@ -209,7 +212,7 @@ const icoon: Record<string, string> = {
     <StroomLijn doel points={[[4, 0], [4, 88], [92, 88], [92, 100]]} />
     <div class="container-site relative py-20 sm:py-24">
       <div class="reveal mx-auto max-w-3xl rounded-3xl bg-ink px-2 py-4 text-center">
-        <h2 id="cta" class="h2">Vraag uw vaste prijs aan</h2>
+        <h2 id="cta" class="h2">Vraag uw gratis offerte aan</h2>
         <p class="mt-4 text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een gratis offerte. Ik antwoord binnen <mark class="todo">[AANVULLEN: X werkdag(en)]</mark>.</p>
         <div class="mt-8 flex flex-wrap justify-center gap-3">
           <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
@@ -222,6 +225,27 @@ const icoon: Record<string, string> = {
 </Base>
 
 <style>
+  /* Stroom aan: zodra de stekker in het stopcontact zit, loopt er een lichtlijn over de bovenrand van de USP-rij. */
+  .usp-band::before {
+    content: '';
+    position: absolute;
+    inset: -2px 0 auto;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-accent) 20%, var(--color-accent) 80%, transparent);
+    box-shadow: 0 0 12px 1px rgb(255 90 31 / 0.6);
+    transform: scaleX(0);
+    transform-origin: 88% 50%;
+    opacity: 0;
+    transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s;
+  }
+  .kabel-zone.aan .usp-band::before { transform: scaleX(1); opacity: 1; }
+  .kabel-zone.aan [data-kabel-socket] { box-shadow: 0 0 18px 4px rgb(255 90 31 / 0.55); transition: box-shadow 0.3s; }
+  .kabel-zone.aan .usp-band li h2 { animation: usp-aan 0.7s ease-out both; animation-delay: calc(0.15s + var(--i) * 0.12s); }
+  @keyframes usp-aan { 40% { color: var(--color-brand); } }
+  @media (prefers-reduced-motion: reduce) {
+    .usp-band::before { display: none; }
+  }
+
   /* Dienstkaarten: licht omhoog, icoon en pijl bewegen mee. */
   .dienst { transition: transform 0.25s ease, border-color 0.25s, box-shadow 0.25s; }
   .dienst-icoon, .pijl { transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); display: inline-block; }

@@ -28,6 +28,9 @@ Plak sectie 1–3, 5, 7 en 8 en de prompt uit sectie 16.B. Upload logo en 5–10
 - **Dringende herstellingen:** ook buiten de openingsuren bereikbaar voor dringende oproepen. Openingsuren ma–vr 08:00–17:30 blijven gelden voor gewone vragen. Geen "24/7" beloven zonder verdere bevestiging.
 - **Erkend elektricien:** mag vermeld worden. Tone of voice blijft "ik" (Bert spreekt zelf), niet "onze elektriciens".
 - **Laadpaalmerken:** EVBox, Alfen, Easee, Zaptec mogen vermeld worden.
+- **Geen vaste prijzen** (beslist 23-09-2026): nergens "vaste prijs" beloven. Wel: gratis/vrijblijvende offerte, persoonlijk contact, vakkennis.
+- **"Ik kom zelf" veralgemeend:** Bert doet zelf het eerste bezoek en de inschatting, de opstart en de oplevering van elk project, en de kwaliteitscontrole. Niet beloven dat Bert elk uur zelf op de werf staat (er komt een junior bij).
+- **Hero-titel:** zonder "Schilde" en zonder "vaste prijs"; nadruk op persoonlijk contact en expertise. Schilde blijft in title-tag, eyebrow en subtekst (SEO).
 - **Extra diensten:** nieuwbouw, video- & parlofonie, verlichtingsadvies, dringende herstellingen → eigen dienstpagina's (zie § 3, § 5, § 9).
 
 ---
@@ -84,7 +87,7 @@ Deze gegevens moeten **letterlijk identiek** zijn op de site, in de structured d
 
 ## 3. Positionering, doelgroepen en tone of voice
 
-**Kernbelofte:** *De elektricien die zelf komt, vaste prijzen geeft en netjes werkt.* Niet de goedkoopste — wel de betrouwbaarste in Schilde en de oostrand van Antwerpen.
+**Kernbelofte:** *Persoonlijk contact met Bert en vakkennis van een erkend elektricien, netjes afgewerkt.** Niet de goedkoopste — wel de betrouwbaarste in Schilde en de oostrand van Antwerpen.
 
 **Doelgroepen (in volgorde):**
 1. **Woningeigenaars** in Schilde en omgeving (villa's, renovaties, elektrische wagen gekocht, woning verkopen/kopen).
@@ -315,23 +318,23 @@ Regels:
 1. **"De stroomlijn"** — een dunne lijn in accentkleur die als een kabel door de pagina loopt en secties verbindt; tekent zich subtiel bij scrollen (SVG stroke-dashoffset). Uit bij reduced motion.
 2. **Echte mensen, echte werven** — foto's van Bert en projecten groot, licht korrelig, geen stock. Duotone-behandeling in merkkleur voor sfeerbeelden.
 3. **Voor/na-slider** op realisaties (verdeelkast vóór en ná, laadpaal-plaatsing).
-4. **Laadpaal-keuzehulp** (3–4 vragen: woning/bedrijf · 1- of 3-fasig aansluiting · zonnepanelen ja/nee · slim laden gewenst) → uitkomst + "Vraag uw vaste prijs aan" (vult offerteformulier voor). Geen prijzen tonen tenzij Bert ze aanlevert.
+4. **Laadpaal-keuzehulp** (3–4 vragen: woning/bedrijf · 1- of 3-fasig aansluiting · zonnepanelen ja/nee · slim laden gewenst) → uitkomst + "Vraag uw gratis offerte aan" (vult offerteformulier voor). Geen prijzen tonen tenzij Bert ze aanlevert.
 5. **Werkgebied-kaart** als eigen SVG (8 gemeenten, klikbaar naar regiopagina's) — geen zware Google Maps-embed op de home.
 6. **Grote feitencijfers** in display-font — **alleen met echte cijfers** `[AANVULLEN: aantal laadpalen geplaatst, jaren ervaring, Google-score]`.
 7. **Jobs-blok** in contrasterende accentkleur, met portret van Bert en de tijdlijn "een dag met Bert".
 8. Micro-interacties: knoppen met korte "vonk"-hover, geen gimmicks die laadtijd kosten.
 
-**Componentenlijst:** header + aankondigingsbalk, hero, dienstkaarten, USP-rij (zelf · vaste prijs · netjes), review-slider (Google reviews, met link naar profiel), realisatiekaarten, voor/na-slider, keuzehulp, werkgebied-kaart, FAQ-accordeon, CTA-band, jobs-blok, formulier, sticky mobiele onderbalk, footer met NAP + KBO.
+**Componentenlijst:** header + aankondigingsbalk, hero, dienstkaarten, USP-rij (persoonlijk contact · vakkennis · netjes), review-slider (Google reviews, met link naar profiel), realisatiekaarten, voor/na-slider, keuzehulp, werkgebied-kaart, FAQ-accordeon, CTA-band, jobs-blok, formulier, sticky mobiele onderbalk, footer met NAP + KBO.
 
 ---
 
 ## 8. Paginacontent (structuur + kernboodschap)
 
 ### Home `/`
-- **H1:** Elektricien in Schilde die zelf komt, met een vaste prijs
+- **H1:** Elektricien met persoonlijk contact en 10+ jaar vakkennis (Schilde staat in eyebrow, sub en title-tag)
 - Sub: Laadpalen, keuringsklare installaties, Niko Home Control en renovatie in Schilde, 's-Gravenwezel, Wijnegem, Schoten, Brasschaat, Zoersel, Zandhoven en Ranst.
 - CTA's: Bel 0485 19 00 27 · WhatsApp · Gratis offerte
-- USP-rij: **Ik kom zelf** (geen onderaannemers `[TE BEVESTIGEN]`) · **Vaste prijs vooraf** · **Netjes afgewerkt**
+- USP-rij: **Persoonlijk contact** (Bert doet bezoek, inschatting, opstart, oplevering en kwaliteitscontrole) · **Vakkennis** · **Netjes afgewerkt**
 - Diensten (laadpaal groot uitgelicht, dan de rest)
 - Blok "In het kort" (entiteitsfeiten voor AI — zie 11.3)
 - Reviews (Google)
@@ -345,7 +348,7 @@ Regels:
 1. H1 met dienst + Schilde (bv. "Laadpaal laten plaatsen in Schilde en omgeving")
 2. **Antwoord-eerst-alinea** (40–60 woorden die de hoofdvraag direct beantwoordt — AEO)
 3. Voor wie / wanneer
-4. Werkwijze in stappen (bezoek → vaste prijs → plaatsing → oplevering/keuring)
+4. Werkwijze in stappen (bezoek → offerte → plaatsing → oplevering/keuring)
 5. Wat zit er in de prijs (zonder bedragen tenzij aangeleverd)
 6. Premies/fiscaal: kader met `[te controleren]` + link naar officiële bron
 7. Realisaties van deze dienst
@@ -384,30 +387,30 @@ Formulier: dienst (keuze) · gemeente (keuze uit 8 + andere) · korte omschrijvi
 
 | URL | Title | Meta description |
 |---|---|---|
-| `/` | Elektricien Schilde · Laadpalen & domotica · Heeman | Elektricien in Schilde en omgeving. Ik plaats laadpalen, Niko Home Control en maak uw installatie keuringsklaar. Vaste prijs. Bel 0485 19 00 27. |
+| `/` | Elektricien Schilde · Laadpalen & domotica · Heeman | Erkend elektricien in Schilde: laadpalen, Niko Home Control en keuringsklare installaties. Persoonlijk contact, gratis offerte. Bel 0485 19 00 27. |
 | `/diensten/` | Diensten elektricien Schilde en omgeving · Heeman | Laadpalen, keuringsklare installaties, domotica, renovatie en zonnepanelen in Schilde, Brasschaat, Zoersel en omgeving. Vraag een gratis offerte. |
-| `/diensten/laadpaal-installeren/` | Laadpaal laten plaatsen in Schilde · Heeman Electrics | Laadpaal thuis of voor uw bedrijf in Schilde en omgeving. Ik kom zelf, geef een vaste prijs en werk netjes. Gratis offerte of bel 0485 19 00 27. |
-| `/diensten/elektrische-keuring/` | Installatie keuringsklaar maken · Elektricien Schilde | Woning verkopen of installatie afgekeurd? Ik breng uw elektrische installatie in orde volgens het AREI, in Schilde en omgeving. Vaste prijs. |
+| `/diensten/laadpaal-installeren/` | Laadpaal laten plaatsen in Schilde · Heeman Electrics | Laadpaal thuis of voor uw bedrijf in Schilde en omgeving. Persoonlijk contact, vakkundig en netjes geplaatst. Gratis offerte of bel 0485 19 00 27. |
+| `/diensten/elektrische-keuring/` | Installatie keuringsklaar maken · Elektricien Schilde | Woning verkopen of installatie afgekeurd? Ik breng uw elektrische installatie in orde volgens het AREI, in Schilde en omgeving. Gratis offerte. |
 | `/diensten/domotica-niko-home-control/` | Niko Home Control installeren in Schilde · Heeman | Domotica met Niko Home Control bij nieuwbouw of renovatie in Schilde en omgeving. Installatie, uitbreiding en programmatie. Vraag een offerte. |
-| `/diensten/renovatie-elektriciteit/` | Elektriciteit vernieuwen bij renovatie · Schilde | Nieuwe verdeelkast, bekabeling of volledige renovatie van uw elektriciteit in Schilde en omgeving. Netjes, keuringsklaar, vaste prijs. |
-| `/diensten/zonnepanelen-thuisbatterij/` | Zonnepanelen & thuisbatterij aansluiten · Schilde | Zonnepanelen en thuisbatterij slim koppelen aan uw installatie en laadpaal, in Schilde en omgeving. Vraag vrijblijvend advies en een vaste prijs. |
-| `/diensten/nieuwbouw/` | Elektriciteit nieuwbouw in Schilde · Heeman Electrics | Volledige elektrische installatie voor uw nieuwbouw in Schilde en omgeving, van plan tot keuring. Erkend elektricien, vaste prijs. |
+| `/diensten/renovatie-elektriciteit/` | Elektriciteit vernieuwen bij renovatie · Schilde | Nieuwe verdeelkast, bekabeling of volledige renovatie van uw elektriciteit in Schilde en omgeving. Netjes en keuringsklaar afgewerkt. |
+| `/diensten/zonnepanelen-thuisbatterij/` | Zonnepanelen & thuisbatterij aansluiten · Schilde | Zonnepanelen en thuisbatterij slim koppelen aan uw installatie en laadpaal, in Schilde en omgeving. Vraag vrijblijvend advies en een offerte. |
+| `/diensten/nieuwbouw/` | Elektriciteit nieuwbouw in Schilde · Heeman Electrics | Volledige elektrische installatie voor uw nieuwbouw in Schilde en omgeving, van plan tot keuring. Erkend elektricien, gratis offerte. |
 | `/diensten/video-parlofonie/` | Video- & parlofonie plaatsen in Schilde · Heeman | Videofoon of parlofoon laten plaatsen in Schilde en omgeving. Zien wie er aanbelt en toegang eenvoudig beheren. Vraag een offerte. |
 | `/diensten/verlichtingsadvies/` | Verlichtingsadvies en -installatie · Schilde · Heeman | Verlichting die sfeer, functie en een laag verbruik combineert. Advies en plaatsing in Schilde en omgeving. Vraag vrijblijvend advies. |
 | `/diensten/dringende-herstellingen/` | Dringende elektriciteitspanne Schilde · Heeman | Stroompanne of dringend elektrisch probleem in Schilde en omgeving? Ook buiten de openingsuren bereikbaar. Bel 0485 19 00 27. |
-| `/regio/elektricien-schilde/` | Elektricien in Schilde · Heeman Electrics | Uw elektricien in Schilde: laadpalen, keuringsklaar maken, Niko Home Control en renovatie. Ik kom zelf langs. Bel 0485 19 00 27. |
-| `/regio/elektricien-s-gravenwezel/` | Elektricien in 's-Gravenwezel · Heeman Electrics | Elektricien in 's-Gravenwezel voor laadpalen, domotica, renovatie en keuringsklare installaties. Om de hoek, vaste prijs. Bel 0485 19 00 27. |
-| `/regio/elektricien-wijnegem/` | Elektricien in Wijnegem · Heeman Electrics | Elektricien in Wijnegem voor laadpalen, Niko Home Control en renovatie. Ik kom zelf, met een vaste prijs vooraf. Vraag uw gratis offerte. |
-| `/regio/elektricien-schoten/` | Elektricien in Schoten · Heeman Electrics | Elektricien in Schoten: laadpaal plaatsen, installatie keuringsklaar maken of domotica. Netjes werk, vaste prijs. Bel 0485 19 00 27. |
-| `/regio/elektricien-brasschaat/` | Elektricien in Brasschaat · Heeman Electrics | Elektricien in Brasschaat voor laadpalen, Niko Home Control, renovatie en zonnepanelen. Ik kom zelf langs. Vraag een gratis offerte. |
-| `/regio/elektricien-zoersel/` | Elektricien in Zoersel · Heeman Electrics | Elektricien in Zoersel, Halle en Sint-Antonius: laadpalen, domotica en renovatie met een vaste prijs. Bel 0485 19 00 27. |
-| `/regio/elektricien-zandhoven/` | Elektricien in Zandhoven · Heeman Electrics | Elektricien in Zandhoven en deelgemeenten: laadpalen, keuringsklare installaties en Niko Home Control. Vaste prijs. Vraag een offerte. |
-| `/regio/elektricien-ranst/` | Elektricien in Ranst en Oelegem · Heeman Electrics | Elektricien in Ranst, Oelegem, Broechem en Emblem voor laadpalen, domotica en renovatie. Ik kom zelf. Bel 0485 19 00 27. |
+| `/regio/elektricien-schilde/` | Elektricien in Schilde · Heeman Electrics | Uw elektricien in Schilde: laadpalen, keuringsklaar maken, Niko Home Control en renovatie. Persoonlijk contact. Bel 0485 19 00 27. |
+| `/regio/elektricien-s-gravenwezel/` | Elektricien in 's-Gravenwezel · Heeman Electrics | Elektricien in 's-Gravenwezel voor laadpalen, domotica, renovatie en keuringsklare installaties. Om de hoek, persoonlijk contact. Bel 0485 19 00 27. |
+| `/regio/elektricien-wijnegem/` | Elektricien in Wijnegem · Heeman Electrics | Elektricien in Wijnegem voor laadpalen, Niko Home Control en renovatie. Persoonlijk contact en vakkundig werk. Vraag uw gratis offerte. |
+| `/regio/elektricien-schoten/` | Elektricien in Schoten · Heeman Electrics | Elektricien in Schoten: laadpaal plaatsen, installatie keuringsklaar maken of domotica. Netjes werk, gratis offerte. Bel 0485 19 00 27. |
+| `/regio/elektricien-brasschaat/` | Elektricien in Brasschaat · Heeman Electrics | Elektricien in Brasschaat voor laadpalen, Niko Home Control, renovatie en zonnepanelen. Persoonlijk contact. Vraag een gratis offerte. |
+| `/regio/elektricien-zoersel/` | Elektricien in Zoersel · Heeman Electrics | Elektricien in Zoersel, Halle en Sint-Antonius: laadpalen, domotica en renovatie. Vraag een offerte. Bel 0485 19 00 27. |
+| `/regio/elektricien-zandhoven/` | Elektricien in Zandhoven · Heeman Electrics | Elektricien in Zandhoven en deelgemeenten: laadpalen, keuringsklare installaties en Niko Home Control. Gratis offerte. Vraag een offerte. |
+| `/regio/elektricien-ranst/` | Elektricien in Ranst en Oelegem · Heeman Electrics | Elektricien in Ranst, Oelegem, Broechem en Emblem voor laadpalen, domotica en renovatie. Persoonlijk contact. Bel 0485 19 00 27. |
 | `/realisaties/` | Realisaties elektricien Schilde · Heeman Electrics | Bekijk laadpalen, verdeelkasten en domotica-projecten die ik plaatste in Schilde en omgeving. Echte foto's, voor en na. |
-| `/over-bert/` | Over Bert Heeman · Elektricien in Schilde | Ik ben Bert Heeman, erkend elektricien in Schilde met meer dan 10 jaar ervaring. Vaste prijzen, net werk. Maak kennis. |
+| `/over-bert/` | Over Bert Heeman · Elektricien in Schilde | Ik ben Bert Heeman, erkend elektricien in Schilde met meer dan 10 jaar ervaring. Persoonlijk contact, net werk. Maak kennis. |
 | `/jobs/` | Jobs bij Heeman Electrics · Elektricien Schilde | Werken bij een lokale elektricien in Schilde? Ik zoek een junior elektricien met een vast voltijds contract. Bekijk de vacature. |
 | `/jobs/junior-elektricien/` | Vacature junior elektricien Schilde · Heeman | Junior elektricien gezocht in Schilde. Vast voltijds contract, leer het vak naast Bert: laadpalen, domotica, zonnepanelen. Solliciteer in 1 minuut. |
-| `/offerte/` | Gratis offerte elektricien Schilde · Heeman Electrics | Vraag gratis een vaste prijs aan voor uw laadpaal, renovatie, domotica of keuringsklare installatie in Schilde en omgeving. |
+| `/offerte/` | Gratis offerte elektricien Schilde · Heeman Electrics | Vraag gratis een offerte aan voor uw laadpaal, renovatie, domotica of keuringsklare installatie in Schilde en omgeving. |
 | `/contact/` | Contact · Heeman Electrics, elektricien Schilde | Bel 0485 19 00 27, stuur een WhatsApp of mail info@heeman-electrics.be. Baron Delbekelaan 49, 2970 Schilde. |
 | `/veelgestelde-vragen/` | Veelgestelde vragen elektricien · Heeman Electrics | Antwoorden op vragen over laadpalen, keuring, domotica en renovatie van uw elektrische installatie in Schilde en omgeving. |
 | `/kennisbank/` | Kennisbank elektriciteit · Heeman Electrics Schilde | Heldere uitleg over laadpalen, de elektrische keuring, Niko Home Control en renovatie. Geschreven door Bert, elektricien in Schilde. |
@@ -546,7 +549,7 @@ Contact: +32 485 19 00 27 · info@heeman-electrics.be · Baron Delbekelaan 49, 2
 ### 11.3 Content die AI graag citeert
 - **"In het kort"-blok** op home, over-bert en jobs: 5–7 feitelijke bullets (wie, wat, waar, sinds wanneer, hoe contacteren). Zelfde feiten, overal identiek.
 - **Antwoord eerst:** elke H2 als vraag ("Hoeveel kost een laadpaal plaatsen?", "Wanneer is een elektrische keuring verplicht?"), direct gevolgd door een antwoord van 40–60 woorden, daarna detail.
-- **Eigen, controleerbare info** die concurrenten niet hebben: werkwijze in stappen, wat er in een vaste prijs zit, echte projecten per gemeente, foto's met beschrijvende bestandsnamen (`laadpaal-garage-brasschaat.jpg`) en alt-teksten.
+- **Eigen, controleerbare info** die concurrenten niet hebben: werkwijze in stappen, wat er in een offerte zit, echte projecten per gemeente, foto's met beschrijvende bestandsnamen (`laadpaal-garage-brasschaat.jpg`) en alt-teksten.
 - **Bronvermelding** naar officiële sites (FOD Economie, Vlaanderen.be, Fluvius, FOD Financiën) bij regels en premies.
 - **Auteur + datum:** "Geschreven door Bert Heeman, elektricien in Schilde · bijgewerkt op [datum]" op elke kennisbankpagina en dienstpagina.
 - **Tabellen en lijsten** (AI extraheert die makkelijk), geen tekst in afbeeldingen.
@@ -690,7 +693,7 @@ Contact: +32 485 19 00 27 · info@heeman-electrics.be · Baron Delbekelaan 49, 2
 5. Certificaten/partnerschappen (Niko, RESCert) — tot dan niets vermelden · erkend: ✅ (door wie? `[AANVULLEN]`)
 6. ~~Welke laadpaalmerken plaatst Bert?~~ ✅ EVBox, Alfen, Easee, Zaptec
 7. Zonnepanelen: zelf plaatsen of enkel aansluiten?
-8. Werkt Bert met onderaannemers? (bepaalt de belofte "ik kom zelf")
+8. ~~Werkt Bert met onderaannemers?~~ ✅ "Ik kom zelf" veralgemeend: Bert doet bezoek, inschatting, opstart, oplevering en kwaliteitscontrole
 9. ~~Jaren ervaring~~ ✅ meer dan 10 jaar · opleiding `[AANVULLEN]`
 10. Aantal geplaatste laadpalen/projecten (voor feitencijfers)
 11. Openingsuren bevestigen (dringend: ook erbuiten ✅); WhatsApp actief op 0485 19 00 27?

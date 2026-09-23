@@ -4,9 +4,9 @@ import { business, areas } from './site';
 import type { Vraag } from '../lib/schema';
 
 export const usps = [
-  { titel: 'Ik kom zelf', tekst: 'U spreekt met Bert, en Bert staat ook bij u op de werf. [TE BEVESTIGEN: geen onderaannemers]' },
-  { titel: 'Vaste prijs vooraf', tekst: 'Na een bezoek ter plaatse weet u exact wat het kost. Geen verrassingen achteraf.' },
-  { titel: 'Netjes afgewerkt', tekst: 'Keuringsklaar volgens het AREI, met schema’s, en de werf opgeruimd achtergelaten.' },
+  { titel: 'Persoonlijk contact', tekst: 'Ik kom zelf langs voor het eerste bezoek en de inschatting, en ben erbij bij de opstart en de oplevering.' },
+  { titel: 'Vakkennis', tekst: 'Erkend elektricien met meer dan 10 jaar ervaring, van laadpaal tot Niko Home Control.' },
+  { titel: 'Netjes afgewerkt', tekst: 'De kwaliteitscontrole doe ik zelf: keuringsklaar volgens het AREI, met schema’s, en een opgeruimde werf.' },
 ];
 
 // Korte uitleg per dienst (slug uit site.ts).
@@ -54,8 +54,8 @@ export const homeFaq: Vraag[] = [
     antwoord: `In ${areas.map((a) => a.name).slice(0, -1).join(', ')} en ${areas.at(-1)!.name}: ongeveer 20 km rond Schilde. Twijfelt u of u in mijn werkgebied ligt? Bel of stuur een WhatsApp.`,
   },
   {
-    vraag: 'Krijg ik vooraf een vaste prijs?',
-    antwoord: 'Ja. Ik kom eerst kijken en geef u daarna een vaste prijs. Die prijs verandert niet, tenzij u zelf iets extra vraagt.',
+    vraag: 'Hoe verloopt een opdracht?',
+    antwoord: 'Ik kom eerst zelf langs om uw situatie te bekijken en in te schatten. Daarna krijgt u een gratis offerte. Bij de opstart en de oplevering ben ik erbij, en de kwaliteitscontrole doe ik zelf.',
   },
   {
     vraag: 'Welke laadpalen plaatst u?',

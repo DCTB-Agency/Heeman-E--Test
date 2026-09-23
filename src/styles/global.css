@@ -62,19 +62,128 @@
   .btn-ghost {
     @apply border-2 border-current bg-transparent;
   }
-  /* "Vonk"-hover (§ 7.8): korte gloed, geen layout-effect */
+  /* "Vonk"-hover (§ 7.8): een ring die uitdijt, knop komt licht omhoog, icoon trilt kort. */
+  .btn {
+    transition: transform 0.2s ease-out, background-color 0.2s, color 0.2s;
+  }
   .btn::after {
     content: '';
     position: absolute;
-    inset: -3px;
+    inset: -2px;
     border-radius: inherit;
-    box-shadow: 0 0 0 0 rgb(255 90 31 / 0.55);
-    transition: box-shadow 0.25s ease-out;
     pointer-events: none;
   }
-  .btn:hover::after {
-    box-shadow: 0 0 0 6px rgb(255 90 31 / 0);
-    transition-duration: 0.5s;
+  .btn svg {
+    transition: transform 0.2s;
+  }
+}
+
+/* ---------- Animatie (alleen als de bezoeker geen beperkte beweging vraagt) ---------- */
+@keyframes spark-ring {
+  from { box-shadow: 0 0 0 0 rgb(255 90 31 / 0.6); }
+  to { box-shadow: 0 0 0 10px rgb(255 90 31 / 0); }
+}
+@keyframes buzz {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(-14deg); }
+  40% { transform: rotate(12deg); }
+  60% { transform: rotate(-8deg); }
+  80% { transform: rotate(4deg); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes line-up {
+  from { transform: translateY(105%); }
+  to { transform: none; }
+}
+@keyframes draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+/* Puls van 6% lengte loopt van begin (0) naar einde (1) van een pad met pathLength="1". */
+@keyframes flow {
+  from { stroke-dashoffset: 0.06; }
+  to { stroke-dashoffset: -1; }
+}
+@keyframes flicker {
+  0%, 100% { opacity: 0; transform: scale(0.6); }
+  8% { opacity: 1; transform: scale(1.1); }
+  14% { opacity: 0.2; }
+  20% { opacity: 1; transform: scale(1); }
+  32% { opacity: 0; transform: scale(0.7); }
+}
+@keyframes slide-in-bottom {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+@keyframes header-scrolled {
+  to { box-shadow: 0 8px 30px -12px rgb(28 13 10 / 0.25); }
+}
+@keyframes logo-shrink {
+  to { transform: scale(0.86); }
+}
+
+/* Hero-regels die elk apart omhoog schuiven. Het masker (overflow) zorgt dat de tekst altijd leesbaar
+   eindigt, zonder opacity 0, zodat de LCP niet vertraagt. */
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.line-mask > span {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn:hover::after { animation: spark-ring 0.6s ease-out; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:hover svg { animation: buzz 0.45s ease-in-out; }
+
+  .line-mask > span {
+    animation: line-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 110ms);
+  }
+  .fade-up {
+    animation: fade-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+  .draw-in {
+    stroke-dasharray: 1;
+    animation: draw var(--dur, 1.4s) cubic-bezier(0.6, 0, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  /* Scroll-reveal: puur CSS (scroll-driven animations). Browsers zonder ondersteuning tonen alles meteen. */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+    .reveal-stagger > * {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry calc(var(--i, 0) * 6%) entry calc(60% + var(--i, 0) * 6%);
+    }
+  }
+  @supports (animation-timeline: scroll()) {
+    .header-scroll {
+      animation: header-scrolled linear both;
+      animation-timeline: scroll();
+      animation-range: 0 120px;
+    }
+    .header-scroll .logo-shrink {
+      transform-origin: left center;
+      animation: logo-shrink linear both;
+      animation-timeline: scroll();
+      animation-range: 0 120px;
+    }
+  }
+  .slide-in-bottom {
+    animation: slide-in-bottom 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s both;
   }
 }
 

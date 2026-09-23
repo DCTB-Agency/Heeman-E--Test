@@ -7,7 +7,7 @@ const isJobs = Astro.url.pathname.startsWith('/jobs/');
 <footer class="on-ink bg-ink text-white">
   <!-- Jobs-strook boven de footer (§ 6.1) — niet op de jobpagina's zelf -->
   {!isJobs && (<div class="border-b border-white/10">
-    <div class="container-site flex flex-col items-start gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
+    <div class="reveal container-site flex flex-col items-start gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
       <p class="font-display text-2xl font-semibold">
         Werken bij Heeman Electrics? <span class="text-accent">Ik zoek een junior elektricien.</span>
       </p>
@@ -15,8 +15,8 @@ const isJobs = Astro.url.pathname.startsWith('/jobs/');
     </div>
   </div>)}
 
-  <div class="container-site grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
-    <div>
+  <div class="reveal-stagger container-site grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+    <div style="--i:0">
       <p class="font-display text-xl font-semibold">{business.name}</p>
       <address class="mt-3 space-y-1 text-on-ink-muted not-italic">
         <p>{business.address.street}<br />{business.address.postalCode} {business.address.locality}</p>
@@ -29,21 +29,21 @@ const isJobs = Astro.url.pathname.startsWith('/jobs/');
       </p>
     </div>
 
-    <div>
+    <div style="--i:1">
       <p class="font-display font-semibold">Diensten</p>
       <ul class="mt-3 space-y-2 text-sm text-on-ink-muted">
         {services.map((s) => <li><a href={serviceUrl(s.slug)} class="hover:text-white">{s.name}</a></li>)}
       </ul>
     </div>
 
-    <div>
+    <div style="--i:2">
       <p class="font-display font-semibold">Werkgebied</p>
       <ul class="mt-3 space-y-2 text-sm text-on-ink-muted">
         {areas.map((a) => <li><a href={areaUrl(a.slug)} class="hover:text-white">Elektricien {a.name}</a></li>)}
       </ul>
     </div>
 
-    <div>
+    <div style="--i:3">
       <p class="font-display font-semibold">Meer</p>
       <ul class="mt-3 space-y-2 text-sm text-on-ink-muted">
         <li><a href="/over-bert/" class="hover:text-white">Over Bert</a></li>

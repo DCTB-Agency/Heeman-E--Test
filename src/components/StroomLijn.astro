@@ -1,47 +1,108 @@
 ---
+import { kabelPad } from '../lib/kabelpad';
 // "De stroomlijn" (CLAUDE.md § 7.1): de kabel uit het logo die secties verbindt.
-// Tekent zich bij scrollen via CSS scroll-driven animations (geen JS).
-// Browsers zonder ondersteuning en reduced motion tonen de volledige lijn.
+// 1) De kabel tekent zich bij scrollen (CSS scroll-driven animations).
+// 2) Daarna loopt er continu een gloeiende "stroompuls" over de kabel.
+// Het pad wordt in echte pixels berekend (klein script + ResizeObserver), zodat de lijn overal even dik is
+// en de puls exact één streepje blijft. Reduced motion of geen ondersteuning: volledige, stilstaande lijn.
 interface Props {
-  /** SVG-pad in een viewBox van 100 × 100 (wordt uitgerekt over de container) */
-  d?: string;
+  /** Knikpunten in procent van de container: [x, y][] */
+  points?: [number, number][];
+  /** Straal van de bochten in px */
+  radius?: number;
   class?: string;
   plug?: boolean;
 }
 const {
-  d = 'M 8 0 V 38 Q 8 46 16 46 H 84 Q 92 46 92 54 V 100',
+  points = [[8, 0], [8, 46], [92, 46], [92, 100]],
+  radius = 28,
   class: className = '',
   plug = false,
 } = Astro.props;
+
+// Server-side startpad voor een container van ± 1280 × 360 px (wordt meteen herberekend in de browser).
+const W = 1280, H = 360;
+const d = kabelPad(points, W, H, radius);
+const endX = points[points.length - 1][0];
 ---
 
-<div class:list={['pointer-events-none absolute inset-0', className]} aria-hidden="true">
-  <svg class="size-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <path class="stroomlijn" d={d} pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" />
+<div
+  class:list={['stroomlijn pointer-events-none absolute inset-0', className]}
+  aria-hidden="true"
+  data-points={JSON.stringify(points)}
+  data-radius={radius}
+>
+  <svg class="size-full overflow-visible" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
+    <path class="kabel" d={d} pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <path class="puls" d={d} pathLength="1" fill="none" stroke="#ffd2bd" stroke-width="5" stroke-linecap="round" />
   </svg>
   {plug && (
-    <svg class="absolute right-[8%] bottom-0 w-9 translate-x-1/2 translate-y-full text-accent" viewBox="0 0 36 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+    <svg class="stekker absolute bottom-0 w-9 text-accent" style={`left:${endX}%`} viewBox="0 0 36 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
       <path d="M18 0v10M8 10h20v10a10 10 0 0 1-20 0zM13 30v6M23 30v6" />
     </svg>
   )}
 </div>
 
 <style>
-  .stroomlijn {
+  .kabel {
     stroke-dasharray: 1;
     stroke-dashoffset: 0;
   }
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .stroomlijn {
+  .puls {
+    display: none;
+    stroke-dasharray: 0.06 1;
+    filter: drop-shadow(0 0 4px #ff5a1f) drop-shadow(0 0 10px #ff5a1f);
+  }
+  .stekker {
+    translate: -50% 100%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .puls {
+      display: block;
+      animation: flow 3.2s linear infinite;
+    }
+    @supports (animation-timeline: view()) {
+      .kabel {
         animation: draw linear both;
         animation-timeline: view();
-        animation-range: entry 10% cover 60%;
+        animation-range: entry 10% cover 55%;
+      }
+      /* De puls verschijnt pas als de kabel volledig getekend is. */
+      .puls {
+        animation: flow 3.2s linear infinite, puls-aan linear both;
+        animation-timeline: auto, view();
+        animation-range: normal, cover 50% cover 58%;
+      }
+      .stekker {
+        animation: stekker-in linear both;
+        animation-timeline: view();
+        animation-range: cover 45% cover 60%;
       }
     }
   }
-  @keyframes draw {
-    from { stroke-dashoffset: 1; }
-    to { stroke-dashoffset: 0; }
+  @keyframes puls-aan {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes stekker-in {
+    from { opacity: 0; translate: -50% calc(100% - 12px); }
+    to { opacity: 1; translate: -50% 100%; }
   }
 </style>
+
+<script>
+  import { kabelPad } from '../lib/kabelpad';
+  // Herbereken het pad in echte pixels zodat dikte en puls-lengte kloppen bij elke breedte.
+  const ro = new ResizeObserver((entries) => {
+    for (const { target, contentRect } of entries) {
+      const el = target as HTMLElement;
+      const w = Math.round(contentRect.width), h = Math.round(contentRect.height);
+      if (!w || !h) continue;
+      const svg = el.querySelector('svg')!;
+      const d = kabelPad(JSON.parse(el.dataset.points!), w, h, Number(el.dataset.radius));
+      svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+      svg.querySelectorAll('path').forEach((path) => path.setAttribute('d', d));
+    }
+  });
+  document.querySelectorAll<HTMLElement>('.stroomlijn').forEach((el) => ro.observe(el));
+</script>

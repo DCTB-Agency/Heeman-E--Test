@@ -2,6 +2,7 @@
 // PREVIEW (Fase 1): toont de layout. De volledige homepage (§ 8) volgt in de volgende fase.
 import Base from '../layouts/Base.astro';
 import StroomLijn from '../components/StroomLijn.astro';
+import HeroKabel from '../components/HeroKabel.astro';
 import { business, areas } from '../data/site';
 ---
 
@@ -10,16 +11,22 @@ import { business, areas } from '../data/site';
   description="Elektricien in Schilde en omgeving. Ik plaats laadpalen, Niko Home Control en maak uw installatie keuringsklaar. Vaste prijs. Bel 0485 19 00 27."
 >
   <section class="relative overflow-hidden">
+    <HeroKabel class="absolute top-0 right-[4%] hidden h-full max-h-[34rem] w-auto lg:block xl:right-[8%]" />
     <div class="container-site relative py-16 sm:py-24 lg:py-32">
-      <p class="font-display text-sm font-semibold tracking-widest text-brand uppercase">Erkend elektricien · {business.experience}</p>
+      <p class="fade-up font-display text-sm font-semibold tracking-widest text-brand uppercase">Erkend elektricien · {business.experience}</p>
       <h1 class="mt-4 max-w-4xl text-display">
-        Elektricien in Schilde die <span class="text-brand">zelf komt</span>, met een vaste prijs
+        <span class="line-mask"><span style="--i:1">Elektricien in Schilde</span></span>
+        <span class="line-mask"><span style="--i:2">die <span class="relative whitespace-nowrap text-brand">zelf komt<svg class="absolute -bottom-[0.12em] left-0 h-[0.3em] w-full overflow-visible" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path class="draw-in" style="--d:900ms;--dur:0.9s" d="M2 12 C 40 4, 80 18, 120 10 S 180 6, 198 12" pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="5" stroke-linecap="round" /></svg></span>,</span></span>
+        <span class="line-mask"><span style="--i:3">met een vaste prijs</span></span>
       </h1>
-      <p class="mt-6 max-w-2xl text-lg text-muted">
+      <p class="fade-up mt-6 max-w-2xl text-lg text-muted" style="--d:550ms">
         Laadpalen, keuringsklare installaties, Niko Home Control en renovatie in {areas.map((a) => a.name).slice(0, -1).join(', ')} en {areas.at(-1)!.name}.
       </p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href={business.phone.href} class="btn btn-primary" data-event="click_to_call">Bel {business.phone.display}</a>
+      <div class="fade-up mt-8 flex flex-wrap gap-3" style="--d:700ms">
+        <a href={business.phone.href} class="btn btn-primary" data-event="click_to_call">
+          <svg viewBox="0 0 24 24" class="size-5" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" /></svg>
+          Bel {business.phone.display}
+        </a>
         <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
         <a href="/offerte/" class="btn btn-ghost">Gratis offerte</a>
       </div>
@@ -29,7 +36,7 @@ import { business, areas } from '../data/site';
   <section class="on-ink relative bg-ink text-white">
     <StroomLijn plug class="hidden sm:block" />
     <div class="container-site relative py-24">
-      <p class="mx-auto max-w-xl rounded-2xl border border-dashed border-white/25 p-8 text-center text-on-ink-muted">
+      <p class="reveal mx-auto max-w-xl rounded-2xl bg-ink border border-dashed border-white/25 p-8 text-center text-on-ink-muted">
         <strong class="block font-display text-xl text-white">Preview van de layout</strong>
         De homepage-secties (diensten, In het kort, reviews, realisaties, jobs-blok, werkgebied, FAQ) volgen in de volgende fase.
       </p>

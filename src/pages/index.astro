@@ -1,0 +1,38 @@
+---
+// PREVIEW (Fase 1): toont de layout. De volledige homepage (§ 8) volgt in de volgende fase.
+import Base from '../layouts/Base.astro';
+import StroomLijn from '../components/StroomLijn.astro';
+import { business, areas } from '../data/site';
+---
+
+<Base
+  title="Elektricien Schilde · Laadpalen & domotica · Heeman"
+  description="Elektricien in Schilde en omgeving. Ik plaats laadpalen, Niko Home Control en maak uw installatie keuringsklaar. Vaste prijs. Bel 0485 19 00 27."
+>
+  <section class="relative overflow-hidden">
+    <div class="container-site relative py-16 sm:py-24 lg:py-32">
+      <p class="font-display text-sm font-semibold tracking-widest text-brand uppercase">Erkend elektricien · {business.experience}</p>
+      <h1 class="mt-4 max-w-4xl text-display">
+        Elektricien in Schilde die <span class="text-brand">zelf komt</span>, met een vaste prijs
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Laadpalen, keuringsklare installaties, Niko Home Control en renovatie in {areas.map((a) => a.name).slice(0, -1).join(', ')} en {areas.at(-1)!.name}.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={business.phone.href} class="btn btn-primary" data-event="click_to_call">Bel {business.phone.display}</a>
+        <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
+        <a href="/offerte/" class="btn btn-ghost">Gratis offerte</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="on-ink relative bg-ink text-white">
+    <StroomLijn plug class="hidden sm:block" />
+    <div class="container-site relative py-24">
+      <p class="mx-auto max-w-xl rounded-2xl border border-dashed border-white/25 p-8 text-center text-on-ink-muted">
+        <strong class="block font-display text-xl text-white">Preview van de layout</strong>
+        De homepage-secties (diensten, In het kort, reviews, realisaties, jobs-blok, werkgebied, FAQ) volgen in de volgende fase.
+      </p>
+    </div>
+  </section>
+</Base>

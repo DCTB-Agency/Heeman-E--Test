@@ -1,0 +1,16 @@
+oude_url,nieuwe_url,status,opmerking
+/,/,200,ongewijzigd
+/over/,/over-bert/,301,
+/contact/,/contact/,200,ongewijzigd
+/laadpaal-installatie-in-schilde/,/diensten/laadpaal-installeren/,301,"rankt al — 'Schilde' behouden in H1/title"
+/sitemap.xml,/sitemap-index.xml,301,
+/sitemap_index.xml,/sitemap-index.xml,301,oude Yoast-sitemap
+/page-sitemap.xml,/sitemap-index.xml,301,oude Yoast-sitemap
+/wp-sitemap.xml,/sitemap-index.xml,301,
+/?page_id=1400,/diensten/,301,"nav-item 'Diensten' — geeft nu 404"
+/?page_id=1401,/veelgestelde-vragen/,301,"nav-item 'FAQ' — geeft nu 404"
+/form/contactformulier-voor-offerte-aanvraag/,/offerte/,301,"SureForms-pagina, staat in Yoast llms.txt"
+/feed/,/kennisbank/,301,WordPress-standaard
+/wp-admin/,/,301,na migratie
+/wp-login.php,/,301,na migratie
+/llms.txt,/llms.txt,200,"vervangen door eigen versie"

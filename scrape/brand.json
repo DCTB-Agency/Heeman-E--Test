@@ -1,0 +1,30 @@
+{
+  "_bron": "Astra global colors (--ast-global-color-*) in de CSS van heeman-electrics.be + visuele controle van het logo, 23-09-2026",
+  "logo": {
+    "bestanden": ["assets-in/scraped/Logo-Heeman-2020_150dpi.png (1536x484, grootste beschikbare)", "assets-in/scraped/favicon-512.png (270x270)"],
+    "svg_beschikbaar": false,
+    "opmerking": "Zwarte woordmerk HEEMAN / ELECTRICS + oranjerode kabellijn met stekker. [AANVULLEN: origineel SVG/AI/EPS bij Bert opvragen]"
+  },
+  "kleuren": {
+    "brand_primary": { "hex": "#be4516", "bron": "--ast-global-color-0 + kabel in logo", "contrast": { "op_wit": 5.18, "op_paper_F6F5F1": 4.75, "op_ink_1C0D0A": 3.65, "wit_erop": 5.18 } },
+    "logo_zwart": { "hex": "#000000" },
+    "ink_huidig": { "hex": "#1C0D0A", "bron": "--ast-global-color-2" },
+    "ink_diep": { "hex": "#140B06", "bron": "--ast-global-color-7" },
+    "tekst": { "hex": "#353535", "bron": "--ast-global-color-3" },
+    "creme": { "hex": "#fffae3", "bron": "--ast-global-color-4" },
+    "zand": { "hex": "#E5D7D1", "bron": "--ast-global-color-6" },
+    "mint": { "hex": "#99e1d9", "bron": "--ast-global-color-1", "opmerking": "Themakleur, niet in het logo — niet meenemen" }
+  },
+  "voorstel_tokens": {
+    "--brand-primary": "#be4516",
+    "--ink": "#1C0D0A",
+    "--paper": "#F6F5F1",
+    "--accent": "#FF5A1F",
+    "_accent_regels": "Accent = feller/lichter afgeleid van #be4516. Gebruik op ink-achtergrond (6.06:1) en met ink-tekst erop (6.06:1). NIET witte tekst op accent (3.12:1). Op lichte achtergronden: #be4516 voor knoppen met witte tekst (5.18:1)."
+  },
+  "fonts": {
+    "koppen": "Outfit 600 (via Google Fonts)",
+    "tekst": "DM Sans 400 (via Google Fonts)",
+    "opmerking": "Nu extern geladen via fonts.googleapis.com (GDPR + snelheid). Nieuwe site: self-hosted. Outfit kan als display-font behouden blijven of vervangen door Space Grotesk/Archivo (sectie 7)."
+  }
+}

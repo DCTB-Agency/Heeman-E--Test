@@ -1,0 +1,88 @@
+{
+  "title": "Heeman Electrics - Home - Uw betrouwbare electricien in regio Schilde",
+  "meta": {
+    "viewport": "width=device-width, initial-scale=1",
+    "robots": "index, follow, max-image-preview:none, max-snippet:-1, max-video-preview:-1, noimageindex",
+    "description": "Betrouwbare elektricien in regio Schilde. Snelle service, herstellingen, installaties en keuringen. Vraag vandaag nog een offerte!",
+    "article:modified_time": "2025-10-03T16:23:51+00:00",
+    "generator": "Site Kit by Google 1.188.0",
+    "msapplication-TileImage": "https://www.heeman-electrics.be/wp-content/uploads/2025/10/cropped-android-chrome-512x512-1-270x270.png"
+  },
+  "og": {
+    "og:locale": "nl_NL",
+    "og:type": "website",
+    "og:title": "Heeman Electrics - Home - Uw betrouwbare electricien in regio Schilde",
+    "og:description": "Betrouwbare elektricien in regio Schilde. Snelle service, herstellingen, installaties en keuringen. Vraag vandaag nog een offerte!",
+    "og:url": "https://www.heeman-electrics.be/",
+    "og:site_name": "Heeman Electrics",
+    "og:image": "https://www.heeman-electrics.be/wp-content/uploads/2018/12/electric-blog-02-1024x768.jpeg",
+    "twitter:card": "summary_large_image"
+  },
+  "canonical": "https://www.heeman-electrics.be/",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Uw betrouwbare elektricien met meer dan 10 jaar ervaring in Schilde en omliggende regio."
+    },
+    {
+      "level": "h3",
+      "text": "Vraag vandaag nog een offerte aan"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links"
+    }
+  ],
+  "images": [
+    {
+      "src": "https://www.heeman-electrics.be/wp-content/uploads/2025/10/Logo-Heeman-2020_150dpi-200x63.png",
+      "alt": "Heeman Electrics Logo"
+    },
+    {
+      "src": "https://www.heeman-electrics.be/wp-content/uploads/2025/10/Logo-Heeman-2020_150dpi-200x63.png",
+      "alt": "Heeman Electrics Logo"
+    },
+    {
+      "src": "https://www.heeman-electrics.be/wp-content/uploads/2018/12/electric-blog-02-1024x768.jpeg",
+      "alt": "electric blog 02"
+    },
+    {
+      "src": "https://www.heeman-electrics.be/wp-content/uploads/2025/10/Logo-Heeman-2020_150dpi-1024x323.png",
+      "alt": "Heeman Electrics Logo"
+    }
+  ],
+  "links": {
+    "internal": [
+      "https://www.heeman-electrics.be/",
+      "https://www.heeman-electrics.be/?page_id=1400",
+      "https://www.heeman-electrics.be/?page_id=1401",
+      "https://www.heeman-electrics.be/contact/",
+      "https://www.heeman-electrics.be/over/"
+    ],
+    "external": [
+      "http://www.webcactus.be"
+    ],
+    "mailto_tel": [
+      "tel:+32485190027"
+    ]
+  },
+  "jsonld": [
+    "{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/\",\"url\":\"https:\\/\\/www.heeman-electrics.be\\/\",\"name\":\"Heeman Electrics - Home - Uw betrouwbare electricien in regio Schilde\",\"isPartOf\":{\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/#website\"},\"about\":{\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/#organization\"},\"primaryImageOfPage\":{\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/#primaryimage\"},\"image\":{\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/#primaryimage\"},\"thumbnailUrl\":\"https:\\/\\/www.heeman-electrics.be\\/wp-content\\/uploads\\/2018\\/12\\/electric-blog-02-1024x768.jpeg\",\"datePublished\":\"2025-10-03T06:55:36+00:00\",\"dateModified\":\"2025-10-03T16:23:51+00:00\",\"description\":\"Betrouwbare elektricien in regio Schilde. Snelle service, herstellingen, installaties en keuringen. Vraag vandaag nog een offerte!\",\"breadcrumb\":{\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/#breadcrumb\"},\"inLanguage\":\"nl-NL\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/www.heeman-electrics.be\\/\"]}]},{\"@type\":\"ImageObject\",\"inLanguage\":\"nl-NL\",\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/#primaryimage\",\"url\":\"https:\\/\\/www.heeman-electrics.be\\/wp-content\\/uploads\\/2018\\/12\\/electric-blog-02-1024x768.jpeg\",\"contentUrl\":\"https:\\/\\/www.heeman-electrics.be\\/wp-content\\/uploads\\/2018\\/12\\/electric-blog-02-1024x768.jpeg\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/#website\",\"url\":\"https:\\/\\/www.heeman-electrics.be\\/\",\"name\":\"Heeman Electrics\",\"description\":\"Uw betrouwbare electricien in regio Schilde\",\"publisher\":{\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/www.heeman-electrics.be\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"nl-NL\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/#organization\",\"name\":\"Heeman Electrics\",\"url\":\"https:\\/\\/www.heeman-electrics.be\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"nl-NL\",\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/www.heeman-electrics.be\\/wp-content\\/uploads\\/2025\\/10\\/Logo-Heeman-2020_150dpi.png\",\"contentUrl\":\"https:\\/\\/www.heeman-electrics.be\\/wp-content\\/uploads\\/2025\\/10\\/Logo-Heeman-2020_150dpi.png\",\"width\":1536,\"height\":484,\"caption\":\"Heeman Electrics\"},\"image\":{\"@id\":\"https:\\/\\/www.heeman-electrics.be\\/#\\/schema\\/logo\\/image\\/\"}}]}"
+  ],
+  "text": "Heeman Electrics - Home - Uw betrouwbare electricien in regio Schilde\nGa naar de inhoud\nHome\nOver\nDiensten\nFAQ\nContact\nBel me nu\nUw betrouwbare elektricien met meer dan 10 jaar ervaring in Schilde en omliggende regio.\nSnelle service, 24/7 bereikbaar voor herstellingen, installaties en keuringen.\nVraag vandaag nog een vrijblijvende offerte!\nNeem contact op\nNeem vandaag nog contact op voor uw vrijblijvende offerte op maat.\nEr is een fout opgetreden bij het verzenden van je formulier. Probeer het opnieuw.\nNaam\n*\nVul uw volledige naam in.\nDit is een verplicht veld.\nE-mailadres\nVul een geldig e-mailadres in zodat wij contact met u kunnen opnemen.\nTelefoonnummer\nVul uw telefoonnummer in.\nBericht\nGeef een korte beschrijving van uw aanvraag.\nAkkoord GDPR\nIk ga akkoord met de verwerking van mijn gegevens volgens het privacybeleid.\nThis field is required.\nVerifieer dat je geen robot bent.\nIndienen\nAls specialist werk ik enkel met de hoogstwaardige materialen.\nMet een decennium aan expertise in het vak, biedt Heeman Electrics hoogwaardige elektrische oplossingen voor zowel particulieren als bedrijven.\nNauwkeurig en stipt\nTransparante tarieven\nBetrouwbare kwaliteit\nNeem contact\nLaadpalen\nWij zorgen voor een professionele plaatsing van laadpalen, volledig afgestemd op uw woning of bedrijf, zodat u veilig en efficiënt uw elektrische wagen kan opladen.\nDomotica\nMet Niko Home Control automatiseren we uw woning of bedrijf. Van verlichting en verwarming tot toegangscontrole: alles centraal, slim en gebruiksvriendelijk geregeld.\nNieuwbouwprojecten\nWij realiseren volledige elektrische installaties voor nieuwbouw, van plan tot uitvoering, met aandacht voor veiligheid, comfort en energie-efficiëntie.\nRenovatieprojecten\nBij renovaties brengen wij uw elektriciteit volledig up-to-date en conform de huidige normen, inclusief modern comfort en slimme oplossingen.\nVideo- & Parlofonie\nMet een moderne videofooninstallatie verhoogt u zowel veiligheid als gebruiksgemak. U ziet meteen wie er aanbelt en beheert eenvoudig toegang tot uw woning of bedrijf.\nVerlichtingsadvies\nWij geven professioneel verlichtingsadvies en zorgen voor een doordachte verlichting die sfeer, functionaliteit en energiezuinigheid perfect combineert.\nDringende herstellingen\nVoor plotse elektrische problemen staan wij snel paraat. Zo bent u verzekerd van een veilige en betrouwbare oplossing,\n24/7 indien nodig.\nKeuringsklaar maken\nWij zorgen dat uw elektrische installatie volledig voldoet aan de AREI-normen en klaar is voor officiële keuring. Zo voorkomt u verrassingen en bent u zeker van een veilige installatie.\nVraag vandaag nog een offerte aan\nContactgegevens\nAdres\nHeeman Electrics\nBaron Delbekelaan, 49\n2970 Schilde\nEmail:\ninfo@heeman-electrics.be\nPhone:\n+32 485 19 00 27\nFirst Name\nEmail\nName\nMessage\nSend Message\nUw bericht werd goed verzonden.\nThere has been some error while submitting the form. Please verify all form fields again.\nBetrouwbare elektricien in Schilde en omliggende regio. Snelle service, 24/7 bereikbaar voor herstellingen, installaties en keuringen. Vraag vandaag nog een vrijblijvende offerte!\nUseful Links\nCopyright © 2026 Heeman Electrics\nPowered by\nwebCactus",
+  "url": "https://www.heeman-electrics.be/",
+  "status": 200,
+  "final_url": "https://www.heeman-electrics.be/",
+  "seconds": 1.533,
+  "bytes": 148661,
+  "cms_hints": [
+    "wp-content/plugins/astra-sites",
+    "wp-content/plugins/google-site-kit",
+    "wp-content/plugins/sureforms",
+    "wp-content/plugins/ultimate-addons-for-gutenberg",
+    "wp-content/themes/astra"
+  ],
+  "tracking": [
+    "GT-KDTJ593M"
+  ]
+}

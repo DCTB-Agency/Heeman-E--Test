@@ -1,0 +1,82 @@
+{
+  "probes": {
+    "/robots.txt": {
+      "status": 200,
+      "final_url": "https://www.heeman-electrics.be/robots.txt",
+      "seconds": 1.502
+    },
+    "/sitemap.xml": {
+      "status": 200,
+      "final_url": "https://www.heeman-electrics.be/sitemap_index.xml",
+      "seconds": 2.291
+    },
+    "/wp-sitemap.xml": {
+      "status": 200,
+      "final_url": "https://www.heeman-electrics.be/sitemap_index.xml",
+      "seconds": 2.128
+    },
+    "/sitemap_index.xml": {
+      "status": 200,
+      "final_url": "https://www.heeman-electrics.be/sitemap_index.xml",
+      "seconds": 1.048
+    }
+  },
+  "pages": [
+    {
+      "url": "https://www.heeman-electrics.be/",
+      "status": 200,
+      "seconds": 1.533,
+      "title": "Heeman Electrics - Home - Uw betrouwbare electricien in regio Schilde",
+      "description": "Betrouwbare elektricien in regio Schilde. Snelle service, herstellingen, installaties en keuringen. Vraag vandaag nog een offerte!",
+      "h1": [
+        "Uw betrouwbare elektricien met meer dan 10 jaar ervaring in Schilde en omliggende regio."
+      ],
+      "jsonld_blocks": 1,
+      "images": 4
+    },
+    {
+      "url": "https://www.heeman-electrics.be/laadpaal-installatie-in-schilde/",
+      "status": 200,
+      "seconds": 1.288,
+      "title": "Laadpaal Installatie in Schilde - Heeman Electrics",
+      "description": "Professionele laadpaal installatie in Schilde door erkend elektricien. Snelle service, veilige plaatsing en offerte op maat voor thuis of bedrijf.",
+      "h1": [
+        "Laadpaal Installatie in Schilde"
+      ],
+      "jsonld_blocks": 1,
+      "images": 4
+    },
+    {
+      "url": "https://www.heeman-electrics.be/contact/",
+      "status": 200,
+      "seconds": 1.222,
+      "title": "Contact - Heeman Electrics",
+      "description": null,
+      "h1": [
+        "Neem contact op"
+      ],
+      "jsonld_blocks": 1,
+      "images": 3
+    },
+    {
+      "url": "https://www.heeman-electrics.be/over/",
+      "status": 200,
+      "seconds": 1.466,
+      "title": "Over - Heeman Electrics",
+      "description": null,
+      "h1": [
+        "Over Heeman Electrics"
+      ],
+      "jsonld_blocks": 1,
+      "images": 3
+    },
+    {
+      "url": "https://www.heeman-electrics.be/?page_id=1400",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.heeman-electrics.be/?page_id=1401",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ]
+}

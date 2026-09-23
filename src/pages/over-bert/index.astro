@@ -1,0 +1,107 @@
+---
+// /over-bert/ — CLAUDE.md § 8 (Over Bert) + § 11.3 (In het kort) + E-E-A-T. Person-schema via ProfilePage.
+import Base from '../../layouts/Base.astro';
+import Kruimels from '../../components/Kruimels.astro';
+import InHetKort from '../../components/InHetKort.astro';
+import FotoPlaceholder from '../../components/FotoPlaceholder.astro';
+import { SITE_URL, business, job } from '../../data/site';
+import { inHetKort, laadpaalMerken } from '../../data/home';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const kruimels = [
+  { naam: 'Home', url: '/' },
+  { naam: 'Over Bert', url: '/over-bert/' },
+];
+const bertId = `${SITE_URL}/over-bert/#bert`;
+const profielSchema = [
+  {
+    '@type': 'ProfilePage',
+    '@id': `${SITE_URL}/over-bert/#page`,
+    url: `${SITE_URL}/over-bert/`,
+    name: 'Over Bert Heeman',
+    mainEntity: { '@id': bertId },
+  },
+  {
+    '@type': 'Person',
+    '@id': bertId,
+    name: business.owner,
+    jobTitle: business.ownerTitle,
+    worksFor: { '@id': `${SITE_URL}/#organization` },
+    workLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: business.address.locality, addressCountry: 'BE' } },
+    knowsAbout: ['elektrische installaties', 'laadpalen', 'Niko Home Control', 'AREI', 'renovatie elektriciteit', 'zonnepanelen', 'thuisbatterij'],
+  },
+];
+
+const werkwijze = [
+  { titel: 'Ik kom zelf kijken', tekst: 'Het eerste bezoek en de inschatting doe ik altijd zelf. Zo weet ik wat u nodig heeft.' },
+  { titel: 'Een duidelijke offerte', tekst: 'U krijgt een gratis offerte met wat er gebeurt en welk materiaal ik gebruik.' },
+  { titel: 'Erbij bij start en oplevering', tekst: 'Bij de opstart en de oplevering van elk project ben ik er zelf bij.' },
+  { titel: 'Kwaliteitscontrole', tekst: 'De controle doe ik zelf: netjes afgewerkt, volgens het AREI, met de nodige schema’s.' },
+];
+---
+
+<Base
+  title="Over Bert Heeman · Elektricien in Schilde"
+  description="Ik ben Bert Heeman, erkend elektricien in Schilde met meer dan 10 jaar ervaring. Persoonlijk contact, net werk. Maak kennis."
+  schema={[...profielSchema, breadcrumbSchema(kruimels)]}
+>
+  <section class="container-site grid items-center gap-12 py-12 sm:py-16 lg:grid-cols-[1.3fr_1fr] lg:gap-16 lg:py-20">
+    <div>
+      <Kruimels kruimels={kruimels} class="fade-up text-muted" />
+      <h1 class="mt-6 text-display">
+        <span class="line-mask"><span style="--i:1">Ik ben Bert,</span></span>
+        <span class="line-mask"><span style="--i:2">elektricien in <span class="text-brand">Schilde</span></span></span>
+      </h1>
+      <p class="fade-up mt-6 max-w-2xl text-xl leading-relaxed" style="--d:350ms">
+        Ik ben Bert Heeman, erkend elektricien met {business.experience}. Sinds 2018 heb ik mijn eigen zaak in Schilde: {business.name}.
+        Ik werk voor particulieren, bedrijven en syndici in Schilde en de oostrand van Antwerpen.
+      </p>
+      <div class="fade-up mt-8 flex flex-wrap gap-3" style="--d:450ms">
+        <a href={business.phone.href} class="btn btn-primary" data-event="click_to_call">Bel {business.phone.display}</a>
+        <a href="/offerte/" class="btn btn-ghost">Gratis offerte</a>
+      </div>
+    </div>
+    <FotoPlaceholder label="portret van Bert (echte foto, geen stock)" class="fade-up aspect-[4/5]" />
+  </section>
+
+  <section class="section border-t border-ink/10 bg-white/60" aria-labelledby="verhaal">
+    <div class="container-site grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+      <h2 id="verhaal" class="h2 reveal">Mijn verhaal</h2>
+      <div class="reveal space-y-5 text-lg">
+        <p><mark class="todo">[AANVULLEN: opleiding van Bert en waar hij het vak leerde]</mark></p>
+        <p><mark class="todo">[AANVULLEN: ervaring vóór 2018 — samen ruim 10 jaar]</mark></p>
+        <p><mark class="todo">[AANVULLEN: waarom Bert in 2018 voor zichzelf begon, in eigen woorden]</mark></p>
+        <p>Vandaag specialiseer ik me in laadpalen (onder meer {laadpaalMerken.join(', ').replace(/, ([^,]*)$/, ' en $1')}), Niko Home Control,
+          installaties keuringsklaar maken volgens het AREI en de renovatie van elektriciteit.</p>
+        <p>Erkend elektricien: <mark class="todo">[AANVULLEN: erkend door / waarvoor]</mark></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="werkwijze">
+    <div class="container-site">
+      <h2 id="werkwijze" class="h2 reveal">Hoe ik werk</h2>
+      <ol class="reveal-stagger mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {werkwijze.map((w, i) => (
+          <li class="rounded-3xl border border-ink/10 bg-white p-7" style={`--i:${i}`}>
+            <p class="font-mono text-sm font-semibold text-brand">0{i + 1}</p>
+            <h3 class="mt-3 font-display text-xl font-semibold">{w.titel}</h3>
+            <p class="mt-2 text-muted">{w.tekst}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section on-ink bg-ink text-white">
+    <div class="container-site grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Ik zoek versterking</p>
+        <h2 class="h2 mt-3">Ik zoek iemand die dit vak met dezelfde zorg wil doen.</h2>
+        <p class="mt-5 text-lg text-on-ink-muted">Het werk groeit. Daarom zoek ik een junior elektricien die het vak van mij wil leren, met een vast, voltijds contract.</p>
+        <a href={job.url} class="btn btn-accent mt-8">Bekijk de vacature</a>
+      </div>
+      <InHetKort items={inHetKort} class="reveal" />
+    </div>
+  </section>
+</Base>

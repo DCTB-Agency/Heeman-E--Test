@@ -1,0 +1,127 @@
+---
+// /offerte/ — gratis offerte (CLAUDE.md § 8). Formulier opent een ingevulde mail naar info@ (geen server nodig).
+import Base from '../../layouts/Base.astro';
+import Kruimels from '../../components/Kruimels.astro';
+import MailtoBevestiging from '../../components/MailtoBevestiging.astro';
+import { business, areas, services, antwoordTermijn } from '../../data/site';
+import { breadcrumbSchema } from '../../lib/schema';
+import { metTodo } from '../../lib/tekst';
+
+const kruimels = [
+  { naam: 'Home', url: '/' },
+  { naam: 'Gratis offerte', url: '/offerte/' },
+];
+const veld = 'mt-1.5 block w-full rounded-xl border-2 border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-muted/70 focus:border-brand focus:outline-none';
+const label = 'block font-semibold';
+const onderwerp = 'Offerteaanvraag: {dienst} – {gemeente}';
+---
+
+<Base
+  title="Gratis offerte elektricien Schilde · Heeman Electrics"
+  description="Vraag gratis een offerte aan voor uw laadpaal, renovatie, domotica of keuringsklare installatie in Schilde en omgeving."
+  schema={[breadcrumbSchema(kruimels)]}
+>
+  <section class="container-site grid gap-12 py-12 sm:py-16 lg:grid-cols-[1fr_1.5fr] lg:gap-16 lg:py-20">
+    <div>
+      <Kruimels kruimels={kruimels} class="fade-up text-muted" />
+      <h1 class="mt-6 text-display">
+        <span class="line-mask"><span style="--i:1">Gratis</span></span>
+        <span class="line-mask"><span style="--i:2">offerte</span></span>
+      </h1>
+      <p class="fade-up mt-6 text-lg text-muted" style="--d:300ms">
+        Vertel kort wat u nodig heeft. Ik antwoord binnen <span set:html={metTodo(antwoordTermijn)} /> en kom zelf langs voor het eerste bezoek en de inschatting.
+      </p>
+      <ol class="fade-up mt-8 space-y-4" style="--d:400ms">
+        {['U vult het formulier in (± 1 minuut)', 'Uw mailprogramma opent met het bericht klaar: klik op verzenden', 'Ik neem contact op zoals u verkiest', 'Bezoek, inschatting en gratis offerte'].map((s, i) => (
+          <li class="flex gap-4">
+            <span class="grid size-8 shrink-0 place-items-center rounded-full bg-ink font-display text-sm font-semibold text-accent" aria-hidden="true">{i + 1}</span>
+            <span class="pt-1">{s}</span>
+          </li>
+        ))}
+      </ol>
+      <div class="fade-up mt-10 rounded-2xl bg-sand/60 p-5" style="--d:500ms">
+        <p class="font-semibold">Liever meteen contact?</p>
+        <div class="mt-3 flex flex-wrap gap-3">
+          <a href={business.phone.href} class="btn btn-primary" data-event="click_to_call">Bel {business.phone.display}</a>
+          <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="fade-up rounded-3xl bg-white p-6 shadow-[0_24px_60px_-40px_rgb(28_13_10/0.5)] sm:p-10" style="--d:250ms" data-mailto-blok>
+      <form
+        name="offerte"
+        action={`mailto:${business.email}?subject=${encodeURIComponent('Offerteaanvraag via de website')}`}
+        method="post"
+        enctype="text/plain"
+        data-mailto={business.email}
+        data-onderwerp={onderwerp}
+        data-event="offerte_submit"
+        class="grid gap-5 sm:grid-cols-2"
+      >
+        <div>
+          <label for="of-dienst" class={label}>Dienst <span aria-hidden="true" class="text-brand">*</span></label>
+          <select id="of-dienst" name="dienst" required class={veld}>
+            <option value="">Kies…</option>
+            {services.map((s) => <option value={s.name} data-slug={s.slug}>{s.name}</option>)}
+            <option>Iets anders</option>
+          </select>
+        </div>
+        <div>
+          <label for="of-gemeente" class={label}>Gemeente <span aria-hidden="true" class="text-brand">*</span></label>
+          <select id="of-gemeente" name="gemeente" required class={veld}>
+            <option value="">Kies…</option>
+            {areas.map((a) => <option>{a.name}</option>)}
+            <option>Andere gemeente</option>
+          </select>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="of-omschrijving" class={label}>Korte omschrijving <span aria-hidden="true" class="text-brand">*</span></label>
+          <textarea id="of-omschrijving" name="omschrijving" rows="4" required class={veld} placeholder="Bv. laadpaal aan de garage, 3-fasige aansluiting, zonnepanelen aanwezig."></textarea>
+          <p class="mt-2 text-sm text-muted">Foto’s (bv. van uw verdeelkast) helpen. Voeg ze toe in de mail die opent, of stuur ze via <a href={business.whatsapp.href} class="font-semibold text-brand underline underline-offset-4" target="_blank" rel="noopener">WhatsApp</a>.</p>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="of-naam" class={label}>Naam <span aria-hidden="true" class="text-brand">*</span></label>
+          <input id="of-naam" name="naam" required autocomplete="name" class={veld} />
+        </div>
+        <div>
+          <label for="of-gsm" class={label}>Gsm <span aria-hidden="true" class="text-brand">*</span></label>
+          <input id="of-gsm" name="gsm" type="tel" required autocomplete="tel" inputmode="tel" placeholder="04.. .. .. .." class={veld} />
+        </div>
+        <div>
+          <label for="of-email" class={label}>E-mail <span class="font-normal text-muted">(optioneel)</span></label>
+          <input id="of-email" name="email" type="email" autocomplete="email" class={veld} />
+        </div>
+        <fieldset class="sm:col-span-2">
+          <legend class={label}>Hoe mag ik u contacteren?</legend>
+          <div class="mt-2 flex flex-wrap gap-3">
+            {['Bellen', 'WhatsApp', 'Mail'].map((v, i) => (
+              <label class="keuze flex cursor-pointer items-center gap-2 rounded-full border-2 border-ink/15 bg-white px-5 py-2.5 font-semibold text-ink">
+                <input type="radio" name="voorkeur" value={v} checked={i === 0} class="size-4 accent-brand" /> {v}
+              </label>
+            ))}
+          </div>
+        </fieldset>
+        <div class="flex flex-wrap items-center gap-4 sm:col-span-2">
+          <button type="submit" class="btn btn-primary text-lg">Vraag mijn offerte aan</button>
+          <p class="text-sm text-muted">* verplicht · uw gegevens gebruik ik enkel voor deze aanvraag (<a href="/privacy/" class="underline underline-offset-4">privacy</a>)</p>
+        </div>
+      </form>
+      <MailtoBevestiging />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .keuze:has(input:checked) { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 8%, white); }
+  .keuze:has(input:focus-visible) { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+</style>
+
+<script>
+  import '../../scripts/mailto-formulier';
+
+  // Vooraf invullen vanuit een dienstpagina: /offerte/?dienst=laadpaal-installeren
+  const slug = new URLSearchParams(location.search).get('dienst');
+  const optie = slug ? document.querySelector<HTMLOptionElement>(`#of-dienst option[data-slug="${CSS.escape(slug)}"]`) : null;
+  if (optie) optie.selected = true;
+</script>

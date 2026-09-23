@@ -42,6 +42,16 @@ export const business = {
   sameAs: [] as string[], // [AANVULLEN: Google Bedrijfsprofiel, Facebook, Instagram, LinkedIn]
 } as const;
 
+// Google Analytics (CLAUDE.md § 13): Google-tag uit de huidige site (Site Kit), stuurt door naar GA4.
+// Laadt pas na toestemming (Consent Mode v2, basisversie). [TE BEVESTIGEN: GA4-property + eventueel G-meet-ID]
+export const analytics = {
+  tagId: 'GT-KDTJ593M',
+  toestemmingGeldigDagen: 180, // daarna opnieuw vragen
+} as const;
+
+// Antwoordtermijn op offertes en berichten (§ 8, § 18.14).
+export const antwoordTermijn = '[AANVULLEN: X werkdag(en)]';
+
 export const areas = [
   { name: 'Schilde', slug: 'elektricien-schilde' },
   { name: "'s-Gravenwezel", slug: 'elektricien-s-gravenwezel' },

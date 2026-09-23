@@ -1,0 +1,13 @@
+---
+// Melding na verzenden van een mailto-formulier (scripts/mailto-formulier.ts toont dit blok).
+import { business } from '../data/site';
+---
+
+<div data-mailto-bevestiging hidden tabindex="-1" role="status" class="mt-6 rounded-2xl border-2 border-brand bg-brand/5 p-5 focus:outline-none">
+  <p class="font-display text-lg font-semibold">Uw mailprogramma opent met het bericht klaar.</p>
+  <p class="mt-1 text-muted">Klik daar nog op <strong>verzenden</strong>. Opent er niets? Mail dan naar
+    <a href={`mailto:${business.email}`} class="font-semibold text-brand underline underline-offset-4">{business.email}</a>,
+    bel <a href={business.phone.href} class="font-semibold text-brand underline underline-offset-4">{business.phone.display}</a>
+    of stuur een <a href={business.whatsapp.href} class="font-semibold text-brand underline underline-offset-4" target="_blank" rel="noopener">WhatsApp</a>.
+  </p>
+</div>

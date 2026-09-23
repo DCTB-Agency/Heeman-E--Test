@@ -1,0 +1,129 @@
+---
+// Google Analytics met Consent Mode v2 (basisversie) — CLAUDE.md § 13.
+// - Vóór toestemming wordt er NIETS geladen of verzonden (geen gtag.js, geen cookies).
+// - Cookiebanner in het Nederlands; "Weigeren" is even groot en even makkelijk als "Aanvaarden" (GBA).
+// - Keuze wordt onthouden (localStorage, max. `toestemmingGeldigDagen`) en is te wijzigen via
+//   elk element met [data-cookie-instellingen] (o.a. in de footer).
+// - Conversies: klik op [data-event] (bel, WhatsApp, offerte…) en verzenden van form[data-event].
+import { analytics } from '../data/site';
+---
+
+<div
+  id="cookiebanner"
+  class="cookiebanner fixed inset-x-3 bottom-[calc(5rem+env(safe-area-inset-bottom))] z-[60] mx-auto max-w-xl rounded-2xl bg-ink p-5 text-white shadow-2xl sm:inset-x-6 lg:bottom-6 lg:left-6 lg:mx-0"
+  role="dialog"
+  aria-labelledby="cookie-titel"
+  aria-describedby="cookie-tekst"
+  data-tag-id={analytics.tagId}
+  data-geldig-dagen={analytics.toestemmingGeldigDagen}
+  hidden
+>
+  <p id="cookie-titel" class="font-display text-lg font-semibold">Mag ik bezoekersstatistieken bijhouden?</p>
+  <p id="cookie-tekst" class="mt-2 text-sm text-on-ink-muted">
+    Met Google Analytics zie ik welke pagina's nuttig zijn. Ik gebruik het niet voor advertenties.
+    Weigert u, dan wordt er niets bijgehouden. <a href="/cookies/" class="font-semibold text-white underline underline-offset-4">Meer info</a>
+  </p>
+  <div class="mt-4 grid grid-cols-2 gap-3">
+    <button type="button" class="btn border-2 border-white/80 bg-transparent text-white hover:bg-white hover:text-ink" data-cookie-keuze="nee">Weigeren</button>
+    <button type="button" class="btn border-2 border-white/80 bg-transparent text-white hover:bg-white hover:text-ink" data-cookie-keuze="ja">Aanvaarden</button>
+  </div>
+</div>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .cookiebanner:not([hidden]) { animation: fade-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.8s both; }
+  }
+</style>
+
+<script>
+  type Keuze = 'ja' | 'nee';
+  const SLEUTEL = 'he-toestemming';
+  const banner = document.getElementById('cookiebanner')!;
+  const tagId = banner.dataset.tagId!;
+  const geldigMs = Number(banner.dataset.geldigDagen) * 864e5;
+
+  declare global {
+    interface Window { dataLayer: unknown[]; gtag?: (...args: unknown[]) => void; heemanTrack: (naam: string, params?: Record<string, unknown>) => void }
+  }
+
+  function leesKeuze(): Keuze | null {
+    try {
+      const raw = localStorage.getItem(SLEUTEL);
+      if (!raw) return null;
+      const { keuze, op } = JSON.parse(raw) as { keuze: Keuze; op: number };
+      return Date.now() - op < geldigMs ? keuze : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function bewaarKeuze(keuze: Keuze) {
+    try { localStorage.setItem(SLEUTEL, JSON.stringify({ keuze, op: Date.now() })); } catch {}
+  }
+
+  let geladen = false;
+  function laadAnalytics() {
+    if (geladen) return;
+    geladen = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    // Consent Mode v2: alles standaard geweigerd, enkel statistiek wordt toegestaan. Geen advertentiesignalen.
+    window.gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+    window.gtag('consent', 'update', { analytics_storage: 'granted' });
+    window.gtag('js', new Date());
+    window.gtag('config', tagId);
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(tagId)}`;
+    document.head.appendChild(s);
+  }
+
+  function intrekken() {
+    // Na weigeren: verdere metingen uitzetten en bestaande GA-cookies opruimen.
+    window.gtag?.('consent', 'update', { analytics_storage: 'denied' });
+    document.cookie.split(';').map((c) => c.split('=')[0].trim()).filter((n) => n === '_ga' || n.startsWith('_ga_')).forEach((n) => {
+      const domein = location.hostname.replace(/^www\./, '');
+      document.cookie = `${n}=; Max-Age=0; path=/`;
+      document.cookie = `${n}=; Max-Age=0; path=/; domain=.${domein}`;
+    });
+  }
+
+  // Focus alleen verplaatsen als de bezoeker de instellingen zelf opent (niet bij het laden van de pagina).
+  function toonBanner(focus = false) {
+    banner.hidden = false;
+    if (focus) banner.querySelector<HTMLButtonElement>('[data-cookie-keuze="nee"]')?.focus({ preventScroll: true });
+  }
+
+  // Events: alleen doorsturen als er toestemming is (anders bestaat window.gtag niet).
+  window.heemanTrack = (naam, params = {}) => window.gtag?.('event', naam, { page_path: location.pathname, ...params });
+
+  banner.querySelectorAll<HTMLButtonElement>('[data-cookie-keuze]').forEach((knop) =>
+    knop.addEventListener('click', () => {
+      const keuze = knop.dataset.cookieKeuze as Keuze;
+      bewaarKeuze(keuze);
+      banner.hidden = true;
+      if (keuze === 'ja') laadAnalytics();
+      else intrekken();
+    }),
+  );
+
+  document.addEventListener('click', (e) => {
+    const t = e.target as Element;
+    if (t.closest('[data-cookie-instellingen]')) {
+      e.preventDefault();
+      toonBanner(true);
+      return;
+    }
+    const el = t.closest<HTMLElement>('a[data-event], button[data-event]');
+    if (el) window.heemanTrack(el.dataset.event!, { link_url: (el as HTMLAnchorElement).href ?? undefined });
+  });
+
+  document.addEventListener('submit', (e) => {
+    const form = e.target as HTMLFormElement;
+    if (form.dataset.event) window.heemanTrack(form.dataset.event, { form_name: form.getAttribute('name') ?? undefined });
+  }, true);
+
+  const keuze = leesKeuze();
+  if (keuze === 'ja') laadAnalytics();
+  else if (keuze === null) toonBanner();
+</script>

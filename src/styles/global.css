@@ -1,0 +1,88 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/outfit';
+@import '@fontsource-variable/inter';
+
+/* Design tokens — bron: scrape/brand.json (CLAUDE.md § 7).
+   Contrast: brand op paper 4.75, wit op brand 5.18, accent op ink 6.06, ink op accent 6.06.
+   NOOIT witte tekst op accent (3.12). */
+@theme {
+  --color-brand: #be4516;
+  --color-brand-dark: #9a3610;
+  --color-accent: #ff5a1f;
+  --color-ink: #1c0d0a;
+  --color-ink-soft: #2a1a15;
+  --color-paper: #f6f5f1;
+  --color-sand: #e5d7d1;
+  --color-muted: #5a4f4b;
+  --color-on-ink-muted: #cbbfba;
+
+  --font-display: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --text-display: clamp(2.5rem, 1.6rem + 4.2vw, 5rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.03em;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display font-semibold tracking-tight text-balance;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .on-ink :focus-visible {
+    outline-color: var(--color-accent);
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 font-display text-base font-semibold transition;
+    position: relative;
+  }
+  .btn-primary {
+    @apply bg-brand text-white hover:bg-brand-dark;
+  }
+  .btn-accent {
+    @apply bg-accent text-ink hover:bg-white;
+  }
+  .btn-ghost {
+    @apply border-2 border-current bg-transparent;
+  }
+  /* "Vonk"-hover (§ 7.8): korte gloed, geen layout-effect */
+  .btn::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    box-shadow: 0 0 0 0 rgb(255 90 31 / 0.55);
+    transition: box-shadow 0.25s ease-out;
+    pointer-events: none;
+  }
+  .btn:hover::after {
+    box-shadow: 0 0 0 6px rgb(255 90 31 / 0);
+    transition-duration: 0.5s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

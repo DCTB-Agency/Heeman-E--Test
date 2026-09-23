@@ -8,17 +8,20 @@
 //   schommelt licht en zwiept mee bij snel scrollen.
 // - Interactief (muis): over de kabel bewegen tokkelt hem als een snaar; over de stekker bewegen duwt
 //   hem weg met een vonk. Ingeplugd rammelt de stekker even in het stopcontact.
+// - Mobiel (< 1024 px): kleinere stekker (36 × 40) en stopcontact, korte kabel aan de rechterrand naast de
+//   bovenste regel, zodat de titel vrij blijft; tikken op de stekker vervangt de hover.
 // - Reduced motion: stilstaand, meteen ingeplugd.
 // Plaats dit component als eerste kind van een `relative` wrapper rond de hero én het volgende blok.
 ---
 
-<div class="scrollkabel pointer-events-none absolute inset-0 z-10 hidden lg:block" aria-hidden="true">
+<div class="scrollkabel pointer-events-none absolute inset-0 z-10" aria-hidden="true">
   <svg class="absolute inset-0 size-full overflow-visible">
-    <path class="sk-kabel" fill="none" stroke="var(--color-brand)" stroke-width="6" stroke-linecap="round" />
-    <path class="sk-puls" pathLength="1" fill="none" stroke="#ffd2bd" stroke-width="7" stroke-linecap="round" />
+    <path class="sk-kabel" fill="none" stroke="var(--color-brand)" stroke-linecap="round" />
+    <path class="sk-puls" pathLength="1" fill="none" stroke="#ffd2bd" stroke-linecap="round" />
   </svg>
-  <!-- Stekker 54 × 60 px (viewBox 36 × 40 × 1,5): pinnen op ± 6 px van het midden, zoals .stopcontact-groot -->
-  <svg class="sk-stekker absolute top-0 left-0" width="54" height="60" viewBox="0 0 36 40">
+  <!-- Stekker 36 × 40 px (mobiel) of 54 × 60 px (desktop, × 1,5): pinnen op ± 4 / ± 6 px van het midden,
+       exact zoals de gaatjes van .stopcontact-groot (schaal 1 / 1,5). -->
+  <svg class="sk-stekker absolute top-0 left-0" viewBox="0 0 36 40">
     <path d="M18 0v10" stroke="var(--color-brand)" stroke-width="4" stroke-linecap="round" />
     <path d="M7 9h22v10a10 10 0 0 1-10 10h-2a10 10 0 0 1-10-10z" fill="var(--color-brand)" />
     <rect x="12.5" y="28" width="3" height="12" rx="1" fill="#8f8581" />
@@ -30,10 +33,19 @@
 </div>
 
 <style>
+  .sk-kabel { stroke-width: 4; }
+  .sk-puls { stroke-width: 5; }
   .sk-stekker {
-    transform-origin: 27px 0;
+    width: 36px;
+    height: 40px;
+    transform-origin: 50% 0;
     will-change: transform;
     overflow: visible;
+  }
+  @media (min-width: 64rem) {
+    .sk-kabel { stroke-width: 6; }
+    .sk-puls { stroke-width: 7; }
+    .sk-stekker { width: 54px; height: 60px; }
   }
   .sk-puls {
     display: none;
@@ -60,7 +72,6 @@
 </style>
 
 <script>
-  const PLUG_W = 54, PLUG_H = 60, HALF = PLUG_W / 2;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   document.querySelectorAll<HTMLElement>('.scrollkabel').forEach((el) => {
@@ -85,6 +96,14 @@
     const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
     const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
 
+    // Afmetingen van de stekker volgen de CSS (36 × 40 mobiel, 54 × 60 desktop).
+    let PLUG_W = 54, PLUG_H = 60, HALF = 27;
+    function maten() {
+      const cs = getComputedStyle(stekker);
+      PLUG_W = parseFloat(cs.width); PLUG_H = parseFloat(cs.height); HALF = PLUG_W / 2;
+    }
+    maten();
+
     function doelen() {
       const zr = zone.getBoundingClientRect();
       const hb = header!.getBoundingClientRect().bottom;
@@ -92,13 +111,15 @@
       const w = zr.width;
       const socketX = sr.left + sr.width / 2 - zr.left;
       const ingeplugdY = sr.top - zr.top - PLUG_H; // pinnen raken de bovenkant van het stopcontact
-      const xs = w * 0.74;
+      const mobiel = w < 1024;
+      // Mobiel: start vlak bij de rechterrand (naast de bovenste regel), desktop: in de lege ruimte rechts van de titel.
+      const xs = mobiel ? Math.min(w - 22, socketX + 12) : w * 0.74;
 
       if (reduce) {
         return { ankerX: socketX, ankerY: 0, tx: socketX, ty: ingeplugdY, plug: true, p: 1, zichtbaar: zr.bottom > 0 };
       }
       const ankerY = hb - zr.top;
-      const hangY = ankerY + Math.min(innerHeight * 0.42, 340);
+      const hangY = ankerY + (mobiel ? 58 : Math.min(innerHeight * 0.42, 340));
       const gap = ingeplugdY - hangY; // wordt kleiner naarmate je scrolt
       const p = clamp(scrollY / Math.max(1, gap + scrollY), 0, 1);
       const plug = gap <= 0;
@@ -211,7 +232,6 @@
 
     function muis(e: PointerEvent) {
       if (e.pointerType !== 'mouse' || reduce || Number.isNaN(x)) return;
-      if (getComputedStyle(el).display === 'none') return;
       const prev = mPrev;
       mPrev = { x: e.clientX, y: e.clientY, t: e.timeStamp };
       if (!prev) return;
@@ -242,9 +262,27 @@
       }
     }
 
+    // Tikken (touch/pen): de stekker zwiept weg met een vonk, of rammelt als hij ingeplugd is.
+    function tik(e: PointerEvent) {
+      if (e.pointerType === 'mouse' || reduce || Number.isNaN(x)) return;
+      const zr = zone.getBoundingClientRect();
+      const mx = e.clientX - zr.left, my = e.clientY - zr.top;
+      if (Math.hypot(mx - x, my - (y + PLUG_H / 2)) > Math.max(34, PLUG_W)) return;
+      const richting = mx < x ? 1 : -1; // weg van de vinger
+      if (ingeplugd) rotv = clamp(rotv + richting * 3.5, -5, 5);
+      else {
+        vx = clamp(vx + richting * 520, -900, 900);
+        vy = clamp(vy - 120, -600, 600);
+        rotv = clamp(rotv + richting * 2.5, -4, 4);
+      }
+      vonk();
+      start();
+    }
+
     addEventListener('pointermove', muis, { passive: true });
+    addEventListener('pointerdown', tik, { passive: true });
     addEventListener('scroll', start, { passive: true });
-    addEventListener('resize', start);
+    addEventListener('resize', () => { maten(); start(); });
     document.fonts?.ready.then(start);
     start();
   });

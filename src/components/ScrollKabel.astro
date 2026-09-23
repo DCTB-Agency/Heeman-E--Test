@@ -6,6 +6,8 @@
 //   stroompuls en de klasse `aan` op de zone (voor effecten op het blok zelf).
 // - Een veer geeft de stekker gewicht: hij valt bij het laden met een veerkracht naar beneden,
 //   schommelt licht en zwiept mee bij snel scrollen.
+// - Interactief (muis): over de kabel bewegen tokkelt hem als een snaar; over de stekker bewegen duwt
+//   hem weg met een vonk. Ingeplugd rammelt de stekker even in het stopcontact.
 // - Reduced motion: stilstaand, meteen ingeplugd.
 // Plaats dit component als eerste kind van een `relative` wrapper rond de hero én het volgende blok.
 ---
@@ -51,6 +53,9 @@
     :global(.aan) .sk-vonk {
       animation: flicker 0.9s ease-out 1;
     }
+    .vonk .sk-vonk {
+      animation: flicker 0.7s ease-out 1;
+    }
   }
 </style>
 
@@ -69,6 +74,10 @@
 
     // Toestand van de stekker (bovenkant-midden, in zone-coördinaten) + snelheid.
     let x = NaN, y = NaN, vx = 0, vy = 0;
+    // Tokkel: zijwaartse uitwijking van de kabel (wb) en extra kanteling van de stekker (rot), elk met veer.
+    let wb = 0, wbv = 0, rot = 0, rotv = 0;
+    // Laatst getekende Bézier (voor hit-test met de muis): P0, P1, P2, P3.
+    let bez: number[] | null = null;
     let ingeplugd = false;
     let vorige = performance.now();
     let draait = false;
@@ -110,20 +119,23 @@
         y = reduce ? d.ty : d.ankerY - PLUG_H; // start net onder de header: stekker valt naar beneden
       }
 
-      if (d.plug) {
-        // Ingeplugd: exact vast op het stopcontact.
-        x = d.tx; y = d.ty; vx = vy = 0;
-      } else {
-        // Veer met lichte demping; kleine schommeling als hij vrij hangt.
-        const zwaai = Math.sin(nu / 900) * 5 * (1 - d.p);
-        const STAP = 1 / 240;
-        for (let t = 0; t < totaal; t += STAP) {
-          const dt = Math.min(STAP, totaal - t);
+      // Veren: stekker (met demping en kleine schommeling als hij vrij hangt), kabel-tokkel en rammel.
+      const zwaai = Math.sin(nu / 900) * 5 * (1 - d.p);
+      const STAP = 1 / 240;
+      for (let t = 0; t < totaal; t += STAP) {
+        const dt = Math.min(STAP, totaal - t);
+        if (!d.plug) {
           const ax = 140 * (d.tx + zwaai - x) - 11 * vx;
           const ay = 110 * (d.ty - y) - 9 * vy;
           vx += ax * dt; vy += ay * dt;
           x += vx * dt; y += vy * dt;
         }
+        wbv += (-160 * wb - 4 * wbv) * dt; wb += wbv * dt;
+        rotv += (-260 * rot - 6 * rotv) * dt; rot += rotv * dt;
+      }
+      if (d.plug) {
+        // Ingeplugd: exact vast op het stopcontact.
+        x = d.tx; y = d.ty; vx = vy = 0;
       }
 
       if (d.plug !== ingeplugd) {
@@ -132,24 +144,30 @@
       }
 
       // Hoek: stekker volgt de richting van de kabel, plus een zwiep bij snelheid.
-      const hoek = d.plug ? 0 : clamp(Math.atan2(x - d.ankerX, Math.max(1, y - d.ankerY)) * 0.5 - vx * 0.0006, -0.45, 0.45);
+      const basis = d.plug ? 0 : clamp(Math.atan2(x - d.ankerX, Math.max(1, y - d.ankerY)) * 0.5 - vx * 0.0006, -0.45, 0.45);
+      const hoek = basis + (d.plug ? clamp(rot, -0.12, 0.12) : rot);
       stekker.style.transform = `translate(${x - HALF}px, ${y}px) rotate(${hoek}rad)`;
 
       const L = y - d.ankerY;
       if (L > 2) {
+        const c1x = d.ankerX + wb;
         const c1y = d.ankerY + L * 0.5;
-        const c2x = x - Math.sin(hoek) * L * 0.45;
+        const c2x = x - Math.sin(hoek) * L * 0.45 + wb * 0.7;
         const c2y = y - Math.cos(hoek) * L * 0.45;
-        const pad = `M ${d.ankerX} ${d.ankerY - 60} L ${d.ankerX} ${d.ankerY} C ${d.ankerX} ${c1y}, ${c2x} ${c2y}, ${x} ${y}`;
+        const pad = `M ${d.ankerX} ${d.ankerY - 60} L ${d.ankerX} ${d.ankerY} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${x} ${y}`;
         kabel.setAttribute('d', pad);
         puls.setAttribute('d', pad);
+        bez = [d.ankerX, d.ankerY, c1x, c1y, c2x, c2y, x, y];
       } else {
         kabel.setAttribute('d', '');
         puls.setAttribute('d', '');
+        bez = null;
       }
 
       // Door blijven lopen zolang de stekker beweegt of vrij (zichtbaar) hangt; ingeplugd volstaat één frame per scroll.
-      const beweegt = Math.abs(vx) > 0.5 || Math.abs(vy) > 0.5;
+      const beweegt =
+        Math.abs(vx) > 0.5 || Math.abs(vy) > 0.5 ||
+        Math.abs(wbv) > 2 || Math.abs(wb) > 0.3 || Math.abs(rotv) > 0.05 || Math.abs(rot) > 0.002;
       const vrij = !d.plug && !reduce && d.zichtbaar;
       if (beweegt || vrij) requestAnimationFrame(frame);
       else draait = false;
@@ -164,6 +182,67 @@
       }
     }
 
+    // --- Interactie met de muis ---------------------------------------------------------------
+    let mPrev: { x: number; y: number; t: number } | null = null;
+    let laatsteVonk = 0;
+
+    function vonk() {
+      const nu = performance.now();
+      if (nu - laatsteVonk < 450) return;
+      laatsteVonk = nu;
+      el.classList.remove('vonk');
+      void el.getBoundingClientRect(); // animatie herstarten
+      el.classList.add('vonk');
+    }
+
+    // Kleinste afstand van punt (mx, my) tot de getekende Bézier (16 monsters volstaan voor een hover).
+    function afstandTotKabel(mx: number, my: number) {
+      if (!bez) return Infinity;
+      const [x0, y0, x1, y1, x2, y2, x3, y3] = bez;
+      let min = Infinity;
+      for (let i = 0; i <= 16; i++) {
+        const t = i / 16, u = 1 - t;
+        const bx = u * u * u * x0 + 3 * u * u * t * x1 + 3 * u * t * t * x2 + t * t * t * x3;
+        const by = u * u * u * y0 + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t * t * t * y3;
+        min = Math.min(min, Math.hypot(mx - bx, my - by));
+      }
+      return min;
+    }
+
+    function muis(e: PointerEvent) {
+      if (e.pointerType !== 'mouse' || reduce || Number.isNaN(x)) return;
+      if (getComputedStyle(el).display === 'none') return;
+      const prev = mPrev;
+      mPrev = { x: e.clientX, y: e.clientY, t: e.timeStamp };
+      if (!prev) return;
+      const dt = Math.max(0.008, (e.timeStamp - prev.t) / 1000);
+      const mvx = clamp((e.clientX - prev.x) / dt, -3000, 3000);
+      const mvy = clamp((e.clientY - prev.y) / dt, -3000, 3000);
+
+      const zr = zone.getBoundingClientRect();
+      const mx = e.clientX - zr.left, my = e.clientY - zr.top;
+      const opStekker = Math.hypot(mx - x, my - (y + PLUG_H / 2)) < 42;
+
+      if (opStekker) {
+        if (ingeplugd) {
+          rotv = clamp(rotv + mvx * 0.004, -5, 5); // rammelen in het stopcontact
+        } else {
+          vx = clamp(vx + mvx * 0.35, -900, 900);
+          vy = clamp(vy + mvy * 0.2, -600, 600);
+          rotv = clamp(rotv + mvx * 0.003, -4, 4);
+        }
+        if (Math.hypot(mvx, mvy) > 150) vonk();
+        start();
+      } else if (afstandTotKabel(mx, my) < 18) {
+        // Tokkel: de kabel buigt mee in de bewegingsrichting en trilt uit; de stekker voelt het een beetje.
+        wbv = clamp(wbv + mvx * 0.6, -1400, 1400);
+        if (!ingeplugd) vx = clamp(vx + mvx * 0.08, -900, 900);
+        else rotv = clamp(rotv + mvx * 0.0012, -3, 3);
+        start();
+      }
+    }
+
+    addEventListener('pointermove', muis, { passive: true });
     addEventListener('scroll', start, { passive: true });
     addEventListener('resize', start);
     document.fonts?.ready.then(start);

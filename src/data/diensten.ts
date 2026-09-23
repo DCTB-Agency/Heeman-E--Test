@@ -33,8 +33,6 @@ export const STANDAARD_STAPPEN: Stap[] = [
   { titel: 'Oplevering en controle', tekst: 'Ik doe zelf de kwaliteitscontrole en leg u uit hoe alles werkt.' },
 ];
 
-/** Onder elke 'Wat staat er in uw offerte'-lijst: Bert moet de lijst per dienst bevestigen. */
-export const OFFERTE_NOOT = '[TE BEVESTIGEN: lijst door Bert]';
 const BIJGEWERKT = '2026-09-23';
 
 // Gecontroleerd op 23-09-2026 (HTTP 200). Diepere pagina's per premie: [te controleren] door DCTB.

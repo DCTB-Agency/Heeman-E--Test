@@ -5,7 +5,7 @@ export const SITE_URL = 'https://www.heeman-electrics.be';
 
 export const business = {
   name: 'Heeman Electrics',
-  legalName: '[TE BEVESTIGEN: juridische naam] BV',
+  legalName: 'AUGES BV', // bevestigd 23-09-2026
   legalForm: 'BV',
   vat: 'BE 0696.715.762',
   vatId: 'BE0696715762',

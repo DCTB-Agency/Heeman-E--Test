@@ -7,7 +7,7 @@ import JobsBlok from '../components/JobsBlok.astro';
 import InHetKort from '../components/InHetKort.astro';
 import Foto from '../components/Foto.astro';
 import DienstIcoon from '../components/DienstIcoon.astro';
-import { fotos } from '../data/fotos';
+import { realisaties, realisatieUrl } from '../data/realisaties';
 import Werkgebied from '../components/Werkgebied.astro';
 import Faq from '../components/Faq.astro';
 import { business, areas, areaUrl, services, serviceUrl, antwoordTermijn } from '../data/site';
@@ -178,11 +178,14 @@ const extra = services.filter((s) => s.priority > 5);
         <a href="/realisaties/" class="inline-flex items-center gap-2 font-display font-semibold text-brand">Alle realisaties <span aria-hidden="true">→</span></a>
       </div>
       <ul class="mt-10 grid gap-6 md:grid-cols-3">
-        {(['laadpaal', 'stopcontactenAf', 'verdeelkast'] as const).map((id) => (
-          <li class="reveal group">
-            <Foto id={id} class="aspect-[4/3]" sizes="(min-width: 768px) 30vw, 100vw" />
-            <p class="mt-4 font-display text-lg font-semibold">{fotos[id].titel} · <mark class="todo">[AANVULLEN: gemeente]</mark></p>
-            <p class="mt-1 text-sm text-muted"><mark class="todo">[AANVULLEN: situatie → oplossing → resultaat]</mark></p>
+        {realisaties.slice(0, 3).map((r) => (
+          <li class="reveal">
+            <a href={realisatieUrl(r.slug)} class="group block">
+              <Foto id={r.fotos.hoofd} class="aspect-[4/3]" sizes="(min-width: 768px) 30vw, 100vw" />
+              <p class="mt-4 text-sm font-semibold text-brand">{r.gemeente}</p>
+              <p class="mt-1 font-display text-lg font-semibold group-hover:text-brand">{r.titel}</p>
+              <p class="mt-1 line-clamp-2 text-sm text-muted">{r.oplossing}</p>
+            </a>
           </li>
         ))}
       </ul>

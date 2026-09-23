@@ -32,13 +32,13 @@ export const fotos = {
   },
   stopcontactenAf: {
     src: stopcontactenAf,
-    alt: 'Twee ronde inbouwstopcontacten strak afgewerkt in een wand van travertin',
+    alt: 'Twee ronde inbouwstopcontacten strak afgewerkt in een wand van travertijn',
     focus: '50% 42%',
-    titel: 'Inbouwstopcontacten in travertin',
+    titel: 'Ronde inbouwstopcontacten in travertijn',
   },
   stopcontactenPlaatsing: {
     src: stopcontactenPlaatsing,
-    alt: 'Inbouwstopcontact in travertin tijdens de plaatsing, met zichtbare bedrading',
+    alt: 'Rond inbouwstopcontact in travertijn tijdens de plaatsing, met zichtbare bedrading',
     focus: '45% 52%',
     titel: 'Stopcontacten tijdens de plaatsing',
   },

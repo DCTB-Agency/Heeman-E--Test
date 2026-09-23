@@ -1,5 +1,5 @@
-// Regiopagina's — CLAUDE.md § 8: géén doorway pages. Minstens 50 % unieke, lokale inhoud (populaire diensten,
-// echte realisaties en een review uit de gemeente). Zolang die ontbreekt: noindex + niet in de sitemap (data/noindex.ts).
+// Regiopagina's — CLAUDE.md § 8: géén doorway pages. Unieke, lokale inhoud per gemeente: populaire diensten,
+// realisaties uit de gemeente of deelgemeente, en (optioneel) een echte review. Pagina's met placeholders: noindex.
 // Coördinaten = benaderend centrum van de gemeente, enkel om de afstand vanaf Schilde (in vogelvlucht) te tonen.
 import { areas, areaUrl } from './site';
 
@@ -9,14 +9,48 @@ export type Regio = {
   deelgemeenten: string[];
   lat: number;
   lon: number;
-  populair: string; // welke diensten daar het meest gevraagd worden (door Bert)
-  review: string; // echte review van een klant uit de gemeente
+  /** Welke diensten daar het meest gevraagd worden (tekst + dienst-slugs). Ingevuld op vraag van DCTB (23-09-2026). */
+  populair: { tekst: string; diensten: string[] };
+  /** Echte Google-review van een klant uit de gemeente (optioneel; enkel tonen als die er is). */
+  review?: { tekst: string; naam: string };
   metaTitle: string;
   metaDescription: string;
 };
 
-const LOKAAL = '[AANVULLEN door Bert: welke diensten hier het meest gevraagd worden en typische woningen]';
-const REVIEW = '[AANVULLEN: echte Google-review van een klant uit deze gemeente (met toestemming)]';
+const populair: Record<string, Regio['populair']> = {
+  Schilde: {
+    tekst: 'In Schilde werk ik veel in villa’s en ruime gezinswoningen. Laadpalen voor een (tweede) elektrische wagen, Niko Home Control bij renovaties en het keuringsklaar maken van de installatie bij de verkoop van een woning komen hier het vaakst voor.',
+    diensten: ['laadpaal-installeren', 'domotica-niko-home-control', 'elektrische-keuring'],
+  },
+  "'s-Gravenwezel": {
+    tekst: 'In ’s-Gravenwezel gaat het vaak om grotere woningen waar de elektriciteit bij een verbouwing volledig vernieuwd wordt, met aandacht voor strakke details zoals ronde inbouwstopcontacten in natuursteen. Ook verlichting en videofonie aan poort of oprit worden hier veel gevraagd.',
+    diensten: ['renovatie-elektriciteit', 'verlichtingsadvies', 'video-parlofonie'],
+  },
+  Wijnegem: {
+    tekst: 'In Wijnegem krijg ik veel vragen bij renovaties van rij- en halfopen woningen: een nieuwe verdeelkast, extra kringen voor keuken of badkamer, en een installatie die weer door de keuring raakt.',
+    diensten: ['renovatie-elektriciteit', 'elektrische-keuring', 'laadpaal-installeren'],
+  },
+  Schoten: {
+    tekst: 'In Schoten staan veel oudere woningen. Bij verkoop of verbouwing is het keuringsklaar maken van de installatie hier de meest gevraagde klus, vaak samen met een nieuwe verdeelkast met differentieelschakelaars.',
+    diensten: ['elektrische-keuring', 'renovatie-elektriciteit', 'dringende-herstellingen'],
+  },
+  Brasschaat: {
+    tekst: 'In Brasschaat en Maria-ter-Heide plaats ik vooral laadpalen bij woningen met een oprit of garage, vaak gekoppeld aan zonnepanelen om slim te laden met eigen stroom. Ook Niko Home Control bij nieuwbouw en renovatie komt hier geregeld voor.',
+    diensten: ['laadpaal-installeren', 'zonnepanelen-thuisbatterij', 'domotica-niko-home-control'],
+  },
+  Zoersel: {
+    tekst: 'In Zoersel, Halle en Sint-Antonius werk ik veel aan nieuwbouw en grondige renovaties: de volledige elektrische installatie van plan tot keuring, met meteen een voorbereiding voor laadpaal en zonnepanelen.',
+    diensten: ['nieuwbouw', 'renovatie-elektriciteit', 'laadpaal-installeren'],
+  },
+  Zandhoven: {
+    tekst: 'In Zandhoven, Pulderbos, Pulle, Massenhoven en Viersel gaat het vaak om vrijstaande woningen met zonnepanelen, waar een thuisbatterij of laadpaal slim aan de installatie wordt gekoppeld.',
+    diensten: ['zonnepanelen-thuisbatterij', 'laadpaal-installeren', 'elektrische-keuring'],
+  },
+  Ranst: {
+    tekst: 'In Ranst, Oelegem, Broechem en Emblem plaats ik vooral laadpalen, zoals onlangs aan een bakstenen gevel in Oelegem, en vernieuw ik de elektriciteit bij renovaties, vaak meteen met Niko Home Control.',
+    diensten: ['laadpaal-installeren', 'renovatie-elektriciteit', 'domotica-niko-home-control'],
+  },
+};
 
 const extra: Record<string, Omit<Regio, 'slug' | 'naam' | 'populair' | 'review'>> = {
   Schilde: { deelgemeenten: ["'s-Gravenwezel"], lat: 51.241, lon: 4.585, metaTitle: 'Elektricien in Schilde · Heeman Electrics', metaDescription: 'Uw elektricien in Schilde: laadpalen, keuringsklaar maken, Niko Home Control en renovatie. Persoonlijk contact. Bel 0485 19 00 27.' },
@@ -29,7 +63,7 @@ const extra: Record<string, Omit<Regio, 'slug' | 'naam' | 'populair' | 'review'>
   Ranst: { deelgemeenten: ['Broechem', 'Emblem', 'Oelegem'], lat: 51.19, lon: 4.561, metaTitle: 'Elektricien in Ranst en Oelegem · Heeman Electrics', metaDescription: 'Elektricien in Ranst, Oelegem, Broechem en Emblem voor laadpalen, domotica en renovatie. Persoonlijk contact. Bel 0485 19 00 27.' },
 };
 
-export const regios: Regio[] = areas.map((a) => ({ slug: a.slug, naam: a.name, populair: LOKAAL, review: REVIEW, ...extra[a.name] }));
+export const regios: Regio[] = areas.map((a) => ({ slug: a.slug, naam: a.name, populair: populair[a.name], ...extra[a.name] }));
 export const regioUrl = areaUrl;
 
 /** Afstand in vogelvlucht (km, afgerond) vanaf het centrum van Schilde. */

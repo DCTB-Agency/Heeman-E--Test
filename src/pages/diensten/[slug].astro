@@ -6,9 +6,10 @@ import Kruimels from '../../components/Kruimels.astro';
 import Faq from '../../components/Faq.astro';
 import Beeld from '../../components/Beeld.astro';
 import { fotos } from '../../data/fotos';
+import { realisatieVoorFoto, realisatieUrl } from '../../data/realisaties';
 import StroomLijn from '../../components/StroomLijn.astro';
 import { SITE_URL, business, areas, services, serviceUrl, job } from '../../data/site';
-import { diensten, STANDAARD_STAPPEN, OFFERTE_NOOT, type Dienst } from '../../data/diensten';
+import { diensten, STANDAARD_STAPPEN, type Dienst } from '../../data/diensten';
 import { breadcrumbSchema, faqSchema } from '../../lib/schema';
 import { metTodo } from '../../lib/tekst';
 
@@ -118,7 +119,7 @@ const serviceSchema = {
             </li>
           ))}
         </ul>
-        <p class="mt-6 text-sm text-muted">Geen bedragen online: elke situatie is anders. Na het bezoek krijgt u een gratis offerte. <span set:html={metTodo(OFFERTE_NOOT)} /></p>
+        <p class="mt-6 text-sm text-muted">Geen bedragen online: elke situatie is anders. Na het bezoek krijgt u een gratis offerte.</p>
       </div>
 
       {dienst.premies ? (
@@ -149,14 +150,18 @@ const serviceSchema = {
           <a href="/realisaties/" class="inline-flex items-center gap-2 font-display font-semibold text-brand">Alle realisaties <span aria-hidden="true">→</span></a>
         </div>
         <ul class="mt-8 grid gap-6 md:grid-cols-2">
-          {dienst.fotos.map((b) => (
-            <li class="reveal group">
-              <Beeld beeld={b} class="aspect-[16/10]" sizes="(min-width: 768px) 45vw, 100vw" />
-              <p class="mt-3 font-display text-lg font-semibold">
-                {typeof b === 'string' && <>{fotos[b].titel} · </>}<mark class="todo">[AANVULLEN: {typeof b === 'string' ? 'gemeente' : 'titel met gemeente'}]</mark>
-              </p>
-            </li>
-          ))}
+          {dienst.fotos.map((b) => {
+            const r = typeof b === 'string' ? realisatieVoorFoto(b) : undefined;
+            const inhoud = (
+              <>
+                <Beeld beeld={b} class="aspect-[16/10]" sizes="(min-width: 768px) 45vw, 100vw" />
+                <p class="mt-3 font-display text-lg font-semibold group-hover:text-brand">
+                  {r ? <>{r.titel} · <span class="text-brand">{r.gemeente}</span></> : typeof b === 'string' ? fotos[b].titel : <mark class="todo">[AANVULLEN: titel met gemeente]</mark>}
+                </p>
+              </>
+            );
+            return <li class="reveal group">{r ? <a href={realisatieUrl(r.slug)} class="block">{inhoud}</a> : inhoud}</li>;
+          })}
         </ul>
       </div>
     </section>

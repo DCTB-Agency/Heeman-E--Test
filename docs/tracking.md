@@ -17,7 +17,6 @@
 | `click_to_call` | alle bel-knoppen (header, hero, onderbalk, CTA's) |
 | `whatsapp_click` | WhatsApp-knoppen |
 | `mail_click` | mail-link op /contact/ |
-| `route_click` | "Route plannen" op /contact/ |
 | `offerte_click` | "Offerte" in de mobiele onderbalk |
 | `offerte_submit` | offerteformulier verzonden (opent mail) |
 | `contact_submit` | contactformulier verzonden (opent mail) |

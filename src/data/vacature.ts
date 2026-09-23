@@ -48,7 +48,7 @@ export const vacature = {
     'Loon: bespreekbaar in het gesprek.',
   ],
 
-  // [TE BEVESTIGEN: realistische dag door Bert]
+  // Realistische dag: bevestigd door Bert (23-09-2026).
   dag: [
     { uur: '07:45', wat: 'Vertrek' },
     { uur: '08:15', wat: 'Eerste klant in Schilde: laadpaal' },

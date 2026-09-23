@@ -1,0 +1,20 @@
+---
+// FAQ-accordeon. Het FAQPage-schema komt uit dezelfde `vragen` (zie lib/schema.ts → faqSchema).
+import { metTodo } from '../lib/tekst';
+import type { Vraag } from '../lib/schema';
+
+interface Props {
+  vragen: Vraag[];
+  class?: string;
+}
+const { vragen, class: className = '' } = Astro.props;
+---
+
+<div class:list={['faq border-t border-current/15', className]}>
+  {vragen.map((v) => (
+    <details>
+      <summary>{v.vraag}</summary>
+      <p class="max-w-3xl pb-6 text-lg opacity-80" set:html={metTodo(v.antwoord)} />
+    </details>
+  ))}
+</div>

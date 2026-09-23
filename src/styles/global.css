@@ -81,6 +81,45 @@
     transition: transform 0.2s;
   }
 
+  .eyebrow {
+    @apply font-display text-sm font-semibold tracking-widest text-brand uppercase;
+  }
+  .on-ink .eyebrow { @apply text-accent; }
+  .h2 {
+    @apply font-display text-[clamp(2rem,1.4rem+2.6vw,3.5rem)] leading-[1.05] font-semibold tracking-tight text-balance;
+  }
+  .section { @apply py-20 sm:py-28; }
+
+  /* Placeholders uit de brief: vallen op zodat niets onbevestigd live gaat. */
+  mark.todo {
+    @apply rounded bg-yellow-300 px-1 font-mono text-[0.8em] font-semibold text-ink;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* FAQ-accordeon (details/summary): native, toegankelijk; soepel openen waar de browser het kan. */
+  .faq details {
+    @apply border-b border-current/15;
+    interpolate-size: allow-keywords;
+  }
+  .faq details::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition: block-size 0.35s ease, content-visibility 0.35s allow-discrete;
+  }
+  .faq details[open]::details-content { block-size: auto; }
+  .faq summary {
+    @apply flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-display text-lg font-semibold sm:text-xl;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: '';
+    @apply size-4 shrink-0 transition-transform duration-300;
+    background: currentColor;
+    clip-path: polygon(45% 0, 55% 0, 55% 45%, 100% 45%, 100% 55%, 55% 55%, 55% 100%, 45% 100%, 45% 55%, 0 55%, 0 45%, 45% 45%);
+  }
+  .faq details[open] summary::after { transform: rotate(45deg); color: var(--color-brand); }
+
   /* Knop als stopcontact ("vrouwtje"): een behuizing bovenop de knop met twee gaatjes op ± 4 px van het
      midden, exact onder de pinnen van de stekker in StroomLijn.astro. */
   .stopcontact {
@@ -123,9 +162,10 @@
   60% { transform: rotate(-8deg); }
   80% { transform: rotate(4deg); }
 }
+/* Via `translate` (niet `transform`), zodat hover-effecten met transform blijven werken tijdens/na de reveal. */
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(1.25rem); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; translate: 0 1.25rem; }
+  to { opacity: 1; translate: none; }
 }
 @keyframes line-up {
   from { transform: translateY(105%); }

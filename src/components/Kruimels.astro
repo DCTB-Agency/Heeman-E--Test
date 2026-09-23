@@ -1,0 +1,22 @@
+---
+// Zichtbaar kruimelpad; het BreadcrumbList-schema komt uit dezelfde lijst (lib/schema.ts).
+import type { Kruimel } from '../lib/schema';
+interface Props {
+  kruimels: Kruimel[];
+  class?: string;
+}
+const { kruimels, class: className = '' } = Astro.props;
+---
+
+<nav aria-label="Kruimelpad" class:list={['text-sm', className]}>
+  <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+    {kruimels.map((k, i) => (
+      <li class="flex items-center gap-2">
+        {i > 0 && <span aria-hidden="true" class="opacity-50">/</span>}
+        {i < kruimels.length - 1
+          ? <a href={k.url} class="underline-offset-4 opacity-80 hover:underline hover:opacity-100">{k.naam}</a>
+          : <span aria-current="page" class="font-semibold">{k.naam}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>

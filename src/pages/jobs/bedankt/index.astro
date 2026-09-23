@@ -1,0 +1,20 @@
+---
+// Bedankpagina na solliciteren (conversie job_apply_submit). Niet indexeren; staat ook in robots.txt.
+import Base from '../../../layouts/Base.astro';
+import { business } from '../../../data/site';
+---
+
+<Base title="Bedankt voor je sollicitatie · Heeman Electrics" description="Je sollicitatie is goed aangekomen." noindex>
+  <section class="bg-accent text-ink">
+    <div class="container-site py-20 sm:py-28">
+      <h1 class="max-w-3xl text-display"><span class="line-mask"><span>Bedankt! Je gegevens zijn aangekomen.</span></span></h1>
+      <p class="fade-up mt-6 max-w-xl text-lg" style="--d:300ms">
+        Ik bel je binnen <mark class="todo">[AANVULLEN: X]</mark> werkdagen. Wil je intussen iets vragen? Bel of stuur een WhatsApp.
+      </p>
+      <div class="fade-up mt-8 flex flex-wrap gap-3" style="--d:450ms">
+        <a href={business.phone.href} class="btn bg-ink text-white hover:bg-ink-soft">Bel {business.phone.display}</a>
+        <a href="/" class="btn btn-ghost">Naar de homepage</a>
+      </div>
+    </div>
+  </section>
+</Base>

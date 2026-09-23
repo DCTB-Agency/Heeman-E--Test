@@ -1,19 +1,41 @@
 ---
-// PREVIEW (Fase 1): toont de layout. De volledige homepage (§ 8) volgt in de volgende fase.
+// Homepage — CLAUDE.md § 8. Volgorde: jobs-blok hoog, direct na de diensten (§ 6.1).
 import Base from '../layouts/Base.astro';
 import StroomLijn from '../components/StroomLijn.astro';
 import HeroKabel from '../components/HeroKabel.astro';
-import { business, areas } from '../data/site';
+import JobsBlok from '../components/JobsBlok.astro';
+import InHetKort from '../components/InHetKort.astro';
+import FotoPlaceholder from '../components/FotoPlaceholder.astro';
+import Werkgebied from '../components/Werkgebied.astro';
+import Faq from '../components/Faq.astro';
+import { business, areas, areaUrl, services, serviceUrl } from '../data/site';
+import { usps, dienstTekst, laadpaalMerken, inHetKort, cijfers, homeFaq } from '../data/home';
+import { faqSchema } from '../lib/schema';
+import { metTodo } from '../lib/tekst';
+
+const [laadpaal, ...kern] = services.filter((s) => s.priority <= 5);
+const extra = services.filter((s) => s.priority > 5);
+
+// Eenvoudige lijn-iconen per dienst (24 × 24, stroke).
+const icoon: Record<string, string> = {
+  'laadpaal-installeren': 'M7 21V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v16M5 21h12M15 9h2a2 2 0 0 1 2 2v4a1 1 0 0 0 2 0V8l-2-2M11 7l-2 4h4l-2 4',
+  'elektrische-keuring': 'M9 12l2 2 4-4M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z',
+  'domotica-niko-home-control': 'M3 11l9-7 9 7M5 10v10h14V10M10 20v-5h4v5M12 13v.01',
+  'renovatie-elektriciteit': 'M4 4h16v16H4zM8 8v3M12 8v3M16 8v3M8 15h8',
+  'zonnepanelen-thuisbatterij': 'M3 14l2-9h14l2 9zM3 14h18M9 5l-1 9M15 5l1 9M12 17v4M8 21h8',
+};
 ---
 
 <Base
   title="Elektricien Schilde · Laadpalen & domotica · Heeman"
   description="Elektricien in Schilde en omgeving. Ik plaats laadpalen, Niko Home Control en maak uw installatie keuringsklaar. Vaste prijs. Bel 0485 19 00 27."
+  schema={[faqSchema(homeFaq)]}
 >
-  <section class="relative overflow-hidden">
+  <!-- HERO -->
+  <section class="relative overflow-clip">
     <HeroKabel class="absolute top-0 right-[4%] hidden h-full max-h-[34rem] w-auto lg:block xl:right-[8%]" />
     <div class="container-site relative py-16 sm:py-24 lg:py-32">
-      <p class="fade-up font-display text-sm font-semibold tracking-widest text-brand uppercase">Erkend elektricien · {business.experience}</p>
+      <p class="eyebrow fade-up">Erkend elektricien · {business.experience}</p>
       <h1 class="mt-4 max-w-4xl text-display">
         <span class="line-mask"><span style="--i:1">Elektricien in Schilde</span></span>
         <span class="line-mask"><span style="--i:2">die <span class="relative whitespace-nowrap text-brand">zelf komt<svg class="absolute -bottom-[0.12em] left-0 h-[0.3em] w-full overflow-visible" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path class="draw-in" style="--d:900ms;--dur:0.9s" d="M2 12 C 40 4, 80 18, 120 10 S 180 6, 198 12" pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="5" stroke-linecap="round" /></svg></span>,</span></span>
@@ -33,13 +55,204 @@ import { business, areas } from '../data/site';
     </div>
   </section>
 
-  <section class="on-ink relative bg-ink text-white">
-    <StroomLijn doel />
-    <div class="container-site relative py-24">
-      <p class="reveal mx-auto max-w-xl rounded-2xl bg-ink border border-dashed border-white/25 p-8 text-center text-on-ink-muted">
-        <strong class="block font-display text-xl text-white">Preview van de layout</strong>
-        De homepage-secties (diensten, In het kort, reviews, realisaties, jobs-blok, werkgebied, FAQ) volgen in de volgende fase.
-      </p>
+  <!-- USP-RIJ -->
+  <section class="border-y border-ink/10 bg-white/60" aria-label="Waarom Heeman Electrics">
+    <ol class="reveal-stagger container-site grid gap-8 py-12 sm:grid-cols-3 sm:gap-10">
+      {usps.map((u, i) => (
+        <li style={`--i:${i}`}>
+          <p class="font-mono text-sm font-semibold text-brand">0{i + 1}</p>
+          <h2 class="mt-2 font-display text-2xl font-semibold">{u.titel}</h2>
+          <p class="mt-2 text-muted" set:html={metTodo(u.tekst)} />
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- DIENSTEN -->
+  <section class="section" aria-labelledby="diensten">
+    <div class="container-site">
+      <div class="reveal max-w-3xl">
+        <p class="eyebrow">Diensten</p>
+        <h2 id="diensten" class="h2 mt-3">Wat kan ik voor u doen?</h2>
+      </div>
+
+      <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
+        <a href={serviceUrl(laadpaal.slug)} class="dienst on-ink reveal group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-ink p-8 text-white md:col-span-2 lg:row-span-2">
+          <svg viewBox="0 0 24 24" class="dienst-icoon size-12 text-accent" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={icoon[laadpaal.slug]} /></svg>
+          <div class="mt-16">
+            <p class="eyebrow">Nr. 1 in Schilde</p>
+            <h3 class="mt-2 font-display text-3xl font-semibold sm:text-4xl">Laadpaal laten plaatsen</h3>
+            <p class="mt-4 max-w-lg text-on-ink-muted">{dienstTekst[laadpaal.slug]}</p>
+            <ul class="mt-6 flex flex-wrap gap-2" aria-label="Merken">
+              {laadpaalMerken.map((m) => <li class="rounded-full border border-white/20 px-3 py-1 text-sm">{m}</li>)}
+            </ul>
+            <span class="mt-8 inline-flex items-center gap-2 font-display font-semibold text-accent">
+              Meer over laadpalen <span class="pijl" aria-hidden="true">→</span>
+            </span>
+          </div>
+        </a>
+
+        {kern.map((s, i) => (
+          <a href={serviceUrl(s.slug)} class="dienst reveal group flex flex-col rounded-3xl border border-ink/10 bg-white p-7 hover:border-brand/40" style={`--i:${i}`}>
+            <svg viewBox="0 0 24 24" class="dienst-icoon size-9 text-brand" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={icoon[s.slug]} /></svg>
+            <h3 class="mt-6 font-display text-xl font-semibold">{s.name}</h3>
+            <p class="mt-2 flex-1 text-muted">{dienstTekst[s.slug]}</p>
+            <span class="mt-5 inline-flex items-center gap-2 font-display font-semibold text-brand">Meer <span class="pijl" aria-hidden="true">→</span></span>
+          </a>
+        ))}
+      </div>
+
+      <div class="reveal mt-8 flex flex-col gap-4 rounded-3xl border border-ink/10 p-6 sm:flex-row sm:items-center sm:gap-6">
+        <p class="shrink-0 font-display font-semibold">Ook voor:</p>
+        <ul class="flex flex-wrap gap-2">
+          {extra.map((s) => (
+            <li><a href={serviceUrl(s.slug)} class="inline-flex rounded-full border border-ink/15 bg-white px-4 py-2 font-medium hover:border-brand hover:text-brand">{s.name}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOBS -->
+  <JobsBlok />
+
+  <!-- IN HET KORT + CIJFERS -->
+  <section class="section on-ink bg-ink text-white" aria-label="Heeman Electrics in het kort">
+    <div class="container-site grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Over Heeman Electrics</p>
+        <h2 class="h2 mt-3">Eén vast aanspreekpunt: Bert.</h2>
+        <p class="mt-5 max-w-xl text-lg text-on-ink-muted">
+          Ik ben Bert Heeman, erkend elektricien in Schilde. U belt mij, ik kom kijken, u krijgt een vaste prijs en ik
+          sta zelf mee op de werf.
+        </p>
+        <dl class="cijfers mt-10 grid grid-cols-3 gap-4">
+          {cijfers.map((c) => (
+            <div>
+              <dt class="sr-only">{c.label}</dt>
+              <dd>
+                <span class="teller block font-display text-4xl font-semibold text-accent tabular-nums sm:text-5xl" style={`--doel:${c.getal};--van:${c.van ?? 0}`} data-suffix={c.suffix} aria-hidden="true"></span>
+                <span class="sr-only">{c.getal}{c.suffix}</span>
+                <span class="mt-1 block text-sm text-on-ink-muted" aria-hidden="true">{c.label}</span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+        <a href="/over-bert/" class="mt-10 inline-flex items-center gap-2 font-display font-semibold text-accent hover:text-white">Maak kennis met Bert <span aria-hidden="true">→</span></a>
+      </div>
+      <InHetKort items={inHetKort} class="reveal" />
+    </div>
+  </section>
+
+  <!-- REVIEWS + REALISATIES -->
+  <section class="section" aria-labelledby="realisaties">
+    <div class="container-site">
+      <div class="reveal flex flex-col gap-6 rounded-3xl border border-ink/10 bg-white p-8 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p class="eyebrow">Google-reviews</p>
+          <p class="mt-2 font-display text-2xl font-semibold">Wat klanten over mij zeggen</p>
+          <p class="mt-2 text-muted"><mark class="todo">[AANVULLEN: score, aantal reviews en 3–5 echte Google-reviews + link naar het Google Bedrijfsprofiel]</mark></p>
+        </div>
+        <span class="btn btn-ghost shrink-0 cursor-not-allowed opacity-50" title="Link naar Google Bedrijfsprofiel volgt">Alle reviews op Google</span>
+      </div>
+
+      <div class="reveal mt-20 flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <p class="eyebrow">Realisaties</p>
+          <h2 id="realisaties" class="h2 mt-3">Recent werk in de regio</h2>
+        </div>
+        <a href="/realisaties/" class="inline-flex items-center gap-2 font-display font-semibold text-brand">Alle realisaties <span aria-hidden="true">→</span></a>
+      </div>
+      <ul class="mt-10 grid gap-6 md:grid-cols-3">
+        {[1, 2, 3].map((n) => (
+          <li class="reveal">
+            <FotoPlaceholder label={`project ${n}, vóór/na`} class="aspect-[4/3]" />
+            <p class="mt-4 font-display text-lg font-semibold"><mark class="todo">[AANVULLEN: titel met gemeente, bv. dienst + gemeente]</mark></p>
+            <p class="mt-1 text-sm text-muted">Situatie → oplossing → resultaat</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- WERKGEBIED -->
+  <section class="section on-ink overflow-clip bg-ink-soft text-white" aria-labelledby="werkgebied">
+    <div class="container-site grid items-center gap-12 lg:grid-cols-[1fr_1.4fr]">
+      <div class="reveal">
+        <p class="eyebrow">Werkgebied</p>
+        <h2 id="werkgebied" class="h2 mt-3">Uw elektricien in de oostrand van Antwerpen</h2>
+        <p class="mt-5 text-lg text-on-ink-muted">Vanuit Schilde werk ik in een straal van ± 20 km. Kort op de baan, dus snel ter plaatse.</p>
+        <ul class="mt-8 grid grid-cols-2 gap-x-6 gap-y-2">
+          {areas.map((a) => (
+            <li><a href={areaUrl(a.slug)} class="group inline-flex items-center gap-2 py-1 font-medium hover:text-accent"><span class="size-2 rounded-full bg-accent" aria-hidden="true"></span>Elektricien {a.name}</a></li>
+          ))}
+        </ul>
+      </div>
+      <Werkgebied />
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" aria-labelledby="faq">
+    <div class="container-site grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Veelgestelde vragen</p>
+        <h2 id="faq" class="h2 mt-3">Kort antwoord</h2>
+        <a href="/veelgestelde-vragen/" class="mt-6 inline-flex items-center gap-2 font-display font-semibold text-brand">Alle vragen <span aria-hidden="true">→</span></a>
+      </div>
+      <Faq vragen={homeFaq} class="reveal" />
+    </div>
+  </section>
+
+  <!-- CTA-BAND → stroomlijn naar de stopcontact-knop in de footer -->
+  <section class="on-ink relative bg-ink text-white" aria-labelledby="cta">
+    <StroomLijn doel points={[[4, 0], [4, 88], [92, 88], [92, 100]]} />
+    <div class="container-site relative py-20 sm:py-24">
+      <div class="reveal mx-auto max-w-3xl rounded-3xl bg-ink px-2 py-4 text-center">
+        <h2 id="cta" class="h2">Vraag uw vaste prijs aan</h2>
+        <p class="mt-4 text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een gratis offerte. Ik antwoord binnen <mark class="todo">[AANVULLEN: X werkdag(en)]</mark>.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
+          <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
+          <a href="/offerte/" class="btn btn-ghost">Gratis offerte</a>
+        </div>
+      </div>
     </div>
   </section>
 </Base>
+
+<style>
+  /* Dienstkaarten: licht omhoog, icoon en pijl bewegen mee. */
+  .dienst { transition: transform 0.25s ease, border-color 0.25s, box-shadow 0.25s; }
+  .dienst-icoon, .pijl { transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); display: inline-block; }
+  @media (prefers-reduced-motion: no-preference) {
+    .dienst:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -24px rgb(28 13 10 / 0.45); }
+    .dienst:hover .dienst-icoon { transform: rotate(-6deg) scale(1.08); }
+    .dienst:hover .pijl { transform: translateX(4px); }
+  }
+
+  /* Tellers: pure CSS (@property). Zonder ondersteuning of met reduced motion staat meteen het eindgetal. */
+  @property --n {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 0;
+  }
+  .teller {
+    --n: var(--doel);
+    counter-reset: n var(--n);
+  }
+  .teller::after { content: counter(n) attr(data-suffix); }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .teller {
+        animation: tel linear both;
+        animation-timeline: view();
+        animation-range: entry 20% cover 45%;
+      }
+    }
+  }
+  @keyframes tel {
+    from { --n: var(--van); }
+    to { --n: var(--doel); }
+  }
+</style>

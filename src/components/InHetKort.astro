@@ -1,0 +1,41 @@
+---
+// "In het kort" als typeplaatje van een toestel: feitelijke, citeerbare entiteitsfeiten (CLAUDE.md § 11.3).
+import { metTodo } from '../lib/tekst';
+interface Props {
+  titel?: string;
+  items: { label: string; waarde: string }[];
+  class?: string;
+}
+const { titel = 'In het kort', items, class: className = '' } = Astro.props;
+---
+
+<section class:list={['typeplaatje relative rounded-2xl border-2 border-current/20 p-6 sm:p-8', className]} aria-labelledby="in-het-kort">
+  <span class="schroef top-3 left-3" aria-hidden="true"></span>
+  <span class="schroef top-3 right-3" aria-hidden="true"></span>
+  <span class="schroef bottom-3 left-3" aria-hidden="true"></span>
+  <span class="schroef right-3 bottom-3" aria-hidden="true"></span>
+  <h2 id="in-het-kort" class="flex items-center gap-3 font-display text-xl font-semibold">
+    <svg viewBox="0 0 24 24" class="size-6 text-accent" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></svg>
+    {titel}
+  </h2>
+  <dl class="mt-5 divide-y divide-current/15 border-y border-current/15 font-mono text-sm">
+    {items.map((it) => (
+      <div class="grid gap-1 py-3 sm:grid-cols-[10rem_1fr] sm:gap-4">
+        <dt class="font-semibold tracking-wider uppercase opacity-70">{it.label}</dt>
+        <dd set:html={metTodo(it.waarde)} />
+      </div>
+    ))}
+  </dl>
+</section>
+
+<style>
+  .schroef {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 1.5px solid currentColor;
+    opacity: 0.35;
+    background: linear-gradient(45deg, transparent 44%, currentColor 45% 55%, transparent 56%);
+  }
+</style>

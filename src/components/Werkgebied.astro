@@ -1,0 +1,109 @@
+---
+// Werkgebied als schakelschema (CLAUDE.md § 7.5): Schilde is de verdeelkast, kabels lopen naar de gemeenten.
+// Posities zijn schematisch, afgeleid van de onderlinge ligging (lengte/breedte), geen exacte grenzen.
+// Elke gemeente linkt naar haar regiopagina. Geen Google Maps-embed (snelheid, privacy).
+import { areas, areaUrl } from '../data/site';
+
+// x/y in een viewBox van 560 × 400 (+ 40 px marge links voor de labels); anchor/dy = plaats van het label t.o.v. het punt.
+const pos: Record<string, { x: number; y: number; anchor?: 'start' | 'middle' | 'end'; dy?: number }> = {
+  Schilde: { x: 260, y: 205 },
+  "'s-Gravenwezel": { x: 205, y: 140, anchor: 'middle', dy: -18 },
+  Wijnegem: { x: 120, y: 245, anchor: 'end', dy: 5 },
+  Schoten: { x: 85, y: 165, anchor: 'end', dy: 5 },
+  Brasschaat: { x: 70, y: 55, anchor: 'start', dy: -16 },
+  Zoersel: { x: 495, y: 115, anchor: 'end', dy: -16 },
+  Zandhoven: { x: 410, y: 285, anchor: 'start', dy: 30 },
+  Ranst: { x: 205, y: 355, anchor: 'middle', dy: 30 },
+};
+const hub = pos.Schilde;
+const takken = areas.filter((a) => a.name !== 'Schilde');
+const schilde = areas.find((a) => a.name === 'Schilde')!;
+
+// Kabel: eerst horizontaal, dan verticaal (zoals een echte leiding), met één afgeronde bocht.
+function leiding(x: number, y: number) {
+  const r = 18;
+  const sx = Math.sign(x - hub.x), sy = Math.sign(y - hub.y);
+  if (!sx || !sy) return `M ${hub.x} ${hub.y} L ${x} ${y}`;
+  return `M ${hub.x} ${hub.y} H ${x - sx * r} Q ${x} ${hub.y} ${x} ${hub.y + sy * r} V ${y}`;
+}
+---
+
+<div class="werkgebied">
+  <svg viewBox="-40 0 600 400" class="h-auto w-full overflow-visible" role="group" aria-label="Werkgebied: Schilde en 7 omliggende gemeenten">
+    <g fill="none" stroke-linecap="round">
+      {takken.map((a, i) => {
+        const p = pos[a.name];
+        return (
+          <g style={`--i:${i}`}>
+            <path class="wg-kabel" d={leiding(p.x, p.y)} pathLength="1" stroke="var(--color-accent)" stroke-width="2.5" />
+            <path class="wg-puls" d={leiding(p.x, p.y)} pathLength="1" stroke="#ffd2bd" stroke-width="4" />
+          </g>
+        );
+      })}
+    </g>
+
+    {takken.map((a, i) => {
+      const p = pos[a.name];
+      return (
+        <a href={areaUrl(a.slug)} class="wg-node" style={`--i:${i}`}>
+          <circle cx={p.x} cy={p.y} r="9" class="wg-stip" />
+          <circle cx={p.x} cy={p.y} r="22" fill="transparent" />
+          <text x={p.x + (p.anchor === 'end' ? -16 : p.anchor === 'start' ? 16 : 0)} y={p.y + (p.dy ?? 5)} text-anchor={p.anchor ?? 'start'} class="wg-label">{a.name}</text>
+        </a>
+      );
+    })}
+
+    <!-- Verdeelkast Schilde -->
+    <a href={areaUrl(schilde.slug)} class="wg-node wg-hub">
+      <rect x={hub.x - 26} y={hub.y - 26} width="52" height="52" rx="8" class="wg-kast" />
+      <path d={`M ${hub.x + 3} ${hub.y - 14} l -10 15 h 8 l -3 13 l 10 -16 h -8 z`} fill="var(--color-ink)" />
+      <text x={hub.x} y={hub.y + 50} text-anchor="middle" class="wg-label wg-label-hub">Schilde</text>
+    </a>
+  </svg>
+</div>
+
+<style>
+  .wg-kast { fill: var(--color-accent); }
+  .wg-stip { fill: var(--color-ink); stroke: var(--color-accent); stroke-width: 3; transition: r 0.2s, fill 0.2s; }
+  .wg-label { fill: currentColor; font-family: var(--font-display); font-size: 17px; font-weight: 600; }
+  .wg-label-hub { font-size: 20px; }
+  @media (width < 40rem) {
+    .wg-label { font-size: 23px; }
+    .wg-label-hub { font-size: 26px; }
+  }
+  .wg-node { cursor: pointer; }
+  .wg-node:hover .wg-stip, .wg-node:focus-visible .wg-stip { fill: var(--color-accent); r: 12; }
+  .wg-node:hover .wg-label, .wg-node:focus-visible .wg-label { fill: var(--color-accent); }
+  .wg-node:focus-visible { outline: none; }
+  .wg-node:focus-visible .wg-stip { stroke: #fff; }
+  .wg-puls { display: none; stroke-dasharray: 0.12 1; filter: drop-shadow(0 0 4px #ff5a1f); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .wg-puls {
+      display: block;
+      animation: flow 2.4s linear infinite;
+      animation-delay: calc(var(--i) * -0.35s);
+    }
+    @supports (animation-timeline: view()) {
+      .werkgebied { view-timeline-name: --werkgebied; }
+      .wg-kabel {
+        stroke-dasharray: 1;
+        animation: draw linear both;
+        animation-timeline: --werkgebied;
+        animation-range: entry 30% cover calc(28% + var(--i) * 2%);
+      }
+      .wg-node:not(.wg-hub) {
+        animation: fade-in linear both;
+        animation-timeline: --werkgebied;
+        animation-range: cover calc(20% + var(--i) * 2%) cover calc(30% + var(--i) * 2%);
+      }
+      .wg-puls {
+        animation: flow 2.4s linear infinite, fade-in linear both;
+        animation-timeline: auto, --werkgebied;
+        animation-delay: calc(var(--i) * -0.35s), 0s;
+        animation-range: normal, cover 34% cover 40%;
+      }
+    }
+  }
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+</style>

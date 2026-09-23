@@ -1,0 +1,24 @@
+---
+// Kader voor een echte foto die nog aangeleverd moet worden (brief: geen stockfoto's van mensen).
+interface Props {
+  label: string;
+  class?: string;
+  donker?: boolean;
+}
+const { label, class: className = '', donker = false } = Astro.props;
+---
+
+<div
+  class:list={[
+    'grid place-items-center rounded-2xl border-2 border-dashed p-6 text-center',
+    donker ? 'border-white/25 bg-white/5 text-on-ink-muted' : 'border-ink/20 bg-sand/40 text-muted',
+    className,
+  ]}
+  role="img"
+  aria-label={`Foto volgt: ${label}`}
+>
+  <div>
+    <svg viewBox="0 0 24 24" class="mx-auto size-8 opacity-60" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="12" cy="12" r="3.5" /><path d="M8 5l1.5-2h5L16 5" /></svg>
+    <p class="mt-2 text-sm"><mark class="todo">[FOTO: {label}]</mark></p>
+  </div>
+</div>

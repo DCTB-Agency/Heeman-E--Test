@@ -1,0 +1,88 @@
+---
+// /jobs/ — Werken bij Heeman Electrics (CLAUDE.md § 6.2).
+import Base from '../../layouts/Base.astro';
+import Kruimels from '../../components/Kruimels.astro';
+import FotoPlaceholder from '../../components/FotoPlaceholder.astro';
+import { business, job } from '../../data/site';
+import { vacature } from '../../data/vacature';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const kruimels = [
+  { naam: 'Home', url: '/' },
+  { naam: 'Jobs', url: '/jobs/' },
+];
+const waarom = [
+  { titel: 'Je leert van een vakman', tekst: `Rechtstreeks van mij: erkend elektricien met ${business.experience}. Geen anoniem nummer in een groot team.` },
+  { titel: 'Afwisselend werk', tekst: 'Laadpalen, Niko Home Control, zonnepanelen, renovaties en keuringsklare installaties.' },
+  { titel: 'In de eigen regio', tekst: 'Werven in Schilde en omliggende gemeenten, binnen ± 20 km. Geen uren in de file.' },
+];
+---
+
+<Base
+  title="Jobs bij Heeman Electrics · Elektricien Schilde"
+  description="Werken bij een lokale elektricien in Schilde? Ik zoek een junior elektricien met een vast voltijds contract. Bekijk de vacature."
+  schema={[breadcrumbSchema(kruimels)]}
+>
+  <section class="bg-accent text-ink">
+    <div class="container-site py-14 sm:py-20">
+      <Kruimels kruimels={kruimels} class="fade-up" />
+      <h1 class="mt-6 max-w-4xl text-display">
+        <span class="line-mask"><span style="--i:1">Werken bij</span></span>
+        <span class="line-mask"><span style="--i:2">Heeman Electrics</span></span>
+      </h1>
+      <p class="fade-up mt-6 max-w-2xl text-lg" style="--d:400ms">
+        Een kleine, lokale elektricien in Schilde. Bij mij werk je niet voor een callcenter of een groot team,
+        maar samen met mij, bij de klant thuis.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-site">
+      <ol class="reveal-stagger grid gap-8 md:grid-cols-3">
+        {waarom.map((w, i) => (
+          <li style={`--i:${i}`}>
+            <p class="font-mono text-sm font-semibold text-brand">0{i + 1}</p>
+            <h2 class="mt-2 font-display text-2xl font-semibold">{w.titel}</h2>
+            <p class="mt-2 text-muted">{w.tekst}</p>
+          </li>
+        ))}
+      </ol>
+
+      <h2 class="h2 reveal mt-24">Open vacatures</h2>
+      <ul class="mt-8 grid gap-6">
+        <li class="reveal">
+          <a href={job.url} class="vacature-kaart group grid gap-6 rounded-3xl bg-ink p-6 text-white sm:grid-cols-[14rem_1fr] sm:p-8">
+            <FotoPlaceholder label="Bert op een werf" donker class="aspect-square sm:aspect-auto" />
+            <div class="flex flex-col justify-center">
+              <p class="eyebrow text-accent">Vast · voltijds · Schilde</p>
+              <h3 class="mt-2 font-display text-3xl font-semibold">{vacature.titel}</h3>
+              <p class="mt-3 max-w-2xl text-on-ink-muted">Leer het vak naast mij: laadpalen, domotica, zonnepanelen en renovatie. Diploma elektriciteit, geen ervaring nodig.</p>
+              <span class="mt-6 inline-flex items-center gap-2 font-display font-semibold text-accent">Bekijk de vacature <span class="pijl" aria-hidden="true">→</span></span>
+            </div>
+          </a>
+        </li>
+      </ul>
+
+      <div class="reveal mt-16 flex flex-col gap-6 rounded-3xl border border-ink/10 bg-white p-8 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 class="font-display text-2xl font-semibold">Geen passende vacature?</h2>
+          <p class="mt-2 text-muted">Stuur gerust een spontane sollicitatie. Een kort berichtje is genoeg.</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href={business.whatsapp.jobHref} class="btn btn-primary" target="_blank" rel="noopener" data-event="job_whatsapp_click">WhatsApp</a>
+          <a href={job.mailto} class="btn btn-ghost">Mail</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .vacature-kaart { transition: transform 0.25s ease, box-shadow 0.25s; }
+  .pijl { display: inline-block; transition: transform 0.3s; }
+  @media (prefers-reduced-motion: no-preference) {
+    .vacature-kaart:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -28px rgb(28 13 10 / 0.6); }
+    .vacature-kaart:hover .pijl { transform: translateX(4px); }
+  }
+</style>

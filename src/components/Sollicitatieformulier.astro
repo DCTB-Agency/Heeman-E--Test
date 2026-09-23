@@ -1,0 +1,109 @@
+---
+// Solliciteer-formulier (CLAUDE.md § 6.3): kort en mobiel-first. Netlify Forms met honeypot (§ 4);
+// geen reCAPTCHA-puzzel. Na verzenden → /jobs/bedankt/ (conversie `job_apply_submit`).
+// Uploads worden niet publiek bewaard: Netlify stuurt ze mee in de mail aan Bert (§ 13).
+import { business, areas } from '../data/site';
+
+interface Props {
+  id?: string;
+}
+const { id = 'solliciteer' } = Astro.props;
+const f = (name: string) => `${id}-${name}`;
+const veld = 'mt-1.5 block w-full rounded-xl border-2 border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-muted/70 focus:border-brand focus:outline-none';
+const label = 'block font-semibold';
+---
+
+<form
+  name="sollicitatie-junior-elektricien"
+  method="POST"
+  action="/jobs/bedankt/"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  enctype="multipart/form-data"
+  class="sollicitatie grid gap-5 sm:grid-cols-2"
+  data-event="job_apply_submit"
+>
+  <input type="hidden" name="form-name" value="sollicitatie-junior-elektricien" />
+  <p class="hidden" aria-hidden="true"><label>Niet invullen: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+  <div class="sm:col-span-2">
+    <label for={f('naam')} class={label}>Voornaam en naam <span aria-hidden="true" class="text-brand">*</span></label>
+    <input id={f('naam')} name="naam" required autocomplete="name" class={veld} />
+  </div>
+  <div>
+    <label for={f('gsm')} class={label}>Gsm <span aria-hidden="true" class="text-brand">*</span></label>
+    <input id={f('gsm')} name="gsm" type="tel" required autocomplete="tel" inputmode="tel" placeholder="04.. .. .. .." class={veld} />
+  </div>
+  <div>
+    <label for={f('email')} class={label}>E-mail <span class="font-normal text-muted">(optioneel)</span></label>
+    <input id={f('email')} name="email" type="email" autocomplete="email" class={veld} />
+  </div>
+  <div>
+    <label for={f('woonplaats')} class={label}>Woonplaats <span aria-hidden="true" class="text-brand">*</span></label>
+    <input id={f('woonplaats')} name="woonplaats" required autocomplete="address-level2" list={f('gemeenten')} class={veld} />
+    <datalist id={f('gemeenten')}>{areas.map((a) => <option value={a.name} />)}</datalist>
+  </div>
+  <div>
+    <label for={f('diploma')} class={label}>Diploma</label>
+    <select id={f('diploma')} name="diploma" class={veld}>
+      <option value="">Kies…</option>
+      <option>TSO elektriciteit</option>
+      <option>BSO elektriciteit</option>
+      <option>Nog bezig</option>
+      <option>Ander</option>
+    </select>
+  </div>
+
+  <fieldset class="sm:col-span-2">
+    <legend class={label}>Rijbewijs B <span aria-hidden="true" class="text-brand">*</span></legend>
+    <div class="mt-2 flex gap-3">
+      {['Ja', 'Nee'].map((v) => (
+        <label class="keuze flex cursor-pointer items-center gap-2 rounded-full border-2 border-ink/15 bg-white px-5 py-2.5 font-semibold text-ink">
+          <input type="radio" name="rijbewijs-b" value={v.toLowerCase()} required class="size-4 accent-brand" /> {v}
+        </label>
+      ))}
+    </div>
+  </fieldset>
+
+  <div class="sm:col-span-2">
+    <label for={f('motivatie')} class={label}>Korte motivatie <span class="font-normal text-muted">(optioneel)</span></label>
+    <textarea id={f('motivatie')} name="motivatie" rows="3" class={veld} placeholder="Waarom wil je elektricien worden bij mij?"></textarea>
+  </div>
+  <div class="sm:col-span-2">
+    <label for={f('cv')} class={label}>Cv <span class="font-normal text-muted">(optioneel, pdf of docx, max. 5 MB)</span></label>
+    <input id={f('cv')} name="cv" type="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class={`${veld} file:mr-4 file:rounded-full file:border-0 file:bg-ink file:px-4 file:py-2 file:font-semibold file:text-white`} data-max-mb="5" />
+  </div>
+
+  <label class="flex items-start gap-3 sm:col-span-2">
+    <input type="checkbox" name="privacy" required class="mt-1 size-5 shrink-0 accent-brand" />
+    <span>Ik ga akkoord dat {business.name} mijn gegevens gebruikt voor deze sollicitatie, zoals beschreven in de <a href="/privacy/" class="font-semibold underline underline-offset-4">privacyverklaring</a>. <span aria-hidden="true" class="text-brand">*</span></span>
+  </label>
+
+  <div class="flex flex-wrap items-center gap-4 sm:col-span-2">
+    <button type="submit" class="btn btn-primary text-lg">Verstuur mijn sollicitatie</button>
+    <p class="text-sm text-muted">* verplicht · duurt ± 1 minuut</p>
+  </div>
+</form>
+
+<style>
+  .keuze:has(input:checked) {
+    border-color: var(--color-brand);
+    background: color-mix(in srgb, var(--color-brand) 8%, white);
+  }
+  .keuze:has(input:focus-visible) {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  // Cv groter dan 5 MB: meteen melden in plaats van pas na verzenden.
+  document.querySelectorAll<HTMLInputElement>('input[type=file][data-max-mb]').forEach((input) => {
+    input.addEventListener('change', () => {
+      const max = Number(input.dataset.maxMb) * 1024 * 1024;
+      const file = input.files?.[0];
+      input.setCustomValidity(file && file.size > max ? `Je cv is te groot (max. ${input.dataset.maxMb} MB).` : '');
+      input.reportValidity();
+    });
+  });
+</script>

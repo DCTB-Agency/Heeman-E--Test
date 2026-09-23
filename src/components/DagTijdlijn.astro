@@ -1,0 +1,58 @@
+---
+// "Een dag met Bert" (CLAUDE.md § 6.3): tijdlijn als kabel met aansluitpunten; de stroom loopt erdoor.
+import { vacature } from '../data/vacature';
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<div class:list={['dag', className]}>
+  <ol class="dag-lijst reveal-stagger relative grid gap-6 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
+    {vacature.dag.map((d, i) => (
+      <li class="relative pl-10 lg:pt-12 lg:pl-0" style={`--i:${i}`}>
+        <span class="dag-punt absolute top-1 left-0 grid size-6 place-items-center rounded-full border-[3px] border-current bg-inherit lg:top-0" aria-hidden="true"></span>
+        <p class="font-mono text-sm font-semibold tabular-nums">{d.uur}</p>
+        <p class="mt-1 font-display text-lg leading-snug font-semibold">{d.wat}</p>
+      </li>
+    ))}
+  </ol>
+  <p class="mt-6 text-sm"><mark class="todo">[TE BEVESTIGEN: realistische dag door Bert]</mark></p>
+</div>
+
+<style>
+  .dag-lijst::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 3px;
+    background: currentColor;
+    opacity: 0.35;
+  }
+  @media (min-width: 64rem) {
+    .dag-lijst::before {
+      left: 0.75rem;
+      right: 0.75rem;
+      top: 11px;
+      bottom: auto;
+      width: auto;
+      height: 3px;
+    }
+  }
+  .dag-punt {
+    background: var(--dag-bg, var(--color-accent));
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .dag-punt {
+      animation: dag-aan 6s linear infinite;
+      animation-delay: calc(var(--i, 0) * 1s);
+    }
+  }
+  /* Elk aansluitpunt licht om beurt op: de stroom loopt door de dag. */
+  @keyframes dag-aan {
+    0%, 12%, 100% { background: var(--dag-bg, var(--color-accent)); box-shadow: none; }
+    4% { background: currentColor; box-shadow: 0 0 0 6px color-mix(in srgb, currentColor 20%, transparent); }
+  }
+</style>

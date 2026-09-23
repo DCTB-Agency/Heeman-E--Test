@@ -5,7 +5,7 @@ import Kruimels from '../../../components/Kruimels.astro';
 import InHetKort from '../../../components/InHetKort.astro';
 import DagTijdlijn from '../../../components/DagTijdlijn.astro';
 import Faq from '../../../components/Faq.astro';
-import FotoPlaceholder from '../../../components/FotoPlaceholder.astro';
+import Foto from '../../../components/Foto.astro';
 import Sollicitatieformulier from '../../../components/Sollicitatieformulier.astro';
 import { SITE_URL, business, job } from '../../../data/site';
 import { vacature, vacatureHtml } from '../../../data/vacature';
@@ -111,7 +111,7 @@ const blokken = [
           <p class="eyebrow">Zo ziet je dag eruit</p>
           <h2 class="h2 mt-3">Een dag met Bert</h2>
         </div>
-        <FotoPlaceholder label="Bert en junior aan een verdeelkast" donker class="reveal aspect-[4/3]" />
+        <Foto id="stopcontactenPlaatsing" class="reveal aspect-[4/3]" sizes="(min-width: 1024px) 20rem, 100vw" />
       </div>
       <DagTijdlijn class="mt-14 text-accent [&_p]:text-white" />
     </div>

@@ -50,7 +50,7 @@ export const analytics = {
 } as const;
 
 // Antwoordtermijn op offertes en berichten (§ 8, § 18.14).
-export const antwoordTermijn = '[AANVULLEN: X werkdag(en)]';
+export const antwoordTermijn = '5 werkdagen'; // bevestigd 23-09-2026
 
 export const areas = [
   { name: 'Schilde', slug: 'elektricien-schilde' },

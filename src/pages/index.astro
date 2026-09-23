@@ -5,10 +5,11 @@ import StroomLijn from '../components/StroomLijn.astro';
 import ScrollKabel from '../components/ScrollKabel.astro';
 import JobsBlok from '../components/JobsBlok.astro';
 import InHetKort from '../components/InHetKort.astro';
-import FotoPlaceholder from '../components/FotoPlaceholder.astro';
+import Foto from '../components/Foto.astro';
+import { fotos } from '../data/fotos';
 import Werkgebied from '../components/Werkgebied.astro';
 import Faq from '../components/Faq.astro';
-import { business, areas, areaUrl, services, serviceUrl } from '../data/site';
+import { business, areas, areaUrl, services, serviceUrl, antwoordTermijn } from '../data/site';
 import { usps, dienstTekst, laadpaalMerken, inHetKort, cijfers, homeFaq } from '../data/home';
 import { faqSchema } from '../lib/schema';
 import { metTodo } from '../lib/tekst';
@@ -80,8 +81,12 @@ const icoon: Record<string, string> = {
       </div>
 
       <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
-        <a href={serviceUrl(laadpaal.slug)} class="dienst on-ink reveal group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-ink p-8 text-white md:col-span-2 lg:row-span-2">
-          <svg viewBox="0 0 24 24" class="dienst-icoon size-12 text-accent" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={icoon[laadpaal.slug]} /></svg>
+        <a href={serviceUrl(laadpaal.slug)} class="dienst on-ink reveal group relative isolate flex min-h-[32rem] flex-col justify-between overflow-hidden rounded-3xl bg-ink p-8 text-white md:col-span-2 lg:row-span-2">
+          <Foto id="laadpaal" class="absolute inset-0 -z-10 rounded-none" focus="50% 58%" sizes="(min-width: 1024px) 50vw, 100vw" decoratief />
+          <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink from-40% via-ink/70 via-60% to-transparent" aria-hidden="true"></div>
+          <span class="grid size-16 place-items-center rounded-2xl bg-ink/85 backdrop-blur-sm" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="dienst-icoon size-10 text-accent" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d={icoon[laadpaal.slug]} /></svg>
+          </span>
           <div class="mt-16">
             <p class="eyebrow">Nr. 1 in Schilde</p>
             <h3 class="mt-2 font-display text-3xl font-semibold sm:text-4xl">Laadpaal laten plaatsen</h3>
@@ -167,11 +172,11 @@ const icoon: Record<string, string> = {
         <a href="/realisaties/" class="inline-flex items-center gap-2 font-display font-semibold text-brand">Alle realisaties <span aria-hidden="true">→</span></a>
       </div>
       <ul class="mt-10 grid gap-6 md:grid-cols-3">
-        {[1, 2, 3].map((n) => (
-          <li class="reveal">
-            <FotoPlaceholder label={`project ${n}, vóór/na`} class="aspect-[4/3]" />
-            <p class="mt-4 font-display text-lg font-semibold"><mark class="todo">[AANVULLEN: titel met gemeente, bv. dienst + gemeente]</mark></p>
-            <p class="mt-1 text-sm text-muted">Situatie → oplossing → resultaat</p>
+        {(['laadpaal', 'stopcontactenAf', 'verdeelkast'] as const).map((id) => (
+          <li class="reveal group">
+            <Foto id={id} class="aspect-[4/3]" sizes="(min-width: 768px) 30vw, 100vw" />
+            <p class="mt-4 font-display text-lg font-semibold">{fotos[id].titel} · <mark class="todo">[AANVULLEN: gemeente]</mark></p>
+            <p class="mt-1 text-sm text-muted"><mark class="todo">[AANVULLEN: situatie → oplossing → resultaat]</mark></p>
           </li>
         ))}
       </ul>
@@ -213,7 +218,7 @@ const icoon: Record<string, string> = {
     <div class="container-site relative py-20 sm:py-24">
       <div class="reveal mx-auto max-w-3xl rounded-3xl bg-ink px-2 py-4 text-center">
         <h2 id="cta" class="h2">Vraag uw gratis offerte aan</h2>
-        <p class="mt-4 text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een gratis offerte. Ik antwoord binnen <mark class="todo">[AANVULLEN: X werkdag(en)]</mark>.</p>
+        <p class="mt-4 text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een gratis offerte. Ik antwoord binnen {antwoordTermijn}.</p>
         <div class="mt-8 flex flex-wrap justify-center gap-3">
           <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
           <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>

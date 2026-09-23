@@ -2,7 +2,7 @@
 // /jobs/ — Werken bij Heeman Electrics (CLAUDE.md § 6.2).
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
-import FotoPlaceholder from '../../components/FotoPlaceholder.astro';
+import Foto from '../../components/Foto.astro';
 import { business, job } from '../../data/site';
 import { vacature } from '../../data/vacature';
 import { breadcrumbSchema } from '../../lib/schema';
@@ -53,7 +53,7 @@ const waarom = [
       <ul class="mt-8 grid gap-6">
         <li class="reveal">
           <a href={job.url} class="vacature-kaart group grid gap-6 rounded-3xl bg-ink p-6 text-white sm:grid-cols-[14rem_1fr] sm:p-8">
-            <FotoPlaceholder label="Bert op een werf" donker class="aspect-square sm:aspect-auto" />
+            <Foto id="bert" class="aspect-square sm:aspect-auto sm:min-h-56" focus="50% 18%" sizes="(min-width: 640px) 14rem, 100vw" />
             <div class="flex flex-col justify-center">
               <p class="eyebrow text-accent">Vast · voltijds · Schilde</p>
               <h3 class="mt-2 font-display text-3xl font-semibold">{vacature.titel}</h3>

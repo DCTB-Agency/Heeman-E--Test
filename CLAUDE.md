@@ -31,6 +31,9 @@ Plak sectie 1–3, 5, 7 en 8 en de prompt uit sectie 16.B. Upload logo en 5–10
 - **Geen vaste prijzen** (beslist 23-09-2026): nergens "vaste prijs" beloven. Wel: gratis/vrijblijvende offerte, persoonlijk contact, vakkennis.
 - **"Ik kom zelf" veralgemeend:** Bert doet zelf het eerste bezoek en de inschatting, de opstart en de oplevering van elk project, en de kwaliteitscontrole. Niet beloven dat Bert elk uur zelf op de werf staat (er komt een junior bij).
 - **Hero-titel:** zonder "Schilde" en zonder "vaste prijs"; nadruk op persoonlijk contact en expertise. Schilde blijft in title-tag, eyebrow en subtekst (SEO).
+- **Antwoordtermijn offertes:** binnen 5 werkdagen (bevestigd).
+- **Formulieren:** offerte en contact via mailto naar info@; sollicitatie via Netlify Forms (hosting = Netlify).
+- **Foto's:** echte foto's van Bert en zijn werk in `assets-in/bert/`; Bert is de enige persoon op de foto's.
 - **Extra diensten:** nieuwbouw, video- & parlofonie, verlichtingsadvies, dringende herstellingen → eigen dienstpagina's (zie § 3, § 5, § 9).
 
 ---
@@ -699,7 +702,7 @@ Contact: +32 485 19 00 27 · info@heeman-electrics.be · Baron Delbekelaan 49, 2
 11. Openingsuren bevestigen (dringend: ook erbuiten ✅); WhatsApp actief op 0485 19 00 27?
 12. **Vacature:** startdatum, extra voordelen (wagen, opleidingen, maaltijdcheques, werkkledij, gsm), antwoordtermijn, meedraaidag, leerling/stage mogelijk?, "je" of "u" op de jobpagina
 13. Juridische naam van de BV (voor footer)
-14. Antwoordtermijn voor offertes
+14. ~~Antwoordtermijn voor offertes~~ ✅ binnen 5 werkdagen
 15. Toegang tot huidige hosting/domein (DNS), Google Search Console, GA4, Google Bedrijfsprofiel
 
 ---

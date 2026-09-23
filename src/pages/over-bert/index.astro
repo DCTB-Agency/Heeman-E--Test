@@ -3,7 +3,7 @@
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
 import InHetKort from '../../components/InHetKort.astro';
-import FotoPlaceholder from '../../components/FotoPlaceholder.astro';
+import Foto from '../../components/Foto.astro';
 import { SITE_URL, business, job } from '../../data/site';
 import { inHetKort, laadpaalMerken } from '../../data/home';
 import { breadcrumbSchema } from '../../lib/schema';
@@ -61,7 +61,7 @@ const werkwijze = [
         <a href="/offerte/" class="btn btn-ghost">Gratis offerte</a>
       </div>
     </div>
-    <FotoPlaceholder label="portret van Bert (echte foto, geen stock)" class="fade-up aspect-[4/5]" />
+    <Foto id="bert" class="fade-up aspect-[4/5] shadow-[0_30px_60px_-30px_rgb(28_13_10/0.5)]" eager sizes="(min-width: 1024px) 40vw, 100vw" />
   </section>
 
   <section class="section border-t border-ink/10 bg-white/60" aria-labelledby="verhaal">

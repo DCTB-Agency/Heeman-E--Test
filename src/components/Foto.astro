@@ -1,0 +1,39 @@
+---
+// Echte foto, bijgesneden tot het kader (object-cover) rond het brandpunt uit data/fotos.ts.
+// Astro maakt er responsieve WebP-varianten van (srcset), met expliciete breedte/hoogte (geen CLS).
+import { Image } from 'astro:assets';
+import { fotos, type FotoId } from '../data/fotos';
+
+interface Props {
+  id: FotoId;
+  class?: string;
+  /** Overschrijf het brandpunt voor dit kader, bv. '50% 30%' */
+  focus?: string;
+  sizes?: string;
+  eager?: boolean;
+  /** Wordt de foto al beschreven door tekst ernaast? Dan leeg alt (decoratief). */
+  decoratief?: boolean;
+}
+const { id, class: className = '', focus, sizes = '(min-width: 1024px) 40vw, 100vw', eager = false, decoratief = false } = Astro.props;
+const foto = fotos[id];
+---
+
+<div class:list={['foto overflow-hidden rounded-2xl bg-sand', className]}>
+  <Image
+    src={foto.src}
+    alt={decoratief ? '' : foto.alt}
+    widths={[400, 700, 1000, 1400]}
+    sizes={sizes}
+    loading={eager ? 'eager' : 'lazy'}
+    fetchpriority={eager ? 'high' : 'auto'}
+    class="size-full object-cover"
+    style={`object-position: ${focus ?? foto.focus}`}
+  />
+</div>
+
+<style>
+  .foto img { transition: scale 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.group:hover) .foto img, .foto:hover img { scale: 1.04; }
+  }
+</style>

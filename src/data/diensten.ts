@@ -2,6 +2,7 @@
 // Regels: geen vaste prijzen, geen bedragen, premies/regels altijd [te controleren] + officiële bron,
 // "ik"-vorm, keuring gebeurt door een erkend keuringsorganisme. Onbekend = [AANVULLEN] / [TE BEVESTIGEN].
 import type { Vraag } from '../lib/schema';
+import type { FotoId } from './fotos';
 
 export type Stap = { titel: string; tekst: string };
 export type Bron = { naam: string; url: string };
@@ -20,7 +21,8 @@ export type Dienst = {
   /** Kader met premies, fiscale voordelen of regels: altijd [te controleren] + officiële bron (§ 8.6). */
   premies?: { titel: string; tekst: string; bronnen: Bron[] };
   faq: Vraag[];
-  fotoLabels: [string, string];
+  /** Twee beelden: een echte foto (FotoId) of, zolang die ontbreekt, een omschrijving voor een placeholder. */
+  fotos: [FotoId | { placeholder: string }, FotoId | { placeholder: string }];
   bijgewerkt: string;
 };
 
@@ -101,7 +103,7 @@ export const diensten: Dienst[] = [
           'Dat hangt af van uw situatie (particulier, bedrijf of VvE) en verandert geregeld. Kijk voor de actuele regels bij FOD Financiën en Vlaanderen.be. [te controleren]',
       },
     ],
-    fotoLabels: ['laadpaal aan een woning in de regio', 'laadpunten in een bedrijfsparking of gemeenschappelijke parking'],
+    fotos: ['laadpaal', { placeholder: 'laadpunten in een bedrijfsparking of gemeenschappelijke parking' }],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -164,7 +166,7 @@ export const diensten: Dienst[] = [
           'Ja. Ik kom langs, bekijk uw installatie en zeg u wat er moet gebeuren voordat u de keuring aanvraagt. Zo voorkomt u verrassingen.',
       },
     ],
-    fotoLabels: ['verdeelkast vóór de werken', 'dezelfde verdeelkast na de werken, keuringsklaar'],
+    fotos: ['verdeelkast', { placeholder: 'dezelfde verdeelkast vóór de werken' }],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -214,7 +216,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja. Een Niko Home Control-installatie kan later worden aangepast of uitgebreid. Bel of stuur een WhatsApp.',
       },
     ],
-    fotoLabels: ['Niko Home Control-bediening in een woning', 'verdeelkast met domotica-modules'],
+    fotos: [{ placeholder: 'Niko Home Control-bediening in een woning' }, { placeholder: 'verdeelkast met domotica-modules' }],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -269,7 +271,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja. Na de renovatie maak ik het eendraadschema en het situatieschema die nodig zijn voor de keuring.',
       },
     ],
-    fotoLabels: ['oude verdeelkast met smeltzekeringen', 'nieuwe verdeelkast na renovatie'],
+    fotos: ['bert', 'verdeelkast'],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -323,7 +325,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Soms wel. Dat hangt af van uw huidige verdeelkast en beveiliging. Ik bekijk het bij het bezoek en neem het mee in de offerte.',
       },
     ],
-    fotoLabels: ['omvormer en thuisbatterij netjes aangesloten', 'laadpaal gekoppeld aan zonnepanelen'],
+    fotos: [{ placeholder: 'omvormer en thuisbatterij netjes aangesloten' }, { placeholder: 'laadpaal gekoppeld aan zonnepanelen' }],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -369,7 +371,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja. Ik maak het eendraadschema en het situatieschema die nodig zijn voor de keuring.',
       },
     ],
-    fotoLabels: ['bekabeling in een nieuwbouw vóór de afwerking', 'afgewerkte verdeelkast in een nieuwbouw'],
+    fotos: ['schakelaars', 'stopcontactenAf'],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -415,7 +417,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Dat hangt af van het systeem. Als u dat al weet, houd ik er bij de keuze van het systeem rekening mee.',
       },
     ],
-    fotoLabels: ['buitenpost van een videofoon aan de voordeur', 'binnenpost met scherm'],
+    fotos: [{ placeholder: 'buitenpost van een videofoon aan de voordeur' }, { placeholder: 'binnenpost met scherm' }],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -461,7 +463,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja, ik plaats schakelaars en dimmers die passen bij uw verlichting.',
       },
     ],
-    fotoLabels: ['sfeerverlichting in een woonkamer', 'buitenverlichting in de tuin'],
+    fotos: [{ placeholder: 'sfeerverlichting in een woonkamer' }, { placeholder: 'buitenverlichting in de tuin' }],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -513,7 +515,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja, stuur gerust een foto via WhatsApp naar 0485 19 00 27. Zo kan ik sneller inschatten wat er aan de hand is.',
       },
     ],
-    fotoLabels: ['Bert aan een verdeelkast tijdens een herstelling', 'hersteld stopcontact of toestel'],
+    fotos: ['verdeelkast', 'bert'],
     bijgewerkt: BIJGEWERKT,
   },
 ];

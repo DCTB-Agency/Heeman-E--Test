@@ -1,0 +1,18 @@
+---
+// Echte foto als die er is, anders een duidelijk gemarkeerde placeholder (brief: geen stockfoto's).
+import Foto from './Foto.astro';
+import FotoPlaceholder from './FotoPlaceholder.astro';
+import type { FotoId } from '../data/fotos';
+
+interface Props {
+  beeld: FotoId | { placeholder: string };
+  class?: string;
+  sizes?: string;
+  donker?: boolean;
+}
+const { beeld, class: className = '', sizes, donker = false } = Astro.props;
+---
+
+{typeof beeld === 'string'
+  ? <Foto id={beeld} class={className} sizes={sizes} />
+  : <FotoPlaceholder label={beeld.placeholder} class={className} donker={donker} />}

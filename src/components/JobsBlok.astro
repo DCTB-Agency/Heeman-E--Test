@@ -1,7 +1,7 @@
 ---
 // Groot jobs-blok op de homepage (CLAUDE.md § 6.1 + § 7.7): accentkleur, portret, "een dag met Bert".
 import DagTijdlijn from './DagTijdlijn.astro';
-import FotoPlaceholder from './FotoPlaceholder.astro';
+import Foto from './Foto.astro';
 import { business, job } from '../data/site';
 ---
 
@@ -21,7 +21,7 @@ import { business, job } from '../data/site';
           <a href={business.whatsapp.jobHref} class="btn btn-ghost" target="_blank" rel="noopener" data-event="job_whatsapp_click">Stuur Bert een WhatsApp</a>
         </div>
       </div>
-      <FotoPlaceholder label="portret van Bert op de werf" class="reveal aspect-[4/5] border-ink/30 bg-ink/5 text-ink" />
+      <Foto id="bert" class="reveal aspect-[4/5] shadow-[0_30px_60px_-30px_rgb(28_13_10/0.6)]" sizes="(min-width: 1024px) 22rem, 100vw" />
     </div>
 
     <div class="mt-16 border-t-2 border-ink/15 pt-10" style="--dag-bg: var(--color-accent)">

@@ -1,0 +1,47 @@
+---
+// "De stroomlijn" (CLAUDE.md § 7.1): de kabel uit het logo die secties verbindt.
+// Tekent zich bij scrollen via CSS scroll-driven animations (geen JS).
+// Browsers zonder ondersteuning en reduced motion tonen de volledige lijn.
+interface Props {
+  /** SVG-pad in een viewBox van 100 × 100 (wordt uitgerekt over de container) */
+  d?: string;
+  class?: string;
+  plug?: boolean;
+}
+const {
+  d = 'M 8 0 V 38 Q 8 46 16 46 H 84 Q 92 46 92 54 V 100',
+  class: className = '',
+  plug = false,
+} = Astro.props;
+---
+
+<div class:list={['pointer-events-none absolute inset-0', className]} aria-hidden="true">
+  <svg class="size-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path class="stroomlijn" d={d} pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+  {plug && (
+    <svg class="absolute right-[8%] bottom-0 w-9 translate-x-1/2 translate-y-full text-accent" viewBox="0 0 36 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+      <path d="M18 0v10M8 10h20v10a10 10 0 0 1-20 0zM13 30v6M23 30v6" />
+    </svg>
+  )}
+</div>
+
+<style>
+  .stroomlijn {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .stroomlijn {
+        animation: draw linear both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 60%;
+      }
+    }
+  }
+  @keyframes draw {
+    from { stroke-dashoffset: 1; }
+    to { stroke-dashoffset: 0; }
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+import '../styles/global.css';
+import AnnouncementBar from '../components/AnnouncementBar.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+import { SITE_URL, business, areas, services, serviceUrl } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  noindex?: boolean;
+  /** Extra JSON-LD nodes voor deze pagina (Service, FAQPage, JobPosting, …) */
+  schema?: Record<string, unknown>[];
+}
+
+const { title, description, ogImage = '/og/home.jpg', noindex = false, schema = [] } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE_URL).href;
+const isJobs = Astro.url.pathname.startsWith('/jobs/');
+const is404 = Astro.url.pathname.startsWith('/404');
+
+// Sitebrede graaf (CLAUDE.md § 10) — vaste @id's zodat alles aan elkaar hangt.
+const orgId = `${SITE_URL}/#organization`;
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['Electrician', 'LocalBusiness'],
+      '@id': orgId,
+      name: business.name,
+      url: `${SITE_URL}/`,
+      logo: `${SITE_URL}/logo.png`,
+      image: `${SITE_URL}/og/home.jpg`,
+      telephone: business.phone.e164,
+      email: business.email,
+      vatID: business.vatId,
+      foundingDate: business.foundingDate,
+      founder: { '@id': `${SITE_URL}/over-bert/#bert` },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: business.address.street,
+        postalCode: business.address.postalCode,
+        addressLocality: business.address.locality,
+        addressRegion: business.address.region,
+        addressCountry: business.address.country,
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: business.hours.days,
+          opens: business.hours.opens,
+          closes: business.hours.closes,
+        },
+      ],
+      areaServed: areas.map((a) => ({ '@type': 'City', name: a.name })),
+      ...(business.sameAs.length ? { sameAs: business.sameAs } : {}),
+      knowsAbout: [
+        'laadpaal installatie', 'EVBox', 'Alfen', 'Easee', 'Zaptec', 'AREI', 'elektrische keuring',
+        'Niko Home Control', 'domotica', 'zonnepanelen', 'thuisbatterij', 'renovatie elektriciteit',
+        'nieuwbouw elektriciteit', 'videofonie', 'parlofonie', 'verlichting', 'dringende herstellingen',
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Diensten',
+        itemListElement: services.map((s) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: s.name, url: `${SITE_URL}${serviceUrl(s.slug)}` },
+        })),
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: business.name,
+      inLanguage: 'nl-BE',
+      publisher: { '@id': orgId },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/over-bert/#bert`,
+      name: business.owner,
+      jobTitle: business.ownerTitle,
+      worksFor: { '@id': orgId },
+    },
+    ...schema,
+  ],
+};
+---
+
+<!doctype html>
+<html lang="nl-BE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {!is404 && <link rel="canonical" href={canonical} />}
+    <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="nl_BE" />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, SITE_URL).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#be4516" />
+    <meta name="geo.region" content="BE-VAN" />
+    <meta name="geo.placename" content="Schilde" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} />
+  </head>
+  <body class="flex min-h-dvh flex-col pb-[calc(4.5rem+env(safe-area-inset-bottom))] lg:pb-0">
+    <a href="#inhoud" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded focus:bg-ink focus:px-4 focus:py-2 focus:text-white">
+      Naar de inhoud
+    </a>
+    {!isJobs && <AnnouncementBar />}
+    <Header />
+    <main id="inhoud" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <MobileBar variant={isJobs ? 'jobs' : 'default'} />
+  </body>
+</html>

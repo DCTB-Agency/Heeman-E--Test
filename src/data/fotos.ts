@@ -21,7 +21,7 @@ export const fotos = {
   laadpaal: {
     src: laadpaal,
     alt: 'Zwarte laadpaal aan een bakstenen gevel, geplaatst door Heeman Electrics',
-    focus: '50% 62%',
+    focus: '46% 60%', // midden van de laadpaal
     titel: 'Laadpaal aan een bakstenen gevel',
   },
   verdeelkast: {

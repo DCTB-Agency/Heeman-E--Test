@@ -162,6 +162,13 @@
   from { box-shadow: 0 0 0 0 rgb(255 90 31 / 0.6); }
   to { box-shadow: 0 0 0 10px rgb(255 90 31 / 0); }
 }
+/* Dienst-icoon bij hover: korte vonk (home, /diensten/). */
+@keyframes vonk-icoon {
+  0% { transform: scale(1) rotate(0); }
+  35% { transform: scale(1.14) rotate(-7deg); }
+  65% { transform: scale(0.96) rotate(4deg); }
+  100% { transform: scale(1) rotate(0); }
+}
 @keyframes buzz {
   0%, 100% { transform: rotate(0); }
   20% { transform: rotate(-14deg); }

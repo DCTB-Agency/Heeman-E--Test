@@ -1,0 +1,96 @@
+---
+// Herkenbare lijn-iconen per dienst (viewBox 48 × 48, lijndikte schaalt mee). Eén bron voor home, /diensten/ enz.
+interface Props {
+  slug: string;
+  class?: string;
+}
+const { slug, class: className = 'size-10' } = Astro.props;
+---
+
+<svg viewBox="0 0 48 48" class:list={['dienst-icoon', className]} fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  {slug === 'laadpaal-installeren' && (
+    <>
+      {/* Laadpaal met scherm en bliksem, kabel met stekker */}
+      <rect x="8" y="5" width="20" height="36" rx="4" />
+      <rect x="12" y="10" width="12" height="7" rx="1.5" />
+      <path d="m19.5 21-4 7h5l-2.5 7" />
+      <path d="M5 42h26" />
+      <path d="M28 14h4.5a3.5 3.5 0 0 1 3.5 3.5V30" />
+      <rect x="32" y="30" width="8" height="7" rx="2" />
+      <path d="M34.5 37v4M37.5 37v4" />
+    </>
+  )}
+  {slug === 'elektrische-keuring' && (
+    <>
+      {/* Klembord met vinkje: keuringsklaar */}
+      <rect x="9" y="8" width="30" height="35" rx="4" />
+      <rect x="17" y="4" width="14" height="8" rx="2.5" />
+      <path d="m16 27 5.5 5.5L33 21" />
+    </>
+  )}
+  {slug === 'domotica-niko-home-control' && (
+    <>
+      {/* Woning met draadloos signaal: slimme sturing */}
+      <path d="M6 22 24 7l18 15" />
+      <path d="M11 18v24h26V18" />
+      <path d="M17.5 30a9 9 0 0 1 13 0" />
+      <path d="M21 34a4 4 0 0 1 6 0" />
+      <circle cx="24" cy="37.5" r="1.2" fill="currentColor" stroke="none" />
+    </>
+  )}
+  {slug === 'renovatie-elektriciteit' && (
+    <>
+      {/* Verdeelkast met twee rijen automaten */}
+      <rect x="7" y="5" width="34" height="38" rx="3.5" />
+      <path d="M7 19h34M7 32h34" />
+      <path d="M13 10v5M19 10v5M25 10v5M31 10v5M13 23v5M19 23v5M25 23v5M31 23v5" />
+      <path d="M13 37.5h12" />
+    </>
+  )}
+  {slug === 'zonnepanelen-thuisbatterij' && (
+    <>
+      {/* Zon boven een zonnepaneel */}
+      <circle cx="36" cy="10" r="4" />
+      <path d="M36 2v1.5M36 16.5V18M28 10h1.5M42.5 10H44M30.3 4.3l1 1M40.7 14.7l1 1M41.7 4.3l-1 1" />
+      <path d="M11 22h25l-5 20H6z" />
+      <path d="M8.5 32h25M19.3 22l-5 20M27.7 22l-5 20" />
+    </>
+  )}
+  {slug === 'nieuwbouw' && (
+    <>
+      {/* Woning in opbouw met kraan */}
+      <path d="M4 43h40" />
+      <path d="M9 43V26l11-9 11 9v17" />
+      <path d="M17 43v-9h6v9" />
+      <path d="M38 43V6H20" />
+      <path d="M38 10l-5-4" />
+      <path d="M25 6v5" />
+      <rect x="22.5" y="11" width="5" height="3.5" rx="1" />
+    </>
+  )}
+  {slug === 'video-parlofonie' && (
+    <>
+      {/* Buitenpost met camera, luidspreker en belknop */}
+      <rect x="13" y="4" width="22" height="40" rx="5" />
+      <circle cx="24" cy="13" r="4" />
+      <path d="M19 24h10M19 28h10" />
+      <circle cx="24" cy="36" r="3" />
+    </>
+  )}
+  {slug === 'verlichtingsadvies' && (
+    <>
+      {/* Gloeilamp met stralen */}
+      <path d="M24 8a11 11 0 0 1 6.5 19.9c-1 .8-1.5 1.8-1.5 3V33H19v-2.1c0-1.2-.5-2.2-1.5-3A11 11 0 0 1 24 8Z" />
+      <path d="M19 37h10M20.5 41h7" />
+      <path d="m21 22 3 3 3-3" />
+      <path d="M24 2v1.5M8 19H6.5M41.5 19H40M11.5 7.5l1 1M36.5 7.5l-1 1" />
+    </>
+  )}
+  {slug === 'dringende-herstellingen' && (
+    <>
+      {/* Waarschuwingsdriehoek met bliksem */}
+      <path d="M21.4 6.5a3 3 0 0 1 5.2 0l17 29.5a3 3 0 0 1-2.6 4.5H7a3 3 0 0 1-2.6-4.5Z" />
+      <path d="m26 16-5.5 10h7L24 34" />
+    </>
+  )}
+</svg>

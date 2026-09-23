@@ -1,0 +1,13 @@
+# Gegenereerd door scripts/build-redirects.py uit scrape/redirects.csv — niet met de hand wijzigen.
+/over/  /over-bert/  301
+/laadpaal-installatie-in-schilde/  /diensten/laadpaal-installeren/  301
+/sitemap.xml  /sitemap-index.xml  301
+/sitemap_index.xml  /sitemap-index.xml  301
+/page-sitemap.xml  /sitemap-index.xml  301
+/wp-sitemap.xml  /sitemap-index.xml  301
+/  page_id=1400  /diensten/  301!
+/  page_id=1401  /veelgestelde-vragen/  301!
+/form/contactformulier-voor-offerte-aanvraag/  /offerte/  301
+/feed/  /kennisbank/  301
+/wp-admin/  /  301
+/wp-login.php  /  301

@@ -7,11 +7,14 @@ const isJobs = Astro.url.pathname.startsWith('/jobs/');
 <footer class="on-ink bg-ink text-white">
   <!-- Jobs-strook boven de footer (§ 6.1) — niet op de jobpagina's zelf -->
   {!isJobs && (<div class="border-b border-white/10">
-    <div class="reveal container-site flex flex-col items-start gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
-      <p class="font-display text-2xl font-semibold">
+    <div class="container-site flex flex-col items-start gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
+      <p class="font-display text-2xl font-semibold" data-stroom-vermijd>
         Werken bij Heeman Electrics? <span class="text-accent">Ik zoek een junior elektricien.</span>
       </p>
-      <a href={job.url} class="btn btn-accent">Bekijk de vacature</a>
+      <a href={job.url} class="btn btn-accent stopcontact-knop shrink-0 whitespace-nowrap" data-stroom-doel>
+        <span class="stopcontact" aria-hidden="true"></span>
+        Bekijk de vacature
+      </a>
     </div>
   </div>)}
 

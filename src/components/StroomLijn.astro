@@ -1,29 +1,27 @@
 ---
-import { kabelPad } from '../lib/kabelpad';
+import { kabelPad, naarPx, type Punt } from '../lib/kabelpad';
 // "De stroomlijn" (CLAUDE.md § 7.1): de kabel uit het logo die secties verbindt.
 // 1) De kabel tekent zich bij scrollen (CSS scroll-driven animations).
 // 2) Daarna loopt er continu een gloeiende "stroompuls" over de kabel.
-// Het pad wordt in echte pixels berekend (klein script + ResizeObserver), zodat de lijn overal even dik is
-// en de puls exact één streepje blijft. Reduced motion of geen ondersteuning: volledige, stilstaande lijn.
+// 3) Met `doel` eindigt de kabel in een stekker die exact in het stopcontact van een knop
+//    ([data-stroom-doel] met .stopcontact) steekt. Het pad wordt in echte pixels berekend en bij elke
+//    wijziging van de layout herberekend (ResizeObserver), dus het sluit op elke schermbreedte aan.
+// Reduced motion of geen ondersteuning: volledige, stilstaande lijn met stekker.
 interface Props {
-  /** Knikpunten in procent van de container: [x, y][] */
-  points?: [number, number][];
+  /** Knikpunten in procent van de container: [x, y][]. Bij `doel` worden alleen de eerste twee gebruikt. */
+  points?: Punt[];
   /** Straal van de bochten in px */
   radius?: number;
   class?: string;
-  plug?: boolean;
+  /** Eindig in een stekker in het stopcontact van [data-stroom-doel] */
+  doel?: boolean;
 }
-const {
-  points = [[8, 0], [8, 46], [92, 46], [92, 100]],
-  radius = 28,
-  class: className = '',
-  plug = false,
-} = Astro.props;
+const { points = [[8, 0], [8, 46], [92, 46], [92, 100]], radius = 28, class: className = '', doel = false } = Astro.props;
 
 // Server-side startpad voor een container van ± 1280 × 360 px (wordt meteen herberekend in de browser).
 const W = 1280, H = 360;
-const d = kabelPad(points, W, H, radius);
-const endX = points[points.length - 1][0];
+const d = kabelPad(naarPx(points, W, H), radius);
+const [endX] = points[points.length - 1];
 ---
 
 <div
@@ -31,19 +29,27 @@ const endX = points[points.length - 1][0];
   aria-hidden="true"
   data-points={JSON.stringify(points)}
   data-radius={radius}
+  data-doel={doel ? '' : undefined}
 >
   <svg class="size-full overflow-visible" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
     <path class="kabel" d={d} pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
     <path class="puls" d={d} pathLength="1" fill="none" stroke="#ffd2bd" stroke-width="5" stroke-linecap="round" />
   </svg>
-  {plug && (
-    <svg class="stekker absolute bottom-0 w-9 text-accent" style={`left:${endX}%`} viewBox="0 0 36 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-      <path d="M18 0v10M8 10h20v10a10 10 0 0 1-20 0zM13 30v6M23 30v6" />
+  {/* Stekker: 36 × 40 px, snoer op x=18, pinnen op x=14 en x=22 (± 4 px, zelfde als de gaatjes van .stopcontact) */}
+  {doel && (
+    <svg class="stekker absolute" style={`left:${endX}%;top:100%`} width="36" height="40" viewBox="0 0 36 40" fill="none">
+      <path d="M18 0v9" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round" />
+      <path d="M7 9h22v10a10 10 0 0 1-10 10h-2a10 10 0 0 1-10-10z" fill="var(--color-ink)" stroke="var(--color-accent)" stroke-width="3" stroke-linejoin="round" />
+      <rect x="12.5" y="29" width="3" height="11" rx="1" fill="var(--color-sand)" />
+      <rect x="20.5" y="29" width="3" height="11" rx="1" fill="var(--color-sand)" />
     </svg>
   )}
 </div>
 
 <style>
+  .stroomlijn {
+    view-timeline-name: --stroom;
+  }
   .kabel {
     stroke-dasharray: 1;
     stroke-dashoffset: 0;
@@ -54,7 +60,7 @@ const endX = points[points.length - 1][0];
     filter: drop-shadow(0 0 4px #ff5a1f) drop-shadow(0 0 10px #ff5a1f);
   }
   .stekker {
-    translate: -50% 100%;
+    translate: -18px 0;
   }
   @media (prefers-reduced-motion: no-preference) {
     .puls {
@@ -73,10 +79,11 @@ const endX = points[points.length - 1][0];
         animation-timeline: auto, view();
         animation-range: normal, cover 50% cover 58%;
       }
+      /* Stekker zakt de laatste 14 px in het stopcontact. */
       .stekker {
         animation: stekker-in linear both;
-        animation-timeline: view();
-        animation-range: cover 45% cover 60%;
+        animation-timeline: --stroom;
+        animation-range: cover 45% cover 56%;
       }
     }
   }
@@ -85,24 +92,55 @@ const endX = points[points.length - 1][0];
     to { opacity: 1; }
   }
   @keyframes stekker-in {
-    from { opacity: 0; translate: -50% calc(100% - 12px); }
-    to { opacity: 1; translate: -50% 100%; }
+    from { opacity: 0; translate: -18px -14px; }
+    40% { opacity: 1; }
+    to { opacity: 1; translate: -18px 0; }
   }
 </style>
 
 <script>
-  import { kabelPad } from '../lib/kabelpad';
-  // Herbereken het pad in echte pixels zodat dikte en puls-lengte kloppen bij elke breedte.
-  const ro = new ResizeObserver((entries) => {
-    for (const { target, contentRect } of entries) {
-      const el = target as HTMLElement;
-      const w = Math.round(contentRect.width), h = Math.round(contentRect.height);
-      if (!w || !h) continue;
-      const svg = el.querySelector('svg')!;
-      const d = kabelPad(JSON.parse(el.dataset.points!), w, h, Number(el.dataset.radius));
-      svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
-      svg.querySelectorAll('path').forEach((path) => path.setAttribute('d', d));
+  import { kabelPad, naarPx, type Punt } from '../lib/kabelpad';
+
+  const STEKKER_H = 40; // hoogte van de stekker tot de punt van de pinnen
+  const AANLOOP = 16; // recht stuk kabel boven de stekker
+
+  function teken(el: HTMLElement) {
+    const box = el.getBoundingClientRect();
+    const w = Math.round(box.width), h = Math.round(box.height);
+    if (!w || !h) return;
+    const r = Number(el.dataset.radius);
+    const pct = JSON.parse(el.dataset.points!) as Punt[];
+    let punten = naarPx(pct, w, h);
+
+    const socket = el.hasAttribute('data-doel') ? document.querySelector<HTMLElement>('[data-stroom-doel] .stopcontact') : null;
+    const stekker = el.querySelector<SVGElement>('.stekker');
+    if (socket && stekker) {
+      const s = socket.getBoundingClientRect();
+      const tx = s.left + s.width / 2 - box.left; // midden van het stopcontact
+      const eindY = s.top - box.top - STEKKER_H; // pinnen raken de bovenkant van het stopcontact
+      const [start, bocht] = punten;
+      // Staat er tekst tussen de kabel en de knop (gestapelde layout op mobiel)? Dan langs de rechterrand
+      // naar beneden en pas vlak boven de knop naar het stopcontact.
+      const tekst = document.querySelector<HTMLElement>('[data-stroom-vermijd]')?.getBoundingClientRect();
+      const vrijeBaan = !tekst || s.left + s.width / 2 > tekst.right + 24;
+      punten = vrijeBaan
+        ? [start, bocht, [tx, bocht[1]], [tx, eindY]]
+        : [start, bocht, [w - 10, bocht[1]], [w - 10, eindY - AANLOOP], [tx, eindY - AANLOOP], [tx, eindY]];
+      stekker.style.left = `${tx}px`;
+      stekker.style.top = `${eindY}px`;
     }
-  });
-  document.querySelectorAll<HTMLElement>('.stroomlijn').forEach((el) => ro.observe(el));
+
+    const d = kabelPad(punten, r);
+    const svg = el.querySelector('svg')!;
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    svg.querySelectorAll('path').forEach((p) => p.setAttribute('d', d));
+  }
+
+  const lijnen = [...document.querySelectorAll<HTMLElement>('.stroomlijn')];
+  const alles = () => lijnen.forEach(teken);
+  const ro = new ResizeObserver(alles);
+  lijnen.forEach((el) => ro.observe(el));
+  document.querySelectorAll('[data-stroom-doel], [data-stroom-vermijd]').forEach((el) => ro.observe(el));
+  ro.observe(document.documentElement);
+  document.fonts?.ready.then(alles);
 </script>

@@ -25,6 +25,10 @@
 }
 
 @layer base {
+  body {
+    /* Laat elementen buiten de stroomlijn (de stopcontact-knop) meeanimeren op dezelfde tijdlijn. */
+    timeline-scope: --stroom;
+  }
   html {
     scroll-padding-top: 6rem;
     -webkit-text-size-adjust: 100%;
@@ -76,6 +80,35 @@
   .btn svg {
     transition: transform 0.2s;
   }
+
+  /* Knop als stopcontact ("vrouwtje"): een behuizing bovenop de knop met twee gaatjes op ± 4 px van het
+     midden, exact onder de pinnen van de stekker in StroomLijn.astro. */
+  .stopcontact {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 30px;
+    height: 10px;
+    translate: -50% 1px;
+    border-radius: 8px 8px 0 0;
+    background: inherit;
+  }
+  .stopcontact::before,
+  .stopcontact::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 3px;
+    height: 5px;
+    border-radius: 0 0 2px 2px;
+    background: var(--color-ink);
+  }
+  .stopcontact::before { left: calc(50% - 5.5px); }
+  .stopcontact::after { left: calc(50% + 2.5px); }
+  /* Op mobiel staat de knop onder de tekst: ruimte maken voor stekker + kabel, alleen als er een stroomlijn is. */
+  @media (width < 40rem) {
+    body:has(.stroomlijn[data-doel]) .stopcontact-knop { margin-top: 4.5rem; }
+  }
 }
 
 /* ---------- Animatie (alleen als de bezoeker geen beperkte beweging vraagt) ---------- */
@@ -113,6 +146,10 @@
   14% { opacity: 0.2; }
   20% { opacity: 1; transform: scale(1); }
   32% { opacity: 0; transform: scale(0.7); }
+}
+@keyframes stroom-aan {
+  from { box-shadow: 0 0 0 0 rgb(255 90 31 / 0); }
+  to { box-shadow: 0 0 0 4px rgb(255 90 31 / 0.25), 0 0 32px 4px rgb(255 90 31 / 0.55); }
 }
 @keyframes slide-in-bottom {
   from { transform: translateY(100%); }
@@ -180,6 +217,15 @@
       animation: logo-shrink linear both;
       animation-timeline: scroll();
       animation-range: 0 120px;
+    }
+  }
+  /* Stekker zit erin: de knop "gaat aan". De knop komt bij hover niet omhoog (anders los van de stekker). */
+  .stopcontact-knop:hover { transform: none; }
+  @supports (animation-timeline: view()) {
+    .stopcontact-knop {
+      animation: stroom-aan linear both;
+      animation-timeline: --stroom;
+      animation-range: cover 55% cover 60%;
     }
   }
   .slide-in-bottom {

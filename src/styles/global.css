@@ -32,6 +32,13 @@
   html {
     scroll-padding-top: 6rem;
     -webkit-text-size-adjust: 100%;
+    /* Geen scroll anchoring: Safari (desktop, trackpad) corrigeerde de scrollpositie bij elke beweging
+       van de inschuivende blokken en de kabel, waardoor de pagina telkens een stukje naar beneden
+       versprong. De site voegt geen inhoud toe boven het scherm, dus anchoring is hier niet nodig. */
+    overflow-anchor: none;
+  }
+  .reveal, .reveal-stagger > *, .fade-up, .scrollkabel, .stroomlijn, .werkgebied {
+    overflow-anchor: none;
   }
   body {
     @apply bg-paper font-sans text-ink antialiased;

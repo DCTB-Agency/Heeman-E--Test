@@ -10,7 +10,8 @@ const core = services.filter((s) => s.priority <= 5);
 const extra = services.filter((s) => s.priority > 5);
 ---
 
-<header class="header-scroll sticky top-0 z-50 border-b border-ink/10 bg-paper/95 backdrop-blur supports-[backdrop-filter]:bg-paper/80">
+<!-- Geen backdrop-blur: te zwaar voor Safari met bewegende inhoud eronder. -->
+<header class="header-scroll sticky top-0 z-50 border-b border-ink/10 bg-paper">
   <div class="container-site flex h-16 items-center gap-6 lg:h-20">
     <a href="/" class="logo-link relative shrink-0" aria-label={`${business.name} — naar de homepage`}>
       <Image src={logo} alt={business.name} width={190} height={60} class="logo-shrink h-9 w-auto lg:h-11" loading="eager" fetchpriority="high" />
@@ -124,12 +125,24 @@ const extra = services.filter((s) => s.priority > 5);
 </header>
 
 <style>
-  @keyframes spark {
-    0%, 100% { box-shadow: 0 0 0 0 rgb(255 90 31 / 0.5); }
-    50% { box-shadow: 0 0 0 5px rgb(255 90 31 / 0); }
+  /* Pulserende ring rond de jobs-badge: enkel transform/opacity (compositor), geen box-shadow-repaint
+     van de sticky header tijdens het scrollen (Safari). */
+  .job-badge { position: relative; }
+  .job-badge::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid var(--color-accent);
+    opacity: 0;
+    pointer-events: none;
   }
-  .job-badge {
-    animation: spark 2.4s ease-in-out infinite;
+  @media (prefers-reduced-motion: no-preference) {
+    .job-badge::after { animation: badge-ring 2.4s ease-out infinite; }
+  }
+  @keyframes badge-ring {
+    0% { opacity: 0.7; transform: scale(1); }
+    70%, 100% { opacity: 0; transform: scale(1.18, 1.5); }
   }
 
   /* --- Mobiel --- */

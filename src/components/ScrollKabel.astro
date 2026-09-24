@@ -4,8 +4,11 @@
 // - Hoe verder je scrolt, hoe meer de kabel naar rechts schuift, richting het stopcontact bovenop het
 //   volgende blok ([data-kabel-socket]). Komt dat blok bij de stekker, dan steekt die erin: vonk,
 //   stroompuls en de klasse `aan` op de zone (voor effecten op het blok zelf).
-// - Een veer geeft de stekker gewicht: hij valt bij het laden met een veerkracht naar beneden,
-//   schommelt licht en zwiept mee bij snel scrollen.
+// - Een veer geeft de stekker gewicht: hij valt bij het laden met een veerkracht naar beneden
+//   en zwiept mee bij snel scrollen.
+// - Prestaties (Safari): geometrie wordt één keer gemeten (en opnieuw bij resize/fonts/vacaturebalk);
+//   per frame wordt alleen met scrollY gerekend, zonder layout op te vragen. De animatielus loopt enkel
+//   zolang er iets beweegt (scroll, veer, hover/tik) — geen eindeloze lus. Gloed zonder CSS-filters.
 // - Interactief (muis): over de kabel bewegen tokkelt hem als een snaar; over de stekker bewegen duwt
 //   hem weg met een vonk. Ingeplugd rammelt de stekker even in het stopcontact.
 // - Mobiel (< 1024 px): kleinere stekker (36 × 40) en stopcontact, korte kabel aan de rechterrand naast de
@@ -17,7 +20,8 @@
 <div class="scrollkabel pointer-events-none absolute inset-0 z-10" aria-hidden="true">
   <svg class="absolute inset-0 size-full overflow-visible">
     <path class="sk-kabel" fill="none" stroke="var(--color-brand)" stroke-linecap="round" />
-    <path class="sk-puls" pathLength="1" fill="none" stroke="#ffd2bd" stroke-linecap="round" />
+    <path class="sk-puls sk-gloed" pathLength="1" fill="none" stroke="#ff5a1f" stroke-opacity="0.35" stroke-linecap="round" />
+    <path class="sk-puls sk-kern" pathLength="1" fill="none" stroke="#ffd2bd" stroke-linecap="round" />
   </svg>
   <!-- Stekker 36 × 40 px (mobiel) of 54 × 60 px (desktop, × 1,5): pinnen op ± 4 / ± 6 px van het midden,
        exact zoals de gaatjes van .stopcontact-groot (schaal 1 / 1,5). -->
@@ -34,7 +38,8 @@
 
 <style>
   .sk-kabel { stroke-width: 4; }
-  .sk-puls { stroke-width: 5; }
+  .sk-kern { stroke-width: 5; }
+  .sk-gloed { stroke-width: 13; }
   .sk-stekker {
     width: 36px;
     height: 40px;
@@ -44,13 +49,13 @@
   }
   @media (min-width: 64rem) {
     .sk-kabel { stroke-width: 6; }
-    .sk-puls { stroke-width: 7; }
+    .sk-kern { stroke-width: 7; }
+    .sk-gloed { stroke-width: 17; }
     .sk-stekker { width: 54px; height: 60px; }
   }
   .sk-puls {
     display: none;
     stroke-dasharray: 0.08 1;
-    filter: drop-shadow(0 0 6px #ff5a1f);
   }
   .sk-vonk {
     opacity: 0;
@@ -79,7 +84,7 @@
     const header = document.querySelector('header');
     const socket = zone.querySelector<HTMLElement>('[data-kabel-socket]');
     const kabel = el.querySelector<SVGPathElement>('.sk-kabel')!;
-    const puls = el.querySelector<SVGPathElement>('.sk-puls')!;
+    const pulsen = el.querySelectorAll<SVGPathElement>('.sk-puls');
     const stekker = el.querySelector<SVGSVGElement>('.sk-stekker')!;
     if (!header || !socket) return;
 
@@ -104,28 +109,50 @@
     }
     maten();
 
-    function doelen() {
+    // Geometrie in documentcoördinaten, gemeten buiten de animatielus (geen layout per frame).
+    const jobBar = document.getElementById('job-bar');
+    let geo = { zoneTop: 0, zoneBottom: 0, zoneLeft: 0, w: 0, headerTop: 0, headerH: 0, socketX: 0, socketTop: 0 };
+    function meet() {
+      const sy = scrollY;
       const zr = zone.getBoundingClientRect();
-      const hb = header!.getBoundingClientRect().bottom;
       const sr = socket!.getBoundingClientRect();
-      const w = zr.width;
-      const socketX = sr.left + sr.width / 2 - zr.left;
-      const ingeplugdY = sr.top - zr.top - PLUG_H; // pinnen raken de bovenkant van het stopcontact
+      // Natuurlijke positie van de sticky header = onder de vacaturebalk (als die zichtbaar is).
+      const jb = jobBar && jobBar.offsetHeight ? jobBar.getBoundingClientRect().bottom + sy : 0;
+      geo = {
+        zoneTop: zr.top + sy,
+        zoneBottom: zr.bottom + sy,
+        zoneLeft: zr.left,
+        w: zr.width,
+        headerTop: jb,
+        headerH: header!.offsetHeight,
+        socketX: sr.left + sr.width / 2 - zr.left,
+        socketTop: sr.top + sy,
+      };
+      maten();
+    }
+
+    function doelen() {
+      const sy = scrollY;
+      const { w, socketX } = geo;
+      const zoneTopVp = geo.zoneTop - sy;
+      const hb = Math.max(0, geo.headerTop - sy) + geo.headerH; // onderkant sticky header in het venster
+      const ingeplugdY = geo.socketTop - geo.zoneTop - PLUG_H; // pinnen raken de bovenkant van het stopcontact
+      const zichtbaar = geo.zoneBottom - sy > 0;
       const mobiel = w < 1024;
       // Mobiel: start vlak bij de rechterrand (naast de bovenste regel), desktop: in de lege ruimte rechts van de titel.
       const xs = mobiel ? Math.min(w - 22, socketX + 12) : w * 0.74;
 
       if (reduce) {
-        return { ankerX: socketX, ankerY: 0, tx: socketX, ty: ingeplugdY, plug: true, p: 1, zichtbaar: zr.bottom > 0 };
+        return { ankerX: socketX, ankerY: 0, tx: socketX, ty: ingeplugdY, plug: true, p: 1, zichtbaar };
       }
-      const ankerY = hb - zr.top;
+      const ankerY = hb - zoneTopVp;
       const hangY = ankerY + (mobiel ? 58 : Math.min(innerHeight * 0.42, 340));
       const gap = ingeplugdY - hangY; // wordt kleiner naarmate je scrolt
-      const p = clamp(scrollY / Math.max(1, gap + scrollY), 0, 1);
+      const p = clamp(sy / Math.max(1, gap + sy), 0, 1);
       const plug = gap <= 0;
       const ankerX = xs + (socketX - xs) * p;
       const tx = xs + (socketX - xs) * ease(p);
-      return { ankerX, ankerY, tx, ty: plug ? ingeplugdY : hangY, plug, p, zichtbaar: zr.bottom > 0 };
+      return { ankerX, ankerY, tx, ty: plug ? ingeplugdY : hangY, plug, p, zichtbaar };
     }
 
     function frame(nu: number) {
@@ -140,13 +167,12 @@
         y = reduce ? d.ty : d.ankerY - PLUG_H; // start net onder de header: stekker valt naar beneden
       }
 
-      // Veren: stekker (met demping en kleine schommeling als hij vrij hangt), kabel-tokkel en rammel.
-      const zwaai = Math.sin(nu / 900) * 5 * (1 - d.p);
+      // Veren: stekker (met demping), kabel-tokkel en rammel.
       const STAP = 1 / 240;
       for (let t = 0; t < totaal; t += STAP) {
         const dt = Math.min(STAP, totaal - t);
         if (!d.plug) {
-          const ax = 140 * (d.tx + zwaai - x) - 11 * vx;
+          const ax = 140 * (d.tx - x) - 11 * vx;
           const ay = 110 * (d.ty - y) - 9 * vy;
           vx += ax * dt; vy += ay * dt;
           x += vx * dt; y += vy * dt;
@@ -175,27 +201,26 @@
         const c1y = d.ankerY + L * 0.5;
         const c2x = x - Math.sin(hoek) * L * 0.45 + wb * 0.7;
         const c2y = y - Math.cos(hoek) * L * 0.45;
-        const pad = `M ${d.ankerX} ${d.ankerY - 60} L ${d.ankerX} ${d.ankerY} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${x} ${y}`;
+        const pad = `M ${d.ankerX} ${d.ankerY - 2} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${x} ${y}`;
         kabel.setAttribute('d', pad);
-        puls.setAttribute('d', pad);
+        pulsen.forEach((p) => p.setAttribute('d', pad));
         bez = [d.ankerX, d.ankerY, c1x, c1y, c2x, c2y, x, y];
       } else {
         kabel.setAttribute('d', '');
-        puls.setAttribute('d', '');
+        pulsen.forEach((p) => p.setAttribute('d', ''));
         bez = null;
       }
 
-      // Door blijven lopen zolang de stekker beweegt of vrij (zichtbaar) hangt; ingeplugd volstaat één frame per scroll.
+      // Alleen doorlopen zolang er iets beweegt (veer, tokkel, rammel) of de stekker zijn doel nog niet bereikt;
+      // scrollen start telkens zelf een nieuwe frame. Buiten beeld: niets doen.
       const beweegt =
-        Math.abs(vx) > 0.5 || Math.abs(vy) > 0.5 ||
+        Math.abs(vx) > 0.5 || Math.abs(vy) > 0.5 || Math.abs(d.tx - x) > 0.5 || Math.abs(d.ty - y) > 0.5 ||
         Math.abs(wbv) > 2 || Math.abs(wb) > 0.3 || Math.abs(rotv) > 0.05 || Math.abs(rot) > 0.002;
-      const vrij = !d.plug && !reduce && d.zichtbaar;
-      if (beweegt || vrij) requestAnimationFrame(frame);
+      if (beweegt && d.zichtbaar && !reduce) requestAnimationFrame(frame);
       else draait = false;
     }
 
     function start() {
-      if (getComputedStyle(el).display === 'none') return;
       if (!draait) {
         draait = true;
         vorige = performance.now();
@@ -239,8 +264,9 @@
       const mvx = clamp((e.clientX - prev.x) / dt, -3000, 3000);
       const mvy = clamp((e.clientY - prev.y) / dt, -3000, 3000);
 
-      const zr = zone.getBoundingClientRect();
-      const mx = e.clientX - zr.left, my = e.clientY - zr.top;
+      const zoneTopVp = geo.zoneTop - scrollY;
+      if (e.clientY < zoneTopVp || e.clientY > geo.zoneBottom - scrollY) return; // niet boven hero/USP
+      const mx = e.clientX - geo.zoneLeft, my = e.clientY - zoneTopVp;
       const opStekker = Math.hypot(mx - x, my - (y + PLUG_H / 2)) < 42;
 
       if (opStekker) {
@@ -265,8 +291,8 @@
     // Tikken (touch/pen): de stekker zwiept weg met een vonk, of rammelt als hij ingeplugd is.
     function tik(e: PointerEvent) {
       if (e.pointerType === 'mouse' || reduce || Number.isNaN(x)) return;
-      const zr = zone.getBoundingClientRect();
-      const mx = e.clientX - zr.left, my = e.clientY - zr.top;
+      const zoneTopVp = geo.zoneTop - scrollY;
+      const mx = e.clientX - geo.zoneLeft, my = e.clientY - zoneTopVp;
       if (Math.hypot(mx - x, my - (y + PLUG_H / 2)) > Math.max(34, PLUG_W)) return;
       const richting = mx < x ? 1 : -1; // weg van de vinger
       if (ingeplugd) rotv = clamp(rotv + richting * 3.5, -5, 5);
@@ -282,8 +308,13 @@
     addEventListener('pointermove', muis, { passive: true });
     addEventListener('pointerdown', tik, { passive: true });
     addEventListener('scroll', start, { passive: true });
-    addEventListener('resize', () => { maten(); start(); });
-    document.fonts?.ready.then(start);
+    const herMeet = () => { meet(); start(); };
+    addEventListener('resize', herMeet);
+    addEventListener('load', herMeet);
+    document.fonts?.ready.then(herMeet);
+    document.getElementById('job-bar-close')?.addEventListener('click', () => requestAnimationFrame(herMeet));
+    new ResizeObserver(herMeet).observe(zone);
+    meet();
     start();
   });
 </script>

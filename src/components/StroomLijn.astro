@@ -2,7 +2,7 @@
 import { kabelPad, naarPx, type Punt } from '../lib/kabelpad';
 // "De stroomlijn" (CLAUDE.md § 7.1): de kabel uit het logo die secties verbindt.
 // 1) De kabel tekent zich bij scrollen (CSS scroll-driven animations).
-// 2) Daarna loopt er continu een gloeiende "stroompuls" over de kabel.
+// 2) Daarna loopt er continu een gloeiende "stroompuls" over de kabel (gloed = breed transparant pad, geen CSS-filter).
 // 3) Met `doel` eindigt de kabel in een stekker die exact in het stopcontact van een knop
 //    ([data-stroom-doel] met .stopcontact) steekt. Het pad wordt in echte pixels berekend en bij elke
 //    wijziging van de layout herberekend (ResizeObserver), dus het sluit op elke schermbreedte aan.
@@ -33,6 +33,7 @@ const [endX] = points[points.length - 1];
 >
   <svg class="size-full overflow-visible" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
     <path class="kabel" d={d} pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <path class="puls" d={d} pathLength="1" fill="none" stroke="#ff5a1f" stroke-opacity="0.35" stroke-width="13" stroke-linecap="round" />
     <path class="puls" d={d} pathLength="1" fill="none" stroke="#ffd2bd" stroke-width="5" stroke-linecap="round" />
   </svg>
   {/* Stekker: 36 × 40 px, snoer op x=18, pinnen op x=14 en x=22 (± 4 px, zelfde als de gaatjes van .stopcontact) */}
@@ -57,7 +58,6 @@ const [endX] = points[points.length - 1];
   .puls {
     display: none;
     stroke-dasharray: 0.06 1;
-    filter: drop-shadow(0 0 4px #ff5a1f) drop-shadow(0 0 10px #ff5a1f);
   }
   .stekker {
     translate: -18px 0;

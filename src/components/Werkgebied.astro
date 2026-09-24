@@ -36,6 +36,7 @@ function leiding(x: number, y: number) {
         return (
           <g style={`--i:${i}`}>
             <path class="wg-kabel" d={leiding(p.x, p.y)} pathLength="1" stroke="var(--color-accent)" stroke-width="2.5" />
+            <path class="wg-puls" d={leiding(p.x, p.y)} pathLength="1" stroke="#ff5a1f" stroke-opacity="0.35" stroke-width="10" />
             <path class="wg-puls" d={leiding(p.x, p.y)} pathLength="1" stroke="#ffd2bd" stroke-width="4" />
           </g>
         );
@@ -76,7 +77,7 @@ function leiding(x: number, y: number) {
   .wg-node:hover .wg-label, .wg-node:focus-visible .wg-label { fill: var(--color-accent); }
   .wg-node:focus-visible { outline: none; }
   .wg-node:focus-visible .wg-stip { stroke: #fff; }
-  .wg-puls { display: none; stroke-dasharray: 0.12 1; filter: drop-shadow(0 0 4px #ff5a1f); }
+  .wg-puls { display: none; stroke-dasharray: 0.12 1; }
 
   @media (prefers-reduced-motion: no-preference) {
     .wg-puls {

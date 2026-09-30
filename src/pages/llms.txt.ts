@@ -11,7 +11,7 @@ export const GET: APIRoute = () => {
 
 Contact: ${business.phone.international} · ${business.email} · ${business.address.street}, ${business.address.postalCode} ${business.address.locality}
 Openingsuren: ${business.hours.label}; dringende oproepen ook buiten de openingsuren.
-Werkwijze: Bert doet zelf het eerste bezoek en de inschatting, de opstart, de oplevering en de kwaliteitscontrole. Gratis offerte; geen vaste prijzen online.
+Werkwijze: bezoek en inschatting vooraf, één vast aanspreekpunt van opstart tot oplevering, kwaliteitscontrole bij elke installatie. Klanten: particulieren, bedrijven, syndici en aannemers. Gratis offerte; geen vaste prijzen online.
 
 ## Diensten
 ${services.map((s) => `- [${s.name}](${u(serviceUrl(s.slug))})`).join('\n')}
@@ -23,9 +23,9 @@ ${services.map((s) => `- [${s.name}](${u(serviceUrl(s.slug))})`).join('\n')}
 ${artikels.map((a) => `- [${a.titel}](${u(artikelUrl(a.slug))})`).join('\n')}
 
 ## Meer
-- [Kerngegevens](${u('/over-bert/kerngegevens/')})
+- [Kerngegevens](${u('/over-ons/kerngegevens/')})
 - [Veelgestelde vragen](${u('/veelgestelde-vragen/')})
-- [Over Bert](${u('/over-bert/')})
+- [Over ons](${u('/over-ons/')})
 - [Realisaties](${u('/realisaties/')})
 - [Contact](${u('/contact/')})
 `;

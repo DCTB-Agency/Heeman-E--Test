@@ -23,7 +23,7 @@ export const business = {
   whatsapp: {
     href: 'https://wa.me/32485190027',
     jobHref:
-      'https://wa.me/32485190027?text=Hallo%20Bert%2C%20ik%20heb%20interesse%20in%20de%20job%20als%20junior%20elektricien.',
+      'https://wa.me/32485190027?text=Hallo%2C%20ik%20heb%20interesse%20in%20de%20job%20als%20junior%20elektricien.',
   },
   address: {
     street: 'Baron Delbekelaan 49',
@@ -97,7 +97,7 @@ export const job = {
 
 export const nav = [
   { label: 'Realisaties', href: '/realisaties/' },
-  { label: 'Over Bert', href: '/over-bert/' },
+  { label: 'Over ons', href: '/over-ons/' },
   { label: 'Jobs', href: '/jobs/', badge: 'We zoeken versterking' },
   { label: 'Contact', href: '/contact/' },
 ] as const;

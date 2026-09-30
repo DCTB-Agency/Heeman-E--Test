@@ -4,9 +4,9 @@ import { business, areas } from './site';
 import type { Vraag } from '../lib/schema';
 
 export const usps = [
-  { titel: 'Persoonlijk contact', tekst: 'Bert komt zelf langs voor het eerste bezoek en de inschatting, en is erbij bij de opstart en de oplevering.' },
+  { titel: 'Eén aanspreekpunt', tekst: 'Van het eerste bezoek en de inschatting tot de opstart en de oplevering: u heeft één vast aanspreekpunt.' },
   { titel: 'Vakkennis', tekst: 'Erkend elektricien met meer dan 10 jaar ervaring, van laadpaal tot Niko Home Control.' },
-  { titel: 'Netjes afgewerkt', tekst: 'De kwaliteitscontrole doet Bert zelf: keuringsklaar volgens het AREI, met schema’s, en een opgeruimde werf.' },
+  { titel: 'Netjes afgewerkt', tekst: 'Elke installatie krijgt een kwaliteitscontrole: keuringsklaar volgens het AREI, met schema’s, en een opgeruimde werf.' },
 ];
 
 // Korte uitleg per dienst (slug uit site.ts).
@@ -43,7 +43,7 @@ export const homeFaq: Vraag[] = [
   },
   {
     vraag: 'Hoe verloopt een opdracht?',
-    antwoord: 'Bert komt eerst zelf langs om uw situatie te bekijken en in te schatten. Daarna krijgt u een gratis offerte. Bij de opstart en de oplevering is Bert erbij, en de kwaliteitscontrole doet hij zelf.',
+    antwoord: 'We komen eerst langs om uw situatie te bekijken en in te schatten. Daarna krijgt u een gratis offerte. U heeft één vast aanspreekpunt van de opstart tot de oplevering, en elke installatie krijgt een kwaliteitscontrole.',
   },
   {
     vraag: 'Welke laadpalen plaatst u?',

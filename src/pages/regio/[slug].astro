@@ -46,8 +46,8 @@ const schema = {
       </h1>
       <p class="fade-up mt-6 max-w-2xl text-xl leading-relaxed" style="--d:300ms">
         {r.naam === 'Schilde'
-          ? <>Onze zaak is gevestigd in Schilde. Zaakvoerder Bert Heeman is erkend elektricien met {business.experience} en komt zelf langs voor het eerste bezoek en de inschatting.</>
-          : <>{r.naam} ligt op ongeveer {km} km van onze zaak in Schilde (in vogelvlucht). Zaakvoerder Bert Heeman is erkend elektricien met {business.experience} en komt zelf langs voor het eerste bezoek en de inschatting.</>}
+          ? <>Onze zaak is gevestigd in Schilde. We zijn erkend elektricien met {business.experience} en komen eerst langs voor een bezoek en de inschatting.</>
+          : <>{r.naam} ligt op ongeveer {km} km van onze zaak in Schilde (in vogelvlucht). We zijn erkend elektricien met {business.experience} en komen eerst langs voor een bezoek en de inschatting.</>}
       </p>
       {r.deelgemeenten.length > 0 && (
         <p class="fade-up mt-4 text-muted" style="--d:380ms">Ook in {r.deelgemeenten.join(', ').replace(/, ([^,]*)$/, ' en $1')}.</p>

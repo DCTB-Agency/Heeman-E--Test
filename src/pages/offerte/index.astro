@@ -13,7 +13,7 @@ const kruimels = [
 ];
 const veld = 'mt-1.5 block w-full rounded-xl border-2 border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-muted/70 focus:border-brand focus:outline-none';
 const label = 'block font-semibold';
-const onderwerp = 'Offerteaanvraag: {dienst} – {gemeente}';
+const onderwerp = 'Offerteaanvraag ({klanttype}): {dienst} – {gemeente}';
 ---
 
 <Base
@@ -29,7 +29,7 @@ const onderwerp = 'Offerteaanvraag: {dienst} – {gemeente}';
         <span class="line-mask"><span style="--i:2">offerte</span></span>
       </h1>
       <p class="fade-up mt-6 text-lg text-muted" style="--d:300ms">
-        Vertel kort wat u nodig heeft. We antwoorden binnen <span set:html={metTodo(antwoordTermijn)} /> en Bert komt zelf langs voor het eerste bezoek en de inschatting.
+        Vertel kort wat u nodig heeft. We antwoorden binnen <span set:html={metTodo(antwoordTermijn)} /> en komen langs voor een bezoek en de inschatting.
       </p>
       <ol class="fade-up mt-8 space-y-4" style="--d:400ms">
         {['U vult het formulier in (± 1 minuut)', 'Uw mailprogramma opent met het bericht klaar: klik op verzenden', 'We nemen contact op zoals u verkiest', 'Bezoek, inschatting en gratis offerte'].map((s, i) => (
@@ -59,6 +59,16 @@ const onderwerp = 'Offerteaanvraag: {dienst} – {gemeente}';
         data-event="offerte_submit"
         class="grid gap-5 sm:grid-cols-2"
       >
+        <div>
+          <label for="of-klant" class={label}>Aanvraag als <span aria-hidden="true" class="text-brand">*</span></label>
+          <select id="of-klant" name="klanttype" required class={veld}>
+            {['Particulier', 'Bedrijf', 'Syndicus / VME', 'Aannemer of architect'].map((k, i) => <option selected={i === 0}>{k}</option>)}
+          </select>
+        </div>
+        <div>
+          <label for="of-bedrijf" class={label}>Bedrijfsnaam <span class="font-normal text-muted">(optioneel)</span></label>
+          <input id="of-bedrijf" name="bedrijf" autocomplete="organization" class={veld} />
+        </div>
         <div>
           <label for="of-dienst" class={label}>Dienst <span aria-hidden="true" class="text-brand">*</span></label>
           <select id="of-dienst" name="dienst" required class={veld}>

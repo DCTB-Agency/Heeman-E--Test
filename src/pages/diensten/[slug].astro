@@ -56,13 +56,13 @@ const serviceSchema = {
         <p class="fade-up mt-6 max-w-2xl text-xl leading-relaxed" style="--d:200ms" set:html={metTodo(dienst.antwoord)} />
         <p class="fade-up mt-6 flex items-center gap-3 text-sm text-muted" style="--d:300ms">
           <span class="grid size-9 place-items-center rounded-full bg-ink font-display font-semibold text-accent" aria-hidden="true">B</span>
-          <span>Geschreven door <a href="/over-bert/" class="font-semibold text-ink underline-offset-4 hover:underline">{business.owner}</a>, erkend elektricien in Schilde · bijgewerkt op <time datetime={dienst.bijgewerkt}>{bijgewerkt}</time></span>
+          <span>Geschreven door <a href="/over-ons/" class="font-semibold text-ink underline-offset-4 hover:underline">{business.owner}</a>, erkend elektricien in Schilde · bijgewerkt op <time datetime={dienst.bijgewerkt}>{bijgewerkt}</time></span>
         </p>
       </div>
 
       <aside class="fade-up on-ink self-start rounded-3xl bg-ink p-7 text-white lg:sticky lg:top-28" style="--d:350ms" aria-label="Contact">
         <p class="font-display text-2xl font-semibold">Vraag een gratis offerte</p>
-        <p class="mt-2 text-on-ink-muted">Bert komt zelf langs voor het eerste bezoek en de inschatting.</p>
+        <p class="mt-2 text-on-ink-muted">We komen eerst langs voor een bezoek en de inschatting.</p>
         <div class="mt-6 grid gap-3">
           <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
           <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
@@ -196,7 +196,7 @@ const serviceSchema = {
     <div class="container-site relative grid gap-10 py-20 sm:py-24 lg:grid-cols-[1.4fr_1fr] lg:items-center">
       <div class="reveal rounded-3xl bg-ink py-2">
         <h2 id="cta" class="h2">Vraag uw gratis offerte aan</h2>
-        <p class="mt-4 max-w-xl text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een offerte. Bert komt zelf langs voor het eerste bezoek.</p>
+        <p class="mt-4 max-w-xl text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een offerte. We komen eerst langs voor een bezoek.</p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
           <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>

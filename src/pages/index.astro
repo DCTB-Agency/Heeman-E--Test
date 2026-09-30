@@ -16,12 +16,17 @@ import { metTodo } from '../lib/tekst';
 
 const [laadpaal, ...kern] = services.filter((s) => s.priority <= 5);
 const extra = services.filter((s) => s.priority > 5);
+const zakelijk = [
+  { titel: 'Bedrijven', icoon: 'laadpaal-installeren', href: serviceUrl('laadpaal-installeren'), tekst: 'Laadpunten voor eigen wagens, personeel en bezoekers. Installaties in kantoren en handelspanden.' },
+  { titel: 'Syndici', icoon: 'renovatie-elektriciteit', href: serviceUrl('laadpaal-installeren'), tekst: 'Gemeenschappelijke laadinfrastructuur en elektriciteit in appartementsgebouwen.' },
+  { titel: 'Aannemers en architecten', icoon: 'nieuwbouw', href: serviceUrl('nieuwbouw'), tekst: 'Nieuwbouw en renovatie, afgestemd op de planning van de werf, met schema’s voor de keuring.' },
+];
 
 ---
 
 <Base
   title="Elektricien Schilde · Laadpalen & domotica · Heeman"
-  description="Erkend elektricien in Schilde: laadpalen, Niko Home Control en keuringsklare installaties. Persoonlijk contact, gratis offerte. Bel 0485 19 00 27."
+  description="Erkend elektricien in Schilde voor particulieren, bedrijven en syndici: laadpalen, Niko Home Control en keuringsklare installaties. Gratis offerte."
   schema={[faqSchema(homeFaq)]}
 >
   <!-- HERO + USP: de kabel hangt uit de header en plugt in op het stopcontact bovenop de USP-rij -->
@@ -29,7 +34,7 @@ const extra = services.filter((s) => s.priority > 5);
   <ScrollKabel />
   <section class="relative overflow-clip">
     <div class="container-site relative py-16 sm:py-24 lg:py-32">
-      <p class="eyebrow fade-up">Bert Heeman</p>
+      <p class="eyebrow fade-up">Heeman Electrics · Schilde</p>
       <h1 class="mt-4 max-w-4xl text-display">
         <span class="line-mask"><span style="--i:1">Elektricien met</span></span>
         <span class="line-mask"><span style="--i:2"><span class="relative whitespace-nowrap text-brand">10+ jaar vakkennis<svg class="absolute -bottom-[0.12em] left-0 h-[0.3em] w-full overflow-visible" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path class="draw-in" style="--d:900ms;--dur:0.9s" d="M2 12 C 40 4, 80 18, 120 10 S 180 6, 198 12" pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="5" stroke-linecap="round" /></svg></span></span></span>
@@ -129,17 +134,17 @@ const extra = services.filter((s) => s.priority > 5);
   <!-- JOBS -->
   <JobsBlok />
 
-  <!-- OVER BERT + CIJFERS -->
+  <!-- OVER + CIJFERS -->
   <section class="section on-ink bg-ink text-white" aria-label="Over Heeman Electrics">
     <div class="container-site grid items-center gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
       <div class="reveal">
         <p class="eyebrow">Over Heeman Electrics</p>
-        <h2 class="h2 mt-3">Eén vast aanspreekpunt: Bert.</h2>
+        <h2 class="h2 mt-3">Eén vast aanspreekpunt, van offerte tot oplevering.</h2>
         <p class="mt-5 max-w-xl text-lg text-on-ink-muted">
-          Bert Heeman is erkend elektricien en zaakvoerder. Hij komt zelf kijken en maakt de inschatting. Bij de opstart
-          en de oplevering is hij erbij, en de kwaliteitscontrole doet hij zelf.
+          Heeman Electrics is een erkende elektricien uit Schilde, sinds 2018. We werken voor particulieren, bedrijven,
+          syndici en aannemers. Elk project krijgt een bezoek vooraf, een duidelijke offerte en een kwaliteitscontrole bij de oplevering.
         </p>
-        <a href="/over-bert/" class="mt-10 inline-flex items-center gap-2 font-display font-semibold text-accent hover:text-white">Maak kennis met Bert <span aria-hidden="true">→</span></a>
+        <a href="/over-ons/" class="mt-10 inline-flex items-center gap-2 font-display font-semibold text-accent hover:text-white">Meer over ons <span aria-hidden="true">→</span></a>
       </div>
       <dl class="cijfers reveal grid grid-cols-3 gap-6 lg:grid-cols-1 lg:gap-8 lg:border-l lg:border-white/15 lg:pl-16">
           {cijfers.map((c) => (
@@ -153,6 +158,40 @@ const extra = services.filter((s) => s.priority > 5);
             </div>
           ))}
       </dl>
+    </div>
+  </section>
+
+  <!-- ZAKELIJK: bedrijven, syndici, aannemers -->
+  <section class="section" aria-labelledby="zakelijk">
+    <div class="container-site">
+      <div class="reveal grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-end lg:gap-16">
+        <div>
+        <p class="eyebrow">Zakelijk</p>
+        <h2 id="zakelijk" class="h2 mt-3">Voor bedrijven, syndici en aannemers</h2>
+        </div>
+        <div>
+        <p class="text-lg text-muted">
+          Van laadinfrastructuur voor een bedrijfsparking tot de volledige installatie van een nieuwbouwproject.
+          U krijgt een vast aanspreekpunt, een heldere planning en een installatie die klaar is voor de keuring.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/offerte/" class="btn btn-primary">Bespreek uw project</a>
+          <a href={business.phone.href} class="btn btn-ghost" data-event="click_to_call">Bel {business.phone.display}</a>
+        </div>
+        </div>
+      </div>
+      <ul class="reveal-stagger mt-12 grid gap-5 sm:grid-cols-3">
+        {zakelijk.map((z, i) => (
+          <li style={`--i:${i}`}>
+            <a href={z.href} class="dienst group flex h-full flex-col rounded-3xl border border-ink/10 bg-white p-7 hover:border-brand/40">
+              <span class="icoon-tegel grid size-14 place-items-center rounded-xl bg-brand/10 text-brand"><DienstIcoon slug={z.icoon} class="size-8" /></span>
+              <h3 class="mt-5 font-display text-xl font-semibold">{z.titel}</h3>
+              <p class="mt-2 flex-1 text-muted">{z.tekst}</p>
+              <span class="mt-5 inline-flex items-center gap-2 font-display font-semibold text-brand">Meer info <span class="pijl" aria-hidden="true">→</span></span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 

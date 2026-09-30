@@ -26,7 +26,7 @@ Plak sectie 1–3, 5, 7 en 8 en de prompt uit sectie 16.B. Upload logo en 5–10
 - **E-mail:** info@heeman-electrics.be (overal: site, schema, formulieren, gidsen).
 - **Ervaring:** "meer dan 10 jaar ervaring". De BV bestaat sinds mei 2018 (KBO, `foundingDate`), maar in de copy spreken we over de 10+ jaar ervaring.
 - **Dringende herstellingen:** ook buiten de openingsuren bereikbaar voor dringende oproepen. Openingsuren ma–vr 08:00–17:30 blijven gelden voor gewone vragen. Geen "24/7" beloven zonder verdere bevestiging.
-- **Erkend elektricien:** mag vermeld worden. Tone of voice: **"wij"** (gewijzigd 30-09-2026, zie hieronder). Bert blijft wel het gezicht: bezoek, inschatting, opstart, oplevering en controle doet hij zelf.
+- **Erkend elektricien:** mag vermeld worden. Tone of voice: **"wij"** (gewijzigd 30-09-2026). **Niet te veel Bert** (30-09-2026): het bedrijf staat centraal en mag overkomen als een iets grotere onderneming; Bert is de zaakvoerder (vermeld op /over-ons/, als auteur en in de schema's), niet het onderwerp van elke zin. Zakelijke klanten (bedrijven, syndici, aannemers, architecten) expliciet aanspreken. Geen onware claims over teamgrootte.
 - **Laadpaalmerken:** EVBox, Alfen, Easee, Zaptec mogen vermeld worden.
 - **Geen vaste prijzen** (beslist 23-09-2026): nergens "vaste prijs" beloven. Wel: gratis/vrijblijvende offerte, persoonlijk contact, vakkennis.
 - **"Ik kom zelf" veralgemeend:** Bert doet zelf het eerste bezoek en de inschatting, de opstart en de oplevering van elk project, en de kwaliteitscontrole. Niet beloven dat Bert elk uur zelf op de werf staat (er komt een junior bij).
@@ -106,7 +106,7 @@ Deze gegevens moeten **letterlijk identiek** zijn op de site, in de structured d
 **Aanvullende diensten (toegevoegd 23-09-2026):** 6) Nieuwbouw · 7) Video- & parlofonie · 8) Verlichtingsadvies · 9) Dringende herstellingen (ook buiten de openingsuren). Deze krijgen een eigen dienstpagina, maar minder nadruk dan 1–5 op de homepage.
 
 **Tone of voice**
-- **Wij-vorm** (beslist 30-09-2026, vervangt de eerdere "ik"-vorm): het bedrijf spreekt als "we/wij/ons"; Bert in de derde persoon waar het over hem gaat. Vragen en knoppen in de stem van de bezoeker ("Kan ik…?", "Vraag mijn offerte aan") blijven in de ik-vorm. Naar klanten: **"u"**; jobs: **"je"**.
+- **Wij-vorm** (beslist 30-09-2026, vervangt de eerdere "ik"-vorm): het bedrijf spreekt als "we/wij/ons"; Bert alleen als zaakvoerder, niet in elk procesblok. Vragen en knoppen in de stem van de bezoeker ("Kan ik…?", "Vraag mijn offerte aan") blijven in de ik-vorm. Naar klanten: **"u"**; jobs: **"je"**.
 - **Uitzondering jobpagina:** naar kandidaten **"je"** (natuurlijker voor starters). `[TE BEVESTIGEN door Bert — anders overal "u"]`
 - Concreet en controleerbaar. Verboden: "wij passen ons voortdurend aan aan de nieuwste trends", "kwaliteit staat bij ons hoog in het vaandel", "uw one-stop-shop".
 - Korte zinnen, Vlaams-Nederlands (niet Hollands: "offerte", "gsm", "keuring", "zekeringkast/verdeelkast", "camionette").

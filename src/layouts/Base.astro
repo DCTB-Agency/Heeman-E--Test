@@ -40,7 +40,7 @@ const graph = {
       email: business.email,
       vatID: business.vatId,
       foundingDate: business.foundingDate,
-      founder: { '@id': `${SITE_URL}/over-bert/#bert` },
+      founder: { '@id': `${SITE_URL}/over-ons/#bert` },
       address: {
         '@type': 'PostalAddress',
         streetAddress: business.address.street,
@@ -83,7 +83,7 @@ const graph = {
     },
     {
       '@type': 'Person',
-      '@id': `${SITE_URL}/over-bert/#bert`,
+      '@id': `${SITE_URL}/over-ons/#bert`,
       name: business.owner,
       jobTitle: business.ownerTitle,
       worksFor: { '@id': orgId },

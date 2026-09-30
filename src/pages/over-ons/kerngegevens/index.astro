@@ -11,8 +11,8 @@ import { metTodo } from '../../../lib/tekst';
 const bijgewerkt = '23 september 2026';
 const kruimels = [
   { naam: 'Home', url: '/' },
-  { naam: 'Over Bert', url: '/over-bert/' },
-  { naam: 'Kerngegevens', url: '/over-bert/kerngegevens/' },
+  { naam: 'Over ons', url: '/over-ons/' },
+  { naam: 'Kerngegevens', url: '/over-ons/kerngegevens/' },
 ];
 const blokken: { titel: string; rijen: [string, string][] }[] = [
   { titel: 'Onderneming', rijen: [
@@ -21,15 +21,15 @@ const blokken: { titel: string; rijen: [string, string][] }[] = [
     ['Ondernemingsnummer', business.vat],
     ['Opgericht', 'mei 2018 (eigen zaak)'],
     ['Zaakvoerder', `${business.owner}, erkend elektricien met ${business.experience}`],
-    ['Team', `${business.owner}; vacature voor een junior elektricien (vast, voltijds)`],
+    ['Vacature', 'Junior elektricien (vast, voltijds)'],
   ] },
   { titel: 'Werkgebied en doelgroep', rijen: [
     ['Gemeenten', areas.map((a) => a.name).join(', ')],
     ['Straal', '± 20 km rond Schilde (provincie Antwerpen, België)'],
-    ['Klanten', 'Particulieren, bedrijven en syndici (appartementsgebouwen)'],
+    ['Klanten', 'Particulieren, bedrijven, syndici (appartementsgebouwen) en aannemers'],
   ] },
   { titel: 'Werkwijze en prijzen', rijen: [
-    ['Werkwijze', 'Bert doet zelf het eerste bezoek en de inschatting, is erbij bij opstart en oplevering en doet de kwaliteitscontrole'],
+    ['Werkwijze', 'Bezoek en inschatting vooraf, één vast aanspreekpunt van opstart tot oplevering, kwaliteitscontrole bij elke installatie'],
     ['Prijzen', 'Gratis offerte na een bezoek; geen vaste prijzen of bedragen online'],
     ['Antwoord op offertes', `Binnen ${antwoordTermijn}`],
     ['Laadpaalmerken', laadpaalMerken.join(', ')],
@@ -45,8 +45,8 @@ const blokken: { titel: string; rijen: [string, string][] }[] = [
 ];
 const orgSchema = {
   '@type': 'AboutPage',
-  '@id': `${SITE_URL}/over-bert/kerngegevens/#page`,
-  url: `${SITE_URL}/over-bert/kerngegevens/`,
+  '@id': `${SITE_URL}/over-ons/kerngegevens/#page`,
+  url: `${SITE_URL}/over-ons/kerngegevens/`,
   name: `${business.name} – feiten & kerngegevens`,
   about: { '@id': `${SITE_URL}/#organization` },
   dateModified: '2026-09-23',

@@ -27,10 +27,10 @@ export type Dienst = {
 };
 
 export const STANDAARD_STAPPEN: Stap[] = [
-  { titel: 'Bezoek en inschatting', tekst: 'Bert komt zelf langs, bekijkt uw situatie en bespreekt wat u wil.' },
+  { titel: 'Bezoek en inschatting', tekst: 'We komen langs, bekijken uw situatie en bespreken wat u wil.' },
   { titel: 'Gratis offerte', tekst: 'U krijgt een duidelijke offerte met wat er gebeurt en welk materiaal we gebruiken.' },
-  { titel: 'Uitvoering', tekst: 'Bij de opstart is Bert erbij. Het werk gebeurt netjes, volgens het AREI.' },
-  { titel: 'Oplevering en controle', tekst: 'Bert doet zelf de kwaliteitscontrole en we leggen u uit hoe alles werkt.' },
+  { titel: 'Uitvoering', tekst: 'Het werk gebeurt netjes, volgens het AREI, met één vast aanspreekpunt.' },
+  { titel: 'Oplevering en controle', tekst: 'We doen een kwaliteitscontrole en leggen u uit hoe alles werkt.' },
 ];
 
 const BIJGEWERKT = '2026-09-23';
@@ -54,7 +54,7 @@ export const diensten: Dienst[] = [
       'Laadpaal thuis of voor uw bedrijf in Schilde en omgeving. Persoonlijk contact, vakkundig en netjes geplaatst. Gratis offerte of bel 0485 19 00 27.',
     h1: 'Laadpaal laten plaatsen in Schilde en omgeving',
     antwoord:
-      'Een laadpaal thuis of voor uw bedrijf laat u plaatsen door een erkend elektricien. Bert komt zelf langs om uw aansluiting en verdeelkast te bekijken en u krijgt een gratis offerte. Daarna plaatsen we de laadpaal, onder meer van EVBox, Alfen, Easee of Zaptec, stellen hem in en maken alles klaar voor de keuring.',
+      'Een laadpaal thuis of voor uw bedrijf laat u plaatsen door een erkend elektricien. We komen langs om uw aansluiting en verdeelkast te bekijken en u krijgt een gratis offerte. Daarna plaatsen we de laadpaal, onder meer van EVBox, Alfen, Easee of Zaptec, stellen hem in en maken alles klaar voor de keuring.',
     voorWie: [
       'Thuisladen: u heeft (binnenkort) een elektrische of plug-in hybride wagen.',
       'Bedrijven: laadpunten voor uw eigen wagens, personeel of bezoekers.',
@@ -121,10 +121,10 @@ export const diensten: Dienst[] = [
       'U wil vooraf weten of uw installatie in orde is.',
     ],
     stappen: [
-      { titel: 'Nazicht', tekst: 'Bert komt zelf langs en bekijkt uw installatie, en het keuringsverslag als u er al een heeft.' },
+      { titel: 'Nazicht', tekst: 'We komen langs en bekijken uw installatie, en het keuringsverslag als u er al een heeft.' },
       { titel: 'Gratis offerte', tekst: 'U krijgt een offerte met wat er rechtgezet moet worden.' },
       { titel: 'Herstellingen en schema’s', tekst: 'We zetten de inbreuken recht en maken het eendraadschema en situatieschema.' },
-      { titel: 'Keuring', tekst: 'Een erkend keuringsorganisme keurt de installatie. Bert doet vooraf zelf de controle.' },
+      { titel: 'Keuring', tekst: 'Een erkend keuringsorganisme keurt de installatie. Wij doen vooraf de controle.' },
     ],
     inOfferte: [
       'Nazicht van uw installatie en eventueel keuringsverslag',
@@ -281,7 +281,7 @@ export const diensten: Dienst[] = [
       'Zonnepanelen en thuisbatterij slim koppelen aan uw installatie en laadpaal, in Schilde en omgeving. Vraag vrijblijvend advies en een offerte.',
     h1: 'Zonnepanelen en thuisbatterij aansluiten in Schilde',
     antwoord:
-      'Zonnepanelen en een thuisbatterij halen het meeste uit uw stroom als ze goed samenwerken met de rest van uw installatie. We sluiten ze aan en integreren ze met uw verdeelkast en laadpaal, zodat u bijvoorbeeld uw wagen kan laden met eigen zonnestroom. U krijgt eerst advies en een gratis offerte. [TE BEVESTIGEN: plaatst Bert ook de panelen zelf?]',
+      'Zonnepanelen en een thuisbatterij halen het meeste uit uw stroom als ze goed samenwerken met de rest van uw installatie. We sluiten ze aan en integreren ze met uw verdeelkast en laadpaal, zodat u bijvoorbeeld uw wagen kan laden met eigen zonnestroom. U krijgt eerst advies en een gratis offerte. [TE BEVESTIGEN: plaatsen we ook de panelen zelf?]',
     voorWie: [
       'U heeft zonnepanelen en wil ze slim koppelen aan uw laadpaal.',
       'U overweegt een thuisbatterij bij uw bestaande zonnepanelen.',
@@ -302,7 +302,7 @@ export const diensten: Dienst[] = [
     faq: [
       {
         vraag: 'Plaatst u ook de zonnepanelen zelf?',
-        antwoord: '[TE BEVESTIGEN: plaatst Bert zelf of enkel de elektrische aansluiting?]',
+        antwoord: '[TE BEVESTIGEN: plaatsen we zelf of enkel de elektrische aansluiting?]',
       },
       {
         vraag: 'Kan ik mijn laadpaal koppelen aan mijn zonnepanelen?',

@@ -1,6 +1,8 @@
 oude_url,nieuwe_url,status,opmerking
 /,/,200,ongewijzigd
-/over/,/over-bert/,301,
+/over/,/over-ons/,301,
+/over-bert/,/over-ons/,301,"tijdelijke URL uit de preview (tot 30-09-2026)"
+/over-bert/kerngegevens/,/over-ons/kerngegevens/,301,"idem"
 /contact/,/contact/,200,ongewijzigd
 /laadpaal-installatie-in-schilde/,/diensten/laadpaal-installeren/,301,"rankt al — 'Schilde' behouden in H1/title"
 /sitemap.xml,/sitemap-index.xml,301,

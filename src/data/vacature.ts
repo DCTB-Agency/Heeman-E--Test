@@ -7,17 +7,17 @@ import type { Vraag } from '../lib/schema';
 export const vacature = {
   slug: 'junior-elektricien',
   titel: 'Junior elektricien (m/v/x)',
-  h1: 'Junior elektricien (m/v/x) in Schilde — leer het vak naast Bert',
+  h1: 'Junior elektricien (m/v/x) in Schilde — leer het vak op de werf',
   metaTitle: 'Vacature junior elektricien Schilde · Heeman',
   metaDescription:
-    'Junior elektricien gezocht in Schilde. Vast voltijds contract, leer het vak naast Bert: laadpalen, domotica, zonnepanelen. Solliciteer in 1 minuut.',
+    'Junior elektricien gezocht in Schilde. Vast voltijds contract, leer het vak op de werf: laadpalen, domotica, zonnepanelen. Solliciteer in 1 minuut.',
   datePosted: '2026-09-23', // [TE BEVESTIGEN: publicatiedatum = dag van livegang]
   validThrough: '2026-12-31T23:59',
   intro:
-    'Heeman Electrics is een lokale elektricien in Schilde. Zaakvoerder Bert heeft meer dan 10 jaar ervaring. Het werk groeit: laadpalen, Niko Home Control, zonnepanelen, renovaties. Daarom zoeken we een junior elektricien die met Bert mee op de baan gaat en het vak écht wil leren. Geen groot bedrijf, geen callcenter: jij, Bert en de klant.',
+    'Heeman Electrics is een groeiende, erkende elektricien uit Schilde met meer dan 10 jaar vakkennis. Het werk groeit: laadpalen, Niko Home Control, zonnepanelen, renovaties, voor particulieren en bedrijven. Daarom zoeken we een junior elektricien die mee op de baan gaat en het vak écht wil leren. Korte lijnen, afwisselend werk en een vaste plek in het team.',
 
   taken: [
-    'Samen met Bert laadpalen plaatsen bij particulieren en bedrijven.',
+    'Laadpalen plaatsen bij particulieren en bedrijven.',
     'Elektrische installaties vernieuwen en keuringsklaar maken volgens het AREI.',
     'Domotica installeren en programmeren (Niko Home Control).',
     'Zonnepanelen en thuisbatterijen aansluiten.',
@@ -34,7 +34,7 @@ export const vacature = {
 
   aanbod: [
     'Een vast, voltijds contract.',
-    'Je leert het vak van A tot Z, rechtstreeks van Bert — geen anoniem nummer in een groot team.',
+    'Je leert het vak van A tot Z van een erkend elektricien met 10+ jaar ervaring, met korte lijnen naar de zaakvoerder.',
     'Afwisselend werk in de eigen regio: geen uren in de file.',
     '[AANVULLEN: bedrijfswagen? opleidingen/attesten (BA4/BA5, VCA)? maaltijdcheques? gsm? werkkledij? — alleen wat Bert bevestigt]',
     'Loon: bespreekbaar in het gesprek.',
@@ -54,7 +54,7 @@ export const vacature = {
     { titel: 'Je stuurt je gegevens', tekst: 'Via het formulier (1 minuut), WhatsApp, telefoon of mail.' },
     { titel: 'We bellen je terug', tekst: 'Binnen [AANVULLEN: X] werkdagen.' },
     { titel: 'Kennismaking', tekst: 'We praten en je draait een dag mee op een werf. [TE BEVESTIGEN]' },
-    { titel: 'Start', tekst: 'Je begint naast Bert op de baan.' },
+    { titel: 'Start', tekst: 'Je begint mee op de baan, met begeleiding.' },
   ],
 
   faq: [

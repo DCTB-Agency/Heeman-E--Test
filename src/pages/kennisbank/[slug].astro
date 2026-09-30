@@ -28,7 +28,7 @@ const schema = {
   datePublished: a.gepubliceerd,
   dateModified: a.bijgewerkt,
   inLanguage: 'nl-BE',
-  author: { '@id': `${SITE_URL}/over-bert/#bert` },
+  author: { '@id': `${SITE_URL}/over-ons/#bert` },
   publisher: { '@id': `${SITE_URL}/#organization` },
   image: `${SITE_URL}/og/bert.jpg`,
 };
@@ -40,7 +40,7 @@ const schema = {
     <h1 class="fade-up mt-6 text-[clamp(2.25rem,1.5rem+3vw,3.75rem)] leading-[1.05] tracking-tight">{a.titel}</h1>
     <p class="fade-up mt-6 flex items-center gap-3 text-sm text-muted" style="--d:150ms">
       <span class="grid size-9 place-items-center rounded-full bg-ink font-display font-semibold text-accent" aria-hidden="true">B</span>
-      <span>Geschreven door <a href="/over-bert/" class="font-semibold text-ink underline-offset-4 hover:underline">{business.owner}</a>, erkend elektricien in Schilde · bijgewerkt op <time datetime={a.bijgewerkt}>{datum(a.bijgewerkt)}</time></span>
+      <span>Geschreven door <a href="/over-ons/" class="font-semibold text-ink underline-offset-4 hover:underline">{business.owner}</a>, erkend elektricien in Schilde · bijgewerkt op <time datetime={a.bijgewerkt}>{datum(a.bijgewerkt)}</time></span>
     </p>
     <p class="fade-up mt-8 text-xl leading-relaxed" style="--d:250ms">{a.intro}</p>
 

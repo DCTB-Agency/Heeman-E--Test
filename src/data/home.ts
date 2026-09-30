@@ -4,17 +4,17 @@ import { business, areas } from './site';
 import type { Vraag } from '../lib/schema';
 
 export const usps = [
-  { titel: 'Persoonlijk contact', tekst: 'Ik kom zelf langs voor het eerste bezoek en de inschatting, en ben erbij bij de opstart en de oplevering.' },
+  { titel: 'Persoonlijk contact', tekst: 'Bert komt zelf langs voor het eerste bezoek en de inschatting, en is erbij bij de opstart en de oplevering.' },
   { titel: 'Vakkennis', tekst: 'Erkend elektricien met meer dan 10 jaar ervaring, van laadpaal tot Niko Home Control.' },
-  { titel: 'Netjes afgewerkt', tekst: 'De kwaliteitscontrole doe ik zelf: keuringsklaar volgens het AREI, met schema’s, en een opgeruimde werf.' },
+  { titel: 'Netjes afgewerkt', tekst: 'De kwaliteitscontrole doet Bert zelf: keuringsklaar volgens het AREI, met schema’s, en een opgeruimde werf.' },
 ];
 
 // Korte uitleg per dienst (slug uit site.ts).
 export const dienstTekst: Record<string, string> = {
   'laadpaal-installeren':
-    'Thuis, voor uw bedrijf of in een gemeenschappelijke parking. Slim laden en koppeling met zonnepanelen. Ik plaats onder meer EVBox, Alfen, Easee en Zaptec.',
+    'Thuis, voor uw bedrijf of in een gemeenschappelijke parking. Slim laden en koppeling met zonnepanelen. We plaatsen onder meer EVBox, Alfen, Easee en Zaptec.',
   'elektrische-keuring':
-    'Woning verkopen of installatie afgekeurd? Ik breng uw installatie in orde volgens het AREI en maak de schema’s. De keuring zelf doet een erkend keuringsorganisme.',
+    'Woning verkopen of installatie afgekeurd? We brengen uw installatie in orde volgens het AREI en maken de schema’s. De keuring zelf doet een erkend keuringsorganisme.',
   'domotica-niko-home-control':
     'Niko Home Control bij nieuwbouw of renovatie: installatie, uitbreiding en programmatie van verlichting, verwarming en toegang.',
   'renovatie-elektriciteit':
@@ -39,22 +39,22 @@ export const cijfers = [
 export const homeFaq: Vraag[] = [
   {
     vraag: 'In welke gemeenten werkt Heeman Electrics?',
-    antwoord: `In ${areas.map((a) => a.name).slice(0, -1).join(', ')} en ${areas.at(-1)!.name}: ongeveer 20 km rond Schilde. Twijfelt u of u in mijn werkgebied ligt? Bel of stuur een WhatsApp.`,
+    antwoord: `In ${areas.map((a) => a.name).slice(0, -1).join(', ')} en ${areas.at(-1)!.name}: ongeveer 20 km rond Schilde. Twijfelt u of u in ons werkgebied ligt? Bel of stuur een WhatsApp.`,
   },
   {
     vraag: 'Hoe verloopt een opdracht?',
-    antwoord: 'Ik kom eerst zelf langs om uw situatie te bekijken en in te schatten. Daarna krijgt u een gratis offerte. Bij de opstart en de oplevering ben ik erbij, en de kwaliteitscontrole doe ik zelf.',
+    antwoord: 'Bert komt eerst zelf langs om uw situatie te bekijken en in te schatten. Daarna krijgt u een gratis offerte. Bij de opstart en de oplevering is Bert erbij, en de kwaliteitscontrole doet hij zelf.',
   },
   {
     vraag: 'Welke laadpalen plaatst u?',
-    antwoord: 'Ik plaats onder meer laadpalen van EVBox, Alfen, Easee en Zaptec, voor thuis, bedrijven en appartementsgebouwen. Ik help u kiezen op basis van uw aansluiting en of u zonnepanelen heeft.',
+    antwoord: 'We plaatsen onder meer laadpalen van EVBox, Alfen, Easee en Zaptec, voor thuis, bedrijven en appartementsgebouwen. We helpen u kiezen op basis van uw aansluiting en of u zonnepanelen heeft.',
   },
   {
     vraag: 'Doet u zelf de elektrische keuring?',
-    antwoord: 'Nee. De keuring gebeurt door een erkend keuringsorganisme. Ik maak uw installatie keuringsklaar volgens het AREI, zet fouten recht en maak de nodige schema’s.',
+    antwoord: 'Nee. De keuring gebeurt door een erkend keuringsorganisme. We maken uw installatie keuringsklaar volgens het AREI, zetten fouten recht en maken de nodige schema’s.',
   },
   {
     vraag: 'Kan ik u bereiken bij een dringend probleem?',
-    antwoord: `Ja. Ik ben open ${business.hours.label}, maar voor dringende problemen ben ik ook buiten de openingsuren bereikbaar op ${business.phone.display}.`,
+    antwoord: `Ja. We zijn open ${business.hours.label}, maar voor dringende problemen zijn we ook buiten de openingsuren bereikbaar op ${business.phone.display}.`,
   },
 ];

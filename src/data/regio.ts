@@ -19,7 +19,7 @@ export type Regio = {
 
 const populair: Record<string, Regio['populair']> = {
   Schilde: {
-    tekst: 'In Schilde werk ik veel in villa’s en ruime gezinswoningen. Laadpalen voor een (tweede) elektrische wagen, Niko Home Control bij renovaties en het keuringsklaar maken van de installatie bij de verkoop van een woning komen hier het vaakst voor.',
+    tekst: 'In Schilde werken we veel in villa’s en ruime gezinswoningen. Laadpalen voor een (tweede) elektrische wagen, Niko Home Control bij renovaties en het keuringsklaar maken van de installatie bij de verkoop van een woning komen hier het vaakst voor.',
     diensten: ['laadpaal-installeren', 'domotica-niko-home-control', 'elektrische-keuring'],
   },
   "'s-Gravenwezel": {
@@ -27,7 +27,7 @@ const populair: Record<string, Regio['populair']> = {
     diensten: ['renovatie-elektriciteit', 'verlichtingsadvies', 'video-parlofonie'],
   },
   Wijnegem: {
-    tekst: 'In Wijnegem krijg ik veel vragen bij renovaties van rij- en halfopen woningen: een nieuwe verdeelkast, extra kringen voor keuken of badkamer, en een installatie die weer door de keuring raakt.',
+    tekst: 'In Wijnegem krijgen we veel vragen bij renovaties van rij- en halfopen woningen: een nieuwe verdeelkast, extra kringen voor keuken of badkamer, en een installatie die weer door de keuring raakt.',
     diensten: ['renovatie-elektriciteit', 'elektrische-keuring', 'laadpaal-installeren'],
   },
   Schoten: {
@@ -35,11 +35,11 @@ const populair: Record<string, Regio['populair']> = {
     diensten: ['elektrische-keuring', 'renovatie-elektriciteit', 'dringende-herstellingen'],
   },
   Brasschaat: {
-    tekst: 'In Brasschaat en Maria-ter-Heide plaats ik vooral laadpalen bij woningen met een oprit of garage, vaak gekoppeld aan zonnepanelen om slim te laden met eigen stroom. Ook Niko Home Control bij nieuwbouw en renovatie komt hier geregeld voor.',
+    tekst: 'In Brasschaat en Maria-ter-Heide plaatsen we vooral laadpalen bij woningen met een oprit of garage, vaak gekoppeld aan zonnepanelen om slim te laden met eigen stroom. Ook Niko Home Control bij nieuwbouw en renovatie komt hier geregeld voor.',
     diensten: ['laadpaal-installeren', 'zonnepanelen-thuisbatterij', 'domotica-niko-home-control'],
   },
   Zoersel: {
-    tekst: 'In Zoersel, Halle en Sint-Antonius werk ik veel aan nieuwbouw en grondige renovaties: de volledige elektrische installatie van plan tot keuring, met meteen een voorbereiding voor laadpaal en zonnepanelen.',
+    tekst: 'In Zoersel, Halle en Sint-Antonius werken we veel aan nieuwbouw en grondige renovaties: de volledige elektrische installatie van plan tot keuring, met meteen een voorbereiding voor laadpaal en zonnepanelen.',
     diensten: ['nieuwbouw', 'renovatie-elektriciteit', 'laadpaal-installeren'],
   },
   Zandhoven: {
@@ -47,7 +47,7 @@ const populair: Record<string, Regio['populair']> = {
     diensten: ['zonnepanelen-thuisbatterij', 'laadpaal-installeren', 'elektrische-keuring'],
   },
   Ranst: {
-    tekst: 'In Ranst, Oelegem, Broechem en Emblem plaats ik vooral laadpalen, zoals onlangs aan een bakstenen gevel in Oelegem, en vernieuw ik de elektriciteit bij renovaties, vaak meteen met Niko Home Control.',
+    tekst: 'In Ranst, Oelegem, Broechem en Emblem plaatsen we vooral laadpalen, zoals onlangs aan een bakstenen gevel in Oelegem, en vernieuwen we de elektriciteit bij renovaties, vaak meteen met Niko Home Control.',
     diensten: ['laadpaal-installeren', 'renovatie-elektriciteit', 'domotica-niko-home-control'],
   },
 };

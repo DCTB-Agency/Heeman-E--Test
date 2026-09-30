@@ -20,12 +20,12 @@ export const artikels: Artikel[] = [
     gepubliceerd: '2026-09-23',
     bijgewerkt: '2026-09-23',
     intro:
-      'Pas afgestudeerd in elektriciteit en benieuwd hoe het er op de werf aan toegaat? Hieronder vertel ik wat je als junior elektricien doet, wat je nodig hebt en wat je bij mij leert.',
+      'Pas afgestudeerd in elektriciteit en benieuwd hoe het er op de werf aan toegaat? Hieronder vertellen we wat je als junior elektricien doet, wat je nodig hebt en wat je bij ons leert.',
     secties: [
       {
         vraag: 'Wat doet een junior elektricien?',
         antwoord:
-          'Een junior elektricien werkt mee aan elektrische installaties, samen met een ervaren elektricien. Bij mij plaats je laadpalen, vernieuw je installaties en maak je ze keuringsklaar, installeer je Niko Home Control en sluit je zonnepanelen en thuisbatterijen aan. Stap voor stap werk je zelfstandiger, ook in contact met klanten.',
+          'Een junior elektricien werkt mee aan elektrische installaties, samen met een ervaren elektricien. Bij ons plaats je laadpalen, vernieuw je installaties en maak je ze keuringsklaar, installeer je Niko Home Control en sluit je zonnepanelen en thuisbatterijen aan. Stap voor stap werk je zelfstandiger, ook in contact met klanten.',
       },
       {
         vraag: 'Welk diploma heb je nodig?',
@@ -46,7 +46,7 @@ export const artikels: Artikel[] = [
       {
         vraag: 'Wat zijn BA4 en BA5?',
         antwoord:
-          'Dat zijn bevoegdheidsniveaus uit het AREI: BA4 staat voor een gewaarschuwd persoon, BA5 voor een vakbekwaam persoon. Ze bepalen welke elektrische werken je zelfstandig mag uitvoeren. [te controleren] Of je deze attesten bij mij kan behalen: [AANVULLEN]',
+          'Dat zijn bevoegdheidsniveaus uit het AREI: BA4 staat voor een gewaarschuwd persoon, BA5 voor een vakbekwaam persoon. Ze bepalen welke elektrische werken je zelfstandig mag uitvoeren. [te controleren] Of je deze attesten bij ons kan behalen: [AANVULLEN]',
       },
       {
         vraag: 'Hoe ziet een werkdag eruit?',
@@ -55,7 +55,7 @@ export const artikels: Artikel[] = [
       },
     ],
     bronnen: [{ naam: 'FOD Economie — AREI', url: 'https://economie.fgov.be/nl' }],
-    cta: { tekst: 'Ik zoek een junior elektricien in de regio Schilde.', href: '/jobs/junior-elektricien/', knop: 'Bekijk de vacature' },
+    cta: { tekst: 'We zoeken een junior elektricien in de regio Schilde.', href: '/jobs/junior-elektricien/', knop: 'Bekijk de vacature' },
   },
 ];
 

@@ -69,7 +69,7 @@ const extra = services.filter((s) => s.priority > 5);
     <div class="container-site">
       <div class="reveal max-w-3xl">
         <p class="eyebrow">Diensten</p>
-        <h2 id="diensten" class="h2 mt-3">Wat kan ik voor u doen?</h2>
+        <h2 id="diensten" class="h2 mt-3">Wat kunnen we voor u doen?</h2>
       </div>
 
       <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr]">
@@ -136,8 +136,8 @@ const extra = services.filter((s) => s.priority > 5);
         <p class="eyebrow">Over Heeman Electrics</p>
         <h2 class="h2 mt-3">Eén vast aanspreekpunt: Bert.</h2>
         <p class="mt-5 max-w-xl text-lg text-on-ink-muted">
-          Ik ben Bert Heeman, erkend elektricien in Schilde. U belt mij, ik kom zelf kijken en maak de inschatting. Bij de opstart
-          en de oplevering ben ik erbij, en de kwaliteitscontrole doe ik zelf.
+          Bert Heeman is erkend elektricien en zaakvoerder. Hij komt zelf kijken en maakt de inschatting. Bij de opstart
+          en de oplevering is hij erbij, en de kwaliteitscontrole doet hij zelf.
         </p>
         <a href="/over-bert/" class="mt-10 inline-flex items-center gap-2 font-display font-semibold text-accent hover:text-white">Maak kennis met Bert <span aria-hidden="true">→</span></a>
       </div>
@@ -162,7 +162,7 @@ const extra = services.filter((s) => s.priority > 5);
       <div class="reveal flex flex-col gap-6 rounded-3xl border border-ink/10 bg-white p-8 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p class="eyebrow">Google-reviews</p>
-          <p class="mt-2 font-display text-2xl font-semibold">Wat klanten over mij zeggen</p>
+          <p class="mt-2 font-display text-2xl font-semibold">Wat klanten over ons zeggen</p>
           <p class="mt-2 text-muted"><mark class="todo">[AANVULLEN: score, aantal reviews en 3–5 echte Google-reviews + link naar het Google Bedrijfsprofiel]</mark></p>
         </div>
         <span class="btn btn-ghost shrink-0 cursor-not-allowed opacity-50" title="Link naar Google Bedrijfsprofiel volgt">Alle reviews op Google</span>
@@ -196,7 +196,7 @@ const extra = services.filter((s) => s.priority > 5);
       <div class="reveal">
         <p class="eyebrow">Werkgebied</p>
         <h2 id="werkgebied" class="h2 mt-3">Uw elektricien in de oostrand van Antwerpen</h2>
-        <p class="mt-5 text-lg text-on-ink-muted">Vanuit Schilde werk ik in een straal van ± 20 km. Kort op de baan, dus snel ter plaatse.</p>
+        <p class="mt-5 text-lg text-on-ink-muted">Vanuit Schilde werken we in een straal van ± 20 km. Kort op de baan, dus snel ter plaatse.</p>
         <ul class="mt-8 grid grid-cols-2 gap-x-6 gap-y-2">
           {areas.map((a) => (
             <li><a href={areaUrl(a.slug)} class="group inline-flex items-center gap-2 py-1 font-medium hover:text-accent"><span class="size-2 rounded-full bg-accent" aria-hidden="true"></span>{a.name}</a></li>
@@ -225,7 +225,7 @@ const extra = services.filter((s) => s.priority > 5);
     <div class="container-site relative py-20 sm:py-24">
       <div class="reveal mx-auto max-w-3xl rounded-3xl bg-ink px-2 py-4 text-center">
         <h2 id="cta" class="h2">Vraag uw gratis offerte aan</h2>
-        <p class="mt-4 text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een gratis offerte. Ik antwoord binnen {antwoordTermijn}.</p>
+        <p class="mt-4 text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een gratis offerte. We antwoorden binnen {antwoordTermijn}.</p>
         <div class="mt-8 flex flex-wrap justify-center gap-3">
           <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
           <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>

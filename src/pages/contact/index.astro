@@ -32,7 +32,7 @@ const label = 'block font-semibold';
     <Kruimels kruimels={kruimels} class="fade-up text-muted" />
     <h1 class="mt-6 text-display"><span class="line-mask"><span style="--i:1">Contact</span></span></h1>
     <p class="fade-up mt-6 max-w-2xl text-lg text-muted" style="--d:250ms">
-      U spreekt rechtstreeks met mij, Bert. Bellen of WhatsApp gaat het snelst. Ik antwoord binnen <span set:html={metTodo(antwoordTermijn)} />.
+      Bellen of WhatsApp gaat het snelst. We antwoorden binnen <span set:html={metTodo(antwoordTermijn)} />.
     </p>
 
     <ul class="reveal-stagger mt-12 grid gap-4 sm:grid-cols-3">
@@ -68,7 +68,7 @@ const label = 'block font-semibold';
           <div class="grid gap-1 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold">Werkgebied</dt><dd>{areas.map((a) => a.name).join(', ')}</dd></div>
           <div class="grid gap-1 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold">Onderneming</dt><dd set:html={metTodo(`${business.legalName} · ${business.vat}`)} /></div>
         </dl>
-        <p class="mt-8 text-muted">Wil je bij mij werken? <a href={job.url} class="font-semibold text-brand underline-offset-4 hover:underline">Bekijk de vacature junior elektricien</a>.</p>
+        <p class="mt-8 text-muted">Wil je bij ons werken? <a href={job.url} class="font-semibold text-brand underline-offset-4 hover:underline">Bekijk de vacature junior elektricien</a>.</p>
       </div>
 
       <div class="reveal rounded-3xl bg-white p-6 shadow-[0_24px_60px_-40px_rgb(28_13_10/0.5)] sm:p-10" data-mailto-blok>

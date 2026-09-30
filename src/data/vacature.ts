@@ -14,10 +14,10 @@ export const vacature = {
   datePosted: '2026-09-23', // [TE BEVESTIGEN: publicatiedatum = dag van livegang]
   validThrough: '2026-12-31T23:59',
   intro:
-    'Ik ben Bert, elektricien in Schilde met meer dan 10 jaar ervaring. Het werk groeit: laadpalen, Niko Home Control, zonnepanelen, renovaties. Daarom zoek ik een junior elektricien die met mij mee op de baan gaat en het vak écht wil leren. Geen groot bedrijf, geen callcenter: jij, ik en de klant.',
+    'Heeman Electrics is een lokale elektricien in Schilde. Zaakvoerder Bert heeft meer dan 10 jaar ervaring. Het werk groeit: laadpalen, Niko Home Control, zonnepanelen, renovaties. Daarom zoeken we een junior elektricien die met Bert mee op de baan gaat en het vak écht wil leren. Geen groot bedrijf, geen callcenter: jij, Bert en de klant.',
 
   taken: [
-    'Samen met mij laadpalen plaatsen bij particulieren en bedrijven.',
+    'Samen met Bert laadpalen plaatsen bij particulieren en bedrijven.',
     'Elektrische installaties vernieuwen en keuringsklaar maken volgens het AREI.',
     'Domotica installeren en programmeren (Niko Home Control).',
     'Zonnepanelen en thuisbatterijen aansluiten.',
@@ -34,7 +34,7 @@ export const vacature = {
 
   aanbod: [
     'Een vast, voltijds contract.',
-    'Je leert het vak van A tot Z, rechtstreeks van mij — geen anoniem nummer in een groot team.',
+    'Je leert het vak van A tot Z, rechtstreeks van Bert — geen anoniem nummer in een groot team.',
     'Afwisselend werk in de eigen regio: geen uren in de file.',
     '[AANVULLEN: bedrijfswagen? opleidingen/attesten (BA4/BA5, VCA)? maaltijdcheques? gsm? werkkledij? — alleen wat Bert bevestigt]',
     'Loon: bespreekbaar in het gesprek.',
@@ -52,9 +52,9 @@ export const vacature = {
 
   stappen: [
     { titel: 'Je stuurt je gegevens', tekst: 'Via het formulier (1 minuut), WhatsApp, telefoon of mail.' },
-    { titel: 'Ik bel je terug', tekst: 'Binnen [AANVULLEN: X] werkdagen.' },
+    { titel: 'We bellen je terug', tekst: 'Binnen [AANVULLEN: X] werkdagen.' },
     { titel: 'Kennismaking', tekst: 'We praten en je draait een dag mee op een werf. [TE BEVESTIGEN]' },
-    { titel: 'Start', tekst: 'Je begint naast mij op de baan.' },
+    { titel: 'Start', tekst: 'Je begint naast Bert op de baan.' },
   ],
 
   faq: [
@@ -72,7 +72,7 @@ export function vacatureHtml(): string {
   return [
     `<p>${vacature.intro}</p>`,
     `<h2>Wat ga je doen?</h2>${lijst(vacature.taken)}`,
-    `<h2>Wie zoek ik?</h2>${lijst(vacature.profiel)}`,
-    `<h2>Wat bied ik?</h2>${lijst(vacature.aanbod)}`,
+    `<h2>Wie zoeken we?</h2>${lijst(vacature.profiel)}`,
+    `<h2>Wat bieden we?</h2>${lijst(vacature.aanbod)}`,
   ].join('');
 }

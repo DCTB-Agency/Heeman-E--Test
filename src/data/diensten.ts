@@ -1,6 +1,6 @@
 // Dienstpagina's — CLAUDE.md § 8 (template + aandachtspunten), § 9 (metadata), § 11.3 (antwoord eerst), § 0.1.
 // Regels: geen vaste prijzen, geen bedragen, premies/regels altijd [te controleren] + officiële bron,
-// "ik"-vorm, keuring gebeurt door een erkend keuringsorganisme. Onbekend = [AANVULLEN] / [TE BEVESTIGEN].
+// "wij"-vorm (23-09: Bert doet bezoek, inschatting, opstart, oplevering en controle zelf), keuring gebeurt door een erkend keuringsorganisme. Onbekend = [AANVULLEN] / [TE BEVESTIGEN].
 import type { Vraag } from '../lib/schema';
 import type { FotoId } from './fotos';
 
@@ -27,10 +27,10 @@ export type Dienst = {
 };
 
 export const STANDAARD_STAPPEN: Stap[] = [
-  { titel: 'Bezoek en inschatting', tekst: 'Ik kom zelf langs, bekijk uw situatie en bespreek wat u wil.' },
-  { titel: 'Gratis offerte', tekst: 'U krijgt een duidelijke offerte met wat er gebeurt en welk materiaal ik gebruik.' },
-  { titel: 'Uitvoering', tekst: 'Bij de opstart ben ik erbij. Het werk gebeurt netjes, volgens het AREI.' },
-  { titel: 'Oplevering en controle', tekst: 'Ik doe zelf de kwaliteitscontrole en leg u uit hoe alles werkt.' },
+  { titel: 'Bezoek en inschatting', tekst: 'Bert komt zelf langs, bekijkt uw situatie en bespreekt wat u wil.' },
+  { titel: 'Gratis offerte', tekst: 'U krijgt een duidelijke offerte met wat er gebeurt en welk materiaal we gebruiken.' },
+  { titel: 'Uitvoering', tekst: 'Bij de opstart is Bert erbij. Het werk gebeurt netjes, volgens het AREI.' },
+  { titel: 'Oplevering en controle', tekst: 'Bert doet zelf de kwaliteitscontrole en we leggen u uit hoe alles werkt.' },
 ];
 
 const BIJGEWERKT = '2026-09-23';
@@ -54,7 +54,7 @@ export const diensten: Dienst[] = [
       'Laadpaal thuis of voor uw bedrijf in Schilde en omgeving. Persoonlijk contact, vakkundig en netjes geplaatst. Gratis offerte of bel 0485 19 00 27.',
     h1: 'Laadpaal laten plaatsen in Schilde en omgeving',
     antwoord:
-      'Een laadpaal thuis of voor uw bedrijf laat u plaatsen door een erkend elektricien. Ik kom zelf langs om uw aansluiting en verdeelkast te bekijken en u krijgt een gratis offerte. Daarna plaats ik de laadpaal, onder meer van EVBox, Alfen, Easee of Zaptec, stel hem in en maak alles klaar voor de keuring.',
+      'Een laadpaal thuis of voor uw bedrijf laat u plaatsen door een erkend elektricien. Bert komt zelf langs om uw aansluiting en verdeelkast te bekijken en u krijgt een gratis offerte. Daarna plaatsen we de laadpaal, onder meer van EVBox, Alfen, Easee of Zaptec, stellen hem in en maken alles klaar voor de keuring.',
     voorWie: [
       'Thuisladen: u heeft (binnenkort) een elektrische of plug-in hybride wagen.',
       'Bedrijven: laadpunten voor uw eigen wagens, personeel of bezoekers.',
@@ -78,7 +78,7 @@ export const diensten: Dienst[] = [
       {
         vraag: 'Welke laadpaal past bij mij?',
         antwoord:
-          'Dat hangt af van uw aansluiting (1- of 3-fasig), hoeveel u rijdt en of u zonnepanelen heeft. Bij het bezoek bekijk ik dat en raad ik een model aan. Ik plaats onder meer EVBox, Alfen, Easee en Zaptec.',
+          'Dat hangt af van uw aansluiting (1- of 3-fasig), hoeveel u rijdt en of u zonnepanelen heeft. Bij het bezoek bekijken we dat en raden we een model aan. We plaatsen onder meer EVBox, Alfen, Easee en Zaptec.',
       },
       {
         vraag: 'Kan ik laden met mijn eigen zonnestroom?',
@@ -88,12 +88,12 @@ export const diensten: Dienst[] = [
       {
         vraag: 'Plaatst u ook laadpalen voor bedrijven en appartementen?',
         antwoord:
-          'Ja. Voor bedrijven plaats ik laadpunten voor eigen wagens, personeel of bezoekers. In appartementsgebouwen werk ik samen met de syndicus voor laadpunten in de gemeenschappelijke parking.',
+          'Ja. Voor bedrijven plaatsen we laadpunten voor eigen wagens, personeel of bezoekers. In appartementsgebouwen werken we samen met de syndicus voor laadpunten in de gemeenschappelijke parking.',
       },
       {
         vraag: 'Moet een laadpaal gekeurd worden?',
         antwoord:
-          'Een laadpaal is een uitbreiding van uw elektrische installatie en moet volgens het AREI in orde zijn. De keuring gebeurt door een erkend keuringsorganisme; ik maak alles daarvoor klaar. [te controleren]',
+          'Een laadpaal is een uitbreiding van uw elektrische installatie en moet volgens het AREI in orde zijn. De keuring gebeurt door een erkend keuringsorganisme; wij maken alles daarvoor klaar. [te controleren]',
       },
       {
         vraag: 'Is er een premie of fiscaal voordeel voor een laadpaal?',
@@ -110,10 +110,10 @@ export const diensten: Dienst[] = [
     serviceType: 'Elektrische installatie keuringsklaar maken volgens het AREI',
     metaTitle: 'Installatie keuringsklaar maken · Elektricien Schilde',
     metaDescription:
-      'Woning verkopen of installatie afgekeurd? Ik breng uw elektrische installatie in orde volgens het AREI, in Schilde en omgeving. Gratis offerte.',
+      'Woning verkopen of installatie afgekeurd? Wij brengen uw elektrische installatie in orde volgens het AREI, in Schilde en omgeving. Gratis offerte.',
     h1: 'Elektrische installatie keuringsklaar maken in Schilde',
     antwoord:
-      'Wil u uw woning verkopen of is uw elektrische installatie afgekeurd? Dan moet ze in orde gebracht worden volgens het AREI. Ik bekijk uw installatie, zet de inbreuken recht en maak de verplichte schema’s. De keuring zelf gebeurt daarna door een erkend keuringsorganisme; ik zorg dat uw installatie daar klaar voor is.',
+      'Wil u uw woning verkopen of is uw elektrische installatie afgekeurd? Dan moet ze in orde gebracht worden volgens het AREI. We bekijken uw installatie, zetten de inbreuken recht en maken de verplichte schema’s. De keuring zelf gebeurt daarna door een erkend keuringsorganisme; wij zorgen dat uw installatie daar klaar voor is.',
     voorWie: [
       'U verkoopt uw woning en de installatie moet gekeurd worden.',
       'Uw installatie is afgekeurd en de inbreuken moeten worden rechtgezet.',
@@ -121,10 +121,10 @@ export const diensten: Dienst[] = [
       'U wil vooraf weten of uw installatie in orde is.',
     ],
     stappen: [
-      { titel: 'Nazicht', tekst: 'Ik kom zelf langs en bekijk uw installatie, en het keuringsverslag als u er al een heeft.' },
+      { titel: 'Nazicht', tekst: 'Bert komt zelf langs en bekijkt uw installatie, en het keuringsverslag als u er al een heeft.' },
       { titel: 'Gratis offerte', tekst: 'U krijgt een offerte met wat er rechtgezet moet worden.' },
-      { titel: 'Herstellingen en schema’s', tekst: 'Ik zet de inbreuken recht en maak het eendraadschema en situatieschema.' },
-      { titel: 'Keuring', tekst: 'Een erkend keuringsorganisme keurt de installatie. Ik doe vooraf zelf de controle.' },
+      { titel: 'Herstellingen en schema’s', tekst: 'We zetten de inbreuken recht en maken het eendraadschema en situatieschema.' },
+      { titel: 'Keuring', tekst: 'Een erkend keuringsorganisme keurt de installatie. Bert doet vooraf zelf de controle.' },
     ],
     inOfferte: [
       'Nazicht van uw installatie en eventueel keuringsverslag',
@@ -142,7 +142,7 @@ export const diensten: Dienst[] = [
       {
         vraag: 'Doet u zelf de elektrische keuring?',
         antwoord:
-          'Nee. De keuring gebeurt door een erkend keuringsorganisme. Ik maak uw installatie keuringsklaar volgens het AREI, zet fouten recht en maak de nodige schema’s.',
+          'Nee. De keuring gebeurt door een erkend keuringsorganisme. We maken uw installatie keuringsklaar volgens het AREI, zetten fouten recht en maken de nodige schema’s.',
       },
       {
         vraag: 'Wanneer is een elektrische keuring verplicht?',
@@ -152,16 +152,16 @@ export const diensten: Dienst[] = [
       {
         vraag: 'Mijn installatie is afgekeurd. Wat nu?',
         antwoord:
-          'In het keuringsverslag staan de inbreuken en de termijn om ze recht te zetten. Ik kom kijken, herstel wat nodig is en daarna volgt een herkeuring door het keuringsorganisme. [te controleren: termijnen]',
+          'In het keuringsverslag staan de inbreuken en de termijn om ze recht te zetten. We komen kijken, herstellen wat nodig is en daarna volgt een herkeuring door het keuringsorganisme. [te controleren: termijnen]',
       },
       {
         vraag: 'Maakt u ook de schema’s?',
-        antwoord: 'Ja. Ik maak het eendraadschema en het situatieschema die nodig zijn voor de keuring.',
+        antwoord: 'Ja. We maken het eendraadschema en het situatieschema die nodig zijn voor de keuring.',
       },
       {
         vraag: 'Kan ik vooraf laten nakijken of mijn installatie in orde is?',
         antwoord:
-          'Ja. Ik kom langs, bekijk uw installatie en zeg u wat er moet gebeuren voordat u de keuring aanvraagt. Zo voorkomt u verrassingen.',
+          'Ja. We komen langs, bekijken uw installatie en zeggen u wat er moet gebeuren voordat u de keuring aanvraagt. Zo voorkomt u verrassingen.',
       },
     ],
     fotos: ['verdeelkast', { placeholder: 'dezelfde verdeelkast vóór de werken' }],
@@ -176,7 +176,7 @@ export const diensten: Dienst[] = [
       'Domotica met Niko Home Control bij nieuwbouw of renovatie in Schilde en omgeving. Installatie, uitbreiding en programmatie. Vraag een offerte.',
     h1: 'Niko Home Control installeren in Schilde en omgeving',
     antwoord:
-      'Met Niko Home Control stuurt u verlichting, verwarming en toegang centraal en slim aan. Ik installeer het bij nieuwbouw en renovatie, breid bestaande installaties uit en programmeer alles op maat van hoe u woont of werkt. U krijgt eerst een bezoek, advies en een gratis offerte.',
+      'Met Niko Home Control stuurt u verlichting, verwarming en toegang centraal en slim aan. We installeren het bij nieuwbouw en renovatie, breiden bestaande installaties uit en programmeren alles op maat van hoe u woont of werkt. U krijgt eerst een bezoek, advies en een gratis offerte.',
     voorWie: [
       'Nieuwbouw: u wil van bij de start een slimme installatie.',
       'Renovatie: u vernieuwt uw elektriciteit en wil meteen domotica.',
@@ -193,12 +193,12 @@ export const diensten: Dienst[] = [
       {
         vraag: 'Kan Niko Home Control ook in een bestaande woning?',
         antwoord:
-          'Ja. Bij een renovatie kan ik Niko Home Control installeren. Hoeveel werk dat is, hangt af van uw huidige bekabeling; dat bekijk ik bij het bezoek.',
+          'Ja. Bij een renovatie kunnen we Niko Home Control installeren. Hoeveel werk dat is, hangt af van uw huidige bekabeling; dat bekijken we bij het bezoek.',
       },
       {
         vraag: 'Kan ik mijn bestaande Niko-installatie uitbreiden?',
         antwoord:
-          'Vaak wel, maar dat hangt af van uw huidige installatie. Ik kom kijken wat er mogelijk is en welke stappen nodig zijn.',
+          'Vaak wel, maar dat hangt af van uw huidige installatie. We komen kijken wat er mogelijk is en welke stappen nodig zijn.',
       },
       {
         vraag: 'Wat kan ik met Niko Home Control sturen?',
@@ -207,7 +207,7 @@ export const diensten: Dienst[] = [
       },
       {
         vraag: 'Programmeert u de installatie ook?',
-        antwoord: 'Ja. Ik programmeer alles op maat en leg u bij de oplevering uit hoe het werkt.',
+        antwoord: 'Ja. We programmeren alles op maat en leggen u bij de oplevering uit hoe het werkt.',
       },
       {
         vraag: 'Kan ik later nog aanpassingen laten doen?',
@@ -226,7 +226,7 @@ export const diensten: Dienst[] = [
       'Nieuwe verdeelkast, bekabeling of volledige renovatie van uw elektriciteit in Schilde en omgeving. Netjes en keuringsklaar afgewerkt.',
     h1: 'Elektriciteit vernieuwen bij renovatie in Schilde',
     antwoord:
-      'Een renovatie is hét moment om uw elektriciteit te vernieuwen: een nieuwe verdeelkast, nieuwe bekabeling, een goede aarding en de juiste differentieelschakelaars. Ik breng uw installatie weer veilig en up-to-date volgens het AREI, met de nodige schema’s. Zo is ze klaar voor de keuring én voor later: een laadpaal, zonnepanelen of domotica.',
+      'Een renovatie is hét moment om uw elektriciteit te vernieuwen: een nieuwe verdeelkast, nieuwe bekabeling, een goede aarding en de juiste differentieelschakelaars. We brengen uw installatie weer veilig en up-to-date volgens het AREI, met de nodige schema’s. Zo is ze klaar voor de keuring én voor later: een laadpaal, zonnepanelen of domotica.',
     voorWie: [
       'U verbouwt en de oude installatie moet mee vernieuwd worden.',
       'Uw verdeelkast is verouderd of heeft nog smeltzekeringen.',
@@ -248,12 +248,12 @@ export const diensten: Dienst[] = [
       {
         vraag: 'Wanneer is het tijd om mijn verdeelkast te vervangen?',
         antwoord:
-          'Bijvoorbeeld als er nog smeltzekeringen in zitten, als er geen of te weinig differentieelschakelaars zijn, als uw installatie is afgekeurd of als u grote toestellen zoals een laadpaal wil bijplaatsen. Ik kom het graag bekijken.',
+          'Bijvoorbeeld als er nog smeltzekeringen in zitten, als er geen of te weinig differentieelschakelaars zijn, als uw installatie is afgekeurd of als u grote toestellen zoals een laadpaal wil bijplaatsen. We komen het graag bekijken.',
       },
       {
         vraag: 'Is mijn installatie na de renovatie keuringsklaar?',
         antwoord:
-          'Ja, ik werk volgens het AREI en maak de nodige schema’s. De keuring zelf gebeurt door een erkend keuringsorganisme.',
+          'Ja, we werken volgens het AREI en maken de nodige schema’s. De keuring zelf gebeurt door een erkend keuringsorganisme.',
       },
       {
         vraag: 'Moet alles in één keer vernieuwd worden?',
@@ -262,11 +262,11 @@ export const diensten: Dienst[] = [
       {
         vraag: 'Houdt u rekening met een laadpaal of zonnepanelen later?',
         antwoord:
-          'Ja. Bij een renovatie plan ik de verdeelkast en bekabeling zo dat een laadpaal, zonnepanelen of Niko Home Control later eenvoudig kunnen worden toegevoegd.',
+          'Ja. Bij een renovatie plannen we de verdeelkast en bekabeling zo dat een laadpaal, zonnepanelen of Niko Home Control later eenvoudig kunnen worden toegevoegd.',
       },
       {
         vraag: 'Maakt u ook de schema’s?',
-        antwoord: 'Ja. Na de renovatie maak ik het eendraadschema en het situatieschema die nodig zijn voor de keuring.',
+        antwoord: 'Ja. Na de renovatie maken we het eendraadschema en het situatieschema die nodig zijn voor de keuring.',
       },
     ],
     fotos: ['bert', 'verdeelkast'],
@@ -281,7 +281,7 @@ export const diensten: Dienst[] = [
       'Zonnepanelen en thuisbatterij slim koppelen aan uw installatie en laadpaal, in Schilde en omgeving. Vraag vrijblijvend advies en een offerte.',
     h1: 'Zonnepanelen en thuisbatterij aansluiten in Schilde',
     antwoord:
-      'Zonnepanelen en een thuisbatterij halen het meeste uit uw stroom als ze goed samenwerken met de rest van uw installatie. Ik sluit ze aan en integreer ze met uw verdeelkast en laadpaal, zodat u bijvoorbeeld uw wagen kan laden met eigen zonnestroom. U krijgt eerst advies en een gratis offerte. [TE BEVESTIGEN: plaatst Bert ook de panelen zelf?]',
+      'Zonnepanelen en een thuisbatterij halen het meeste uit uw stroom als ze goed samenwerken met de rest van uw installatie. We sluiten ze aan en integreren ze met uw verdeelkast en laadpaal, zodat u bijvoorbeeld uw wagen kan laden met eigen zonnestroom. U krijgt eerst advies en een gratis offerte. [TE BEVESTIGEN: plaatst Bert ook de panelen zelf?]',
     voorWie: [
       'U heeft zonnepanelen en wil ze slim koppelen aan uw laadpaal.',
       'U overweegt een thuisbatterij bij uw bestaande zonnepanelen.',
@@ -312,7 +312,7 @@ export const diensten: Dienst[] = [
       {
         vraag: 'Is een thuisbatterij zinvol voor mij?',
         antwoord:
-          'Dat hangt af van uw verbruik, uw zonnepanelen en het tarief van uw netbeheerder. Ik bekijk het met u bij het bezoek. [te controleren]',
+          'Dat hangt af van uw verbruik, uw zonnepanelen en het tarief van uw netbeheerder. We bekijken het met u bij het bezoek. [te controleren]',
       },
       {
         vraag: 'Is er een premie voor een thuisbatterij?',
@@ -320,7 +320,7 @@ export const diensten: Dienst[] = [
       },
       {
         vraag: 'Moet mijn verdeelkast aangepast worden voor een thuisbatterij?',
-        antwoord: 'Soms wel. Dat hangt af van uw huidige verdeelkast en beveiliging. Ik bekijk het bij het bezoek en neem het mee in de offerte.',
+        antwoord: 'Soms wel. Dat hangt af van uw huidige verdeelkast en beveiliging. We bekijken het bij het bezoek en nemen het mee in de offerte.',
       },
     ],
     fotos: [{ placeholder: 'omvormer en thuisbatterij netjes aangesloten' }, { placeholder: 'laadpaal gekoppeld aan zonnepanelen' }],
@@ -335,7 +335,7 @@ export const diensten: Dienst[] = [
       'Volledige elektrische installatie voor uw nieuwbouw in Schilde en omgeving, van plan tot keuring. Erkend elektricien, gratis offerte.',
     h1: 'Elektrische installatie voor nieuwbouw in Schilde',
     antwoord:
-      'Bouwt u nieuw in Schilde of omgeving? Dan zorg ik voor de volledige elektrische installatie: van het plan met stopcontacten en lichtpunten tot de verdeelkast, bekabeling en afwerking. We denken meteen aan later: een laadpaal, zonnepanelen of Niko Home Control. Na afloop is uw installatie klaar voor de keuring door een erkend organisme.',
+      'Bouwt u nieuw in Schilde of omgeving? Dan zorgen wij voor de volledige elektrische installatie: van het plan met stopcontacten en lichtpunten tot de verdeelkast, bekabeling en afwerking. We denken meteen aan later: een laadpaal, zonnepanelen of Niko Home Control. Na afloop is uw installatie klaar voor de keuring door een erkend organisme.',
     voorWie: [
       'Particulieren die een woning bouwen.',
       'Bouwheren en aannemers die een elektricien zoeken voor een project.',
@@ -358,15 +358,15 @@ export const diensten: Dienst[] = [
       },
       {
         vraag: 'Zorgt u voor de keuring?',
-        antwoord: 'Ik maak de installatie en de schema’s klaar voor de keuring. De keuring zelf gebeurt door een erkend keuringsorganisme.',
+        antwoord: 'We maken de installatie en de schema’s klaar voor de keuring. De keuring zelf gebeurt door een erkend keuringsorganisme.',
       },
       {
         vraag: 'Werkt u samen met mijn aannemer?',
-        antwoord: 'Ja. Ik stem de planning af met de andere partijen op de werf.',
+        antwoord: 'Ja. We stemmen de planning af met de andere partijen op de werf.',
       },
       {
         vraag: 'Maakt u ook de schema’s?',
-        antwoord: 'Ja. Ik maak het eendraadschema en het situatieschema die nodig zijn voor de keuring.',
+        antwoord: 'Ja. We maken het eendraadschema en het situatieschema die nodig zijn voor de keuring.',
       },
     ],
     fotos: ['schakelaars', 'stopcontactenAf'],
@@ -381,7 +381,7 @@ export const diensten: Dienst[] = [
       'Videofoon of parlofoon laten plaatsen in Schilde en omgeving. Zien wie er aanbelt en toegang eenvoudig beheren. Vraag een offerte.',
     h1: 'Video- en parlofonie plaatsen in Schilde',
     antwoord:
-      'Met een videofoon of parlofoon ziet of hoort u wie er aanbelt en opent u de deur of poort eenvoudig. Ik plaats nieuwe systemen en vervang verouderde bellen of parlofoons, in woningen en bedrijven in Schilde en omgeving. U krijgt eerst advies over wat bij uw situatie past, en een gratis offerte.',
+      'Met een videofoon of parlofoon ziet of hoort u wie er aanbelt en opent u de deur of poort eenvoudig. We plaatsen nieuwe systemen en vervangen verouderde bellen of parlofoons, in woningen en bedrijven in Schilde en omgeving. U krijgt eerst advies over wat bij uw situatie past, en een gratis offerte.',
     voorWie: [
       'Woningen met een voordeur of poort op afstand van de woonruimte.',
       'Bedrijven die bezoekers willen zien voor ze binnenkomen.',
@@ -400,11 +400,11 @@ export const diensten: Dienst[] = [
       },
       {
         vraag: 'Kan de videofoon mijn poort of deur openen?',
-        antwoord: 'Vaak wel, als uw deur of poort een elektrische opener heeft of krijgt. Dat bekijk ik bij het bezoek.',
+        antwoord: 'Vaak wel, als uw deur of poort een elektrische opener heeft of krijgt. Dat bekijken we bij het bezoek.',
       },
       {
         vraag: 'Kan mijn oude bel of parlofoon vervangen worden?',
-        antwoord: 'Ja. Soms kan de bestaande bekabeling blijven, soms is nieuwe nodig. Dat zie ik ter plaatse.',
+        antwoord: 'Ja. Soms kan de bestaande bekabeling blijven, soms is nieuwe nodig. Dat zien we ter plaatse.',
       },
       {
         vraag: 'Plaatst u ook video- of parlofonie voor bedrijven?',
@@ -412,7 +412,7 @@ export const diensten: Dienst[] = [
       },
       {
         vraag: 'Kan ik later een extra binnenpost bijplaatsen?',
-        antwoord: 'Dat hangt af van het systeem. Als u dat al weet, houd ik er bij de keuze van het systeem rekening mee.',
+        antwoord: 'Dat hangt af van het systeem. Als u dat al weet, houden we er bij de keuze van het systeem rekening mee.',
       },
     ],
     fotos: [{ placeholder: 'buitenpost van een videofoon aan de voordeur' }, { placeholder: 'binnenpost met scherm' }],
@@ -427,7 +427,7 @@ export const diensten: Dienst[] = [
       'Verlichting die sfeer, functie en een laag verbruik combineert. Advies en plaatsing in Schilde en omgeving. Vraag vrijblijvend advies.',
     h1: 'Verlichtingsadvies en -installatie in Schilde',
     antwoord:
-      'Goede verlichting combineert sfeer, functie en een laag verbruik. Ik denk mee over waar u welk licht nodig heeft, van keuken en werkplek tot tuin, en plaats de armaturen, schakelaars en dimmers. Wil u later slim sturen? Dan houden we meteen rekening met Niko Home Control.',
+      'Goede verlichting combineert sfeer, functie en een laag verbruik. We denken mee over waar u welk licht nodig heeft, van keuken en werkplek tot tuin, en plaatsen de armaturen, schakelaars en dimmers. Wil u later slim sturen? Dan houden we meteen rekening met Niko Home Control.',
     voorWie: [
       'U verbouwt of richt een ruimte opnieuw in.',
       'U wil zuiniger verlichten met led.',
@@ -442,7 +442,7 @@ export const diensten: Dienst[] = [
     faq: [
       {
         vraag: 'Levert u ook de armaturen?',
-        antwoord: 'Dat kan, of ik plaats armaturen die u zelf kiest. Dat bespreken we vooraf. [TE BEVESTIGEN]',
+        antwoord: 'Dat kan, of we plaatsen armaturen die u zelf kiest. Dat bespreken we vooraf. [TE BEVESTIGEN]',
       },
       {
         vraag: 'Kan ik mijn verlichting later slim sturen?',
@@ -454,11 +454,11 @@ export const diensten: Dienst[] = [
       },
       {
         vraag: 'Kan ik mijn bestaande verlichting vervangen door led?',
-        antwoord: 'Ja. Ik bekijk welke armaturen of lampen u kan vervangen en of schakelaars of dimmers mee moeten worden aangepast.',
+        antwoord: 'Ja. We bekijken welke armaturen of lampen u kan vervangen en of schakelaars of dimmers mee moeten worden aangepast.',
       },
       {
         vraag: 'Plaatst u ook dimmers?',
-        antwoord: 'Ja, ik plaats schakelaars en dimmers die passen bij uw verlichting.',
+        antwoord: 'Ja, we plaatsen schakelaars en dimmers die passen bij uw verlichting.',
       },
     ],
     fotos: [{ placeholder: 'sfeerverlichting in een woonkamer' }, { placeholder: 'buitenverlichting in de tuin' }],
@@ -473,7 +473,7 @@ export const diensten: Dienst[] = [
       'Stroompanne of dringend elektrisch probleem in Schilde en omgeving? Ook buiten de openingsuren bereikbaar. Bel 0485 19 00 27.',
     h1: 'Dringende elektriciteitspanne in Schilde en omgeving',
     antwoord:
-      'Stroompanne, een differentieel dat blijft uitvallen of een stopcontact dat warm wordt? Bel mij op 0485 19 00 27. Voor dringende problemen ben ik ook buiten de openingsuren bereikbaar in Schilde en omgeving. Ruikt u een brandgeur of ziet u vonken? Schakel dan eerst de hoofdschakelaar uit en bel bij gevaar 112.',
+      'Stroompanne, een differentieel dat blijft uitvallen of een stopcontact dat warm wordt? Bel ons op 0485 19 00 27. Voor dringende problemen zijn we ook buiten de openingsuren bereikbaar in Schilde en omgeving. Ruikt u een brandgeur of ziet u vonken? Schakel dan eerst de hoofdschakelaar uit en bel bij gevaar 112.',
     voorWie: [
       'Stroompanne in (een deel van) uw woning of bedrijf.',
       'Een differentieel of automaat die telkens opnieuw uitvalt.',
@@ -481,8 +481,8 @@ export const diensten: Dienst[] = [
     ],
     stappen: [
       { titel: 'Bel of stuur een WhatsApp', tekst: 'Zeg kort wat er aan de hand is. Een foto helpt.' },
-      { titel: 'Veilig maken', tekst: 'Ik zeg u wat u meteen kan doen om het veilig te houden.' },
-      { titel: 'Herstelling', tekst: 'Ik kom langs, zoek de oorzaak en herstel wat dringend is.' },
+      { titel: 'Veilig maken', tekst: 'We zeggen u wat u meteen kan doen om het veilig te houden.' },
+      { titel: 'Herstelling', tekst: 'We komen langs, zoeken de oorzaak en herstellen wat dringend is.' },
       { titel: 'Nazorg', tekst: 'Is er meer nodig? Dan krijgt u achteraf een offerte.' },
     ],
     inOfferte: [
@@ -498,7 +498,7 @@ export const diensten: Dienst[] = [
       },
       {
         vraag: 'Bent u ook buiten de openingsuren bereikbaar?',
-        antwoord: 'Ja, voor dringende problemen ben ik ook buiten de openingsuren bereikbaar op 0485 19 00 27.',
+        antwoord: 'Ja, voor dringende problemen zijn we ook buiten de openingsuren bereikbaar op 0485 19 00 27.',
       },
       {
         vraag: 'Wat als ik een brandgeur ruik of vonken zie?',
@@ -510,7 +510,7 @@ export const diensten: Dienst[] = [
       },
       {
         vraag: 'Kan ik een foto van het probleem sturen?',
-        antwoord: 'Ja, stuur gerust een foto via WhatsApp naar 0485 19 00 27. Zo kan ik sneller inschatten wat er aan de hand is.',
+        antwoord: 'Ja, stuur gerust een foto via WhatsApp naar 0485 19 00 27. Zo kunnen we sneller inschatten wat er aan de hand is.',
       },
     ],
     fotos: ['verdeelkast', 'bert'],

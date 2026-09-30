@@ -3,11 +3,11 @@ import Base from '../layouts/Base.astro';
 import { business, services, serviceUrl, job } from '../data/site';
 ---
 
-<Base title="Pagina niet gevonden · Heeman Electrics" description="Deze pagina bestaat niet (meer). Bel 0485 19 00 27 of bekijk mijn diensten." noindex>
+<Base title="Pagina niet gevonden · Heeman Electrics" description="Deze pagina bestaat niet (meer). Bel 0485 19 00 27 of bekijk onze diensten." noindex>
   <section class="container-site py-20 sm:py-28">
     <p class="font-display text-sm font-semibold tracking-widest text-brand uppercase">Fout 404</p>
     <h1 class="mt-3 max-w-3xl text-display">Hier loopt de kabel dood.</h1>
-    <p class="mt-6 max-w-xl text-lg text-muted">Deze pagina bestaat niet (meer). Bel me gerust, of kies hieronder.</p>
+    <p class="mt-6 max-w-xl text-lg text-muted">Deze pagina bestaat niet (meer). Bel ons gerust, of kies hieronder.</p>
     <div class="mt-8 flex flex-wrap gap-3">
       <a href={business.phone.href} class="btn btn-primary">Bel {business.phone.display}</a>
       <a href="/" class="btn btn-ghost">Naar de homepage</a>
@@ -21,7 +21,7 @@ import { business, services, serviceUrl, job } from '../data/site';
       </div>
       <div class="rounded-2xl bg-ink p-8 text-white">
         <h2 class="text-xl">Zin om het vak te leren?</h2>
-        <p class="mt-2 text-on-ink-muted">Ik zoek een junior elektricien in de regio Schilde.</p>
+        <p class="mt-2 text-on-ink-muted">We zoeken een junior elektricien in de regio Schilde.</p>
         <a href={job.url} class="btn btn-accent mt-5">Bekijk de job</a>
       </div>
     </div>

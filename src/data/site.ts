@@ -89,7 +89,7 @@ export const areaUrl = (slug: string) => `/regio/${slug}/`;
 export const job = {
   url: '/jobs/junior-elektricien/',
   title: 'Junior elektricien (m/v/x)',
-  announcement: 'Ik zoek een junior elektricien in de regio Schilde',
+  announcement: 'We zoeken een junior elektricien in de regio Schilde',
   announcementCta: 'Bekijk de job',
   mailto:
     'mailto:info@heeman-electrics.be?subject=Sollicitatie%20junior%20elektricien',

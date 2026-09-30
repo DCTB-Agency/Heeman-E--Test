@@ -26,7 +26,7 @@ Plak sectie 1–3, 5, 7 en 8 en de prompt uit sectie 16.B. Upload logo en 5–10
 - **E-mail:** info@heeman-electrics.be (overal: site, schema, formulieren, gidsen).
 - **Ervaring:** "meer dan 10 jaar ervaring". De BV bestaat sinds mei 2018 (KBO, `foundingDate`), maar in de copy spreken we over de 10+ jaar ervaring.
 - **Dringende herstellingen:** ook buiten de openingsuren bereikbaar voor dringende oproepen. Openingsuren ma–vr 08:00–17:30 blijven gelden voor gewone vragen. Geen "24/7" beloven zonder verdere bevestiging.
-- **Erkend elektricien:** mag vermeld worden. Tone of voice blijft "ik" (Bert spreekt zelf), niet "onze elektriciens".
+- **Erkend elektricien:** mag vermeld worden. Tone of voice: **"wij"** (gewijzigd 30-09-2026, zie hieronder). Bert blijft wel het gezicht: bezoek, inschatting, opstart, oplevering en controle doet hij zelf.
 - **Laadpaalmerken:** EVBox, Alfen, Easee, Zaptec mogen vermeld worden.
 - **Geen vaste prijzen** (beslist 23-09-2026): nergens "vaste prijs" beloven. Wel: gratis/vrijblijvende offerte, persoonlijk contact, vakkennis.
 - **"Ik kom zelf" veralgemeend:** Bert doet zelf het eerste bezoek en de inschatting, de opstart en de oplevering van elk project, en de kwaliteitscontrole. Niet beloven dat Bert elk uur zelf op de werf staat (er komt een junior bij).
@@ -106,7 +106,7 @@ Deze gegevens moeten **letterlijk identiek** zijn op de site, in de structured d
 **Aanvullende diensten (toegevoegd 23-09-2026):** 6) Nieuwbouw · 7) Video- & parlofonie · 8) Verlichtingsadvies · 9) Dringende herstellingen (ook buiten de openingsuren). Deze krijgen een eigen dienstpagina, maar minder nadruk dan 1–5 op de homepage.
 
 **Tone of voice**
-- Bert spreekt zelf: **"ik"**, nooit "wij". Naar klanten: **"u"**.
+- **Wij-vorm** (beslist 30-09-2026, vervangt de eerdere "ik"-vorm): het bedrijf spreekt als "we/wij/ons"; Bert in de derde persoon waar het over hem gaat. Vragen en knoppen in de stem van de bezoeker ("Kan ik…?", "Vraag mijn offerte aan") blijven in de ik-vorm. Naar klanten: **"u"**; jobs: **"je"**.
 - **Uitzondering jobpagina:** naar kandidaten **"je"** (natuurlijker voor starters). `[TE BEVESTIGEN door Bert — anders overal "u"]`
 - Concreet en controleerbaar. Verboden: "wij passen ons voortdurend aan aan de nieuwste trends", "kwaliteit staat bij ons hoog in het vaandel", "uw one-stop-shop".
 - Korte zinnen, Vlaams-Nederlands (niet Hollands: "offerte", "gsm", "keuring", "zekeringkast/verdeelkast", "camionette").
@@ -381,7 +381,7 @@ Elke pagina **minstens 50% unieke inhoud**:
 - Alleen publiceren als er echte lokale content is; anders eerst Schilde, 's-Gravenwezel, Wijnegem, Schoten.
 
 ### Over Bert `/over-bert/`
-Echte foto, persoonlijk verhaal in "ik", opleiding/ervaring `[AANVULLEN]`, werkwijze, waarom zelfstandig, link naar jobs ("Ik zoek iemand die dit vak met dezelfde zorg wil doen"). Person-schema.
+Echte foto, persoonlijk verhaal over Bert (derde persoon, site in wij-vorm), opleiding/ervaring `[AANVULLEN]`, werkwijze, waarom zelfstandig, link naar jobs ("We zoeken iemand die dit vak met dezelfde zorg wil doen"). Person-schema.
 
 ### Realisaties
 Per project: titel met gemeente ("Laadpaal met slim laden in Brasschaat"), voor/na-foto's, korte beschrijving (situatie → oplossing → resultaat), dienst-tag, gemeente-tag. Min. 6 bij lancering `[AANVULLEN]`.
@@ -652,7 +652,7 @@ Contact: +32 485 19 00 27 · info@heeman-electrics.be · Baron Delbekelaan 49, 2
 8. *"Implementeer tracking en consent (sectie 13). Voer daarna de volledige checklist van sectie 17 uit en rapporteer wat groen/rood is."*
 
 ### 16.B Claude Design — één prompt
-> Ontwerp een bold en moderne website voor Heeman Electrics, een zelfstandige elektricien in Schilde (België). Behoud het bestaande logo en de merkkleuren (bijgevoegd); maak het merk krachtiger met donkere 'ink'-secties, grote display-typografie en één felle accentkleur afgeleid van de merkkleur. Toon: persoonlijk ("ik", Bert spreekt zelf), no-nonsense, lokaal. Visueel concept: "de stroomlijn" — een dunne kabellijn die secties verbindt. Gebruik echte foto's (bijgevoegd), geen stock. Ontwerp eerst (1) de homepage en (2) de vacaturepagina "Junior elektricien in Schilde — leer het vak naast Bert", desktop én mobiel, met sticky mobiele onderbalk (Bel · WhatsApp · Offerte / Solliciteer). De vacature moet overal op de site opvallen (aankondigingsbalk, nav-badge "Jobs", groot homepage-blok). Volg de structuur en teksten uit de brief (secties 5–8). Alles in het Nederlands (Vlaanderen).
+> Ontwerp een bold en moderne website voor Heeman Electrics, een zelfstandige elektricien in Schilde (België). Behoud het bestaande logo en de merkkleuren (bijgevoegd); maak het merk krachtiger met donkere 'ink'-secties, grote display-typografie en één felle accentkleur afgeleid van de merkkleur. Toon: persoonlijk (wij-vorm, Bert als gezicht), no-nonsense, lokaal. Visueel concept: "de stroomlijn" — een dunne kabellijn die secties verbindt. Gebruik echte foto's (bijgevoegd), geen stock. Ontwerp eerst (1) de homepage en (2) de vacaturepagina "Junior elektricien in Schilde — leer het vak naast Bert", desktop én mobiel, met sticky mobiele onderbalk (Bel · WhatsApp · Offerte / Solliciteer). De vacature moet overal op de site opvallen (aankondigingsbalk, nav-badge "Jobs", groot homepage-blok). Volg de structuur en teksten uit de brief (secties 5–8). Alles in het Nederlands (Vlaanderen).
 
 ---
 
@@ -660,7 +660,7 @@ Contact: +32 485 19 00 27 · info@heeman-electrics.be · Baron Delbekelaan 49, 2
 
 **Content & feiten**
 - [ ] Geen verzonnen feiten; alle `[AANVULLEN]`/`[TE BEVESTIGEN]` opgelijst voor DCTB
-- [ ] "ik"/"u" overal (jobs: "je" — bevestigd door Bert?)
+- [ ] "wij"/"u" overal (jobs: "je" — bevestigd door Bert?)
 - [ ] Premies/AREI als `[te controleren]` met officiële bron
 - [ ] NAP identiek op elke pagina, in schema en footer
 

@@ -17,7 +17,7 @@ const verwerkingen = [
   {
     titel: 'Offerte- en contactformulier',
     gegevens: 'Naam, gsm, e-mail (optioneel), gemeente, gevraagde dienst, uw omschrijving, contactvoorkeur en eventuele foto’s die u zelf meestuurt.',
-    hoe: 'Het formulier wordt niet op de website bewaard: het opent uw eigen mailprogramma met een bericht aan mij. De gegevens komen pas bij mij toe als u die mail verstuurt.',
+    hoe: 'Het formulier wordt niet op de website bewaard: het opent uw eigen mailprogramma met een bericht aan ons. De gegevens komen pas bij ons toe als u die mail verstuurt.',
     doel: 'Uw vraag beantwoorden, een bezoek plannen en een offerte opmaken.',
     grond: 'Maatregelen op uw verzoek vóór een overeenkomst (art. 6.1.b AVG).',
     termijn: '[AANVULLEN: bv. 2 jaar na het laatste contact als er geen opdracht volgt; bij een opdracht zolang de boekhoudwetgeving dat vereist]',
@@ -25,17 +25,17 @@ const verwerkingen = [
   {
     titel: 'Sollicitaties',
     gegevens: 'Naam, gsm, e-mail (optioneel), woonplaats, diploma, rijbewijs B, motivatie en uw cv (optioneel).',
-    hoe: 'Het sollicitatieformulier wordt verwerkt door Netlify (hosting van deze site) en naar mij doorgestuurd. Uw cv is niet publiek bereikbaar.',
+    hoe: 'Het sollicitatieformulier wordt verwerkt door Netlify (hosting van deze site) en naar ons doorgestuurd. Uw cv is niet publiek bereikbaar.',
     doel: 'Uw sollicitatie beoordelen en contact met u opnemen.',
     grond: 'Maatregelen op uw verzoek vóór een (arbeids)overeenkomst (art. 6.1.b AVG).',
     termijn: '[AANVULLEN: bv. 6 maanden na afloop van de selectieprocedure, tenzij u toestemming geeft om ze langer te bewaren]',
   },
   {
     titel: 'Bellen, WhatsApp en e-mail',
-    gegevens: 'Uw telefoonnummer of e-mailadres en wat u mij zelf laat weten.',
+    gegevens: 'Uw telefoonnummer of e-mailadres en wat u ons zelf laat weten.',
     hoe: 'WhatsApp is een dienst van WhatsApp Ireland Ltd.; hun eigen privacybeleid is van toepassing.',
     doel: 'Uw vraag beantwoorden.',
-    grond: 'Maatregelen op uw verzoek vóór een overeenkomst en mijn gerechtvaardigd belang om te antwoorden (art. 6.1.b en f AVG).',
+    grond: 'Maatregelen op uw verzoek vóór een overeenkomst en ons gerechtvaardigd belang om te antwoorden (art. 6.1.b en f AVG).',
     termijn: '[AANVULLEN]',
   },
   {
@@ -56,7 +56,7 @@ const verwerkers = [
 ];
 
 const rechten = [
-  ['Inzage', 'welke gegevens ik van u heb'],
+  ['Inzage', 'welke gegevens we van u hebben'],
   ['Verbetering', 'van onjuiste of onvolledige gegevens'],
   ['Wissing', 'als er geen reden meer is om ze te bewaren'],
   ['Beperking', 'van de verwerking in bepaalde gevallen'],
@@ -76,7 +76,7 @@ const rechten = [
     <h1 class="mt-6 text-display">Privacyverklaring</h1>
     <p class="mt-4 text-sm text-muted">Laatst bijgewerkt op {bijgewerkt}</p>
     <p class="mt-6 text-lg">
-      Ik ga zorgvuldig om met uw gegevens en verzamel niet meer dan nodig. Hieronder leest u welke gegevens ik verwerk,
+      We gaan zorgvuldig om met uw gegevens en verzamelen niet meer dan nodig. Hieronder leest u welke gegevens we verwerken,
       waarom, hoe lang, en welke rechten u heeft. Dit volgt de Algemene Verordening Gegevensbescherming (AVG/GDPR).
     </p>
 
@@ -106,7 +106,7 @@ const rechten = [
     </div>
 
     <h2 class="mt-12 font-display text-2xl font-semibold">Wie krijgt uw gegevens?</h2>
-    <p class="mt-3">Ik verkoop uw gegevens nooit. Ik werk met deze dienstverleners (verwerkers), die uw gegevens alleen in mijn opdracht gebruiken:</p>
+    <p class="mt-3">We verkopen uw gegevens nooit. We werken met deze dienstverleners (verwerkers), die uw gegevens alleen in onze opdracht gebruiken:</p>
     <div class="mt-4 overflow-x-auto rounded-2xl border border-ink/10 bg-white">
       <table class="w-full min-w-[36rem] text-left text-sm">
         <thead class="bg-sand/50 font-semibold"><tr><th class="p-4">Dienstverlener</th><th class="p-4">Rol</th><th class="p-4">Waar</th></tr></thead>
@@ -133,19 +133,19 @@ const rechten = [
     </ul>
     <p class="mt-4">
       Stuur uw vraag naar <a href={`mailto:${business.email}`} class="font-semibold text-brand underline underline-offset-4">{business.email}</a>.
-      Ik antwoord binnen één maand. Om misbruik te voorkomen, kan ik vragen om uw identiteit te bevestigen.
+      We antwoorden binnen één maand. Om misbruik te voorkomen, kunnen we vragen om uw identiteit te bevestigen.
     </p>
 
     <h2 class="mt-12 font-display text-2xl font-semibold">Klacht?</h2>
     <p class="mt-3">
-      Neem gerust eerst contact met mij op. U kan ook een klacht indienen bij de Gegevensbeschermingsautoriteit (GBA),
+      Neem gerust eerst contact met ons op. U kan ook een klacht indienen bij de Gegevensbeschermingsautoriteit (GBA),
       Drukpersstraat 35, 1000 Brussel —
       <a href="https://www.gegevensbeschermingsautoriteit.be" class="font-semibold text-brand underline underline-offset-4" target="_blank" rel="noopener">gegevensbeschermingsautoriteit.be ↗</a>.
     </p>
 
     <h2 class="mt-12 font-display text-2xl font-semibold">Beveiliging en wijzigingen</h2>
     <p class="mt-3">
-      De website gebruikt een beveiligde verbinding (HTTPS). Ik neem redelijke maatregelen om uw gegevens te beschermen.
+      De website gebruikt een beveiligde verbinding (HTTPS). We nemen redelijke maatregelen om uw gegevens te beschermen.
       Deze verklaring kan wijzigen; de datum bovenaan toont de laatste versie.
     </p>
 

@@ -46,8 +46,8 @@ const schema = {
       </h1>
       <p class="fade-up mt-6 max-w-2xl text-xl leading-relaxed" style="--d:300ms">
         {r.naam === 'Schilde'
-          ? <>Mijn zaak is gevestigd in Schilde. Ik ben Bert Heeman, erkend elektricien met {business.experience}, en ik kom zelf langs voor het eerste bezoek en de inschatting.</>
-          : <>{r.naam} ligt op ongeveer {km} km van mijn zaak in Schilde (in vogelvlucht). Ik ben Bert Heeman, erkend elektricien met {business.experience}, en ik kom zelf langs voor het eerste bezoek en de inschatting.</>}
+          ? <>Onze zaak is gevestigd in Schilde. Zaakvoerder Bert Heeman is erkend elektricien met {business.experience} en komt zelf langs voor het eerste bezoek en de inschatting.</>
+          : <>{r.naam} ligt op ongeveer {km} km van onze zaak in Schilde (in vogelvlucht). Zaakvoerder Bert Heeman is erkend elektricien met {business.experience} en komt zelf langs voor het eerste bezoek en de inschatting.</>}
       </p>
       {r.deelgemeenten.length > 0 && (
         <p class="fade-up mt-4 text-muted" style="--d:380ms">Ook in {r.deelgemeenten.join(', ').replace(/, ([^,]*)$/, ' en $1')}.</p>
@@ -105,7 +105,7 @@ const schema = {
 
   <section class="section" aria-labelledby="diensten">
     <div class="container-site">
-      <h2 id="diensten" class="h2 reveal">Mijn diensten in {r.naam}</h2>
+      <h2 id="diensten" class="h2 reveal">Onze diensten in {r.naam}</h2>
       <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s) => (
           <li class="reveal">
@@ -117,7 +117,7 @@ const schema = {
         ))}
       </ul>
       <div class="reveal mt-12 flex flex-col gap-6 rounded-3xl bg-accent p-8 text-ink sm:flex-row sm:items-center sm:justify-between">
-        <p class="font-display text-2xl font-semibold">Woon je in {r.naam}? Ik zoek een junior elektricien.</p>
+        <p class="font-display text-2xl font-semibold">Woon je in {r.naam}? We zoeken een junior elektricien.</p>
         <a href={job.url} class="btn bg-ink text-white hover:bg-ink-soft">Bekijk de vacature</a>
       </div>
       <p class="reveal mt-12 text-sm text-muted">Ook actief in:

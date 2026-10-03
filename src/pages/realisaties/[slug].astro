@@ -3,7 +3,8 @@
 // Schema: CreativeWork. Zolang er placeholders in staan: noindex (data/noindex.ts).
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
-import Foto from '../../components/Foto.astro';
+import Beeld from '../../components/Beeld.astro';
+import type { FotoId } from '../../data/fotos';
 import VoorNa from '../../components/VoorNa.astro';
 import { SITE_URL, business, services, serviceUrl } from '../../data/site';
 import { realisaties, realisatieUrl, type Realisatie } from '../../data/realisaties';
@@ -29,7 +30,7 @@ const schema = {
   '@id': `${SITE_URL}${url}#realisatie`,
   name: titelVolledig,
   url: `${SITE_URL}${url}`,
-  image: `${SITE_URL}/og/${r.fotos.hoofd}.jpg`,
+  image: `${SITE_URL}/og/${typeof r.fotos.hoofd === 'string' ? r.fotos.hoofd : 'home'}.jpg`,
   creator: { '@id': `${SITE_URL}/#organization` },
   about: { '@type': 'Service', name: dienst.name, url: `${SITE_URL}${serviceUrl(dienst.slug)}` },
   ...(gemeenteBekend ? { locationCreated: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: r.gemeente, addressCountry: 'BE' } } } : {}),
@@ -45,7 +46,7 @@ const anderen = realisaties.filter((x) => x.slug !== r.slug).slice(0, 3);
 <Base
   title={`${titelVolledig} · Realisatie Heeman Electrics`.slice(0, 60)}
   description={`${titelVolledig}: ${dienst.name.toLowerCase()} door Heeman Electrics, erkend elektricien in Schilde en omgeving.`}
-  ogImage={`/og/${r.fotos.hoofd}.jpg`}
+  ogImage={`/og/${typeof r.fotos.hoofd === 'string' ? r.fotos.hoofd : 'home'}.jpg`}
   noindex={noindexUrls.has(url)}
   schema={[schema, breadcrumbSchema(kruimels)]}
 >
@@ -61,8 +62,8 @@ const anderen = realisaties.filter((x) => x.slug !== r.slug).slice(0, 3);
 
     <div class="mt-10 grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
       {r.fotos.voor
-        ? <VoorNa voor={r.fotos.voor} na={r.fotos.hoofd} class="fade-up aspect-[4/5] sm:aspect-[4/3]" />
-        : <Foto id={r.fotos.hoofd} class="fade-up aspect-[4/5] sm:aspect-[4/3]" eager sizes="(min-width: 1024px) 60vw, 100vw" />}
+        ? <VoorNa voor={r.fotos.voor} na={r.fotos.hoofd as FotoId} class="fade-up aspect-[4/5] sm:aspect-[4/3]" />
+        : <Beeld beeld={r.fotos.hoofd} class="fade-up aspect-[4/5] sm:aspect-[4/3]" eager sizes="(min-width: 1024px) 60vw, 100vw" />}
 
       <div class="space-y-6">
         {blokken.map((b, i) => (
@@ -87,7 +88,7 @@ const anderen = realisaties.filter((x) => x.slug !== r.slug).slice(0, 3);
       {anderen.map((x) => (
         <li class="reveal">
           <a href={realisatieUrl(x.slug)} class="group block">
-            <Foto id={x.fotos.hoofd} class="aspect-[4/3]" sizes="(min-width: 768px) 30vw, 100vw" />
+            <Beeld beeld={x.fotos.hoofd} class="aspect-[4/3]" sizes="(min-width: 768px) 30vw, 100vw" />
             <p class="mt-3 font-display text-lg font-semibold group-hover:text-brand">{x.titel}</p>
           </a>
         </li>

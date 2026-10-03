@@ -3,7 +3,7 @@
 // Noindex zolang de lokale inhoud (populaire diensten, realisaties, review) nog placeholder is.
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
-import Foto from '../../components/Foto.astro';
+import Beeld from '../../components/Beeld.astro';
 import { SITE_URL, business, services, serviceUrl, job } from '../../data/site';
 import { dienstTekst } from '../../data/home';
 import { regios, regioUrl, afstandVanSchilde, type Regio } from '../../data/regio';
@@ -84,7 +84,7 @@ const schema = {
               {lokaal.map((x) => (
                 <li class="reveal">
                   <a href={realisatieUrl(x.slug)} class="group block">
-                    <Foto id={x.fotos.hoofd} class="aspect-[4/3]" sizes="(min-width: 768px) 30vw, 100vw" />
+                    <Beeld beeld={x.fotos.hoofd} class="aspect-[4/3]" sizes="(min-width: 768px) 30vw, 100vw" />
                     <p class="mt-3 font-display text-lg font-semibold group-hover:text-brand">{x.titel}</p>
                     <p class="text-sm text-muted">{x.gemeente}</p>
                   </a>

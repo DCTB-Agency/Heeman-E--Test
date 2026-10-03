@@ -3,6 +3,7 @@
 // zodat die altijd identiek zijn (vereiste van Google for Jobs). Solliciteren: enkel via het formulier, cv verplicht.
 // Placeholders [AANVULLEN] / [TE BEVESTIGEN] worden op de pagina geel gemarkeerd.
 import type { Vraag } from '../lib/schema';
+import type { FotoId } from './fotos';
 
 export type Vacature = {
   slug: string;
@@ -20,7 +21,8 @@ export type Vacature = {
   faq: Vraag[];
   /** Maanden ervaring voor JobPosting.experienceRequirements (0 = geen ervaring nodig). */
   ervaringMaanden: number;
-  kaart: string;
+  /** Beeld op de vacaturekaart (/jobs/): echte foto of placeholder. */
+  kaart: FotoId | { placeholder: string };
 };
 
 // Tekst van Heeman Electrics (03-10-2026), licht aangepast.
@@ -46,7 +48,7 @@ const aanbod = [
   'Opleiding op de job: kennis delen is voor ons belangrijk.',
 ];
 
-const vragenCv: Vraag = { vraag: 'Moet ik een cv sturen?', antwoord: 'Ja, een cv is verplicht. Je voegt het toe in het sollicitatieformulier.' };
+const vragenCv: Vraag = { vraag: 'Moet ik een cv sturen?', antwoord: 'Ja, een cv is verplicht. Voeg het toe in het formulier, of stuur het via WhatsApp.' };
 const vragenWaar: Vraag = { vraag: 'Waar werk ik?', antwoord: 'Altijd in de buurt: in Schilde en de omliggende gemeenten. Geen lange verplaatsingen.' };
 const vragenVervoer: Vraag = { vraag: 'Heb ik rijbewijs B en eigen vervoer nodig?', antwoord: 'Ja, dat is een must.' };
 
@@ -116,24 +118,15 @@ export const vacatures: Vacature[] = [
       vragenVervoer,
     ],
     ervaringMaanden: 0,
-    kaart: 'bert',
+    kaart: { placeholder: 'team aan het werk op een werf' },
   },
 ];
 
 export const vacatureUrl = (slug: string) => `/jobs/${slug}/`;
 
-// Realistische dag op de baan (bevestigd 23-09-2026).
-export const dag = [
-  { uur: '07:45', wat: 'Vertrek' },
-  { uur: '08:15', wat: 'Eerste klant in Schilde: renovatie' },
-  { uur: '12:00', wat: 'Middagpauze' },
-  { uur: '13:00', wat: 'Nieuwbouw in Zoersel' },
-  { uur: '16:30', wat: 'Werf netjes achterlaten' },
-  { uur: '17:00', wat: 'Naar huis' },
-];
 
 export const stappen = [
-  { titel: 'Je solliciteert', tekst: 'Via het formulier, met je cv.' },
+  { titel: 'Je solliciteert', tekst: 'Via het formulier of via WhatsApp, met je cv.' },
   { titel: 'We nemen contact op', tekst: 'Binnen [AANVULLEN: X] werkdagen.' },
   { titel: 'Kennismaking', tekst: 'Een gesprek waarin we elkaar leren kennen en de job overlopen.' },
   { titel: 'Start', tekst: 'Je begint in het team, met de nodige begeleiding.' },
@@ -147,7 +140,7 @@ export function vacatureHtml(v: Vacature): string {
   const lijst = (items: string[]) => `<ul>${items.map((i) => `<li>${i}</li>`).join('')}</ul>`;
   return [
     `<p>${v.intro}</p>`,
-    `<h2>Wat ga je doen?</h2>${lijst(v.taken)}`,
+    `<h2>Wat ga je bijvoorbeeld doen?</h2>${lijst(v.taken)}`,
     `<h2>Wie zoeken we?</h2>${lijst(v.profiel)}`,
     `<h2>Wat bieden we?</h2>${lijst(v.aanbod)}`,
   ].join('');

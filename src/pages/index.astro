@@ -4,13 +4,14 @@ import Base from '../layouts/Base.astro';
 import StroomLijn from '../components/StroomLijn.astro';
 import ScrollKabel from '../components/ScrollKabel.astro';
 import JobsBlok from '../components/JobsBlok.astro';
+import Beeld from '../components/Beeld.astro';
 import Foto from '../components/Foto.astro';
 import DienstIcoon from '../components/DienstIcoon.astro';
 import { realisaties, realisatieUrl } from '../data/realisaties';
 import Werkgebied from '../components/Werkgebied.astro';
 import Faq from '../components/Faq.astro';
 import { business, areas, areaUrl, services, serviceUrl, antwoordTermijn } from '../data/site';
-import { usps, dienstTekst, cijfers, homeFaq } from '../data/home';
+import { usps, dienstTekst, homeFaq } from '../data/home';
 import { faqSchema } from '../lib/schema';
 import { metTodo } from '../lib/tekst';
 
@@ -138,33 +139,6 @@ const zakelijk = [
   <!-- JOBS -->
   <JobsBlok />
 
-  <!-- OVER + CIJFERS -->
-  <section class="section on-ink bg-ink text-white" aria-label="Over Heeman Electrics">
-    <div class="container-site grid items-center gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
-      <div class="reveal">
-        <p class="eyebrow">Over Heeman Electrics</p>
-        <h2 class="h2 mt-3">Eén vast aanspreekpunt, van offerte tot oplevering.</h2>
-        <p class="mt-5 max-w-xl text-lg text-on-ink-muted">
-          Heeman Electrics is een erkende elektricien uit Schilde, sinds 2018. We werken voor particulieren, bedrijven,
-          syndici en aannemers. Elk project krijgt een bezoek vooraf, een duidelijke offerte en een kwaliteitscontrole bij de oplevering.
-        </p>
-        <a href="/over-ons/" class="mt-10 inline-flex items-center gap-2 font-display font-semibold text-accent hover:text-white">Meer over ons <span aria-hidden="true">→</span></a>
-      </div>
-      <dl class="cijfers reveal grid grid-cols-3 gap-6 lg:grid-cols-1 lg:gap-8 lg:border-l lg:border-white/15 lg:pl-16">
-          {cijfers.map((c) => (
-            <div>
-              <dt class="sr-only">{c.label}</dt>
-              <dd>
-                <span class="teller block font-display text-4xl font-semibold text-accent tabular-nums sm:text-6xl" style={`--doel:${c.getal};--van:${c.van ?? 0}`} data-suffix={c.suffix} aria-hidden="true"></span>
-                <span class="sr-only">{c.getal}{c.suffix}</span>
-                <span class="mt-1 block text-sm text-on-ink-muted sm:text-base" aria-hidden="true">{c.label}</span>
-              </dd>
-            </div>
-          ))}
-      </dl>
-    </div>
-  </section>
-
   <!-- ZAKELIJK: bedrijven, syndici, aannemers -->
   <section class="section" aria-labelledby="zakelijk">
     <div class="container-site">
@@ -222,7 +196,7 @@ const zakelijk = [
         {realisaties.slice(0, 3).map((r) => (
           <li class="reveal">
             <a href={realisatieUrl(r.slug)} class="group block">
-              <Foto id={r.fotos.hoofd} class="aspect-[4/3]" sizes="(min-width: 768px) 30vw, 100vw" />
+              <Beeld beeld={r.fotos.hoofd} class="aspect-[4/3]" sizes="(min-width: 768px) 30vw, 100vw" />
               <p class="mt-4 text-sm font-semibold text-brand">{r.gemeente}</p>
               <p class="mt-1 font-display text-lg font-semibold group-hover:text-brand">{r.titel}</p>
               <p class="mt-1 line-clamp-2 text-sm text-muted">{r.oplossing}</p>

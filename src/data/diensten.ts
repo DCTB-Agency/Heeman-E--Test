@@ -270,7 +270,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja. Na de renovatie maken we het eendraadschema en het situatieschema die nodig zijn voor de keuring.',
       },
     ],
-    fotos: ['bert', 'verdeelkast'],
+    fotos: [{ placeholder: 'nieuwe bekabeling tijdens een renovatie' }, 'verdeelkast'],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -514,7 +514,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja, stuur gerust een foto via WhatsApp naar 0485 19 00 27. Zo kunnen we sneller inschatten wat er aan de hand is.',
       },
     ],
-    fotos: ['verdeelkast', 'bert'],
+    fotos: ['verdeelkast', { placeholder: 'herstelling aan een verdeelkast of stopcontact' }],
     bijgewerkt: BIJGEWERKT,
   },
 ];

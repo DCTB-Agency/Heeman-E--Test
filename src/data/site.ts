@@ -86,6 +86,10 @@ export const dienstGroepen = [
   { titel: 'Comfort & slim wonen', slugs: ['domotica-niko-home-control', 'video-parlofonie', 'verlichtingsadvies'] },
 ] as const;
 
+/** Optie B om te solliciteren (04-10-2026): WhatsApp met een ingevuld bericht. */
+export const whatsappSollicitatie = (functie: string) =>
+  `https://wa.me/32485190027?text=${encodeURIComponent(`Hallo, ik wil graag solliciteren als ${functie.toLowerCase()}. Mijn cv stuur ik mee.`)}`;
+
 export const serviceUrl = (slug: string) => `/diensten/${slug}/`;
 export const areaUrl = (slug: string) => `/regio/${slug}/`;
 

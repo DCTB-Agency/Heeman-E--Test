@@ -7,7 +7,8 @@ export type Realisatie = {
   titel: string;
   dienst: string; // slug uit site.ts → services
   gemeente: string;
-  fotos: { hoofd: FotoId; voor?: FotoId; extra?: FotoId[] };
+  /** hoofd: echte foto of placeholder (die pagina blijft dan noindex tot de foto er is). */
+  fotos: { hoofd: FotoId | { placeholder: string }; voor?: FotoId; extra?: FotoId[] };
   situatie: string;
   oplossing: string;
   resultaat: string;
@@ -51,7 +52,7 @@ export const realisaties: Realisatie[] = [
     titel: 'Nieuwe bekabeling tijdens een renovatie',
     dienst: 'renovatie-elektriciteit',
     gemeente: 'Wijnegem',
-    fotos: { hoofd: 'bert' },
+    fotos: { hoofd: { placeholder: 'nieuwe kabels in een opengekapte muur' } },
     situatie: 'Bij de renovatie van een woonkamer bleek de oude bedrading zonder buizen in de muur te liggen, met te weinig stopcontacten.',
     oplossing: 'Muren opgekapt, nieuwe buizen en kabels getrokken voor extra stopcontacten en lichtpunten, alles klaar voor de pleisterwerken.',
     resultaat: 'Veilige, nieuwe bekabeling volgens het AREI, met stopcontacten op de plaatsen waar de klant ze echt nodig heeft.',

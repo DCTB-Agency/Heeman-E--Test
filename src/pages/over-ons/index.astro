@@ -4,6 +4,7 @@
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
 import Foto from '../../components/Foto.astro';
+import FotoPlaceholder from '../../components/FotoPlaceholder.astro';
 import { SITE_URL, business, job } from '../../data/site';
 import { breadcrumbSchema } from '../../lib/schema';
 
@@ -109,7 +110,7 @@ const werkwijze = [
 
   <section class="section border-t border-ink/10 bg-white/60" aria-labelledby="oprichter">
     <div class="container-site grid items-center gap-10 lg:grid-cols-[20rem_1fr] lg:gap-16">
-      <Foto id="bert" alt="Oprichter Bert Heeman aan het werk tijdens een renovatie" class="reveal aspect-[4/5]" sizes="(min-width: 1024px) 20rem, 100vw" />
+      <FotoPlaceholder label="team of werf (geen portret nodig)" class="reveal aspect-[4/5]" />
       <div class="reveal space-y-5 text-lg">
         <p class="eyebrow">Ons verhaal</p>
         <h2 id="oprichter" class="h2">Opgericht in 2018</h2>

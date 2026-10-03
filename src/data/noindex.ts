@@ -4,7 +4,7 @@ import { heeftTodo } from '../lib/tekst';
 import { realisaties, realisatieUrl } from './realisaties';
 import { regios, regioUrl } from './regio';
 
-const todoIn = (o: unknown) => heeftTodo(JSON.stringify(o));
+const todoIn = (o: unknown) => heeftTodo(JSON.stringify(o)) || JSON.stringify(o).includes('"placeholder"');
 
 export const noindexUrls = new Set<string>([
   ...realisaties.filter(todoIn).map((r) => realisatieUrl(r.slug)),

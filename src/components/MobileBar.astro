@@ -1,5 +1,5 @@
 ---
-import { business, job } from '../data/site';
+import { business, job, whatsappSollicitatie } from '../data/site';
 
 interface Props {
   variant: 'default' | 'jobs';
@@ -14,14 +14,14 @@ const icons = {
   mail: 'M4 6h16v12H4zM4 7l8 6 8-6',
 };
 
-// Jobs: solliciteren enkel via het formulier (cv verplicht), dus geen "Bel" (03-10-2026).
+// Jobs: solliciteren via het formulier (optie A) of WhatsApp (optie B), cv verplicht; geen "Bel".
 const opJobpagina = /^\/jobs\/[^/]+\/$/.test(Astro.url.pathname) && !Astro.url.pathname.startsWith('/jobs/bedankt');
 const items =
   variant === 'jobs'
     ? [
         { label: 'Solliciteer', href: opJobpagina ? '#solliciteer' : `${job.eersteUrl}#solliciteer`, icon: icons.apply, primary: true, event: 'job_apply_click', stroke: true },
+        { label: 'WhatsApp', href: whatsappSollicitatie('elektricien'), icon: icons.whatsapp, event: 'job_whatsapp_click' },
         { label: 'Alle jobs', href: job.url, icon: icons.quote, event: 'job_overview_click', stroke: true },
-        { label: 'Mail cv', href: job.mailto, icon: icons.mail, event: 'job_mail_click', stroke: true },
       ]
     : [
         { label: 'Bel', href: business.phone.href, icon: icons.phone, primary: true, event: 'click_to_call' },

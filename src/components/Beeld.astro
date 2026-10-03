@@ -9,10 +9,11 @@ interface Props {
   class?: string;
   sizes?: string;
   donker?: boolean;
+  eager?: boolean;
 }
-const { beeld, class: className = '', sizes, donker = false } = Astro.props;
+const { beeld, class: className = '', sizes, donker = false, eager = false } = Astro.props;
 ---
 
 {typeof beeld === 'string'
-  ? <Foto id={beeld} class={className} sizes={sizes} />
+  ? <Foto id={beeld} class={className} sizes={sizes} eager={eager} />
   : <FotoPlaceholder label={beeld.placeholder} class={className} donker={donker} />}

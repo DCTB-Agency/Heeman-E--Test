@@ -2,7 +2,7 @@
 // /realisaties/ — overzicht van projecten met filter per dienst (CLAUDE.md § 5, § 8).
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
-import Foto from '../../components/Foto.astro';
+import Beeld from '../../components/Beeld.astro';
 import { services } from '../../data/site';
 import { realisaties, realisatieUrl } from '../../data/realisaties';
 import { breadcrumbSchema } from '../../lib/schema';
@@ -39,7 +39,7 @@ const gebruikteDiensten = [...new Set(realisaties.map((r) => r.dienst))];
         <li class="reveal" data-dienst={r.dienst} style={`--i:${i}`}>
           <a href={realisatieUrl(r.slug)} class="group block">
             <div class="relative">
-              <Foto id={r.fotos.hoofd} class="aspect-[4/5]" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw" />
+              <Beeld beeld={r.fotos.hoofd} class="aspect-[4/5]" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw" />
               {r.fotos.voor && <span class="absolute top-4 left-4 rounded-full bg-ink/80 px-3 py-1 text-xs font-semibold text-white">Voor / na</span>}
             </div>
             <p class="mt-4 text-sm font-semibold text-brand">{dienstNaam(r.dienst)}</p>

@@ -14,13 +14,13 @@ const datum = (d: string) => new Date(d).toLocaleDateString('nl-BE', { day: 'num
 
 <Base
   title="Kennisbank elektriciteit · Heeman Electrics Schilde"
-  description="Heldere uitleg over laadpalen, de elektrische keuring, Niko Home Control en renovatie. Geschreven door Bert, elektricien in Schilde."
+  description="Heldere uitleg over laadpalen, de elektrische keuring, Niko Home Control en renovatie. Door Heeman Electrics, elektricien in Schilde."
   schema={[breadcrumbSchema(kruimels)]}
 >
   <section class="container-site py-12 sm:py-16 lg:py-20">
     <Kruimels kruimels={kruimels} class="fade-up text-muted" />
     <h1 class="mt-6 text-display"><span class="line-mask"><span style="--i:1">Kennisbank</span></span></h1>
-    <p class="fade-up mt-6 max-w-2xl text-lg text-muted" style="--d:250ms">Eerlijke uitleg over elektriciteit, zonder vakjargon. Geschreven door Bert Heeman, erkend elektricien in Schilde.</p>
+    <p class="fade-up mt-6 max-w-2xl text-lg text-muted" style="--d:250ms">Eerlijke uitleg over elektriciteit, zonder vakjargon.</p>
 
     <ul class="mt-12 grid gap-6 md:grid-cols-2">
       {artikels.map((a) => (

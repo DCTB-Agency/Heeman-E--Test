@@ -1,10 +1,12 @@
 ---
-// /jobs/ — Werken bij Heeman Electrics (CLAUDE.md § 6.2).
+// /jobs/ — Werken bij Heeman Electrics (CLAUDE.md § 6.2). 03-10-2026: twee vacatures + stageplaatsen,
+// introtekst van Heeman Electrics. Solliciteren enkel via het formulier (cv verplicht), niet telefonisch.
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
 import Foto from '../../components/Foto.astro';
 import { business, job } from '../../data/site';
-import { vacature } from '../../data/vacature';
+import { vacatures, vacatureUrl, jobsIntro } from '../../data/vacature';
+import type { FotoId } from '../../data/fotos';
 import { breadcrumbSchema } from '../../lib/schema';
 
 const kruimels = [
@@ -12,29 +14,27 @@ const kruimels = [
   { naam: 'Jobs', url: '/jobs/' },
 ];
 const waarom = [
-  { titel: 'Je leert van een vakman', tekst: `Van een erkend elektricien met ${business.experience}, met korte lijnen naar de zaakvoerder.` },
-  { titel: 'Afwisselend werk', tekst: 'Laadpalen, Niko Home Control, zonnepanelen, renovaties en keuringsklare installaties.' },
-  { titel: 'In de eigen regio', tekst: 'Werven in Schilde en omliggende gemeenten, binnen ± 20 km. Geen uren in de file.' },
+  { titel: 'Kennis delen', tekst: 'We werken al jaren samen met scholen in de buurt en geven blijvend trainingen op de job zelf.' },
+  { titel: 'Gevarieerd werk', tekst: 'Nieuwbouw, renovatie en domotica (vooral Niko Home Control), bij particulieren en bedrijven.' },
+  { titel: 'In de buurt', tekst: 'Al onze werven liggen in Schilde en de omliggende gemeenten.' },
 ];
 ---
 
 <Base
   title="Jobs bij Heeman Electrics · Elektricien Schilde"
-  description="Werken bij een lokale elektricien in Schilde? We zoeken een junior elektricien met een vast voltijds contract. Bekijk de vacature."
-  ogImage="/og/bert.jpg"
+  description="Klaar voor een nieuwe uitdaging? Heeman Electrics zoekt een ervaren elektricien en een junior elektricien in de buurt van Schilde. Ook stageplaatsen."
+  ogImage="/og/stopcontactenPlaatsing.jpg"
   schema={[breadcrumbSchema(kruimels)]}
 >
   <section class="bg-accent text-ink">
     <div class="container-site py-14 sm:py-20">
       <Kruimels kruimels={kruimels} class="fade-up" />
       <h1 class="mt-6 max-w-4xl text-display">
-        <span class="line-mask"><span style="--i:1">Werken bij</span></span>
-        <span class="line-mask"><span style="--i:2">Heeman Electrics</span></span>
+        <span class="line-mask"><span style="--i:1">{jobsIntro.titel}</span></span>
+        <span class="line-mask"><span style="--i:2">{jobsIntro.ondertitel}</span></span>
       </h1>
-      <p class="fade-up mt-6 max-w-2xl text-lg" style="--d:400ms">
-        Een groeiende elektricien in Schilde, met korte lijnen en afwisselend werk
-        bij particulieren en bedrijven in de regio.
-      </p>
+      <p class="fade-up mt-6 max-w-3xl text-lg" style="--d:400ms">{jobsIntro.tekst}</p>
+      <a href="#vacatures" class="btn fade-up mt-8 bg-ink text-white hover:bg-ink-soft" style="--d:500ms">Bekijk de vacatures</a>
     </div>
   </section>
 
@@ -50,29 +50,33 @@ const waarom = [
         ))}
       </ol>
 
-      <h2 class="h2 reveal mt-24">Open vacatures</h2>
+      <h2 id="vacatures" class="h2 reveal mt-24 scroll-mt-24">Open vacatures</h2>
       <ul class="mt-8 grid gap-6">
-        <li class="reveal">
-          <a href={job.url} class="vacature-kaart group grid gap-6 rounded-3xl bg-ink p-6 text-white sm:grid-cols-[14rem_1fr] sm:p-8">
-            <Foto id="bert" class="aspect-square sm:aspect-auto sm:min-h-56" focus="50% 18%" sizes="(min-width: 640px) 14rem, 100vw" />
-            <div class="flex flex-col justify-center">
-              <p class="eyebrow text-accent">Vast · voltijds · Schilde</p>
-              <h3 class="mt-2 font-display text-3xl font-semibold">{vacature.titel}</h3>
-              <p class="mt-3 max-w-2xl text-on-ink-muted">Leer het vak op de werf: laadpalen, domotica, zonnepanelen en renovatie. Diploma elektriciteit, geen ervaring nodig.</p>
-              <span class="mt-6 inline-flex items-center gap-2 font-display font-semibold text-accent">Bekijk de vacature <span class="pijl" aria-hidden="true">→</span></span>
-            </div>
-          </a>
-        </li>
+        {vacatures.map((v) => (
+          <li class="reveal">
+            <a href={vacatureUrl(v.slug)} class="vacature-kaart group grid gap-6 rounded-3xl bg-ink p-6 text-white sm:grid-cols-[14rem_1fr] sm:p-8">
+              <Foto id={v.kaart as FotoId} class="aspect-square sm:aspect-auto sm:min-h-56" sizes="(min-width: 640px) 14rem, 100vw" />
+              <div class="flex flex-col justify-center">
+                <p class="eyebrow text-accent">Voltijds · in de buurt van Schilde</p>
+                <h3 class="mt-2 font-display text-3xl font-semibold">{v.titel}</h3>
+                <p class="mt-3 max-w-2xl text-on-ink-muted">{v.kort}</p>
+                <span class="mt-6 inline-flex items-center gap-2 font-display font-semibold text-accent">Bekijk de vacature <span class="pijl" aria-hidden="true">→</span></span>
+              </div>
+            </a>
+          </li>
+        ))}
       </ul>
 
-      <div class="reveal mt-16 flex flex-col gap-6 rounded-3xl border border-ink/10 bg-white p-8 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h2 class="font-display text-2xl font-semibold">Geen passende vacature?</h2>
-          <p class="mt-2 text-muted">Stuur gerust een spontane sollicitatie. Een kort berichtje is genoeg.</p>
+      <div class="reveal mt-16 grid gap-6 md:grid-cols-2">
+        <div class="rounded-3xl border border-ink/10 bg-white p-8">
+          <h2 class="font-display text-2xl font-semibold">Op zoek naar een stageplaats?</h2>
+          <p class="mt-2 text-muted">We werken al jaren samen met scholen in de buurt. Kies "Stageplaats" in het sollicitatieformulier.</p>
+          <a href={`${vacatureUrl('junior-elektricien')}#solliciteer`} class="btn btn-primary mt-6">Solliciteer voor een stage</a>
         </div>
-        <div class="flex flex-wrap gap-3">
-          <a href={business.whatsapp.jobHref} class="btn btn-primary" target="_blank" rel="noopener" data-event="job_whatsapp_click">WhatsApp</a>
-          <a href={job.mailto} class="btn btn-ghost">Mail</a>
+        <div class="rounded-3xl border border-ink/10 bg-white p-8">
+          <h2 class="font-display text-2xl font-semibold">Geen passende vacature?</h2>
+          <p class="mt-2 text-muted">Stuur gerust een spontane sollicitatie met je cv naar {business.email}.</p>
+          <a href={job.mailto} class="btn btn-ghost mt-6">Mail je cv</a>
         </div>
       </div>
     </div>

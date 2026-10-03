@@ -1,9 +1,9 @@
 ---
 // Kennisbankartikel — vraaggerichte koppen met antwoord eerst, auteur + datum (E-E-A-T), bronnen.
-// Schema: Article met author → #bert.
+// Schema: Article met author → organisatie (03-10-2026: geen persoon als auteur).
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
-import { SITE_URL, business } from '../../data/site';
+import { SITE_URL } from '../../data/site';
 import { artikels, artikelUrl, type Artikel } from '../../data/kennisbank';
 import { breadcrumbSchema } from '../../lib/schema';
 import { metTodo } from '../../lib/tekst';
@@ -28,7 +28,7 @@ const schema = {
   datePublished: a.gepubliceerd,
   dateModified: a.bijgewerkt,
   inLanguage: 'nl-BE',
-  author: { '@id': `${SITE_URL}/over-ons/#bert` },
+  author: { '@id': `${SITE_URL}/#organization` },
   publisher: { '@id': `${SITE_URL}/#organization` },
   image: `${SITE_URL}/og/bert.jpg`,
 };
@@ -39,8 +39,7 @@ const schema = {
     <Kruimels kruimels={kruimels} class="text-muted" />
     <h1 class="fade-up mt-6 text-[clamp(2.25rem,1.5rem+3vw,3.75rem)] leading-[1.05] tracking-tight">{a.titel}</h1>
     <p class="fade-up mt-6 flex items-center gap-3 text-sm text-muted" style="--d:150ms">
-      <span class="grid size-9 place-items-center rounded-full bg-ink font-display font-semibold text-accent" aria-hidden="true">B</span>
-      <span>Geschreven door <a href="/over-ons/" class="font-semibold text-ink underline-offset-4 hover:underline">{business.owner}</a>, erkend elektricien in Schilde · bijgewerkt op <time datetime={a.bijgewerkt}>{datum(a.bijgewerkt)}</time></span>
+      <span>Bijgewerkt op <time datetime={a.bijgewerkt}>{datum(a.bijgewerkt)}</time></span>
     </p>
     <p class="fade-up mt-8 text-xl leading-relaxed" style="--d:250ms">{a.intro}</p>
 

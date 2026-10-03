@@ -11,7 +11,7 @@ export const business = {
   vatId: 'BE0696715762',
   foundingDate: '2018-05',
   owner: 'Bert Heeman',
-  ownerTitle: 'Erkend elektricien en zaakvoerder',
+  ownerTitle: 'Oprichter en zaakvoerder',
   experience: 'meer dan 10 jaar ervaring',
   email: 'info@heeman-electrics.be',
   phone: {
@@ -23,7 +23,7 @@ export const business = {
   whatsapp: {
     href: 'https://wa.me/32485190027',
     jobHref:
-      'https://wa.me/32485190027?text=Hallo%2C%20ik%20heb%20interesse%20in%20de%20job%20als%20junior%20elektricien.',
+      'https://wa.me/32485190027?text=Hallo%2C%20ik%20heb%20een%20vraag%20over%20een%20job%20bij%20Heeman%20Electrics.',
   },
   address: {
     street: 'Baron Delbekelaan 49',
@@ -37,7 +37,7 @@ export const business = {
     days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
     opens: '08:00',
     closes: '17:30',
-    urgent: 'Dringend? Ook buiten de openingsuren bereikbaar.',
+    urgent: '24/7 bereikbaar voor dringende herstellingen.', // bevestigd 03-10-2026
   },
   sameAs: [] as string[], // [AANVULLEN: Google Bedrijfsprofiel, Facebook, Instagram, LinkedIn]
 } as const;
@@ -61,16 +61,19 @@ export const areas = [
   { name: 'Zoersel', slug: 'elektricien-zoersel' },
   { name: 'Zandhoven', slug: 'elektricien-zandhoven' },
   { name: 'Ranst', slug: 'elektricien-ranst' },
+  { name: 'Malle', slug: 'elektricien-malle' }, // toegevoegd 03-10-2026
+  { name: 'Deurne', slug: 'elektricien-deurne' }, // toegevoegd 03-10-2026
 ] as const;
 
 // Prioriteit 1–5 = kerndiensten (groot op home), 6–9 = aanvullend (CLAUDE.md § 3).
 export const services = [
-  { slug: 'laadpaal-installeren', name: 'Laadpaal installeren', priority: 1 },
-  { slug: 'elektrische-keuring', name: 'Installatie keuringsklaar maken', priority: 2 },
+  // 03-10-2026: focus op algemene werken/renovatie, nieuwbouw en domotica (vooral Niko).
+  { slug: 'renovatie-elektriciteit', name: 'Algemene elektriciteitswerken & renovatie', priority: 1 },
+  { slug: 'nieuwbouw', name: 'Nieuwbouw', priority: 2 },
   { slug: 'domotica-niko-home-control', name: 'Domotica · Niko Home Control', priority: 3 },
-  { slug: 'renovatie-elektriciteit', name: 'Renovatie elektriciteit', priority: 4 },
-  { slug: 'zonnepanelen-thuisbatterij', name: 'Zonnepanelen & thuisbatterij', priority: 5 },
-  { slug: 'nieuwbouw', name: 'Nieuwbouw', priority: 6 },
+  { slug: 'laadpaal-installeren', name: 'Laadpaal installeren', priority: 4 },
+  { slug: 'elektrische-keuring', name: 'Installatie keuringsklaar maken', priority: 5 },
+  { slug: 'zonnepanelen-thuisbatterij', name: 'Zonnepanelen & thuisbatterij', priority: 6 },
   { slug: 'video-parlofonie', name: 'Video- & parlofonie', priority: 7 },
   { slug: 'verlichtingsadvies', name: 'Verlichtingsadvies', priority: 8 },
   { slug: 'dringende-herstellingen', name: 'Dringende herstellingen', priority: 9 },
@@ -78,26 +81,27 @@ export const services = [
 
 // Groepering van de diensten in het mobiele menu (23-09-2026).
 export const dienstGroepen = [
+  { titel: 'Installatie & renovatie', slugs: ['renovatie-elektriciteit', 'nieuwbouw', 'elektrische-keuring', 'dringende-herstellingen'] },
   { titel: 'Laden & energie', slugs: ['laadpaal-installeren', 'zonnepanelen-thuisbatterij'] },
-  { titel: 'Installatie & keuring', slugs: ['elektrische-keuring', 'renovatie-elektriciteit', 'nieuwbouw', 'dringende-herstellingen'] },
   { titel: 'Comfort & slim wonen', slugs: ['domotica-niko-home-control', 'video-parlofonie', 'verlichtingsadvies'] },
 ] as const;
 
 export const serviceUrl = (slug: string) => `/diensten/${slug}/`;
 export const areaUrl = (slug: string) => `/regio/${slug}/`;
 
+// Jobs (03-10-2026): twee vacatures, zie data/vacature.ts. Solliciteren enkel via het formulier (cv verplicht), niet telefonisch.
 export const job = {
-  url: '/jobs/junior-elektricien/',
-  title: 'Junior elektricien (m/v/x)',
-  announcement: 'We zoeken een junior elektricien in de regio Schilde',
-  announcementCta: 'Bekijk de job',
-  mailto:
-    'mailto:info@heeman-electrics.be?subject=Sollicitatie%20junior%20elektricien',
+  url: '/jobs/',
+  eersteUrl: '/jobs/ervaren-elektricien/',
+  badge: 'Wij zoeken versterking',
+  announcement: 'Wij zoeken versterking: een ervaren en een junior elektricien',
+  announcementCta: 'Bekijk de jobs',
+  mailto: 'mailto:info@heeman-electrics.be?subject=Sollicitatie%20Heeman%20Electrics',
 } as const;
 
 export const nav = [
   { label: 'Realisaties', href: '/realisaties/' },
-  { label: 'Over ons', href: '/over-ons/' },
-  { label: 'Jobs', href: '/jobs/', badge: 'We zoeken versterking' },
+  { label: 'Wie we zijn', href: '/over-ons/' },
+  { label: 'Jobs', href: '/jobs/', badge: 'Wij zoeken versterking' },
   { label: 'Contact', href: '/contact/' },
 ] as const;

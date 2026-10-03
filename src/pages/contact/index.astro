@@ -68,7 +68,7 @@ const label = 'block font-semibold';
           <div class="grid gap-1 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold">Werkgebied</dt><dd>{areas.map((a) => a.name).join(', ')}</dd></div>
           <div class="grid gap-1 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold">Onderneming</dt><dd set:html={metTodo(`${business.legalName} · ${business.vat}`)} /></div>
         </dl>
-        <p class="mt-8 text-muted">Wil je bij ons werken? <a href={job.url} class="font-semibold text-brand underline-offset-4 hover:underline">Bekijk de vacature junior elektricien</a>.</p>
+        <p class="mt-8 text-muted">Wil je bij ons werken? <a href={job.url} class="font-semibold text-brand underline-offset-4 hover:underline">Bekijk de jobs</a> (ervaren en junior elektricien). Solliciteren gaat via het formulier op de jobpagina.</p>
       </div>
 
       <div class="reveal rounded-3xl bg-white p-6 shadow-[0_24px_60px_-40px_rgb(28_13_10/0.5)] sm:p-10" data-mailto-blok>

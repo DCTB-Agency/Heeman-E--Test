@@ -7,7 +7,7 @@ import Faq from '../../components/Faq.astro';
 import { business, serviceUrl, job } from '../../data/site';
 import { homeFaq } from '../../data/home';
 import { diensten } from '../../data/diensten';
-import { vacature } from '../../data/vacature';
+import { jobsFaq } from '../../data/vacature';
 import { breadcrumbSchema, faqSchema, type Vraag } from '../../lib/schema';
 
 const kruimels = [
@@ -18,7 +18,7 @@ const kruimels = [
 const groepen: { id: string; titel: string; vragen: Vraag[]; link?: { href: string; tekst: string } }[] = [
   { id: 'algemeen', titel: 'Algemeen', vragen: homeFaq },
   ...diensten.map((d) => ({ id: d.slug, titel: d.naam, vragen: d.faq, link: { href: serviceUrl(d.slug), tekst: `Meer over ${d.naam.toLowerCase()}` } })),
-  { id: 'jobs', titel: 'Werken bij Heeman Electrics', vragen: vacature.faq, link: { href: job.url, tekst: 'Bekijk de vacature' } },
+  { id: 'jobs', titel: 'Werken bij Heeman Electrics', vragen: jobsFaq, link: { href: job.url, tekst: 'Bekijk de jobs' } },
 ];
 
 // Schema: elke vraag één keer.

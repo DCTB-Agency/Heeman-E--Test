@@ -55,8 +55,7 @@ const serviceSchema = {
         <h1 class="fade-up mt-6 text-[clamp(2.25rem,1.5rem+3vw,4rem)] leading-[1.03] tracking-tight" style="--d:80ms">{dienst.h1}</h1>
         <p class="fade-up mt-6 max-w-2xl text-xl leading-relaxed" style="--d:200ms" set:html={metTodo(dienst.antwoord)} />
         <p class="fade-up mt-6 flex items-center gap-3 text-sm text-muted" style="--d:300ms">
-          <span class="grid size-9 place-items-center rounded-full bg-ink font-display font-semibold text-accent" aria-hidden="true">B</span>
-          <span>Geschreven door <a href="/over-ons/" class="font-semibold text-ink underline-offset-4 hover:underline">{business.owner}</a>, erkend elektricien in Schilde · bijgewerkt op <time datetime={dienst.bijgewerkt}>{bijgewerkt}</time></span>
+          <span>Bijgewerkt op <time datetime={dienst.bijgewerkt}>{bijgewerkt}</time></span>
         </p>
       </div>
 
@@ -205,9 +204,9 @@ const serviceSchema = {
       </div>
       <a href={job.url} class="jobs-teaser reveal group block rounded-3xl border border-white/15 bg-ink p-7 hover:border-accent">
         <p class="eyebrow">Jobs</p>
-        <p class="mt-2 font-display text-2xl font-semibold">Zin om dit zelf te leren?</p>
-        <p class="mt-2 text-on-ink-muted">We zoeken een junior elektricien in de regio Schilde.</p>
-        <span class="mt-5 inline-flex items-center gap-2 font-display font-semibold text-accent">Bekijk de job <span class="pijl" aria-hidden="true">→</span></span>
+        <p class="mt-2 font-display text-2xl font-semibold">Klaar voor een nieuwe uitdaging?</p>
+        <p class="mt-2 text-on-ink-muted">Wij zoeken een ervaren en een junior elektricien.</p>
+        <span class="mt-5 inline-flex items-center gap-2 font-display font-semibold text-accent">Bekijk de jobs <span class="pijl" aria-hidden="true">→</span></span>
       </a>
     </div>
   </section>

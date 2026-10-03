@@ -10,11 +10,12 @@ import { realisaties, realisatieUrl } from '../data/realisaties';
 import Werkgebied from '../components/Werkgebied.astro';
 import Faq from '../components/Faq.astro';
 import { business, areas, areaUrl, services, serviceUrl, antwoordTermijn } from '../data/site';
-import { usps, dienstTekst, laadpaalMerken, cijfers, homeFaq } from '../data/home';
+import { usps, dienstTekst, cijfers, homeFaq } from '../data/home';
 import { faqSchema } from '../lib/schema';
 import { metTodo } from '../lib/tekst';
 
-const [laadpaal, ...kern] = services.filter((s) => s.priority <= 5);
+const [uitgelicht, ...kern] = services.filter((s) => s.priority <= 5);
+const uitgelichtTags = ['Verdeelkasten', 'Bekabeling', 'Stopcontacten & verlichting', 'Conform het AREI'];
 const extra = services.filter((s) => s.priority > 5);
 const zakelijk = [
   { titel: 'Bedrijven', icoon: 'laadpaal-installeren', href: serviceUrl('laadpaal-installeren'), tekst: 'Laadpunten voor eigen wagens, personeel en bezoekers. Installaties in kantoren en handelspanden.' },
@@ -25,8 +26,8 @@ const zakelijk = [
 ---
 
 <Base
-  title="Elektricien Schilde · Laadpalen & domotica · Heeman"
-  description="Erkend elektricien in Schilde voor particulieren, bedrijven en syndici: laadpalen, Niko Home Control en keuringsklare installaties. Gratis offerte."
+  title="Elektricien Schilde · Elektriciteitswerken & herstellingen"
+  description="Uw betrouwbare elektricien in Schilde en omgeving: elektriciteitswerken, renovatie, nieuwbouw, Niko Home Control en herstellingen. 24/7 bereikbaar."
   schema={[faqSchema(homeFaq)]}
 >
   <!-- HERO + USP: de kabel hangt uit de header en plugt in op het stopcontact bovenop de USP-rij -->
@@ -35,21 +36,24 @@ const zakelijk = [
   <section class="relative overflow-clip">
     <div class="container-site relative py-16 sm:py-24 lg:py-32">
       <p class="eyebrow fade-up">Heeman Electrics · Schilde</p>
-      <h1 class="mt-4 max-w-4xl text-display">
-        <span class="line-mask"><span style="--i:1">Elektricien met</span></span>
-        <span class="line-mask"><span style="--i:2"><span class="relative whitespace-nowrap text-brand">10+ jaar vakkennis<svg class="absolute -bottom-[0.12em] left-0 h-[0.3em] w-full overflow-visible" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path class="draw-in" style="--d:900ms;--dur:0.9s" d="M2 12 C 40 4, 80 18, 120 10 S 180 6, 198 12" pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="5" stroke-linecap="round" /></svg></span></span></span>
-        <span class="line-mask"><span style="--i:3">in uw regio.</span></span>
+      <h1 class="mt-4 max-w-5xl text-[clamp(2.1rem,1.2rem+3.6vw,4.25rem)] leading-[1.04] tracking-[-0.03em]">
+        <span class="line-mask"><span style="--i:1">Uw betrouwbare elektricien met</span></span>
+        <span class="line-mask"><span style="--i:2">meer dan <span class="relative whitespace-nowrap text-brand">10 jaar ervaring<svg class="absolute -bottom-[0.12em] left-0 h-[0.3em] w-full overflow-visible" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path class="draw-in" style="--d:900ms;--dur:0.9s" d="M2 12 C 40 4, 80 18, 120 10 S 180 6, 198 12" pathLength="1" fill="none" stroke="var(--color-accent)" stroke-width="5" stroke-linecap="round" /></svg></span></span></span>
+        <span class="line-mask"><span style="--i:3">in Schilde en omliggende regio.</span></span>
       </h1>
       <p class="fade-up mt-6 max-w-2xl text-lg text-muted" style="--d:550ms">
-        Laadpalen, keuringsklare installaties, Niko Home Control en renovatie in {areas.map((a) => a.name).slice(0, -1).join(', ')} en {areas.at(-1)!.name}.
+        Snelle service, 24/7 bereikbaar voor herstellingen, installaties en keuringen. Vraag vandaag nog een vrijblijvende offerte!
       </p>
+      <ul class="fade-up mt-5 flex flex-wrap gap-2" style="--d:620ms" aria-label="Specialisaties">
+        {['Nieuwbouw', 'Renovatie', 'Domotica · Niko Home Control'].map((s) => <li class="rounded-full border border-ink/15 bg-white/70 px-3 py-1 text-sm font-semibold">{s}</li>)}
+      </ul>
       <div class="fade-up mt-8 flex flex-wrap gap-3" style="--d:700ms">
         <a href={business.phone.href} class="btn btn-primary" data-event="click_to_call">
           <svg viewBox="0 0 24 24" class="size-5" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" /></svg>
           Bel {business.phone.display}
         </a>
         <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
-        <a href="/offerte/" class="btn btn-ghost">Gratis offerte</a>
+        <a href="/offerte/" class="btn btn-ghost">Vrijblijvende offerte</a>
       </div>
     </div>
   </section>
@@ -78,24 +82,24 @@ const zakelijk = [
       </div>
 
       <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr]">
-        <!-- Laadpaal: uitgelicht met echte foto (bovenaan, gecentreerd op de laadpaal), tekst eronder -->
-        <a href={serviceUrl(laadpaal.slug)} class="dienst on-ink reveal group relative flex flex-col overflow-hidden rounded-3xl bg-ink text-white md:col-span-2 lg:col-span-1 lg:row-span-2">
+        <!-- Uitgelicht: algemene elektriciteitswerken & renovatie, met echte foto bovenaan, tekst eronder -->
+        <a href={serviceUrl(uitgelicht.slug)} class="dienst on-ink reveal group relative flex flex-col overflow-hidden rounded-3xl bg-ink text-white md:col-span-2 lg:col-span-1 lg:row-span-2">
           <div class="relative min-h-72 flex-1 sm:min-h-80">
-            <Foto id="laadpaal" class="absolute inset-0 rounded-none" focus="46% 60%" sizes="(min-width: 1024px) 40vw, 100vw" />
+            <Foto id="verdeelkast" class="absolute inset-0 rounded-none" sizes="(min-width: 1024px) 40vw, 100vw" />
             <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink to-transparent" aria-hidden="true"></div>
             <span class="icoon-tegel absolute top-6 left-6 grid size-[4.5rem] place-items-center rounded-2xl bg-accent text-ink shadow-lg">
-              <DienstIcoon slug={laadpaal.slug} class="size-11" />
+              <DienstIcoon slug={uitgelicht.slug} class="size-11" />
             </span>
           </div>
           <div class="relative p-8 pt-4">
-            <p class="eyebrow">Nr. 1 in Schilde</p>
-            <h3 class="mt-2 font-display text-3xl font-semibold sm:text-4xl">Laadpaal laten plaatsen</h3>
-            <p class="mt-4 max-w-md text-[1.0625rem] leading-relaxed text-white/80">{dienstTekst[laadpaal.slug]}</p>
-            <ul class="mt-6 flex flex-wrap gap-2" aria-label="Merken">
-              {laadpaalMerken.map((m) => <li class="rounded-full border border-white/25 px-3 py-1 text-sm">{m}</li>)}
+            <p class="eyebrow">Algemene werken &amp; renovatieprojecten</p>
+            <h3 class="mt-2 font-display text-3xl font-semibold sm:text-4xl">Elektriciteitswerken en renovatie</h3>
+            <p class="mt-4 max-w-md text-[1.0625rem] leading-relaxed text-white/80">{dienstTekst[uitgelicht.slug]}</p>
+            <ul class="mt-6 flex flex-wrap gap-2" aria-label="Onder meer">
+              {uitgelichtTags.map((m) => <li class="rounded-full border border-white/25 px-3 py-1 text-sm">{m}</li>)}
             </ul>
             <span class="mt-8 inline-flex items-center gap-2 font-display font-semibold text-accent">
-              Meer over laadpalen <span class="pijl" aria-hidden="true">→</span>
+              Meer over renovatie <span class="pijl" aria-hidden="true">→</span>
             </span>
           </div>
         </a>
@@ -263,12 +267,12 @@ const zakelijk = [
     <StroomLijn doel points={[[4, 0], [4, 88], [92, 88], [92, 100]]} />
     <div class="container-site relative py-20 sm:py-24">
       <div class="reveal mx-auto max-w-3xl rounded-3xl bg-ink px-2 py-4 text-center">
-        <h2 id="cta" class="h2">Vraag uw gratis offerte aan</h2>
-        <p class="mt-4 text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een gratis offerte. We antwoorden binnen {antwoordTermijn}.</p>
+        <h2 id="cta" class="h2">Vraag uw vrijblijvende offerte aan</h2>
+        <p class="mt-4 text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een vrijblijvende offerte. We antwoorden binnen {antwoordTermijn}.</p>
         <div class="mt-8 flex flex-wrap justify-center gap-3">
           <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
           <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
-          <a href="/offerte/" class="btn btn-ghost">Gratis offerte</a>
+          <a href="/offerte/" class="btn btn-ghost">Vrijblijvende offerte</a>
         </div>
       </div>
     </div>

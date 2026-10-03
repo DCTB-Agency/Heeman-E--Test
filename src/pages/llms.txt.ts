@@ -7,17 +7,17 @@ export const GET: APIRoute = () => {
   const u = (p: string) => `${SITE_URL}${p}`;
   const tekst = `# ${business.name}
 
-> Erkend elektricien in Schilde (provincie Antwerpen, België). Zaakvoerder: ${business.owner}, ${business.experience}; eigen zaak sinds 2018. Werkgebied: ${areas.map((a) => a.name).join(', ')}.
+> Erkend elektricien in Schilde (provincie Antwerpen, België). ${business.experience}; opgericht in 2018. Specialisaties: algemene elektriciteitswerken en renovatie, nieuwbouw, domotica (Niko Home Control). Werkgebied: ${areas.map((a) => a.name).join(', ')}.
 
 Contact: ${business.phone.international} · ${business.email} · ${business.address.street}, ${business.address.postalCode} ${business.address.locality}
-Openingsuren: ${business.hours.label}; dringende oproepen ook buiten de openingsuren.
+Openingsuren: ${business.hours.label}; 24/7 bereikbaar voor dringende herstellingen.
 Werkwijze: bezoek en inschatting vooraf, één vast aanspreekpunt van opstart tot oplevering, kwaliteitscontrole bij elke installatie. Klanten: particulieren, bedrijven, syndici en aannemers. Gratis offerte; geen vaste prijzen online.
 
 ## Diensten
 ${services.map((s) => `- [${s.name}](${u(serviceUrl(s.slug))})`).join('\n')}
 
 ## Jobs
-- [Vacature junior elektricien (vast, voltijds)](${u(job.url)})
+- [Jobs: ervaren elektricien en junior elektricien](${u(job.url)})
 
 ## Kennisbank
 ${artikels.map((a) => `- [${a.titel}](${u(artikelUrl(a.slug))})`).join('\n')}

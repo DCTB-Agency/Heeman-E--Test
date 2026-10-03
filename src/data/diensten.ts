@@ -1,6 +1,6 @@
 // Dienstpagina's — CLAUDE.md § 8 (template + aandachtspunten), § 9 (metadata), § 11.3 (antwoord eerst), § 0.1.
 // Regels: geen vaste prijzen, geen bedragen, premies/regels altijd [te controleren] + officiële bron,
-// "wij"-vorm (23-09: Bert doet bezoek, inschatting, opstart, oplevering en controle zelf), keuring gebeurt door een erkend keuringsorganisme. Onbekend = [AANVULLEN] / [TE BEVESTIGEN].
+// "wij"-vorm (de firma; Bert enkel op /over-ons/), keuring gebeurt door een erkend keuringsorganisme. Onbekend = [AANVULLEN] / [TE BEVESTIGEN].
 import type { Vraag } from '../lib/schema';
 import type { FotoId } from './fotos';
 
@@ -52,9 +52,9 @@ export const diensten: Dienst[] = [
     metaTitle: 'Laadpaal laten plaatsen in Schilde · Heeman Electrics',
     metaDescription:
       'Laadpaal thuis of voor uw bedrijf in Schilde en omgeving. Persoonlijk contact, vakkundig en netjes geplaatst. Gratis offerte of bel 0485 19 00 27.',
-    h1: 'Laadpaal laten plaatsen in Schilde en omgeving',
+    h1: 'Laadpaal laten plaatsen',
     antwoord:
-      'Een laadpaal thuis of voor uw bedrijf laat u plaatsen door een erkend elektricien. We komen langs om uw aansluiting en verdeelkast te bekijken en u krijgt een gratis offerte. Daarna plaatsen we de laadpaal, onder meer van EVBox, Alfen, Easee of Zaptec, stellen hem in en maken alles klaar voor de keuring.',
+      'Een laadpaal thuis of voor uw bedrijf laat u plaatsen door een erkend elektricien. We komen langs om uw aansluiting en verdeelkast te bekijken en u krijgt een gratis offerte. Daarna plaatsen we de laadpaal, onder meer van Alfen of Easee, stellen hem in en maken alles klaar voor de keuring.',
     voorWie: [
       'Thuisladen: u heeft (binnenkort) een elektrische of plug-in hybride wagen.',
       'Bedrijven: laadpunten voor uw eigen wagens, personeel of bezoekers.',
@@ -62,7 +62,7 @@ export const diensten: Dienst[] = [
       'Zonnepanelen: u wil slim laden met uw eigen zonnestroom.',
     ],
     inOfferte: [
-      'De laadpaal zelf (onder meer EVBox, Alfen, Easee of Zaptec)',
+      'De laadpaal zelf (onder meer Alfen of Easee)',
       'De kabel van uw verdeelkast naar de laadpaal',
       'De beveiliging in de verdeelkast',
       'Plaatsing, aansluiting en instellen (ook slim laden of load balancing waar nodig)',
@@ -78,7 +78,7 @@ export const diensten: Dienst[] = [
       {
         vraag: 'Welke laadpaal past bij mij?',
         antwoord:
-          'Dat hangt af van uw aansluiting (1- of 3-fasig), hoeveel u rijdt en of u zonnepanelen heeft. Bij het bezoek bekijken we dat en raden we een model aan. We plaatsen onder meer EVBox, Alfen, Easee en Zaptec.',
+          'Dat hangt af van uw aansluiting (1- of 3-fasig), hoeveel u rijdt en of u zonnepanelen heeft. Bij het bezoek bekijken we dat en raden we een model aan. We plaatsen onder meer Alfen en Easee.',
       },
       {
         vraag: 'Kan ik laden met mijn eigen zonnestroom?',
@@ -111,7 +111,7 @@ export const diensten: Dienst[] = [
     metaTitle: 'Installatie keuringsklaar maken · Elektricien Schilde',
     metaDescription:
       'Woning verkopen of installatie afgekeurd? Wij brengen uw elektrische installatie in orde volgens het AREI, in Schilde en omgeving. Gratis offerte.',
-    h1: 'Elektrische installatie keuringsklaar maken in Schilde',
+    h1: 'Elektrische installatie keuringsklaar maken',
     antwoord:
       'Wil u uw woning verkopen of is uw elektrische installatie afgekeurd? Dan moet ze in orde gebracht worden volgens het AREI. We bekijken uw installatie, zetten de inbreuken recht en maken de verplichte schema’s. De keuring zelf gebeurt daarna door een erkend keuringsorganisme; wij zorgen dat uw installatie daar klaar voor is.',
     voorWie: [
@@ -174,7 +174,7 @@ export const diensten: Dienst[] = [
     metaTitle: 'Niko Home Control installeren in Schilde · Heeman',
     metaDescription:
       'Domotica met Niko Home Control bij nieuwbouw of renovatie in Schilde en omgeving. Installatie, uitbreiding en programmatie. Vraag een offerte.',
-    h1: 'Niko Home Control installeren in Schilde en omgeving',
+    h1: 'Niko Home Control installeren',
     antwoord:
       'Met Niko Home Control stuurt u verlichting, verwarming en toegang centraal en slim aan. We installeren het bij nieuwbouw en renovatie, breiden bestaande installaties uit en programmeren alles op maat van hoe u woont of werkt. U krijgt eerst een bezoek, advies en een gratis offerte.',
     voorWie: [
@@ -219,16 +219,17 @@ export const diensten: Dienst[] = [
   },
   {
     slug: 'renovatie-elektriciteit',
-    naam: 'Renovatie elektriciteit',
-    serviceType: 'Vernieuwen van de elektrische installatie bij renovatie',
-    metaTitle: 'Elektriciteit vernieuwen bij renovatie · Schilde',
+    naam: 'Algemene elektriciteitswerken & renovatie',
+    serviceType: 'Algemene elektriciteitswerken en renovatie van elektrische installaties',
+    metaTitle: 'Elektriciteitswerken & renovatie Schilde · Heeman',
     metaDescription:
-      'Nieuwe verdeelkast, bekabeling of volledige renovatie van uw elektriciteit in Schilde en omgeving. Netjes en keuringsklaar afgewerkt.',
-    h1: 'Elektriciteit vernieuwen bij renovatie in Schilde',
+      'Algemene elektriciteitswerken en renovatieprojecten in Schilde en omgeving: verdeelkast, bekabeling, stopcontacten en verlichting. Conform de normen.',
+    h1: 'Algemene elektriciteitswerken en renovatieprojecten',
     antwoord:
-      'Een renovatie is hét moment om uw elektriciteit te vernieuwen: een nieuwe verdeelkast, nieuwe bekabeling, een goede aarding en de juiste differentieelschakelaars. We brengen uw installatie weer veilig en up-to-date volgens het AREI, met de nodige schema’s. Zo is ze klaar voor de keuring én voor later: een laadpaal, zonnepanelen of domotica.',
+      'Bij renovaties brengen wij uw elektriciteit volledig up-to-date en conform de huidige normen, inclusief modern comfort en slimme oplossingen. Van een extra stopcontact of lichtpunt tot een volledig vernieuwde installatie met nieuwe verdeelkast, bekabeling, aarding en differentieelschakelaars, met de nodige schema’s voor de keuring.',
     voorWie: [
       'U verbouwt en de oude installatie moet mee vernieuwd worden.',
+      'U wil extra stopcontacten, lichtpunten of kringen laten bijplaatsen.',
       'Uw verdeelkast is verouderd of heeft nog smeltzekeringen.',
       'Uw installatie is afgekeurd of heeft geen goede aarding.',
       'U wil uw installatie klaarmaken voor een laadpaal, warmtepomp of zonnepanelen.',
@@ -279,7 +280,7 @@ export const diensten: Dienst[] = [
     metaTitle: 'Zonnepanelen & thuisbatterij aansluiten · Schilde',
     metaDescription:
       'Zonnepanelen en thuisbatterij slim koppelen aan uw installatie en laadpaal, in Schilde en omgeving. Vraag vrijblijvend advies en een offerte.',
-    h1: 'Zonnepanelen en thuisbatterij aansluiten in Schilde',
+    h1: 'Zonnepanelen en thuisbatterij aansluiten',
     antwoord:
       'Zonnepanelen en een thuisbatterij halen het meeste uit uw stroom als ze goed samenwerken met de rest van uw installatie. We sluiten ze aan en integreren ze met uw verdeelkast en laadpaal, zodat u bijvoorbeeld uw wagen kan laden met eigen zonnestroom. U krijgt eerst advies en een gratis offerte. [TE BEVESTIGEN: plaatsen we ook de panelen zelf?]',
     voorWie: [
@@ -333,7 +334,7 @@ export const diensten: Dienst[] = [
     metaTitle: 'Elektriciteit nieuwbouw in Schilde · Heeman Electrics',
     metaDescription:
       'Volledige elektrische installatie voor uw nieuwbouw in Schilde en omgeving, van plan tot keuring. Erkend elektricien, gratis offerte.',
-    h1: 'Elektrische installatie voor nieuwbouw in Schilde',
+    h1: 'Elektrische installatie voor nieuwbouw',
     antwoord:
       'Bouwt u nieuw in Schilde of omgeving? Dan zorgen wij voor de volledige elektrische installatie: van het plan met stopcontacten en lichtpunten tot de verdeelkast, bekabeling en afwerking. We denken meteen aan later: een laadpaal, zonnepanelen of Niko Home Control. Na afloop is uw installatie klaar voor de keuring door een erkend organisme.',
     voorWie: [
@@ -379,7 +380,7 @@ export const diensten: Dienst[] = [
     metaTitle: 'Video- & parlofonie plaatsen in Schilde · Heeman',
     metaDescription:
       'Videofoon of parlofoon laten plaatsen in Schilde en omgeving. Zien wie er aanbelt en toegang eenvoudig beheren. Vraag een offerte.',
-    h1: 'Video- en parlofonie plaatsen in Schilde',
+    h1: 'Video- en parlofonie plaatsen',
     antwoord:
       'Met een videofoon of parlofoon ziet of hoort u wie er aanbelt en opent u de deur of poort eenvoudig. We plaatsen nieuwe systemen en vervangen verouderde bellen of parlofoons, in woningen en bedrijven in Schilde en omgeving. U krijgt eerst advies over wat bij uw situatie past, en een gratis offerte.',
     voorWie: [
@@ -425,12 +426,12 @@ export const diensten: Dienst[] = [
     metaTitle: 'Verlichtingsadvies en -installatie · Schilde · Heeman',
     metaDescription:
       'Verlichting die sfeer, functie en een laag verbruik combineert. Advies en plaatsing in Schilde en omgeving. Vraag vrijblijvend advies.',
-    h1: 'Verlichtingsadvies en -installatie in Schilde',
+    h1: 'Verlichtingsadvies en -installatie',
     antwoord:
       'Goede verlichting combineert sfeer, functie en een laag verbruik. We denken mee over waar u welk licht nodig heeft, van keuken en werkplek tot tuin, en plaatsen de armaturen, schakelaars en dimmers. Wil u later slim sturen? Dan houden we meteen rekening met Niko Home Control.',
     voorWie: [
       'U verbouwt of richt een ruimte opnieuw in.',
-      'U wil zuiniger verlichten met led.',
+      'U wil besparen dankzij ledverlichting.',
       'U wil sfeerverlichting, buitenverlichting of slimme sturing.',
     ],
     inOfferte: [
@@ -468,12 +469,12 @@ export const diensten: Dienst[] = [
     slug: 'dringende-herstellingen',
     naam: 'Dringende herstellingen',
     serviceType: 'Dringende elektrische herstellingen en pannes',
-    metaTitle: 'Dringende elektriciteitspanne Schilde · Heeman',
+    metaTitle: 'Herstelling elektriciteit Schilde · 24/7 · Heeman',
     metaDescription:
-      'Stroompanne of dringend elektrisch probleem in Schilde en omgeving? Ook buiten de openingsuren bereikbaar. Bel 0485 19 00 27.',
-    h1: 'Dringende elektriciteitspanne in Schilde en omgeving',
+      'Stroompanne of dringende herstelling in Schilde en omgeving? 24/7 bereikbaar voor dringende elektrische problemen. Bel 0485 19 00 27.',
+    h1: 'Dringende herstellingen en elektriciteitspannes',
     antwoord:
-      'Stroompanne, een differentieel dat blijft uitvallen of een stopcontact dat warm wordt? Bel ons op 0485 19 00 27. Voor dringende problemen zijn we ook buiten de openingsuren bereikbaar in Schilde en omgeving. Ruikt u een brandgeur of ziet u vonken? Schakel dan eerst de hoofdschakelaar uit en bel bij gevaar 112.',
+      'Stroompanne, een differentieel dat blijft uitvallen of een stopcontact dat warm wordt? Bel ons op 0485 19 00 27. Voor dringende herstellingen zijn we 24/7 bereikbaar in Schilde en omgeving. Ruikt u een brandgeur of ziet u vonken? Schakel dan eerst de hoofdschakelaar uit en bel bij gevaar 112.',
     voorWie: [
       'Stroompanne in (een deel van) uw woning of bedrijf.',
       'Een differentieel of automaat die telkens opnieuw uitvalt.',
@@ -498,7 +499,7 @@ export const diensten: Dienst[] = [
       },
       {
         vraag: 'Bent u ook buiten de openingsuren bereikbaar?',
-        antwoord: 'Ja, voor dringende problemen zijn we ook buiten de openingsuren bereikbaar op 0485 19 00 27.',
+        antwoord: 'Ja, voor dringende herstellingen zijn we 24/7 bereikbaar op 0485 19 00 27.',
       },
       {
         vraag: 'Wat als ik een brandgeur ruik of vonken zie?',
@@ -506,7 +507,7 @@ export const diensten: Dienst[] = [
       },
       {
         vraag: 'In welke gemeenten komt u voor dringende herstellingen?',
-        antwoord: 'In Schilde, ’s-Gravenwezel, Wijnegem, Schoten, Brasschaat, Zoersel, Zandhoven en Ranst.',
+        antwoord: 'In Schilde, ’s-Gravenwezel, Wijnegem, Schoten, Brasschaat, Zoersel, Zandhoven, Ranst, Malle en Deurne.',
       },
       {
         vraag: 'Kan ik een foto van het probleem sturen?',

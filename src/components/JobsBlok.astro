@@ -2,23 +2,25 @@
 // Groot jobs-blok op de homepage (CLAUDE.md § 6.1 + § 7.7): accentkleur, portret, "een dag op de baan".
 import DagTijdlijn from './DagTijdlijn.astro';
 import Foto from './Foto.astro';
-import { business, job } from '../data/site';
+import { job } from '../data/site';
+import { vacatures, vacatureUrl } from '../data/vacature';
 ---
 
 <section class="section relative overflow-clip bg-accent text-ink" aria-labelledby="jobs-blok">
   <div class="container-site">
     <div class="grid items-center gap-10 lg:grid-cols-[1fr_22rem] lg:gap-16">
       <div class="reveal">
-        <p class="font-display text-sm font-semibold tracking-widest uppercase">We zoeken versterking</p>
-        <h2 id="jobs-blok" class="h2 mt-3">Leer het vak op de werf.</h2>
+        <p class="font-display text-sm font-semibold tracking-widest uppercase">{job.badge}</p>
+        <h2 id="jobs-blok" class="h2 mt-3">Klaar voor een nieuwe uitdaging?</h2>
         <p class="mt-5 max-w-2xl text-lg">
-          Het werk groeit. Daarom zoeken we een <strong>junior elektricien</strong> die mee op de baan gaat:
-          laadpalen, Niko Home Control, zonnepanelen en renovaties in de regio Schilde. Vast, voltijds contract.
-          Een groeiend bedrijf met korte lijnen: je leert van een erkend elektricien met 10+ jaar ervaring, bij de klant zelf.
+          Wij zijn op zoek naar jou! Om de groei van ons bedrijf te verzekeren, zoeken we een <strong>ervaren elektricien</strong>
+          (minstens 3 jaar ervaring) en een <strong>junior elektricien</strong> die het vak wil leren. Ook voor een stageplaats kan je
+          bij ons terecht. Al onze werven liggen in de buurt.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href={job.url} class="btn bg-ink text-white hover:bg-ink-soft">Bekijk de vacature</a>
-          <a href={business.whatsapp.jobHref} class="btn btn-ghost" target="_blank" rel="noopener" data-event="job_whatsapp_click">Stuur ons een WhatsApp</a>
+          {vacatures.map((v, i) => (
+            <a href={vacatureUrl(v.slug)} class:list={['btn', i === 0 ? 'bg-ink text-white hover:bg-ink-soft' : 'btn-ghost']}>{v.titel}</a>
+          ))}
         </div>
       </div>
       <Foto id="bert" class="reveal aspect-[4/5] shadow-[0_30px_60px_-30px_rgb(28_13_10/0.6)]" sizes="(min-width: 1024px) 22rem, 100vw" />

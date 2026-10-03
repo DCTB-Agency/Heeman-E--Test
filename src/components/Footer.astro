@@ -9,11 +9,11 @@ const isJobs = Astro.url.pathname.startsWith('/jobs/');
   {!isJobs && (<div class="border-b border-white/10">
     <div class="container-site flex flex-col items-start gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
       <p class="font-display text-2xl font-semibold" data-stroom-vermijd>
-        Werken bij Heeman Electrics? <span class="text-accent">We zoeken een junior elektricien.</span>
+        Klaar voor een nieuwe uitdaging? <span class="text-accent">Wij zoeken een ervaren en een junior elektricien.</span>
       </p>
       <a href={job.url} class="btn btn-accent stopcontact-knop shrink-0 whitespace-nowrap" data-stroom-doel>
         <span class="stopcontact" aria-hidden="true"></span>
-        Bekijk de vacature
+        Bekijk de jobs
       </a>
     </div>
   </div>)}

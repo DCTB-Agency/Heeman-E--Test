@@ -1,0 +1,170 @@
+---
+// /jobs/{slug}/ — één pagina per vacature (03-10-2026: ervaren elektricien + junior elektricien).
+// Tekst en JobPosting-schema komen uit data/vacature.ts. Formulier staat bovenaan (i.p.v. een foto);
+// solliciteren gebeurt enkel via het formulier, met cv.
+import Base from '../../layouts/Base.astro';
+import Kruimels from '../../components/Kruimels.astro';
+import DagTijdlijn from '../../components/DagTijdlijn.astro';
+import Faq from '../../components/Faq.astro';
+import Foto from '../../components/Foto.astro';
+import Sollicitatieformulier from '../../components/Sollicitatieformulier.astro';
+import { SITE_URL, business, job } from '../../data/site';
+import { vacatures, vacatureUrl, vacatureHtml, stappen, type Vacature } from '../../data/vacature';
+import { breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { metTodo } from '../../lib/tekst';
+
+export function getStaticPaths() {
+  return vacatures.map((v) => ({ params: { slug: v.slug }, props: { v } }));
+}
+const { v } = Astro.props as { v: Vacature };
+const url = vacatureUrl(v.slug);
+const andere = vacatures.filter((x) => x.slug !== v.slug);
+
+const kruimels = [
+  { naam: 'Home', url: '/' },
+  { naam: 'Jobs', url: job.url },
+  { naam: v.titel, url },
+];
+
+const jobPosting = {
+  '@type': 'JobPosting',
+  title: v.titel,
+  description: vacatureHtml(v),
+  datePosted: v.datePosted,
+  validThrough: v.validThrough,
+  employmentType: 'FULL_TIME',
+  hiringOrganization: {
+    '@type': 'Organization',
+    '@id': `${SITE_URL}/#organization`,
+    name: business.name,
+    sameAs: SITE_URL,
+    logo: `${SITE_URL}/logo.png`,
+  },
+  jobLocation: {
+    '@type': 'Place',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: business.address.street,
+      addressLocality: business.address.locality,
+      postalCode: business.address.postalCode,
+      addressRegion: business.address.region,
+      addressCountry: business.address.country,
+    },
+  },
+  educationRequirements: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'high school' },
+  experienceRequirements: v.ervaringMaanden
+    ? { '@type': 'OccupationalExperienceRequirements', monthsOfExperience: v.ervaringMaanden }
+    : 'no requirements',
+  directApply: true,
+  industry: 'Elektrotechnische installatiewerken',
+  occupationalCategory: '47-2111.00 Electricians',
+  inLanguage: 'nl-BE',
+};
+
+const blokken = [
+  { titel: 'Wat ga je doen?', items: v.taken },
+  { titel: 'Wie zoeken we?', items: v.profiel },
+  { titel: 'Wat bieden we?', items: v.aanbod },
+];
+---
+
+<Base
+  title={v.metaTitle}
+  description={v.metaDescription}
+  ogImage="/og/stopcontactenPlaatsing.jpg"
+  schema={[jobPosting, faqSchema(v.faq), breadcrumbSchema(kruimels)]}
+>
+  <!-- HERO met formulier -->
+  <section class="bg-accent text-ink">
+    <div class="container-site grid gap-10 py-12 sm:py-16 lg:grid-cols-[1fr_1.15fr] lg:gap-14 lg:py-20">
+      <div>
+        <Kruimels kruimels={kruimels} class="fade-up" />
+        <p class="fade-up mt-6 font-display text-sm font-semibold tracking-widest uppercase">Klaar voor een nieuwe uitdaging?</p>
+        <h1 class="mt-3 text-[clamp(2.1rem,1.4rem+2.6vw,3.5rem)] leading-[1.02] tracking-tight">
+          <span class="line-mask"><span style="--i:1">{v.h1[0]}</span></span>
+          <span class="line-mask"><span style="--i:2">{v.h1[1]}</span></span>
+        </h1>
+        <p class="fade-up mt-6 max-w-2xl text-lg" style="--d:400ms">{v.intro}</p>
+        <ul class="fade-up mt-6 flex flex-wrap gap-2" style="--d:500ms" aria-label="In het kort">
+          {['Voltijds', 'Marktconform loon', 'Werven in de buurt', 'Rijbewijs B + eigen vervoer'].map((t) => (
+            <li class="rounded-full bg-ink/10 px-3 py-1 text-sm font-semibold">{t}</li>
+          ))}
+        </ul>
+        <p class="fade-up mt-8 text-sm" style="--d:600ms">
+          Liever mailen? Stuur je cv naar <a href={job.mailto} class="font-semibold underline underline-offset-4">{business.email}</a>.
+        </p>
+      </div>
+      <div id="solliciteer" class="fade-up scroll-mt-24 self-start rounded-3xl bg-white p-6 shadow-[0_30px_60px_-30px_rgb(28_13_10/0.6)] sm:p-8" style="--d:250ms">
+        <h2 class="font-display text-2xl font-semibold">Solliciteer</h2>
+        <p class="mt-1 mb-6 text-muted">Vul het formulier in en voeg je cv toe.</p>
+        <Sollicitatieformulier functie={v.slug} />
+      </div>
+    </div>
+  </section>
+
+  <!-- TAKEN / PROFIEL / AANBOD -->
+  <section class="section">
+    <div class="container-site grid gap-6 lg:grid-cols-3">
+      {blokken.map((b, i) => (
+        <div class="reveal rounded-3xl border border-ink/10 bg-white p-7 sm:p-8" style={`--i:${i}`}>
+          <h2 class="font-display text-2xl font-semibold">{b.titel}</h2>
+          <ul class="mt-6 space-y-4">
+            {b.items.map((it) => (
+              <li class="flex gap-3">
+                <svg viewBox="0 0 24 24" class="mt-0.5 size-5 shrink-0 text-brand" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></svg>
+                <span set:html={metTodo(it)} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- EEN DAG OP DE BAAN -->
+  <section class="section on-ink bg-ink text-white" style="--dag-bg: var(--color-ink)">
+    <div class="container-site">
+      <div class="grid gap-10 lg:grid-cols-[1fr_20rem] lg:items-end">
+        <div class="reveal">
+          <p class="eyebrow">Zo ziet je dag eruit</p>
+          <h2 class="h2 mt-3">Een dag op de baan</h2>
+          <p class="mt-4 max-w-xl text-lg text-on-ink-muted">Al onze werven liggen in de buurt: in Schilde en de omliggende gemeenten.</p>
+        </div>
+        <Foto id="stopcontactenPlaatsing" class="reveal aspect-[4/3]" sizes="(min-width: 1024px) 20rem, 100vw" />
+      </div>
+      <DagTijdlijn class="mt-14 text-accent [&_p]:text-white" />
+    </div>
+  </section>
+
+  <!-- ZO VERLOOPT HET -->
+  <section class="section">
+    <div class="container-site">
+      <p class="eyebrow reveal">Solliciteren</p>
+      <h2 class="h2 reveal mt-3">Zo verloopt het</h2>
+      <ol class="reveal-stagger mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {stappen.map((s, i) => (
+          <li class="stap relative rounded-3xl border border-ink/10 bg-white p-7" style={`--i:${i}`}>
+            <span class="font-display text-5xl font-semibold text-accent">{i + 1}</span>
+            <h3 class="mt-4 font-display text-xl font-semibold">{s.titel}</h3>
+            <p class="mt-2 text-muted" set:html={metTodo(s.tekst)} />
+          </li>
+        ))}
+      </ol>
+      <a href="#solliciteer" class="btn btn-primary reveal mt-10" data-event="job_apply_click">Naar het formulier</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section border-t border-ink/10 bg-white/60" aria-labelledby="job-faq">
+    <div class="container-site grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Vragen</p>
+        <h2 id="job-faq" class="h2 mt-3">Goed om te weten</h2>
+        {andere.map((a) => (
+          <p class="mt-8 text-muted">Ook interessant: <a href={vacatureUrl(a.slug)} class="font-semibold text-brand underline-offset-4 hover:underline">{a.titel}</a></p>
+        ))}
+      </div>
+      <Faq vragen={v.faq} class="reveal" />
+    </div>
+  </section>
+</Base>

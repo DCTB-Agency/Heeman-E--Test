@@ -13,15 +13,17 @@ interface Props {
   eager?: boolean;
   /** Wordt de foto al beschreven door tekst ernaast? Dan leeg alt (decoratief). */
   decoratief?: boolean;
+  /** Andere alt-tekst voor dit kader (bv. met naam op /over-ons/). */
+  alt?: string;
 }
-const { id, class: className = '', focus, sizes = '(min-width: 1024px) 40vw, 100vw', eager = false, decoratief = false } = Astro.props;
+const { id, class: className = '', focus, sizes = '(min-width: 1024px) 40vw, 100vw', eager = false, decoratief = false, alt } = Astro.props;
 const foto = fotos[id];
 ---
 
 <div class:list={['foto overflow-hidden rounded-2xl bg-sand', className]}>
   <Image
     src={foto.src}
-    alt={decoratief ? '' : foto.alt}
+    alt={decoratief ? '' : (alt ?? foto.alt)}
     widths={[400, 700, 1000, 1400]}
     sizes={sizes}
     loading={eager ? 'eager' : 'lazy'}

@@ -16,7 +16,7 @@ export const artikels: Artikel[] = [
   {
     slug: 'elektricien-worden-wat-leer-je-als-junior',
     titel: 'Elektricien worden: wat leer je als junior?',
-    beschrijving: 'Wat doet een junior elektricien, welk diploma heb je nodig en wat leer je op de werf? Uitleg van Bert Heeman, elektricien in Schilde.',
+    beschrijving: 'Wat doet een junior elektricien, welk diploma heb je nodig en wat leer je op de werf? Uitleg van Heeman Electrics, elektricien in Schilde.',
     gepubliceerd: '2026-09-23',
     bijgewerkt: '2026-09-23',
     intro:
@@ -55,7 +55,7 @@ export const artikels: Artikel[] = [
       },
     ],
     bronnen: [{ naam: 'FOD Economie — AREI', url: 'https://economie.fgov.be/nl' }],
-    cta: { tekst: 'We zoeken een junior elektricien in de regio Schilde.', href: '/jobs/junior-elektricien/', knop: 'Bekijk de vacature' },
+    cta: { tekst: 'Wij zoeken een junior elektricien die het vak wil leren. Ook stageplaatsen.', href: '/jobs/junior-elektricien/', knop: 'Bekijk de vacature' },
   },
 ];
 

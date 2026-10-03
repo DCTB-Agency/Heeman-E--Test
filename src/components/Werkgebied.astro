@@ -14,6 +14,8 @@ const pos: Record<string, { x: number; y: number; anchor?: 'start' | 'middle' | 
   Zoersel: { x: 495, y: 115, anchor: 'end', dy: -16 },
   Zandhoven: { x: 410, y: 285, anchor: 'start', dy: 30 },
   Ranst: { x: 205, y: 355, anchor: 'middle', dy: 30 },
+  Malle: { x: 430, y: 30, anchor: 'end', dy: 5 },
+  Deurne: { x: 30, y: 320, anchor: 'middle', dy: 30 },
 };
 const hub = pos.Schilde;
 const takken = areas.filter((a) => a.name !== 'Schilde');
@@ -29,7 +31,7 @@ function leiding(x: number, y: number) {
 ---
 
 <div class="werkgebied">
-  <svg viewBox="-40 0 600 400" class="h-auto w-full overflow-visible" role="group" aria-label="Werkgebied: Schilde en 7 omliggende gemeenten">
+  <svg viewBox="-40 0 600 400" class="h-auto w-full overflow-visible" role="group" aria-label={`Werkgebied: Schilde en ${takken.length} omliggende gemeenten`}>
     <g fill="none" stroke-linecap="round">
       {takken.map((a, i) => {
         const p = pos[a.name];

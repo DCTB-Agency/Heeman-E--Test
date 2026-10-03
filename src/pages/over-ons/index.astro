@@ -1,16 +1,15 @@
 ---
-// /over-ons/ — het bedrijf centraal (30-09-2026: "niet te veel Bert, iets grotere onderneming, ook grotere klanten").
-// Bert blijft zichtbaar als zaakvoerder (E-E-A-T): Person-schema, auteur van kennisbank en dienstpagina's.
+// /over-ons/ — "Wie we zijn". Het bedrijf centraal; dit is de énige pagina waar Bert vermeld wordt,
+// als oprichter, niet in de titel (03-10-2026). Person-schema voor E-E-A-T.
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
 import Foto from '../../components/Foto.astro';
 import { SITE_URL, business, job } from '../../data/site';
-import { laadpaalMerken } from '../../data/home';
 import { breadcrumbSchema } from '../../lib/schema';
 
 const kruimels = [
   { naam: 'Home', url: '/' },
-  { naam: 'Over ons', url: '/over-ons/' },
+  { naam: 'Wie we zijn', url: '/over-ons/' },
 ];
 const bertId = `${SITE_URL}/over-ons/#bert`;
 const paginaSchema = [
@@ -18,7 +17,7 @@ const paginaSchema = [
     '@type': 'AboutPage',
     '@id': `${SITE_URL}/over-ons/#page`,
     url: `${SITE_URL}/over-ons/`,
-    name: `Over ${business.name}`,
+    name: `Wie we zijn – ${business.name}`,
     about: { '@id': `${SITE_URL}/#organization` },
     mentions: { '@id': bertId },
   },
@@ -34,22 +33,22 @@ const paginaSchema = [
 ];
 
 const klanten = [
-  { titel: 'Particulieren', tekst: 'Laadpalen, renovaties, keuringsklare installaties en Niko Home Control, in woningen en villa’s.' },
+  { titel: 'Particulieren', tekst: 'Algemene elektriciteitswerken, renovatie, nieuwbouw en Niko Home Control, in woningen en villa’s.' },
   { titel: 'Bedrijven', tekst: 'Laadpunten voor eigen wagens, personeel en bezoekers, en elektrische installaties in kantoren en handelspanden.' },
   { titel: 'Syndici', tekst: 'Gemeenschappelijke laadinfrastructuur en elektriciteit in appartementsgebouwen, in overleg met de syndicus.' },
   { titel: 'Aannemers en architecten', tekst: 'Volledige installaties voor nieuwbouw en renovatie, afgestemd op de planning van de werf, met schema’s voor de keuring.' },
 ];
 
 const werkwijze = [
-  { titel: 'Bezoek en inschatting', tekst: 'We komen eerst ter plaatse en bekijken wat u nodig heeft.' },
-  { titel: 'Een duidelijke offerte', tekst: 'U krijgt een gratis offerte met wat er gebeurt en welk materiaal we gebruiken.' },
-  { titel: 'Eén aanspreekpunt', tekst: 'Van de opstart tot de oplevering weet u bij wie u terechtkunt.' },
+  { titel: 'Verkennend gesprek', tekst: 'We komen eerst langs en bekijken samen met u wat u nodig heeft.' },
+  { titel: 'Meedenken', tekst: 'Geen snelle oplossing, maar een voorstel dat ook op lange termijn positief uitdraait voor u.' },
+  { titel: 'Eén vast aanspreekpunt', tekst: 'Een duidelijke offerte, en van de opstart tot de oplevering weet u bij wie u terechtkunt.' },
   { titel: 'Kwaliteitscontrole', tekst: 'Elke installatie wordt gecontroleerd: netjes afgewerkt, volgens het AREI, met de nodige schema’s.' },
 ];
 ---
 
 <Base
-  title="Over Heeman Electrics · Elektricien in Schilde"
+  title="Wie we zijn · Heeman Electrics, elektricien in Schilde"
   description="Heeman Electrics is een erkende elektricien uit Schilde, sinds 2018. Meer dan 10 jaar vakkennis, voor particulieren, bedrijven, syndici en aannemers."
   ogImage="/og/verdeelkast.jpg"
   schema={[...paginaSchema, breadcrumbSchema(kruimels)]}
@@ -67,7 +66,7 @@ const werkwijze = [
       </p>
       <div class="fade-up mt-8 flex flex-wrap gap-3" style="--d:450ms">
         <a href={business.phone.href} class="btn btn-primary" data-event="click_to_call">Bel {business.phone.display}</a>
-        <a href="/offerte/" class="btn btn-ghost">Gratis offerte</a>
+        <a href="/offerte/" class="btn btn-ghost">Vrijblijvende offerte</a>
       </div>
     </div>
     <Foto id="verdeelkast" class="fade-up aspect-[4/5] shadow-[0_30px_60px_-30px_rgb(28_13_10/0.5)]" eager sizes="(min-width: 1024px) 40vw, 100vw" />
@@ -78,8 +77,8 @@ const werkwijze = [
       <div class="reveal max-w-3xl">
         <h2 id="klanten" class="h2">Voor wie we werken</h2>
         <p class="mt-5 text-lg text-muted">
-          We specialiseren ons in laadpalen (onder meer {laadpaalMerken.join(', ').replace(/, ([^,]*)$/, ' en $1')}), Niko Home Control,
-          installaties keuringsklaar maken volgens het AREI en de renovatie van elektriciteit. Van één stopcontact tot een volledig project.
+          We specialiseren ons in algemene elektriciteitswerken en renovatieprojecten, nieuwbouw en domotica (vooral Niko Home Control).
+          Daarnaast plaatsen we laadpalen en maken we installaties keuringsklaar volgens het AREI. Van één stopcontact tot een volledig project.
         </p>
       </div>
       <ul class="reveal-stagger mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -108,13 +107,13 @@ const werkwijze = [
     </div>
   </section>
 
-  <section class="section border-t border-ink/10 bg-white/60" aria-labelledby="zaakvoerder">
+  <section class="section border-t border-ink/10 bg-white/60" aria-labelledby="oprichter">
     <div class="container-site grid items-center gap-10 lg:grid-cols-[20rem_1fr] lg:gap-16">
-      <Foto id="bert" class="reveal aspect-[4/5]" sizes="(min-width: 1024px) 20rem, 100vw" />
+      <Foto id="bert" alt="Oprichter Bert Heeman aan het werk tijdens een renovatie" class="reveal aspect-[4/5]" sizes="(min-width: 1024px) 20rem, 100vw" />
       <div class="reveal space-y-5 text-lg">
-        <p class="eyebrow">De zaakvoerder</p>
-        <h2 id="zaakvoerder" class="h2">{business.owner}</h2>
-        <p>{business.owner} is erkend elektricien en zaakvoerder van {business.name}. Hij startte de zaak in 2018 en volgt de kwaliteit van elk project op.</p>
+        <p class="eyebrow">Ons verhaal</p>
+        <h2 id="oprichter" class="h2">Opgericht in 2018</h2>
+        <p>{business.name} werd in 2018 opgericht door {business.owner}, erkend elektricien. Sindsdien is de zaak gegroeid, met projecten in Schilde en de omliggende regio.</p>
         <p><mark class="todo">[AANVULLEN: opleiding en ervaring vóór 2018 — samen ruim 10 jaar]</mark></p>
         <p>Erkend elektricien: <mark class="todo">[AANVULLEN: erkend door / waarvoor]</mark></p>
       </div>
@@ -124,10 +123,10 @@ const werkwijze = [
   <section class="section on-ink bg-ink text-white">
     <div class="container-site grid items-center gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
       <div class="reveal">
-        <p class="eyebrow">We zoeken versterking</p>
-        <h2 class="h2 mt-3">We zoeken iemand die dit vak met dezelfde zorg wil doen.</h2>
-        <p class="mt-5 text-lg text-on-ink-muted">Het werk groeit. Daarom breiden we het team uit met een junior elektricien, met een vast, voltijds contract.</p>
-        <a href={job.url} class="btn btn-accent mt-8">Bekijk de vacature</a>
+        <p class="eyebrow">Wij zoeken versterking</p>
+        <h2 class="h2 mt-3">Klaar voor een nieuwe uitdaging?</h2>
+        <p class="mt-5 text-lg text-on-ink-muted">Om de groei van ons bedrijf te verzekeren, zoeken we een ervaren elektricien en een junior elektricien. Ook stageplaatsen.</p>
+        <a href={job.url} class="btn btn-accent mt-8">Bekijk de jobs</a>
         <p class="mt-10 text-sm text-on-ink-muted">Alle feiten op een rij: <a href="/over-ons/kerngegevens/" class="font-semibold text-white underline underline-offset-4">kerngegevens van Heeman Electrics</a>.</p>
       </div>
       <Foto id="schakelaars" class="reveal aspect-[4/3]" sizes="(min-width: 1024px) 35vw, 100vw" />

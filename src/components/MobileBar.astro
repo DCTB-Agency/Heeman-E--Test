@@ -11,14 +11,17 @@ const icons = {
   whatsapp: 'M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.1 1.2z',
   quote: 'M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm6 1.5V9h4.5M9 13h6M9 17h6',
   apply: 'M12 4v16M4 12h16',
+  mail: 'M4 6h16v12H4zM4 7l8 6 8-6',
 };
 
+// Jobs: solliciteren enkel via het formulier (cv verplicht), dus geen "Bel" (03-10-2026).
+const opJobpagina = /^\/jobs\/[^/]+\/$/.test(Astro.url.pathname) && !Astro.url.pathname.startsWith('/jobs/bedankt');
 const items =
   variant === 'jobs'
     ? [
-        { label: 'Solliciteer', href: `${job.url}#solliciteer`, icon: icons.apply, primary: true, event: 'job_apply_click', stroke: true },
-        { label: 'WhatsApp', href: business.whatsapp.jobHref, icon: icons.whatsapp, event: 'job_whatsapp_click' },
-        { label: 'Bel', href: business.phone.href, icon: icons.phone, event: 'job_call_click' },
+        { label: 'Solliciteer', href: opJobpagina ? '#solliciteer' : `${job.eersteUrl}#solliciteer`, icon: icons.apply, primary: true, event: 'job_apply_click', stroke: true },
+        { label: 'Alle jobs', href: job.url, icon: icons.quote, event: 'job_overview_click', stroke: true },
+        { label: 'Mail cv', href: job.mailto, icon: icons.mail, event: 'job_mail_click', stroke: true },
       ]
     : [
         { label: 'Bel', href: business.phone.href, icon: icons.phone, primary: true, event: 'click_to_call' },

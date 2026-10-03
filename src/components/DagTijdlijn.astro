@@ -1,6 +1,6 @@
 ---
-// "Een dag met Bert" (CLAUDE.md § 6.3): tijdlijn als kabel met aansluitpunten; de stroom loopt erdoor.
-import { vacature } from '../data/vacature';
+// "Een dag op de baan" (CLAUDE.md § 6.3): tijdlijn als kabel met aansluitpunten; de stroom loopt erdoor.
+import { dag } from '../data/vacature';
 interface Props {
   class?: string;
 }
@@ -9,7 +9,7 @@ const { class: className = '' } = Astro.props;
 
 <div class:list={['dag', className]}>
   <ol class="dag-lijst reveal-stagger relative grid gap-6 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
-    {vacature.dag.map((d, i) => (
+    {dag.map((d, i) => (
       <li class="relative pl-10 lg:pt-12 lg:pl-0" style={`--i:${i}`}>
         <span class="dag-punt absolute top-1 left-0 grid size-6 place-items-center rounded-full border-[3px] border-current bg-inherit lg:top-0" aria-hidden="true"></span>
         <p class="font-mono text-sm font-semibold tabular-nums">{d.uur}</p>

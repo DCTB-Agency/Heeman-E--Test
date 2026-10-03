@@ -1,4 +1,4 @@
-// Echte foto's van Bert en zijn werk (aangeleverd 23-09-2026, verwerkt met scripts/fotos.mjs: metadata/GPS verwijderd).
+// Echte foto's van het werk van Heeman Electrics (aangeleverd 23-09-2026, verwerkt met scripts/fotos.mjs: metadata/GPS verwijderd).
 // `focus` = object-position: welk deel van de foto zichtbaar blijft als hij wordt bijgesneden.
 // `titel` = korte beschrijving voor realisatiekaarten; gemeente nog aan te vullen.
 import type { ImageMetadata } from 'astro';
@@ -14,7 +14,7 @@ export type Foto = { src: ImageMetadata; alt: string; focus: string; titel: stri
 export const fotos = {
   bert: {
     src: bert,
-    alt: 'Bert Heeman trekt nieuwe kabels door een opengekapte muur tijdens een renovatie',
+    alt: 'Elektricien van Heeman Electrics trekt nieuwe kabels door een opengekapte muur tijdens een renovatie',
     focus: '50% 22%',
     titel: 'Nieuwe bekabeling tijdens een renovatie',
   },

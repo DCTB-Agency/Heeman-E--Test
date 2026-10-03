@@ -4,34 +4,34 @@ import { business, areas } from './site';
 import type { Vraag } from '../lib/schema';
 
 export const usps = [
-  { titel: 'Eén aanspreekpunt', tekst: 'Van het eerste bezoek en de inschatting tot de opstart en de oplevering: u heeft één vast aanspreekpunt.' },
-  { titel: 'Vakkennis', tekst: 'Erkend elektricien met meer dan 10 jaar ervaring, van laadpaal tot Niko Home Control.' },
-  { titel: 'Netjes afgewerkt', tekst: 'Elke installatie krijgt een kwaliteitscontrole: keuringsklaar volgens het AREI, met schema’s, en een opgeruimde werf.' },
-];
+  { titel: 'Eén vast aanspreekpunt', tekst: 'U heeft één vast aanspreekpunt. We komen eerst langs voor een verkennend gesprek.' },
+  { titel: 'Vakkennis', tekst: 'Meer dan 10 jaar ervaring als erkend elektricien, van nieuwbouw en renovatie tot Niko Home Control.' },
+  { titel: 'Meedenken met de klant', tekst: 'We nemen de tijd om mee te denken. Geen snelle oplossing, maar een installatie die ook op lange termijn positief uitdraait voor u.' },
+]
 
 // Korte uitleg per dienst (slug uit site.ts).
 export const dienstTekst: Record<string, string> = {
   'laadpaal-installeren':
-    'Thuis, voor uw bedrijf of in een gemeenschappelijke parking. Slim laden en koppeling met zonnepanelen. We plaatsen onder meer EVBox, Alfen, Easee en Zaptec.',
+    'Thuis, voor uw bedrijf of in een gemeenschappelijke parking. Slim laden en koppeling met zonnepanelen. We plaatsen onder meer Alfen en Easee.',
   'elektrische-keuring':
     'Woning verkopen of installatie afgekeurd? We brengen uw installatie in orde volgens het AREI en maken de schema’s. De keuring zelf doet een erkend keuringsorganisme.',
   'domotica-niko-home-control':
-    'Niko Home Control bij nieuwbouw of renovatie: installatie, uitbreiding en programmatie van verlichting, verwarming en toegang.',
+    'Vooral Niko Home Control, bij nieuwbouw of renovatie: installatie, uitbreiding en programmatie van verlichting, verwarming en toegang.',
   'renovatie-elektriciteit':
-    'Nieuwe verdeelkast, bekabeling, aarding en differentieelschakelaars. Uw elektriciteit weer veilig en up-to-date.',
+    'Bij renovaties brengen wij uw elektriciteit volledig up-to-date en conform de huidige normen, inclusief modern comfort en slimme oplossingen.',
   'zonnepanelen-thuisbatterij':
     'Zonnepanelen en thuisbatterij aansluiten en slim integreren met uw installatie en laadpaal.',
-  nieuwbouw: 'Volledige elektrische installatie voor uw nieuwbouw, van plan tot keuring.',
+  nieuwbouw: 'De volledige elektrische installatie voor uw nieuwbouw, van plan tot keuring, met oog voor later.',
   'video-parlofonie': 'Zien wie er aanbelt en toegang eenvoudig beheren.',
   verlichtingsadvies: 'Verlichting die sfeer, functie en een laag verbruik combineert.',
-  'dringende-herstellingen': 'Stroompanne of dringend probleem? Ook buiten de openingsuren bereikbaar.',
+  'dringende-herstellingen': 'Stroompanne of dringend probleem? 24/7 bereikbaar voor herstellingen.',
 };
 
-export const laadpaalMerken = ['EVBox', 'Alfen', 'Easee', 'Zaptec'];
+export const laadpaalMerken = ['Alfen', 'Easee']; // 03-10-2026: EVBox en Zaptec eruit
 
 export const cijfers = [
   { getal: 10, suffix: '+', label: 'jaar ervaring' },
-  { getal: 8, suffix: '', label: 'gemeenten in de regio' },
+  { getal: areas.length, suffix: '', label: 'gemeenten in de regio' },
   { getal: 2018, suffix: '', label: 'eigen zaak in Schilde', van: 2000 },
 ];
 
@@ -43,11 +43,11 @@ export const homeFaq: Vraag[] = [
   },
   {
     vraag: 'Hoe verloopt een opdracht?',
-    antwoord: 'We komen eerst langs om uw situatie te bekijken en in te schatten. Daarna krijgt u een gratis offerte. U heeft één vast aanspreekpunt van de opstart tot de oplevering, en elke installatie krijgt een kwaliteitscontrole.',
+    antwoord: 'We komen eerst langs voor een verkennend gesprek en bekijken uw situatie. Daarna krijgt u een vrijblijvende offerte. U heeft één vast aanspreekpunt van de opstart tot de oplevering, en elke installatie krijgt een kwaliteitscontrole.',
   },
   {
     vraag: 'Welke laadpalen plaatst u?',
-    antwoord: 'We plaatsen onder meer laadpalen van EVBox, Alfen, Easee en Zaptec, voor thuis, bedrijven en appartementsgebouwen. We helpen u kiezen op basis van uw aansluiting en of u zonnepanelen heeft.',
+    antwoord: 'We plaatsen onder meer laadpalen van Alfen en Easee, voor thuis, bedrijven en appartementsgebouwen. We helpen u kiezen op basis van uw aansluiting en of u zonnepanelen heeft.',
   },
   {
     vraag: 'Doet u zelf de elektrische keuring?',
@@ -55,6 +55,6 @@ export const homeFaq: Vraag[] = [
   },
   {
     vraag: 'Kan ik u bereiken bij een dringend probleem?',
-    antwoord: `Ja. We zijn open ${business.hours.label}, maar voor dringende problemen zijn we ook buiten de openingsuren bereikbaar op ${business.phone.display}.`,
+    antwoord: `Ja. We zijn open ${business.hours.label}. Voor dringende herstellingen zijn we 24/7 bereikbaar op ${business.phone.display}.`,
   },
 ];

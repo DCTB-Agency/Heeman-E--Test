@@ -23,6 +23,15 @@ Plak sectie 1–3, 5, 7 en 8 en de prompt uit sectie 16.B. Upload logo en 5–10
 - Gebruik **geen stockfoto's van mensen** die zich voordoen als Bert of zijn klanten. Placeholder-kaders met label is beter.
 
 ## 0.1 Beslissingen na Fase 0 (23-09-2026) — gaan vóór op de rest van deze brief
+- **Update 03-10-2026 (gaat vóór op de punten hieronder):**
+  - Altijd **"wij" als de firma**; nooit "ik" en **Bert niet vermelden**, behalve op de aparte pagina "Wie we zijn" (/over-ons/), als **oprichter**, niet in de titel. Geen "Geschreven door". Article-auteur = de organisatie.
+  - **Hero:** "Uw betrouwbare elektricien met meer dan 10 jaar ervaring in Schilde en omliggende regio." + "Snelle service, 24/7 bereikbaar voor herstellingen, installaties en keuringen. Vraag vandaag nog een vrijblijvende offerte!" **24/7 bevestigd** (dringende herstellingen).
+  - **Focus:** algemene elektriciteitswerken & renovatieprojecten, nieuwbouw, domotica (vooral Niko). Niet overpromisen (geen "Nr. 1").
+  - **USP's:** Eén vast aanspreekpunt (verkennend gesprek) · Vakkennis · Meedenken met de klant (geen "rap rap", positief op lange termijn). "Netjes afgewerkt" eruit.
+  - **Laadpaalmerken:** enkel Alfen en Easee (EVBox en Zaptec eruit).
+  - **Werkgebied:** + Malle en Deurne.
+  - **Jobs:** twee vacatures — ervaren elektricien (min. 3 jaar, bij voorkeur nieuwbouw/renovatie; prioriteit) en junior (net van school) + stageplaatsen. Geen (m/v/x). Cv verplicht, solliciteren enkel via het formulier (niet telefonisch). Rijbewijs B + eigen vervoer verplicht. Taalkennis NL/FR/EN; stipt, nauwkeurig, betrouwbaar, loyaal. Aanbod: voltijds, marktconform loon, werkkledij, gevarieerd werk, werven in de buurt. Geen "meedraaien op de werf" bij kennismaking. Formulier in de hero van de vacature (geen foto).
+  - **Dienstpagina's:** H1 zonder "Schilde"; title-tag behoudt "Schilde" (lokale SEO).
 - **E-mail:** info@heeman-electrics.be (overal: site, schema, formulieren, gidsen).
 - **Ervaring:** "meer dan 10 jaar ervaring". De BV bestaat sinds mei 2018 (KBO, `foundingDate`), maar in de copy spreken we over de 10+ jaar ervaring.
 - **Dringende herstellingen:** ook buiten de openingsuren bereikbaar voor dringende oproepen. Openingsuren ma–vr 08:00–17:30 blijven gelden voor gewone vragen. Geen "24/7" beloven zonder verdere bevestiging.

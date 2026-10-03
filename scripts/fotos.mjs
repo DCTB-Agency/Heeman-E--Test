@@ -17,7 +17,6 @@ const OG = {
   stopcontactenAf: ['stopcontacten-travertin-afgewerkt.jpg', 42],
   stopcontactenPlaatsing: ['stopcontacten-travertin-plaatsing.jpg', 50],
   schakelaars: ['schakelaars-inbouw.jpg', 40],
-  bert: ['bert-aan-het-werk.jpg', 12],
 };
 for (const [id, [f, focusY]] of Object.entries(OG)) {
   const img = sharp(`${OUT}/${f}`);
@@ -29,8 +28,4 @@ for (const [id, [f, focusY]] of Object.entries(OG)) {
   console.log(`public/og/${id}.jpg`);
 }
 
-// Deelbeeld homepage: Bert aan het werk, gezicht en handen in beeld.
-await sharp(`${IN}/bert-aan-het-werk.jpg`).rotate()
-  .extract({ left: 0, top: 40, width: 1080, height: 567 })
-  .resize(1200, 630).jpeg({ quality: 85, mozjpeg: true }).toFile('public/og/home.jpg');
-console.log('public/og/home.jpg 1200×630');
+// Deelbeeld homepage (logo) en favicons: zie scripts/merkbeelden.mjs.

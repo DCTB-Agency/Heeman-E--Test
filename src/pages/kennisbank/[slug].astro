@@ -30,11 +30,11 @@ const schema = {
   inLanguage: 'nl-BE',
   author: { '@id': `${SITE_URL}/#organization` },
   publisher: { '@id': `${SITE_URL}/#organization` },
-  image: `${SITE_URL}/og/bert.jpg`,
+  image: `${SITE_URL}/og/home.jpg`,
 };
 ---
 
-<Base title={a.titel.length > 60 ? a.titel.slice(0, 57) + '…' : a.titel} description={a.beschrijving} ogImage="/og/bert.jpg" schema={[schema, breadcrumbSchema(kruimels)]}>
+<Base title={a.titel.length > 60 ? a.titel.slice(0, 57) + '…' : a.titel} description={a.beschrijving} ogImage="/og/home.jpg" schema={[schema, breadcrumbSchema(kruimels)]}>
   <article class="container-site max-w-3xl py-12 sm:py-16 lg:py-20">
     <Kruimels kruimels={kruimels} class="text-muted" />
     <h1 class="fade-up mt-6 text-[clamp(2.25rem,1.5rem+3vw,3.75rem)] leading-[1.05] tracking-tight">{a.titel}</h1>

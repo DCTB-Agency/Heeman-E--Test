@@ -22,6 +22,9 @@ const isJobs = Astro.url.pathname.startsWith('/jobs/');
 const is404 = Astro.url.pathname.startsWith('/404');
 // Vóór livegang (PUBLIEK !== 'true') staat alles op noindex, zodat de Netlify-preview niet in Google komt.
 const publiek = import.meta.env.PUBLIEK === 'true' || process.env.PUBLIEK === 'true';
+// Deelbeeld (og:image) moet bereikbaar zijn op het adres dat gedeeld wordt. Vóór livegang draait www.heeman-electrics.be
+// nog de oude site, dus gebruiken we dan het Netlify-adres van deze build (DEPLOY_PRIME_URL / URL, gezet door Netlify).
+const beeldBasis = publiek ? SITE_URL : (process.env.DEPLOY_PRIME_URL || process.env.URL || SITE_URL);
 const robots = noindex || !publiek ? 'noindex,follow' : 'index,follow,max-image-preview:large';
 
 // Sitebrede graaf (CLAUDE.md § 10) — vaste @id's zodat alles aan elkaar hangt.
@@ -109,13 +112,18 @@ const graph = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL(ogImage, SITE_URL).href} />
+    <meta property="og:image" content={new URL(ogImage, beeldBasis).href} />
+    <meta property="og:image:alt" content={ogImage === "/og/home.jpg" ? `${business.name} – logo` : title} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <meta name="theme-color" content="#be4516" />
     <meta name="geo.region" content="BE-VAN" />
     <meta name="geo.placename" content="Schilde" />
-    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="48x48" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <script type="application/ld+json" set:html={JSON.stringify(graph)} />

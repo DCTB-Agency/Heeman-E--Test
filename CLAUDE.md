@@ -25,7 +25,7 @@ Plak sectie 1–3, 5, 7 en 8 en de prompt uit sectie 16.B. Upload logo en 5–10
 ## 0.1 Beslissingen na Fase 0 (23-09-2026) — gaan vóór op de rest van deze brief
 - **Update 03-10-2026 (gaat vóór op de punten hieronder):**
   - Altijd **"wij" als de firma**; nooit "ik" en **Bert niet vermelden**, behalve op de aparte pagina "Wie we zijn" (/over-ons/), als **oprichter**, niet in de titel. Geen "Geschreven door". Article-auteur = de organisatie.
-  - **Hero:** "Uw betrouwbare elektricien met meer dan 10 jaar ervaring in Schilde en omliggende regio." + "Snelle service, 24/7 bereikbaar voor herstellingen, installaties en keuringen. Vraag vandaag nog een vrijblijvende offerte!" **24/7 bevestigd** (dringende herstellingen).
+  - **Hero (04-10):** "Uw betrouwbare elektricien met 10+ jaar ervaring in Schilde en de regio." Bovenregel enkel "Heeman Electrics". Overal "10+" i.p.v. "meer dan 10". Oorspronkelijk: "Uw betrouwbare elektricien met meer dan 10 jaar ervaring in Schilde en omliggende regio." + "Snelle service, 24/7 bereikbaar voor herstellingen, installaties en keuringen. Vraag vandaag nog een vrijblijvende offerte!" **24/7 bevestigd** (dringende herstellingen).
   - **Focus:** algemene elektriciteitswerken & renovatieprojecten, nieuwbouw, domotica (vooral Niko). Niet overpromisen (geen "Nr. 1").
   - **USP's:** Eén vast aanspreekpunt (verkennend gesprek) · Vakkennis · Meedenken met de klant (geen "rap rap", positief op lange termijn). "Netjes afgewerkt" eruit.
   - **Laadpaalmerken:** enkel Alfen en Easee (EVBox en Zaptec eruit).

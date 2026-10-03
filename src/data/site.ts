@@ -12,7 +12,7 @@ export const business = {
   foundingDate: '2018-05',
   owner: 'Bert Heeman',
   ownerTitle: 'Oprichter en zaakvoerder',
-  experience: 'meer dan 10 jaar ervaring',
+  experience: '10+ jaar ervaring',
   email: 'info@heeman-electrics.be',
   phone: {
     display: '0485 19 00 27',

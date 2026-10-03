@@ -169,7 +169,7 @@ export const diensten: Dienst[] = [
   },
   {
     slug: 'domotica-niko-home-control',
-    naam: 'Domotica · Niko Home Control',
+    naam: 'Domotica',
     serviceType: 'Installatie en programmatie van Niko Home Control',
     metaTitle: 'Niko Home Control installeren in Schilde · Heeman',
     metaDescription:

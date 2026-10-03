@@ -5,7 +5,7 @@ import type { Vraag } from '../lib/schema';
 
 export const usps = [
   { titel: 'Eén vast aanspreekpunt', tekst: 'U heeft één vast aanspreekpunt. We komen eerst langs voor een verkennend gesprek.' },
-  { titel: 'Vakkennis', tekst: '10+ jaar ervaring als erkend elektricien, van nieuwbouw en renovatie tot Niko Home Control.' },
+  { titel: 'Vakkennis', tekst: '10+ jaar ervaring als erkend elektricien, van nieuwbouw en renovatie tot domotica.' },
   { titel: 'Meedenken met de klant', tekst: 'We nemen de tijd om mee te denken. Geen snelle oplossing, maar een installatie die ook op lange termijn positief uitdraait voor u.' },
 ]
 
@@ -16,7 +16,7 @@ export const dienstTekst: Record<string, string> = {
   'elektrische-keuring':
     'Woning verkopen of installatie afgekeurd? We brengen uw installatie in orde volgens het AREI en maken de schema’s. De keuring zelf doet een erkend keuringsorganisme.',
   'domotica-niko-home-control':
-    'Vooral Niko Home Control, bij nieuwbouw of renovatie: installatie, uitbreiding en programmatie van verlichting, verwarming en toegang.',
+    'Slim wonen bij nieuwbouw of renovatie: installatie, uitbreiding en programmatie van verlichting, verwarming en toegang.',
   'renovatie-elektriciteit':
     'Bij renovaties brengen wij uw elektriciteit volledig up-to-date en conform de huidige normen, inclusief modern comfort en slimme oplossingen.',
   'zonnepanelen-thuisbatterij':

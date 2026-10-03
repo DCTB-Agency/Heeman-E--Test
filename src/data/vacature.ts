@@ -43,7 +43,7 @@ const gemeenschappelijkProfiel = [
 const aanbod = [
   'Een voltijds contract en een marktconform loon.',
   'Een uitdagende job in de buurt: al onze werven liggen in Schilde en de omliggende gemeenten.',
-  'Gevarieerde jobinhoud: nieuwbouw, renovatie en domotica (vooral Niko Home Control).',
+  'Gevarieerde jobinhoud: nieuwbouw, renovatie en domotica.',
   'Werkkledij.',
   'Opleiding op de job: kennis delen is voor ons belangrijk.',
 ];
@@ -68,7 +68,7 @@ export const vacatures: Vacature[] = [
     taken: [
       'Elektrische installaties plaatsen in nieuwbouw en bij renovaties.',
       'Verdeelkasten, bekabeling, stopcontacten en verlichting plaatsen en aansluiten.',
-      'Domotica installeren, vooral Niko Home Control.',
+      'Domotica installeren en programmeren.',
       'Installaties keuringsklaar afwerken volgens het AREI.',
       'Zelfstandig werken op de werf en je kennis delen met jongere collega’s en stagiairs.',
     ],
@@ -102,7 +102,7 @@ export const vacatures: Vacature[] = [
     taken: [
       'Mee elektrische installaties plaatsen in nieuwbouw en bij renovaties.',
       'Verdeelkasten, bekabeling, stopcontacten en verlichting leren plaatsen en aansluiten.',
-      'Domotica leren installeren, vooral Niko Home Control.',
+      'Domotica leren installeren.',
       'Stap voor stap zelfstandiger werken, met begeleiding van ervaren collega’s.',
     ],
     profiel: [

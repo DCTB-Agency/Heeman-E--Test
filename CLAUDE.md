@@ -32,6 +32,7 @@ Plak sectie 1–3, 5, 7 en 8 en de prompt uit sectie 16.B. Upload logo en 5–10
   - **Werkgebied:** + Malle en Deurne.
   - **Jobs:** twee vacatures — ervaren elektricien (min. 3 jaar, bij voorkeur nieuwbouw/renovatie; prioriteit) en junior (net van school) + stageplaatsen. Geen (m/v/x). Cv verplicht, solliciteren enkel via het formulier (niet telefonisch). Rijbewijs B + eigen vervoer verplicht. Taalkennis NL/FR/EN; stipt, nauwkeurig, betrouwbaar, loyaal. Aanbod: voltijds, marktconform loon, werkkledij, gevarieerd werk, werven in de buurt. Geen "meedraaien op de werf" bij kennismaking. Formulier in de hero van de vacature (geen foto).
   - **Dienstpagina's:** H1 zonder "Schilde"; title-tag behoudt "Schilde" (lokale SEO).
+- **Niko Home Control (04-10-2026):** enkel noemen op de dienstpagina's zelf; elders "domotica" (dienstnaam = "Domotica").
 - **Update 04-10-2026:** geen "Een dag op de baan" meer; foto van Bert overal vervangen door een placeholder; vacatures: "Wat ga je bijvoorbeeld doen?", lichte hero (oranje enkel als accent); blok "Over Heeman Electrics" op de homepage weg; solliciteren via formulier (optie A) of WhatsApp (optie B), cv verplicht.
 - **E-mail:** info@heeman-electrics.be (overal: site, schema, formulieren, gidsen).
 - **Ervaring:** "meer dan 10 jaar ervaring". De BV bestaat sinds mei 2018 (KBO, `foundingDate`), maar in de copy spreken we over de 10+ jaar ervaring.

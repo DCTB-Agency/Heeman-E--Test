@@ -19,7 +19,7 @@ export type Regio = {
 
 const populair: Record<string, Regio['populair']> = {
   Schilde: {
-    tekst: 'In Schilde werken we veel in villa’s en ruime gezinswoningen. Laadpalen voor een (tweede) elektrische wagen, Niko Home Control bij renovaties en het keuringsklaar maken van de installatie bij de verkoop van een woning komen hier het vaakst voor.',
+    tekst: 'In Schilde werken we veel in villa’s en ruime gezinswoningen. Laadpalen voor een (tweede) elektrische wagen, domotica bij renovaties en het keuringsklaar maken van de installatie bij de verkoop van een woning komen hier het vaakst voor.',
     diensten: ['laadpaal-installeren', 'domotica-niko-home-control', 'elektrische-keuring'],
   },
   "'s-Gravenwezel": {
@@ -35,7 +35,7 @@ const populair: Record<string, Regio['populair']> = {
     diensten: ['elektrische-keuring', 'renovatie-elektriciteit', 'dringende-herstellingen'],
   },
   Brasschaat: {
-    tekst: 'In Brasschaat en Maria-ter-Heide plaatsen we vooral laadpalen bij woningen met een oprit of garage, vaak gekoppeld aan zonnepanelen om slim te laden met eigen stroom. Ook Niko Home Control bij nieuwbouw en renovatie komt hier geregeld voor.',
+    tekst: 'In Brasschaat en Maria-ter-Heide plaatsen we vooral laadpalen bij woningen met een oprit of garage, vaak gekoppeld aan zonnepanelen om slim te laden met eigen stroom. Ook domotica bij nieuwbouw en renovatie komt hier geregeld voor.',
     diensten: ['laadpaal-installeren', 'zonnepanelen-thuisbatterij', 'domotica-niko-home-control'],
   },
   Zoersel: {
@@ -47,12 +47,12 @@ const populair: Record<string, Regio['populair']> = {
     diensten: ['zonnepanelen-thuisbatterij', 'laadpaal-installeren', 'elektrische-keuring'],
   },
   Ranst: {
-    tekst: 'In Ranst, Oelegem, Broechem en Emblem plaatsen we vooral laadpalen, zoals onlangs aan een bakstenen gevel in Oelegem, en vernieuwen we de elektriciteit bij renovaties, vaak meteen met Niko Home Control.',
+    tekst: 'In Ranst, Oelegem, Broechem en Emblem plaatsen we vooral laadpalen, zoals onlangs aan een bakstenen gevel in Oelegem, en vernieuwen we de elektriciteit bij renovaties, vaak meteen met domotica.',
     diensten: ['laadpaal-installeren', 'renovatie-elektriciteit', 'domotica-niko-home-control'],
   },
   // Malle en Deurne toegevoegd 03-10-2026.
   Malle: {
-    tekst: 'In Oostmalle en Westmalle werken we veel aan nieuwbouw en verbouwingen van gezinswoningen: de volledige elektrische installatie van plan tot keuring, vaak met Niko Home Control om verlichting en verwarming slim te sturen.',
+    tekst: 'In Oostmalle en Westmalle werken we veel aan nieuwbouw en verbouwingen van gezinswoningen: de volledige elektrische installatie van plan tot keuring, vaak met domotica om verlichting en verwarming slim te sturen.',
     diensten: ['nieuwbouw', 'domotica-niko-home-control', 'renovatie-elektriciteit'],
   },
   Deurne: {
@@ -62,14 +62,14 @@ const populair: Record<string, Regio['populair']> = {
 };
 
 const extra: Record<string, Omit<Regio, 'slug' | 'naam' | 'populair' | 'review'>> = {
-  Schilde: { deelgemeenten: ["'s-Gravenwezel"], lat: 51.241, lon: 4.585, metaTitle: 'Elektricien in Schilde · Heeman Electrics', metaDescription: 'Uw elektricien in Schilde: laadpalen, keuringsklaar maken, Niko Home Control en renovatie. Persoonlijk contact. Bel 0485 19 00 27.' },
+  Schilde: { deelgemeenten: ["'s-Gravenwezel"], lat: 51.241, lon: 4.585, metaTitle: 'Elektricien in Schilde · Heeman Electrics', metaDescription: 'Uw elektricien in Schilde: laadpalen, keuringsklaar maken, domotica en renovatie. Persoonlijk contact. Bel 0485 19 00 27.' },
   "'s-Gravenwezel": { deelgemeenten: [], lat: 51.264, lon: 4.557, metaTitle: "Elektricien in 's-Gravenwezel · Heeman Electrics", metaDescription: "Elektricien in 's-Gravenwezel voor laadpalen, domotica, renovatie en keuringsklare installaties. Om de hoek, persoonlijk contact. Bel 0485 19 00 27." },
-  Wijnegem: { deelgemeenten: [], lat: 51.228, lon: 4.517, metaTitle: 'Elektricien in Wijnegem · Heeman Electrics', metaDescription: 'Elektricien in Wijnegem voor laadpalen, Niko Home Control en renovatie. Persoonlijk contact en vakkundig werk. Vraag uw gratis offerte.' },
+  Wijnegem: { deelgemeenten: [], lat: 51.228, lon: 4.517, metaTitle: 'Elektricien in Wijnegem · Heeman Electrics', metaDescription: 'Elektricien in Wijnegem voor laadpalen, domotica en renovatie. Persoonlijk contact en vakkundig werk. Vraag uw gratis offerte.' },
   Schoten: { deelgemeenten: [], lat: 51.252, lon: 4.502, metaTitle: 'Elektricien in Schoten · Heeman Electrics', metaDescription: 'Elektricien in Schoten: laadpaal plaatsen, installatie keuringsklaar maken of domotica. Netjes werk, gratis offerte. Bel 0485 19 00 27.' },
-  Brasschaat: { deelgemeenten: ['Maria-ter-Heide'], lat: 51.291, lon: 4.492, metaTitle: 'Elektricien in Brasschaat · Heeman Electrics', metaDescription: 'Elektricien in Brasschaat voor laadpalen, Niko Home Control, renovatie en zonnepanelen. Persoonlijk contact. Vraag een gratis offerte.' },
+  Brasschaat: { deelgemeenten: ['Maria-ter-Heide'], lat: 51.291, lon: 4.492, metaTitle: 'Elektricien in Brasschaat · Heeman Electrics', metaDescription: 'Elektricien in Brasschaat voor laadpalen, domotica, renovatie en zonnepanelen. Persoonlijk contact. Vraag een gratis offerte.' },
   Zoersel: { deelgemeenten: ['Halle', 'Sint-Antonius'], lat: 51.268, lon: 4.712, metaTitle: 'Elektricien in Zoersel · Heeman Electrics', metaDescription: 'Elektricien in Zoersel, Halle en Sint-Antonius: laadpalen, domotica en renovatie. Vraag een offerte. Bel 0485 19 00 27.' },
-  Zandhoven: { deelgemeenten: ['Pulderbos', 'Pulle', 'Massenhoven', 'Viersel'], lat: 51.215, lon: 4.662, metaTitle: 'Elektricien in Zandhoven · Heeman Electrics', metaDescription: 'Elektricien in Zandhoven en deelgemeenten: laadpalen, keuringsklare installaties en Niko Home Control. Gratis offerte. Vraag een offerte.' },
-  Malle: { deelgemeenten: ['Oostmalle', 'Westmalle'], lat: 51.2995, lon: 4.7106, metaTitle: 'Elektricien in Malle · Heeman Electrics', metaDescription: 'Elektricien in Malle, Oostmalle en Westmalle: nieuwbouw, renovatie en Niko Home Control. 24/7 bereikbaar voor herstellingen. Bel 0485 19 00 27.' },
+  Zandhoven: { deelgemeenten: ['Pulderbos', 'Pulle', 'Massenhoven', 'Viersel'], lat: 51.215, lon: 4.662, metaTitle: 'Elektricien in Zandhoven · Heeman Electrics', metaDescription: 'Elektricien in Zandhoven en deelgemeenten: laadpalen, keuringsklare installaties en domotica. Gratis offerte. Vraag een offerte.' },
+  Malle: { deelgemeenten: ['Oostmalle', 'Westmalle'], lat: 51.2995, lon: 4.7106, metaTitle: 'Elektricien in Malle · Heeman Electrics', metaDescription: 'Elektricien in Malle, Oostmalle en Westmalle: nieuwbouw, renovatie en domotica. 24/7 bereikbaar voor herstellingen. Bel 0485 19 00 27.' },
   Deurne: { deelgemeenten: [], lat: 51.2195, lon: 4.4656, metaTitle: 'Elektricien in Deurne · Heeman Electrics', metaDescription: 'Elektricien in Deurne voor renovatie, keuringsklare installaties en herstellingen. 24/7 bereikbaar voor dringende herstellingen. Vrijblijvende offerte.' },
   Ranst: { deelgemeenten: ['Broechem', 'Emblem', 'Oelegem'], lat: 51.19, lon: 4.561, metaTitle: 'Elektricien in Ranst en Oelegem · Heeman Electrics', metaDescription: 'Elektricien in Ranst, Oelegem, Broechem en Emblem voor laadpalen, domotica en renovatie. Persoonlijk contact. Bel 0485 19 00 27.' },
 };

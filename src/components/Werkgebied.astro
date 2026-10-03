@@ -4,18 +4,20 @@
 // Elke gemeente linkt naar haar regiopagina. Geen Google Maps-embed (snelheid, privacy).
 import { areas, areaUrl } from '../data/site';
 
-// x/y in een viewBox van 560 × 400 (+ 40 px marge links voor de labels); anchor/dy = plaats van het label t.o.v. het punt.
-const pos: Record<string, { x: number; y: number; anchor?: 'start' | 'middle' | 'end'; dy?: number }> = {
-  Schilde: { x: 260, y: 205 },
-  "'s-Gravenwezel": { x: 205, y: 140, anchor: 'middle', dy: -18 },
-  Wijnegem: { x: 120, y: 245, anchor: 'end', dy: 5 },
-  Schoten: { x: 85, y: 165, anchor: 'end', dy: 5 },
-  Brasschaat: { x: 70, y: 55, anchor: 'start', dy: -16 },
-  Zoersel: { x: 495, y: 115, anchor: 'end', dy: -16 },
-  Zandhoven: { x: 410, y: 285, anchor: 'start', dy: 30 },
-  Ranst: { x: 205, y: 355, anchor: 'middle', dy: 30 },
-  Malle: { x: 430, y: 30, anchor: 'end', dy: 5 },
-  Deurne: { x: 30, y: 320, anchor: 'middle', dy: 30 },
+// x/y in een viewBox van 600 × 400 (vanaf x = -40). Elke kabel loopt eerst horizontaal over de "hoofdleiding" (y van Schilde)
+// en dan verticaal naar de gemeente. Het label staat aan de kant waar géén kabel komt: boven het bolletje als de kabel van
+// onder komt, eronder als hij van boven komt. Zo valt geen tekst over een lijn of bolletje (ook met de grotere letters op mobiel).
+const pos: Record<string, { x: number; y: number; label: 'boven' | 'onder' }> = {
+  Schilde: { x: 260, y: 205, label: 'boven' },
+  "'s-Gravenwezel": { x: 190, y: 75, label: 'boven' },
+  Brasschaat: { x: 40, y: 60, label: 'boven' },
+  Schoten: { x: 115, y: 130, label: 'boven' },
+  Wijnegem: { x: 150, y: 280, label: 'onder' },
+  Deurne: { x: 45, y: 330, label: 'onder' },
+  Ranst: { x: 228, y: 345, label: 'onder' },
+  Zandhoven: { x: 395, y: 300, label: 'onder' },
+  Zoersel: { x: 420, y: 125, label: 'boven' },
+  Malle: { x: 500, y: 55, label: 'boven' },
 };
 const hub = pos.Schilde;
 const takken = areas.filter((a) => a.name !== 'Schilde');
@@ -51,7 +53,7 @@ function leiding(x: number, y: number) {
         <a href={areaUrl(a.slug)} class="wg-node" style={`--i:${i}`}>
           <circle cx={p.x} cy={p.y} r="9" class="wg-stip" />
           <circle cx={p.x} cy={p.y} r="22" fill="transparent" />
-          <text x={p.x + (p.anchor === 'end' ? -16 : p.anchor === 'start' ? 16 : 0)} y={p.y + (p.dy ?? 5)} text-anchor={p.anchor ?? 'start'} class="wg-label">{a.name}</text>
+          <text x={p.x} y={p.y + (p.label === 'boven' ? -26 : 42)} text-anchor="middle" class="wg-label">{a.name}</text>
         </a>
       );
     })}
@@ -60,7 +62,7 @@ function leiding(x: number, y: number) {
     <a href={areaUrl(schilde.slug)} class="wg-node wg-hub">
       <rect x={hub.x - 26} y={hub.y - 26} width="52" height="52" rx="8" class="wg-kast" />
       <path d={`M ${hub.x + 3} ${hub.y - 14} l -10 15 h 8 l -3 13 l 10 -16 h -8 z`} fill="var(--color-ink)" />
-      <text x={hub.x} y={hub.y + 50} text-anchor="middle" class="wg-label wg-label-hub">Schilde</text>
+      <text x={hub.x} y={hub.y - 40} text-anchor="middle" class="wg-label wg-label-hub">Schilde</text>
     </a>
   </svg>
 </div>

@@ -67,10 +67,10 @@ export const areas = [
 
 // Prioriteit 1–5 = kerndiensten (groot op home), 6–9 = aanvullend (CLAUDE.md § 3).
 export const services = [
-  // 03-10-2026: focus op algemene werken/renovatie, nieuwbouw en domotica (vooral Niko).
+  // 03-10-2026: focus op algemene werken/renovatie, nieuwbouw en domotica. Niko Home Control enkel op de dienstpagina zelf (04-10).
   { slug: 'renovatie-elektriciteit', name: 'Algemene elektriciteitswerken & renovatie', priority: 1 },
   { slug: 'nieuwbouw', name: 'Nieuwbouw', priority: 2 },
-  { slug: 'domotica-niko-home-control', name: 'Domotica · Niko Home Control', priority: 3 },
+  { slug: 'domotica-niko-home-control', name: 'Domotica', priority: 3 },
   { slug: 'laadpaal-installeren', name: 'Laadpaal installeren', priority: 4 },
   { slug: 'elektrische-keuring', name: 'Installatie keuringsklaar maken', priority: 5 },
   { slug: 'zonnepanelen-thuisbatterij', name: 'Zonnepanelen & thuisbatterij', priority: 6 },

@@ -39,7 +39,7 @@ export const business = {
     closes: '17:30',
     urgent: '24/7 bereikbaar voor dringende herstellingen.', // bevestigd 03-10-2026
   },
-  sameAs: [] as string[], // [AANVULLEN: Google Bedrijfsprofiel, Facebook, Instagram, LinkedIn]
+  sameAs: [] as string[], // [AANVULLEN: link naar het Google Bedrijfsprofiel] (12-10-2026: enkel Google, geen andere sociale media)
 } as const;
 
 // Google Analytics (CLAUDE.md § 13): Google-tag uit de huidige site (Site Kit), stuurt door naar GA4.

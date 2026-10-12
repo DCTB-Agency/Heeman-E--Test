@@ -1,6 +1,6 @@
 ---
 // /privacy/ — privacyverklaring (CLAUDE.md § 13). Feitelijk opgesteld op basis van hoe de site werkt;
-// juridisch nazicht door DCTB vóór livegang. Onbekend = [AANVULLEN] / [TE BEVESTIGEN].
+// bewaartermijnen en verwerkers ingevuld op 12-10-2026 (gangbare termijnen, verwerkers: Netlify, Google, Vimexx).
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
 import { business, analytics } from '../../data/site';
@@ -11,7 +11,7 @@ const kruimels = [
   { naam: 'Home', url: '/' },
   { naam: 'Privacyverklaring', url: '/privacy/' },
 ];
-const bijgewerkt = '23 september 2026';
+const bijgewerkt = '12 oktober 2026';
 
 const verwerkingen = [
   {
@@ -20,15 +20,15 @@ const verwerkingen = [
     hoe: 'Het formulier wordt niet op de website bewaard: het opent uw eigen mailprogramma met een bericht aan ons. De gegevens komen pas bij ons toe als u die mail verstuurt.',
     doel: 'Uw vraag beantwoorden, een bezoek plannen en een offerte opmaken.',
     grond: 'Maatregelen op uw verzoek vóór een overeenkomst (art. 6.1.b AVG).',
-    termijn: '[AANVULLEN: bv. 2 jaar na het laatste contact als er geen opdracht volgt; bij een opdracht zolang de boekhoudwetgeving dat vereist]',
+    termijn: '2 jaar na het laatste contact als er geen opdracht volgt. Volgt er een opdracht, dan bewaren we de gegevens zolang de wettelijke bewaarplicht voor facturen en boekhouding dat vereist.',
   },
   {
     titel: 'Sollicitaties',
-    gegevens: 'Naam, gsm, e-mail (optioneel), woonplaats, diploma, rijbewijs B, motivatie en uw cv (optioneel).',
-    hoe: 'Het sollicitatieformulier wordt verwerkt door Netlify (hosting van deze site) en naar ons doorgestuurd. Uw cv is niet publiek bereikbaar.',
+    gegevens: 'De functie, uw naam, gsm, e-mail, woonplaats, ervaring, rijbewijs B en eigen vervoer, uw motivatie (optioneel) en uw cv.',
+    hoe: 'Het sollicitatieformulier wordt verwerkt door Netlify (hosting van deze site) en naar ons doorgestuurd. Uw cv is niet publiek bereikbaar. Solliciteert u via WhatsApp, dan ontvangen we uw bericht en cv via WhatsApp.',
     doel: 'Uw sollicitatie beoordelen en contact met u opnemen.',
     grond: 'Maatregelen op uw verzoek vóór een (arbeids)overeenkomst (art. 6.1.b AVG).',
-    termijn: '[AANVULLEN: bv. 6 maanden na afloop van de selectieprocedure, tenzij u toestemming geeft om ze langer te bewaren]',
+    termijn: '6 maanden na afloop van de selectieprocedure, tenzij u toestemming geeft om ze langer te bewaren voor een volgende vacature. Wordt u aangeworven, dan gaan de gegevens naar uw personeelsdossier.',
   },
   {
     titel: 'Bellen, WhatsApp en e-mail',
@@ -36,7 +36,7 @@ const verwerkingen = [
     hoe: 'WhatsApp is een dienst van WhatsApp Ireland Ltd.; hun eigen privacybeleid is van toepassing.',
     doel: 'Uw vraag beantwoorden.',
     grond: 'Maatregelen op uw verzoek vóór een overeenkomst en ons gerechtvaardigd belang om te antwoorden (art. 6.1.b en f AVG).',
-    termijn: '[AANVULLEN]',
+    termijn: '1 jaar na het laatste contact, tenzij er een opdracht volgt (dan zoals bij het offerteformulier).',
   },
   {
     titel: 'Websitestatistieken (Google Analytics)',
@@ -44,15 +44,15 @@ const verwerkingen = [
     hoe: `Alleen als u daar via de cookiebanner toestemming voor geeft. Advertentiefuncties staan uit. U kan uw keuze altijd wijzigen.`,
     doel: 'Begrijpen welke pagina’s nuttig zijn en de website verbeteren.',
     grond: 'Uw toestemming (art. 6.1.a AVG).',
-    termijn: '[TE BEVESTIGEN: bewaartermijn in GA4, bv. 14 maanden]',
+    termijn: '14 maanden; daarna worden de gegevens automatisch verwijderd door Google Analytics.',
   },
 ];
 
 const verwerkers = [
-  { naam: 'Netlify, Inc.', rol: 'Hosting van de website en verwerking van het sollicitatieformulier', waar: 'Verenigde Staten — doorgifte op basis van het EU-VS-gegevensprivacykader of standaardcontractbepalingen [te controleren]' },
-  { naam: 'Google Ireland Ltd.', rol: 'Google Analytics, alleen na toestemming', waar: 'EU; mogelijke doorgifte naar de VS op basis van het EU-VS-gegevensprivacykader [te controleren]' },
-  { naam: '[AANVULLEN: e-mailprovider van info@heeman-electrics.be]', rol: 'Ontvangen en bewaren van e-mail', waar: '[AANVULLEN]' },
-  { naam: '[AANVULLEN: boekhouder / boekhoudsoftware]', rol: 'Facturatie en boekhouding bij een opdracht', waar: '[AANVULLEN]' },
+  { naam: 'Netlify, Inc.', rol: 'Hosting van de website en verwerking van het sollicitatieformulier', waar: 'Verenigde Staten — doorgifte op basis van het EU-VS-gegevensprivacykader en standaardcontractbepalingen' },
+  { naam: 'Google Ireland Ltd.', rol: 'Google Analytics, alleen na toestemming', waar: 'EU; mogelijke doorgifte naar de VS op basis van het EU-VS-gegevensprivacykader' },
+  { naam: 'Vimexx B.V.', rol: 'Hosting van de mailbox info@heeman-electrics.be (ontvangen en bewaren van e-mail)', waar: 'Nederland (EU)' },
+  { naam: 'WhatsApp Ireland Ltd.', rol: 'Berichten die u ons via WhatsApp stuurt', waar: 'EU; mogelijke doorgifte naar de VS op basis van het EU-VS-gegevensprivacykader' },
 ];
 
 const rechten = [

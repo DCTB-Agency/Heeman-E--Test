@@ -1,5 +1,5 @@
 // Dienstpagina's — CLAUDE.md § 8 (template + aandachtspunten), § 9 (metadata), § 11.3 (antwoord eerst), § 0.1.
-// Regels: geen vaste prijzen, geen bedragen, premies/regels altijd [te controleren] + officiële bron,
+// Regels: geen vaste prijzen, geen bedragen; premies/regels met datum van controle + officiële bron,
 // "wij"-vorm (de firma; Bert enkel op /over-ons/), keuring gebeurt door een erkend keuringsorganisme. Onbekend = [AANVULLEN] / [TE BEVESTIGEN].
 import type { Vraag } from '../lib/schema';
 import type { FotoId } from './fotos';
@@ -18,7 +18,7 @@ export type Dienst = {
   voorWie: string[];
   stappen?: Stap[]; // standaard: STANDAARD_STAPPEN
   inOfferte: string[];
-  /** Kader met premies, fiscale voordelen of regels: altijd [te controleren] + officiële bron (§ 8.6). */
+  /** Kader met premies, fiscale voordelen of regels, met officiële bron (§ 8.6). Gecontroleerd: zie PREMIES_GECONTROLEERD. */
   premies?: { titel: string; tekst: string; bronnen: Bron[] };
   faq: Vraag[];
   /** Twee beelden: een echte foto (FotoId) of, zolang die ontbreekt, een omschrijving voor een placeholder. */
@@ -35,9 +35,12 @@ export const STANDAARD_STAPPEN: Stap[] = [
 
 const BIJGEWERKT = '2026-09-23';
 
-// Gecontroleerd op 23-09-2026 (HTTP 200). Diepere pagina's per premie: [te controleren] door DCTB.
+// Regels en premies online nagekeken op 12-10-2026 (FOD Financiën, Vlaanderen.be/Mijn VerbouwPremie, FOD Economie,
+// Fluvius en vakbronnen). Jaarlijks opnieuw controleren: premies veranderen geregeld.
+export const PREMIES_GECONTROLEERD = 'oktober 2026';
 const BRON = {
   vlaanderen: { naam: 'Vlaanderen.be — premies voor renovatie', url: 'https://www.vlaanderen.be/premies-voor-renovatie' },
+  verbouwpremie: { naam: 'Mijn VerbouwPremie (Vlaanderen.be)', url: 'https://www.vlaanderen.be/bouwen-wonen-en-energie/bouwen-en-verbouwen/premies-voor-renovatie/mijn-verbouwpremie' },
   energiesparen: { naam: 'Vlaams Energie- en Klimaatagentschap (VEKA)', url: 'https://www.vlaanderen.be/veka' },
   financien: { naam: 'FOD Financiën', url: 'https://financien.belgium.be/' },
   economie: { naam: 'FOD Economie — AREI', url: 'https://economie.fgov.be/nl' },
@@ -71,7 +74,7 @@ export const diensten: Dienst[] = [
     premies: {
       titel: 'Premies en fiscaal voordeel',
       tekst:
-        'Voor bedrijven kan er een fiscaal voordeel gelden voor laadpalen, en voor particulieren of VvE’s soms een premie. De voorwaarden veranderen geregeld. [te controleren]',
+        'Particulieren: sinds 1 september 2024 is er geen federale belastingvermindering meer voor een thuislaadpaal. Wel geldt in een woning van minstens 10 jaar oud meestal 6% btw in plaats van 21%. Bedrijven en zelfstandigen: de verhoogde aftrek is afgeschaft; voor een publiek toegankelijke laadpaal geldt onder voorwaarden nog 100% aftrek. Sommige gemeenten geven een lokale premie.',
       bronnen: [BRON.financien, BRON.vlaanderen, BRON.energiesparen],
     },
     faq: [
@@ -93,12 +96,12 @@ export const diensten: Dienst[] = [
       {
         vraag: 'Moet een laadpaal gekeurd worden?',
         antwoord:
-          'Een laadpaal is een uitbreiding van uw elektrische installatie en moet volgens het AREI in orde zijn. De keuring gebeurt door een erkend keuringsorganisme; wij maken alles daarvoor klaar. [te controleren]',
+          'Een laadpaal is een uitbreiding van uw elektrische installatie en moet volgens het AREI in orde zijn. De keuring gebeurt door een erkend keuringsorganisme; wij maken alles daarvoor klaar.',
       },
       {
         vraag: 'Is er een premie of fiscaal voordeel voor een laadpaal?',
         antwoord:
-          'Dat hangt af van uw situatie (particulier, bedrijf of VvE) en verandert geregeld. Kijk voor de actuele regels bij FOD Financiën en Vlaanderen.be. [te controleren]',
+          'Voor particulieren is de belastingvermindering voor een thuislaadpaal gestopt op 1 september 2024. In een woning van minstens 10 jaar oud betaalt u wel meestal 6% btw. Voor bedrijven geldt onder voorwaarden nog een fiscale aftrek voor publiek toegankelijke laadpalen. Vraag ook na bij uw gemeente of er een lokale premie is.',
       },
     ],
     fotos: ['laadpaal', { placeholder: 'laadpunten in een bedrijfsparking of gemeenschappelijke parking' }],
@@ -135,7 +138,7 @@ export const diensten: Dienst[] = [
     premies: {
       titel: 'Wanneer is een keuring verplicht?',
       tekst:
-        'Wanneer een elektrische keuring verplicht is (bv. bij verkoop van een woning, een nieuwe installatie of een belangrijke wijziging) en welke termijnen gelden na een afkeuring, staat in het AREI. [te controleren]',
+        'Een keuring door een erkend keuringsorganisme is verplicht bij een nieuwe installatie (vóór ingebruikname), na een belangrijke wijziging of uitbreiding, en bij de verkoop van een woning zonder geldig keuringsverslag. Wordt de installatie bij een verkoop afgekeurd, dan heeft de koper 18 maanden na de notariële akte om de inbreuken te laten herstellen en de installatie opnieuw te laten keuren. Een positief keuringsverslag blijft 25 jaar geldig.',
       bronnen: [BRON.economie],
     },
     faq: [
@@ -147,12 +150,12 @@ export const diensten: Dienst[] = [
       {
         vraag: 'Wanneer is een elektrische keuring verplicht?',
         antwoord:
-          'Onder meer bij de verkoop van een woning, bij een nieuwe installatie en na een belangrijke wijziging of uitbreiding. Controleer de actuele regels bij de FOD Economie. [te controleren]',
+          'Bij een nieuwe installatie, na een belangrijke wijziging of uitbreiding, en bij de verkoop van een woning zonder geldig keuringsverslag. Een positief verslag blijft 25 jaar geldig.',
       },
       {
         vraag: 'Mijn installatie is afgekeurd. Wat nu?',
         antwoord:
-          'In het keuringsverslag staan de inbreuken en de termijn om ze recht te zetten. We komen kijken, herstellen wat nodig is en daarna volgt een herkeuring door het keuringsorganisme. [te controleren: termijnen]',
+          'In het keuringsverslag staan de inbreuken. Bij een verkoop heeft de koper 18 maanden na de notariële akte om ze te laten herstellen en de installatie opnieuw te laten keuren. We komen kijken, herstellen wat nodig is en daarna volgt de herkeuring door het keuringsorganisme.',
       },
       {
         vraag: 'Maakt u ook de schema’s?',
@@ -242,8 +245,8 @@ export const diensten: Dienst[] = [
     ],
     premies: {
       titel: 'Premies bij renovatie',
-      tekst: 'Bij een renovatie kan er een premie mogelijk zijn, afhankelijk van uw situatie en de werken. [te controleren]',
-      bronnen: [BRON.vlaanderen],
+      tekst: 'Via Mijn VerbouwPremie kunnen elektriciteitswerken in een woning van minstens 15 jaar oud in aanmerking komen, als voorbereidende werken binnen een bredere renovatie. Sinds 1 maart 2026 geldt dat enkel nog voor de lagere inkomenscategorieën. Voor renovatie van een woning van minstens 10 jaar oud geldt bovendien meestal 6% btw in plaats van 21%.',
+      bronnen: [BRON.verbouwpremie, BRON.financien],
     },
     faq: [
       {
@@ -276,19 +279,20 @@ export const diensten: Dienst[] = [
   {
     slug: 'zonnepanelen-thuisbatterij',
     naam: 'Zonnepanelen & thuisbatterij',
-    serviceType: 'Aansluiten en integreren van zonnepanelen en thuisbatterijen',
-    metaTitle: 'Zonnepanelen & thuisbatterij aansluiten · Schilde',
+    serviceType: 'Plaatsen, aansluiten en integreren van zonnepanelen en thuisbatterijen',
+    metaTitle: 'Zonnepanelen & thuisbatterij plaatsen · Schilde',
     metaDescription:
-      'Zonnepanelen en thuisbatterij slim koppelen aan uw installatie en laadpaal, in Schilde en omgeving. Vraag vrijblijvend advies en een offerte.',
-    h1: 'Zonnepanelen en thuisbatterij aansluiten',
+      'Zonnepanelen en thuisbatterij plaatsen, aansluiten en slim koppelen aan uw installatie en laadpaal, in Schilde en omgeving. Vrijblijvende offerte.',
+    h1: 'Zonnepanelen en thuisbatterij plaatsen en aansluiten',
     antwoord:
-      'Zonnepanelen en een thuisbatterij halen het meeste uit uw stroom als ze goed samenwerken met de rest van uw installatie. We sluiten ze aan en integreren ze met uw verdeelkast en laadpaal, zodat u bijvoorbeeld uw wagen kan laden met eigen zonnestroom. U krijgt eerst advies en een gratis offerte. [TE BEVESTIGEN: plaatsen we ook de panelen zelf?]',
+      'Zonnepanelen en een thuisbatterij halen het meeste uit uw stroom als ze goed samenwerken met de rest van uw installatie. We plaatsen de panelen, sluiten alles aan en integreren het met uw verdeelkast en laadpaal, zodat u bijvoorbeeld uw wagen kan laden met eigen zonnestroom. U krijgt eerst advies en een gratis offerte.',
     voorWie: [
       'U heeft zonnepanelen en wil ze slim koppelen aan uw laadpaal.',
       'U overweegt een thuisbatterij bij uw bestaande zonnepanelen.',
-      'U laat zonnepanelen plaatsen en zoekt een elektricien voor de aansluiting.',
+      'U wil zonnepanelen laten plaatsen en aansluiten door één partij.',
     ],
     inOfferte: [
+      'Plaatsing van de zonnepanelen en de omvormer',
       'Aansluiting op uw verdeelkast met de nodige beveiliging',
       'Integratie met laadpaal en (eventueel) energiebeheer',
       'Aansluiting van de thuisbatterij',
@@ -297,13 +301,13 @@ export const diensten: Dienst[] = [
     premies: {
       titel: 'Premies en regels',
       tekst:
-        'Voor zonnepanelen en thuisbatterijen golden in het verleden premies en er gelden specifieke regels voor de aansluiting en het capaciteitstarief. Controleer de actuele situatie. [te controleren]',
+        'In Vlaanderen is er geen premie meer voor zonnepanelen of een thuisbatterij. Wel betaalt u voor zonnepanelen op een woning van minstens 10 jaar oud 6% btw in plaats van 21%. Sinds de invoering van het capaciteitstarief betaalt u een deel van uw nettarief op uw hoogste verbruikspiek per maand; slim laden en een thuisbatterij kunnen die piek verlagen.',
       bronnen: [BRON.energiesparen, BRON.fluvius, BRON.vlaanderen],
     },
     faq: [
       {
         vraag: 'Plaatst u ook de zonnepanelen zelf?',
-        antwoord: '[TE BEVESTIGEN: plaatsen we zelf of enkel de elektrische aansluiting?]',
+        antwoord: 'Ja. We plaatsen de zonnepanelen en sluiten ze aan op uw installatie, zodat u één aanspreekpunt heeft.',
       },
       {
         vraag: 'Kan ik mijn laadpaal koppelen aan mijn zonnepanelen?',
@@ -313,11 +317,11 @@ export const diensten: Dienst[] = [
       {
         vraag: 'Is een thuisbatterij zinvol voor mij?',
         antwoord:
-          'Dat hangt af van uw verbruik, uw zonnepanelen en het tarief van uw netbeheerder. We bekijken het met u bij het bezoek. [te controleren]',
+          'Dat hangt af van uw verbruik, uw zonnepanelen en uw verbruikspieken (capaciteitstarief). We bekijken het met u bij het bezoek.',
       },
       {
         vraag: 'Is er een premie voor een thuisbatterij?',
-        antwoord: 'Dat verandert geregeld. Kijk voor de actuele regels bij het Vlaams Energie- en Klimaatagentschap en Vlaanderen.be. [te controleren]',
+        antwoord: 'Nee. De Vlaamse premie voor een thuisbatterij is stopgezet en er is op dit moment geen nieuwe premie. Een batterij kan wel uw verbruikspieken en dus uw capaciteitstarief verlagen.',
       },
       {
         vraag: 'Moet mijn verdeelkast aangepast worden voor een thuisbatterij?',
@@ -428,7 +432,7 @@ export const diensten: Dienst[] = [
       'Verlichting die sfeer, functie en een laag verbruik combineert. Advies en plaatsing in Schilde en omgeving. Vraag vrijblijvend advies.',
     h1: 'Verlichtingsadvies en -installatie',
     antwoord:
-      'Goede verlichting combineert sfeer, functie en een laag verbruik. We denken mee over waar u welk licht nodig heeft, van keuken en werkplek tot tuin, en plaatsen de armaturen, schakelaars en dimmers. Wil u later slim sturen? Dan houden we meteen rekening met Niko Home Control.',
+      'Goede verlichting combineert sfeer, functie en een laag verbruik. We geven verlichtingsadvies over waar u welk licht nodig heeft, van keuken en werkplek tot tuin, bestellen de armaturen en plaatsen ze, samen met de schakelaars en dimmers. Wil u later slim sturen? Dan houden we meteen rekening met Niko Home Control.',
     voorWie: [
       'U verbouwt of richt een ruimte opnieuw in.',
       'U wil besparen dankzij ledverlichting.',
@@ -436,14 +440,14 @@ export const diensten: Dienst[] = [
     ],
     inOfferte: [
       'Advies per ruimte: functie- en sfeerverlichting',
-      'Armaturen, schakelaars en dimmers',
+      'Bestelling en levering van de armaturen, schakelaars en dimmers',
       'Plaatsing en aansluiting',
       'Voorbereiding voor slimme sturing waar gewenst',
     ],
     faq: [
       {
         vraag: 'Levert u ook de armaturen?',
-        antwoord: 'Dat kan, of we plaatsen armaturen die u zelf kiest. Dat bespreken we vooraf. [TE BEVESTIGEN]',
+        antwoord: 'Ja. We geven verlichtingsadvies, bestellen de armaturen en plaatsen ze. Heeft u zelf al armaturen gekozen, dan plaatsen we die ook.',
       },
       {
         vraag: 'Kan ik mijn verlichting later slim sturen?',

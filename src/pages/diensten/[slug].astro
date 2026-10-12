@@ -9,7 +9,7 @@ import { fotos } from '../../data/fotos';
 import { realisatieVoorFoto, realisatieUrl } from '../../data/realisaties';
 import StroomLijn from '../../components/StroomLijn.astro';
 import { SITE_URL, business, areas, services, serviceUrl, job } from '../../data/site';
-import { diensten, STANDAARD_STAPPEN, type Dienst } from '../../data/diensten';
+import { diensten, STANDAARD_STAPPEN, PREMIES_GECONTROLEERD, type Dienst } from '../../data/diensten';
 import { breadcrumbSchema, faqSchema } from '../../lib/schema';
 import { metTodo } from '../../lib/tekst';
 
@@ -125,6 +125,7 @@ const serviceSchema = {
         <div class="reveal rounded-3xl bg-sand/60 p-7 sm:p-10">
           <h2 class="font-display text-3xl font-semibold">{dienst.premies.titel}</h2>
           <p class="mt-4 text-lg" set:html={metTodo(dienst.premies.tekst)} />
+          <p class="mt-4 text-sm text-muted">Nagekeken in {PREMIES_GECONTROLEERD}. Premies en regels veranderen geregeld: controleer de actuele voorwaarden via de officiële bronnen.</p>
           <p class="mt-6 text-sm font-semibold tracking-wider text-muted uppercase">Officiële bronnen</p>
           <ul class="mt-2 space-y-2">
             {dienst.premies.bronnen.map((b) => (

@@ -61,7 +61,7 @@ export const vacatures: Vacature[] = [
     metaTitle: 'Vacature ervaren elektricien Schilde · Heeman Electrics',
     metaDescription:
       'Ben je op zoek naar een uitdagende job als elektricien in de buurt van Schilde? Min. 3 jaar ervaring, voltijds, marktconform loon. Solliciteer online.',
-    datePosted: '2026-10-03', // [TE BEVESTIGEN: publicatiedatum = dag van livegang]
+    datePosted: '2026-10-03', // verplicht veld voor Google for Jobs (niet zichtbaar op de pagina)
     validThrough: '2027-03-31T23:59',
     intro:
       'Ben je op zoek naar een uitdagende job in de buurt als elektricien? Om de groei van ons bedrijf te verzekeren, zijn we op zoek naar een ervaren en gemotiveerde elektricien om ons team te vervoegen. Je hebt ervaring in elektriciteit, bij voorkeur in nieuwbouw en renovatie, en een passie voor fijne afwerking.',
@@ -95,7 +95,7 @@ export const vacatures: Vacature[] = [
     metaTitle: 'Vacature junior elektricien Schilde · Heeman Electrics',
     metaDescription:
       'Net afgestudeerd in elektriciteit? Leer het vak in een tof team van ervaren elektriciens, in de buurt van Schilde. Ook stageplaatsen. Solliciteer online.',
-    datePosted: '2026-09-23', // [TE BEVESTIGEN: publicatiedatum = dag van livegang]
+    datePosted: '2026-09-23', // verplicht veld voor Google for Jobs (niet zichtbaar op de pagina)
     validThrough: '2027-03-31T23:59',
     intro:
       'Kom je net van de schoolbanken en wil je het vak écht leren? Bij ons leer je het op de werf, in een tof team van ervaren elektriciens. We werken al jaren samen met scholen in de buurt en geven blijvend trainingen op de job zelf. Ook voor een stageplaats kan je bij ons terecht.',
@@ -127,13 +127,32 @@ export const vacatureUrl = (slug: string) => `/jobs/${slug}/`;
 
 export const stappen = [
   { titel: 'Je solliciteert', tekst: 'Via het formulier of via WhatsApp, met je cv.' },
-  { titel: 'We nemen contact op', tekst: 'Binnen [AANVULLEN: X] werkdagen.' },
+  { titel: 'We nemen contact op', tekst: 'Binnen 5 werkdagen.' },
   { titel: 'Kennismaking', tekst: 'Een gesprek waarin we elkaar leren kennen en de job overlopen.' },
   { titel: 'Start', tekst: 'Je begint in het team, met de nodige begeleiding.' },
 ];
 
+// Uit de vroegere kennisbank (12-10-2026: kennisbank opgegaan in de veelgestelde vragen).
+const werkenAlsElektricien: Vraag[] = [
+  {
+    vraag: 'Wat doet een junior elektricien?',
+    antwoord:
+      'Een junior elektricien werkt mee aan elektrische installaties, samen met ervaren collega’s: nieuwbouw, renovatie, domotica, laadpalen en zonnepanelen. Stap voor stap werk je zelfstandiger, ook in contact met klanten.',
+  },
+  {
+    vraag: 'Wat leer je op de werf?',
+    antwoord:
+      'Op school leer je de theorie; op de werf leer je hoe je een installatie in de praktijk netjes en veilig uitvoert: kabels trekken en wegwerken, verdeelkasten aansluiten, domotica programmeren en de schema’s die bij een keuring horen.',
+  },
+  {
+    vraag: 'Wat is het AREI?',
+    antwoord:
+      'Het AREI is het Algemeen Reglement op de Elektrische Installaties: de Belgische regels waaraan een elektrische installatie moet voldoen. Als elektricien werk je er elke dag mee, bijvoorbeeld wanneer je een installatie keuringsklaar maakt.',
+  },
+];
+
 /** Alle job-FAQ's (zonder dubbels) voor /veelgestelde-vragen/. */
-export const jobsFaq: Vraag[] = [...new Map(vacatures.flatMap((v) => v.faq).map((q) => [q.vraag, q])).values()];
+export const jobsFaq: Vraag[] = [...new Map([...vacatures.flatMap((v) => v.faq), ...werkenAlsElektricien].map((q) => [q.vraag, q])).values()];
 
 /** Vacaturetekst als HTML voor JobPosting.description — gebouwd uit exact dezelfde data als de pagina. */
 export function vacatureHtml(v: Vacature): string {

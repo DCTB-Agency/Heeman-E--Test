@@ -12,6 +12,8 @@ https://heeman-electrics.be/*  https://www.heeman-electrics.be/:splat  301!
 /  page_id=1400  /diensten/  301!
 /  page_id=1401  /veelgestelde-vragen/  301!
 /form/contactformulier-voor-offerte-aanvraag/  /offerte/  301
-/feed/  /kennisbank/  301
+/feed/  /veelgestelde-vragen/  301
+/kennisbank/  /veelgestelde-vragen/  301
+/kennisbank/*  /veelgestelde-vragen/  301
 /wp-admin/  /  301
 /wp-login.php  /  301

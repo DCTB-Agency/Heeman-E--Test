@@ -12,7 +12,9 @@ oude_url,nieuwe_url,status,opmerking
 /?page_id=1400,/diensten/,301,"nav-item 'Diensten' — geeft nu 404"
 /?page_id=1401,/veelgestelde-vragen/,301,"nav-item 'FAQ' — geeft nu 404"
 /form/contactformulier-voor-offerte-aanvraag/,/offerte/,301,"SureForms-pagina, staat in Yoast llms.txt"
-/feed/,/kennisbank/,301,WordPress-standaard
+/feed/,/veelgestelde-vragen/,301,WordPress-standaard
+/kennisbank/,/veelgestelde-vragen/,301,"kennisbank opgegaan in de FAQ (12-10-2026)"
+/kennisbank/*,/veelgestelde-vragen/,301,idem
 /wp-admin/,/,301,na migratie
 /wp-login.php,/,301,na migratie
 /llms.txt,/llms.txt,200,"vervangen door eigen versie"

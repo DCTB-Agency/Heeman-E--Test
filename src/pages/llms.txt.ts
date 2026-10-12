@@ -1,7 +1,6 @@
 // /llms.txt — Markdown-samenvatting voor AI-assistenten (CLAUDE.md § 11.2), gegenereerd uit dezelfde data als de site.
 import type { APIRoute } from 'astro';
 import { SITE_URL, business, areas, services, serviceUrl, job } from '../data/site';
-import { artikels, artikelUrl } from '../data/kennisbank';
 
 export const GET: APIRoute = () => {
   const u = (p: string) => `${SITE_URL}${p}`;
@@ -19,13 +18,10 @@ ${services.map((s) => `- [${s.name}](${u(serviceUrl(s.slug))})`).join('\n')}
 ## Jobs
 - [Jobs: ervaren elektricien en junior elektricien](${u(job.url)})
 
-## Kennisbank
-${artikels.map((a) => `- [${a.titel}](${u(artikelUrl(a.slug))})`).join('\n')}
-
 ## Meer
 - [Kerngegevens](${u('/over-ons/kerngegevens/')})
 - [Veelgestelde vragen](${u('/veelgestelde-vragen/')})
-- [Over ons](${u('/over-ons/')})
+- [Wie we zijn](${u('/over-ons/')})
 - [Realisaties](${u('/realisaties/')})
 - [Contact](${u('/contact/')})
 `;

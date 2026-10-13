@@ -190,6 +190,11 @@
   from { opacity: 0; translate: 0 1.25rem; }
   to { opacity: 1; translate: none; }
 }
+/* Zachter dan fade-up: kleine verschuiving en een lichte schaal, via translate/scale (niet transform). */
+@keyframes inschuiven {
+  from { opacity: 0; translate: 0 1.75rem; scale: 0.985; }
+  to { opacity: 1; translate: none; scale: none; }
+}
 @keyframes line-up {
   from { transform: translateY(105%); }
   to { transform: none; }
@@ -256,19 +261,23 @@
     animation-delay: var(--d, 0ms);
   }
 
-  /* Scroll-reveal: puur CSS (scroll-driven animations). Browsers zonder ondersteuning tonen alles meteen. */
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: fade-up linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 70%;
-    }
-    .reveal-stagger > * {
-      animation: fade-up linear both;
-      animation-timeline: view();
-      animation-range: entry calc(var(--i, 0) * 6%) entry calc(60% + var(--i, 0) * 6%);
-    }
+  /* Inschuiven, fase per fase (13-10-2026). Niet meer gekoppeld aan de scrollpositie (dat voelde schokkerig, vooral
+     op mobiel), maar een korte animatie zodra een blok in beeld komt; scripts/inschuiven.ts zet .is-in en de
+     volgorde (--vertraging). Zonder JavaScript (geen .js op <html>) is alles meteen zichtbaar. */
+  .js .reveal:not(.is-in),
+  .js .reveal-stagger > :not(.is-in) {
+    opacity: 0;
   }
+  .js .reveal.is-in,
+  .js .reveal-stagger > .is-in {
+    animation: inschuiven 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--vertraging, 0ms);
+  }
+  /* Smooth scroll naar ankers (bv. "Naar het formulier"). */
+  html { scroll-behavior: smooth; }
+  /* Lazy geladen foto's faden zacht in in plaats van plots te verschijnen. */
+  .js .foto img[loading='lazy'] { opacity: 0; transition: opacity 0.6s ease; }
+  .js .foto img[loading='lazy'].geladen { opacity: 1; }
   @supports (animation-timeline: scroll()) {
     .header-scroll {
       animation: header-scrolled linear both;
@@ -303,4 +312,8 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+@media print {
+  .js .reveal, .js .reveal-stagger > *, .js .foto img { opacity: 1 !important; animation: none !important; }
 }

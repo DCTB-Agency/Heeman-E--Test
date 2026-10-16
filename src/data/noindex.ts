@@ -10,5 +10,7 @@ export const noindexUrls = new Set<string>([
   ...realisaties.filter(todoIn).map((r) => realisatieUrl(r.slug)),
   ...regios.filter(todoIn).map((r) => regioUrl(r.slug)),
   '/jobs/bedankt/',
+  '/offerte/bedankt/',
+  '/contact/bedankt/',
   '/404/',
 ]);

@@ -2,7 +2,6 @@
 // /contact/ — CLAUDE.md § 5, § 9. NAP identiek aan site.ts. Geen kaart of routelink: klanten komen niet langs.
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
-import MailtoBevestiging from '../../components/MailtoBevestiging.astro';
 import { SITE_URL, business, areas, job, antwoordTermijn } from '../../data/site';
 import { breadcrumbSchema } from '../../lib/schema';
 import { metTodo } from '../../lib/tekst';
@@ -71,19 +70,21 @@ const label = 'block font-semibold';
         <p class="mt-8 text-muted">Wil je bij ons werken? <a href={job.url} class="font-semibold text-brand underline-offset-4 hover:underline">Bekijk de jobs</a> (ervaren en junior elektricien). Solliciteren gaat via het formulier op de jobpagina.</p>
       </div>
 
-      <div class="reveal rounded-3xl bg-white p-6 shadow-[0_24px_60px_-40px_rgb(28_13_10/0.5)] sm:p-10" data-mailto-blok>
+      <div class="reveal rounded-3xl bg-white p-6 shadow-[0_24px_60px_-40px_rgb(28_13_10/0.5)] sm:p-10">
         <h2 class="font-display text-3xl font-semibold">Stuur een bericht</h2>
         <p class="mt-2 text-muted">Voor een offerte gebruikt u best het <a href="/offerte/" class="font-semibold text-brand underline-offset-4 hover:underline">offerteformulier</a>.</p>
+        <!-- Netlify Forms + opgemaakte mail naar info@ (netlify/functions/submission-created.mjs). -->
         <form
           name="contact"
-          action={`mailto:${business.email}?subject=${encodeURIComponent('Bericht via de website')}`}
-          method="post"
-          enctype="text/plain"
-          data-mailto={business.email}
-          data-onderwerp="Bericht via de website van {naam}"
+          method="POST"
+          action="/contact/bedankt/"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
           data-event="contact_submit"
           class="mt-6 grid gap-5 sm:grid-cols-2"
         >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden" aria-hidden="true"><label>Niet invullen: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
           <div class="sm:col-span-2">
             <label for="ct-naam" class={label}>Naam <span aria-hidden="true" class="text-brand">*</span></label>
             <input id="ct-naam" name="naam" required autocomplete="name" class={veld} />
@@ -100,12 +101,15 @@ const label = 'block font-semibold';
             <label for="ct-bericht" class={label}>Bericht <span aria-hidden="true" class="text-brand">*</span></label>
             <textarea id="ct-bericht" name="bericht" rows="5" required class={veld}></textarea>
           </div>
+          <label class="flex items-start gap-3 sm:col-span-2">
+            <input type="checkbox" name="privacy" required class="mt-1 size-5 shrink-0 accent-brand" />
+            <span>Ik ga akkoord dat {business.name} mijn gegevens gebruikt om mijn bericht te beantwoorden, zoals beschreven in de <a href="/privacy/" class="font-semibold underline underline-offset-4">privacyverklaring</a>. <span aria-hidden="true" class="text-brand">*</span></span>
+          </label>
           <div class="flex flex-wrap items-center gap-4 sm:col-span-2">
             <button type="submit" class="btn btn-primary text-lg">Verstuur</button>
-            <p class="text-sm text-muted">* verplicht · <a href="/privacy/" class="underline underline-offset-4">privacy</a></p>
+            <p class="text-sm text-muted">* verplicht</p>
           </div>
         </form>
-        <MailtoBevestiging />
       </div>
     </div>
   </section>
@@ -118,6 +122,4 @@ const label = 'block font-semibold';
   }
 </style>
 
-<script>
-  import '../../scripts/mailto-formulier';
-</script>
+

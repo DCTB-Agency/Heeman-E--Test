@@ -1,0 +1,20 @@
+---
+// Bedankpagina na het offerteformulier (Netlify Forms). Niet indexeren.
+import Base from '../../../layouts/Base.astro';
+import { business } from '../../../data/site';
+---
+
+<Base title="Bedankt voor uw aanvraag! · Heeman Electrics" description="Uw offerteaanvraag is goed aangekomen. We nemen binnen 5 werkdagen contact met u op, zoals u verkoos." noindex>
+  <section class="relative overflow-clip border-b border-ink/10 bg-sand/35">
+    <div class="absolute inset-x-0 top-0 h-1.5 bg-accent" aria-hidden="true"></div>
+    <div class="container-site py-20 sm:py-28">
+      <h1 class="max-w-3xl text-display"><span class="line-mask"><span>Bedankt voor uw aanvraag!</span></span></h1>
+      <p class="fade-up mt-6 max-w-xl text-lg" style="--d:300ms">Uw offerteaanvraag is goed aangekomen. We nemen binnen 5 werkdagen contact met u op, zoals u verkoos.</p>
+      <p class="fade-up mt-3 max-w-xl text-muted" style="--d:380ms">Dringend? Bel <a href={business.phone.href} class="font-semibold text-brand underline underline-offset-4" data-event="click_to_call">{business.phone.display}</a>. {business.hours.urgent}</p>
+      <div class="fade-up mt-8 flex flex-wrap gap-3" style="--d:450ms">
+        <a href="/diensten/" class="btn btn-primary">Bekijk onze diensten</a>
+        <a href="/realisaties/" class="btn btn-ghost">Bekijk realisaties</a>
+      </div>
+    </div>
+  </section>
+</Base>

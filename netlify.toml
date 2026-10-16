@@ -9,6 +9,14 @@
   # Zolang dit niet "true" is, krijgt elke pagina <meta name="robots" content="noindex"> (preview niet in Google).
   PUBLIEK = "false"
 
+# Formulieren: Netlify Forms (offerte, contact, sollicitatie). Bij elke inzending stuurt
+# netlify/functions/submission-created.mjs een opgemaakte mail naar info@ via de mailserver van Vimexx.
+# Zet in Netlify → Site configuration → Environment variables: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
+# (zie docs/formulieren.md). Wachtwoorden nooit in dit bestand.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 [[headers]]
   for = "/*"
   [headers.values]

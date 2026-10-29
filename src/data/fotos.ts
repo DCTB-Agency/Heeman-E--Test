@@ -10,6 +10,8 @@ import buitenpost from '../assets/fotos/videofoon-buitenpost.jpg';
 import sfeerverlichting from '../assets/fotos/sfeerverlichting.jpg';
 import zonnepanelen from '../assets/fotos/zonnepanelen-dak.jpg';
 import oudeVerdeelkast from '../assets/fotos/oude-verdeelkast.jpg';
+import lichtpaalSpots from '../assets/fotos/lichtpaal-spots.jpg';
+import lichtpaalOprit from '../assets/fotos/lichtpaal-oprit.jpg';
 import stopcontactenAf from '../assets/fotos/stopcontacten-travertin-afgewerkt.jpg';
 import stopcontactenPlaatsing from '../assets/fotos/stopcontacten-travertin-plaatsing.jpg';
 import schakelaars from '../assets/fotos/schakelaars-inbouw.jpg';
@@ -52,6 +54,18 @@ export const fotos = {
     alt: 'Inbouwmechanismen voor schakelaars in de muur, klaar voor de afwerking',
     focus: '52% 42%',
     titel: 'Schakelaars klaar voor de afwerking',
+  },
+  lichtpaalSpots: {
+    src: lichtpaalSpots,
+    alt: 'Zwarte lichtpaal met drie richtbare spots langs een tuinpad, tussen een beukenhaag en een den',
+    focus: '30% 35%',
+    titel: 'Lichtpaal met spots langs een tuinpad',
+  },
+  lichtpaalOprit: {
+    src: lichtpaalOprit,
+    alt: 'Nieuwe grijze lichtpaal met ledarmatuur aan een oprit, tegen een beukenhaag',
+    focus: '45% 40%',
+    titel: 'Lichtpaal aan een oprit',
   },
   // Rechtenvrij (zie assets-in/stock/bronnen.json)
   buitenpost: {

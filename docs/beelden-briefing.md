@@ -45,9 +45,8 @@ Waar: dienstpagina Zonnepanelen (naast de foto van de zonnepanelen).
 Waar: dienstpagina Video- & parlofonie (naast de buitenpost).
 > …a modern indoor video intercom monitor mounted on a light plastered wall in a hallway, the screen shows a blurred view of a front door, a coat rack and wooden floor softly out of focus in the background, warm evening light
 
-### 5. `tuinverlichting.jpg` — Verlichtingsadvies
-Waar: dienstpagina Verlichting (naast de sfeerverlichting).
-> …garden lighting at dusk at a modern Flemish house: low LED path lights along a gravel path, uplights on two trees, warm wall lights on a red-brick facade, blue-hour sky, lush green lawn
+### 5. ~~`tuinverlichting.jpg`~~ — niet meer nodig
+Ingevuld met eigen foto's van lichtpalen (29-10-2026).
 
 ---
 

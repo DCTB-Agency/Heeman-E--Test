@@ -437,11 +437,12 @@ export const diensten: Dienst[] = [
       'U verbouwt of richt een ruimte opnieuw in.',
       'U wil besparen dankzij ledverlichting.',
       'U wil sfeerverlichting, buitenverlichting of slimme sturing.',
+      'U wil lichtpalen langs uw oprit, tuinpad of parking.',
     ],
     inOfferte: [
       'Advies per ruimte: functie- en sfeerverlichting',
       'Bestelling en levering van de armaturen, schakelaars en dimmers',
-      'Plaatsing en aansluiting',
+      'Plaatsing en aansluiting, ook van lichtpalen en buitenverlichting met ondergrondse voeding',
       'Voorbereiding voor slimme sturing waar gewenst',
     ],
     faq: [
@@ -455,7 +456,7 @@ export const diensten: Dienst[] = [
       },
       {
         vraag: 'Plaatst u ook buitenverlichting?',
-        antwoord: 'Ja, voor tuin, oprit of gevel, met de juiste beveiliging voor buiten.',
+        antwoord: 'Ja, voor tuin, oprit of gevel, ook lichtpalen met spots of ledarmaturen. We voorzien de ondergrondse voeding en de juiste beveiliging voor buiten.',
       },
       {
         vraag: 'Kan ik mijn bestaande verlichting vervangen door led?',
@@ -466,7 +467,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja, we plaatsen schakelaars en dimmers die passen bij uw verlichting.',
       },
     ],
-    fotos: ['sfeerverlichting', { placeholder: 'buitenverlichting in de tuin' }],
+    fotos: ['lichtpaalSpots', 'lichtpaalOprit'],
     bijgewerkt: BIJGEWERKT,
   },
   {

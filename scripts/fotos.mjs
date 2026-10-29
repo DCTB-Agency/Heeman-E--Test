@@ -14,6 +14,9 @@ const FOTOS = [
   { id: 'stopcontactenAf', in: 'assets-in/bert/stopcontacten-travertin-afgewerkt.jpg', out: 'stopcontacten-travertin-afgewerkt.jpg', ogY: 42 },
   { id: 'stopcontactenPlaatsing', in: 'assets-in/bert/stopcontacten-travertin-plaatsing.jpg', out: 'stopcontacten-travertin-plaatsing.jpg', ogY: 50 },
   { id: 'schakelaars', in: 'assets-in/bert/schakelaars-inbouw.jpg', out: 'schakelaars-inbouw.jpg', ogY: 40 },
+  // Eigen foto's lichtpalen (aangeleverd 29-10-2026); spots-foto bijgesneden zodat het gebouw niet herkenbaar is.
+  { id: 'lichtpaalSpots', in: 'assets-in/eigen/lichtpaal-spots.jpg', out: 'lichtpaal-spots.jpg', crop: { left: 440, top: 200, width: 1060, height: 1720 }, ogY: 30 },
+  { id: 'lichtpaalOprit', in: 'assets-in/eigen/lichtpaal-oprit.jpg', out: 'lichtpaal-oprit.jpg', ogY: 40 },
   // Rechtenvrije foto's (CC0 / publiek domein / Pexels- of Unsplash-licentie): bron en licentie in assets-in/stock/bronnen.json.
   { id: 'buitenpost', in: 'assets-in/stock/videofoon-buitenpost.jpg', out: 'videofoon-buitenpost.jpg', ogY: 45 },
   { id: 'sfeerverlichting', in: 'assets-in/stock/sfeerverlichting.jpg', out: 'sfeerverlichting.jpg', ogY: 40 },

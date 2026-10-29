@@ -167,7 +167,7 @@ export const diensten: Dienst[] = [
           'Ja. We komen langs, bekijken uw installatie en zeggen u wat er moet gebeuren voordat u de keuring aanvraagt. Zo voorkomt u verrassingen.',
       },
     ],
-    fotos: ['verdeelkast', { placeholder: 'dezelfde verdeelkast vóór de werken' }],
+    fotos: ['oudeVerdeelkast', 'verdeelkast'],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -217,7 +217,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja. Een Niko Home Control-installatie kan later worden aangepast of uitgebreid. Bel of stuur een WhatsApp.',
       },
     ],
-    fotos: [{ placeholder: 'Niko Home Control-bediening in een woning' }, { placeholder: 'verdeelkast met domotica-modules' }],
+    fotos: ['schakelaars', { placeholder: 'verdeelkast met domotica-modules' }],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -273,7 +273,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja. Na de renovatie maken we het eendraadschema en het situatieschema die nodig zijn voor de keuring.',
       },
     ],
-    fotos: [{ placeholder: 'nieuwe bekabeling tijdens een renovatie' }, 'verdeelkast'],
+    fotos: ['bekabeling', 'verdeelkast'],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -328,7 +328,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Soms wel. Dat hangt af van uw huidige verdeelkast en beveiliging. We bekijken het bij het bezoek en nemen het mee in de offerte.',
       },
     ],
-    fotos: [{ placeholder: 'omvormer en thuisbatterij netjes aangesloten' }, { placeholder: 'laadpaal gekoppeld aan zonnepanelen' }],
+    fotos: ['zonnepanelen', { placeholder: 'omvormer en thuisbatterij netjes aangesloten' }],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -420,7 +420,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Dat hangt af van het systeem. Als u dat al weet, houden we er bij de keuze van het systeem rekening mee.',
       },
     ],
-    fotos: [{ placeholder: 'buitenpost van een videofoon aan de voordeur' }, { placeholder: 'binnenpost met scherm' }],
+    fotos: ['buitenpost', { placeholder: 'binnenpost met scherm' }],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -466,7 +466,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja, we plaatsen schakelaars en dimmers die passen bij uw verlichting.',
       },
     ],
-    fotos: [{ placeholder: 'sfeerverlichting in een woonkamer' }, { placeholder: 'buitenverlichting in de tuin' }],
+    fotos: ['sfeerverlichting', { placeholder: 'buitenverlichting in de tuin' }],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -518,7 +518,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja, stuur gerust een foto via WhatsApp naar 0485 19 00 27. Zo kunnen we sneller inschatten wat er aan de hand is.',
       },
     ],
-    fotos: ['verdeelkast', { placeholder: 'herstelling aan een verdeelkast of stopcontact' }],
+    fotos: ['verdeelkast', 'oudeVerdeelkast'],
     bijgewerkt: BIJGEWERKT,
   },
 ];

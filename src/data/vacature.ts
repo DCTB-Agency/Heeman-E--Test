@@ -118,7 +118,7 @@ export const vacatures: Vacature[] = [
       vragenVervoer,
     ],
     ervaringMaanden: 0,
-    kaart: { placeholder: 'team aan het werk op een werf' },
+    kaart: 'bekabeling',
   },
 ];
 

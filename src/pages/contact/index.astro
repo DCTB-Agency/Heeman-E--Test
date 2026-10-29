@@ -3,6 +3,7 @@
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
 import { SITE_URL, business, areas, job, antwoordTermijn } from '../../data/site';
+import { formAttrs } from '../../lib/formulier';
 import { breadcrumbSchema } from '../../lib/schema';
 import { metTodo } from '../../lib/tekst';
 
@@ -73,17 +74,14 @@ const label = 'block font-semibold';
       <div class="reveal rounded-3xl bg-white p-6 shadow-[0_24px_60px_-40px_rgb(28_13_10/0.5)] sm:p-10">
         <h2 class="font-display text-3xl font-semibold">Stuur een bericht</h2>
         <p class="mt-2 text-muted">Voor een offerte gebruikt u best het <a href="/offerte/" class="font-semibold text-brand underline-offset-4 hover:underline">offerteformulier</a>.</p>
-        <!-- Netlify Forms + opgemaakte mail naar info@ (netlify/functions/submission-created.mjs). -->
+        <!-- Netlify Forms of /formulier.php (Vimexx), zie src/lib/formulier.ts. -->
         <form
-          name="contact"
-          method="POST"
-          action="/contact/bedankt/"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
+          {...formAttrs('contact', '/contact/bedankt/')}
           data-event="contact_submit"
           class="mt-6 grid gap-5 sm:grid-cols-2"
         >
           <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="geladen" value="" data-geladen />
           <p class="hidden" aria-hidden="true"><label>Niet invullen: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
           <div class="sm:col-span-2">
             <label for="ct-naam" class={label}>Naam <span aria-hidden="true" class="text-brand">*</span></label>
@@ -122,4 +120,6 @@ const label = 'block font-semibold';
   }
 </style>
 
-
+<script>
+  import '../../scripts/bestand-limiet';
+</script>

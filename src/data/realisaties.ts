@@ -52,7 +52,7 @@ export const realisaties: Realisatie[] = [
     titel: 'Nieuwe bekabeling tijdens een renovatie',
     dienst: 'renovatie-elektriciteit',
     gemeente: 'Wijnegem',
-    fotos: { hoofd: { placeholder: 'nieuwe kabels in een opengekapte muur' } },
+    fotos: { hoofd: 'bekabeling' },
     situatie: 'Bij de renovatie van een woonkamer bleek de oude bedrading zonder buizen in de muur te liggen, met te weinig stopcontacten.',
     oplossing: 'Muren opgekapt, nieuwe buizen en kabels getrokken voor extra stopcontacten en lichtpunten, alles klaar voor de pleisterwerken.',
     resultaat: 'Veilige, nieuwe bekabeling volgens het AREI, met stopcontacten op de plaatsen waar de klant ze echt nodig heeft.',

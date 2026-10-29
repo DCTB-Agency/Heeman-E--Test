@@ -4,6 +4,7 @@
 // Solliciteren gebeurt enkel via dit formulier (niet telefonisch). Uploads worden niet publiek bewaard.
 import { business, areas } from '../data/site';
 import { vacatures } from '../data/vacature';
+import { formAttrs } from '../lib/formulier';
 
 interface Props {
   id?: string;
@@ -18,16 +19,12 @@ const functies = [...vacatures.map((v) => ({ waarde: v.titel, slug: v.slug })), 
 ---
 
 <form
-  name="sollicitatie"
-  method="POST"
-  action="/jobs/bedankt/"
-  data-netlify="true"
-  netlify-honeypot="bot-field"
-  enctype="multipart/form-data"
+  {...formAttrs('sollicitatie', '/jobs/bedankt/', true)}
   class="sollicitatie grid gap-5 sm:grid-cols-2"
   data-event="job_apply_submit"
 >
   <input type="hidden" name="form-name" value="sollicitatie" />
+  <input type="hidden" name="geladen" value="" data-geladen />
   <p class="hidden" aria-hidden="true"><label>Niet invullen: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
 
   <div class="sm:col-span-2">

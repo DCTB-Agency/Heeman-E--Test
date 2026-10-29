@@ -57,7 +57,7 @@ export const diensten: Dienst[] = [
       'Laadpaal thuis of voor uw bedrijf in Schilde en omgeving. Persoonlijk contact, vakkundig en netjes geplaatst. Gratis offerte of bel 0485 19 00 27.',
     h1: 'Laadpaal laten plaatsen',
     antwoord:
-      'Een laadpaal thuis of voor uw bedrijf laat u plaatsen door een erkend elektricien. We komen langs om uw aansluiting en verdeelkast te bekijken en u krijgt een gratis offerte. Daarna plaatsen we de laadpaal, onder meer van Alfen of Easee, stellen hem in en maken alles klaar voor de keuring.',
+      'Een laadpaal thuis of voor uw bedrijf laat u best plaatsen door een elektricien. We komen langs om uw aansluiting en verdeelkast te bekijken en u krijgt een gratis offerte. Daarna plaatsen we de laadpaal, onder meer van Alfen of Easee, stellen hem in en maken alles klaar voor de keuring.',
     voorWie: [
       'Thuisladen: u heeft (binnenkort) een elektrische of plug-in hybride wagen.',
       'Bedrijven: laadpunten voor uw eigen wagens, personeel of bezoekers.',
@@ -337,7 +337,7 @@ export const diensten: Dienst[] = [
     serviceType: 'Elektrische installatie voor nieuwbouw',
     metaTitle: 'Elektriciteit nieuwbouw in Schilde · Heeman Electrics',
     metaDescription:
-      'Volledige elektrische installatie voor uw nieuwbouw in Schilde en omgeving, van plan tot keuring. Erkend elektricien, gratis offerte.',
+      'Volledige elektrische installatie voor uw nieuwbouw in Schilde en omgeving, van plan tot keuring. 10+ jaar ervaring, gratis offerte.',
     h1: 'Elektrische installatie voor nieuwbouw',
     antwoord:
       'Bouwt u nieuw in Schilde of omgeving? Dan zorgen wij voor de volledige elektrische installatie: van het plan met stopcontacten en lichtpunten tot de verdeelkast, bekabeling en afwerking. We denken meteen aan later: een laadpaal, zonnepanelen of Niko Home Control. Na afloop is uw installatie klaar voor de keuring door een erkend organisme.',

@@ -46,9 +46,6 @@ const zakelijk = [
       <p class="fade-up mt-6 max-w-2xl text-lg text-muted" style="--d:550ms">
         Snelle service, 24/7 bereikbaar voor herstellingen, installaties en keuringen. Vraag vandaag nog een vrijblijvende offerte!
       </p>
-      <ul class="fade-up mt-5 flex flex-wrap gap-2" style="--d:620ms" aria-label="Specialisaties">
-        {['Nieuwbouw', 'Renovatie', 'Domotica'].map((s) => <li class="rounded-full border border-ink/15 bg-white/70 px-3 py-1 text-sm font-semibold">{s}</li>)}
-      </ul>
       <!-- 29-10-2026: mini-contactformulier i.p.v. de belknop (Bert neemt onbekende nummers niet graag op). -->
       <SnelContact class="fade-up mt-8" style="--d:700ms" />
       <p class="fade-up mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold" style="--d:800ms">
@@ -172,19 +169,11 @@ const zakelijk = [
     </div>
   </section>
 
-  <!-- REVIEWS + REALISATIES -->
+  <!-- REALISATIES -->
   <section class="section" aria-labelledby="realisaties">
     <div class="container-site">
-      <div class="reveal flex flex-col gap-6 rounded-3xl border border-ink/10 bg-white p-8 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p class="eyebrow">Google-reviews</p>
-          <p class="mt-2 font-display text-2xl font-semibold">Wat klanten over ons zeggen</p>
-          <p class="mt-2 text-muted"><mark class="todo">[AANVULLEN: score, aantal reviews en 3–5 echte Google-reviews + link naar het Google Bedrijfsprofiel]</mark></p>
-        </div>
-        <span class="btn btn-ghost shrink-0 cursor-not-allowed opacity-50" title="Link naar Google Bedrijfsprofiel volgt">Alle reviews op Google</span>
-      </div>
-
-      <div class="reveal mt-20 flex flex-wrap items-end justify-between gap-6">
+      <!-- Google-reviews: blok verwijderd tot er echte reviews zijn (docs/later-aanvullen.md). -->
+      <div class="reveal flex flex-wrap items-end justify-between gap-6">
         <div>
           <p class="eyebrow">Realisaties</p>
           <h2 id="realisaties" class="h2 mt-3">Recent werk in de regio</h2>

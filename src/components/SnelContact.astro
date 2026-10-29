@@ -18,12 +18,9 @@ const onderwerpen = ['Renovatie of elektriciteitswerken', 'Nieuwbouw', 'Domotica
   <input type="hidden" name="geladen" value="" data-geladen />
   <p class="hidden" aria-hidden="true"><label>Niet invullen: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
 
-  <p id="sc-titel" class="flex items-center gap-2 text-sm font-semibold">
-    <span class="sc-lampje" aria-hidden="true"></span>
-    Snel een vraag? <span class="font-normal text-muted">We contacteren u binnen {antwoordTermijn}.</span>
-  </p>
+  <p id="sc-titel" class="sr-only">Snel contact: we contacteren u binnen {antwoordTermijn}.</p>
 
-  <div class="sc-balk mt-3 flex flex-col gap-1.5 rounded-[1.75rem] border-2 border-ink/15 bg-white p-1.5 shadow-[0_18px_40px_-28px_rgb(28_13_10/0.45)] sm:flex-row sm:items-center sm:rounded-full">
+  <div class="sc-balk flex flex-col gap-1.5 rounded-[1.75rem] border-2 border-ink/15 bg-white p-1.5 shadow-[0_18px_40px_-28px_rgb(28_13_10/0.45)] sm:flex-row sm:items-center sm:rounded-full">
     <label for="sc-onderwerp" class="sr-only">Waarover gaat het?</label>
     <select id="sc-onderwerp" name="onderwerp" required class="sc-veld rounded-full bg-paper px-4 py-3 font-semibold text-ink sm:w-56 sm:shrink-0">
       <option value="">Waarover gaat het?</option>
@@ -55,12 +52,6 @@ const onderwerpen = ['Renovatie of elektriciteitswerken', 'Nieuwbouw', 'Domotica
   .sc-veld:focus { outline: none; }
   select.sc-veld { appearance: none; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 20px) 55%, calc(100% - 15px) 55%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 2.5rem; }
 
-  /* Groen "lampje": er is iemand bereikbaar. */
-  .sc-lampje { width: 8px; height: 8px; border-radius: 999px; background: #2fbf71; box-shadow: 0 0 0 0 rgb(47 191 113 / 0.5); }
-  @media (prefers-reduced-motion: no-preference) {
-    .sc-lampje { animation: sc-puls 2.4s ease-out infinite; }
-  }
-  @keyframes sc-puls { 0% { box-shadow: 0 0 0 0 rgb(47 191 113 / 0.55); } 70%, 100% { box-shadow: 0 0 0 8px rgb(47 191 113 / 0); } }
 
   /* Extra regel pas tonen zodra de bezoeker begint (zonder JavaScript: altijd zichtbaar). */
   :global(.js) .snelcontact:not(.open) .sc-extra { display: none; }

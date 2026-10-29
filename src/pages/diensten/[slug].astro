@@ -21,6 +21,8 @@ const { dienst } = Astro.props as { dienst: Dienst };
 const url = serviceUrl(dienst.slug);
 const stappen = dienst.stappen ?? STANDAARD_STAPPEN;
 const anderen = services.filter((s) => s.slug !== dienst.slug);
+// Enkel echte foto's tonen; placeholders komen terug als de AI-beelden er zijn (docs/beelden-briefing.md).
+const echteFotos = dienst.fotos.filter((b) => typeof b === 'string');
 const dringend = dienst.slug === 'dringende-herstellingen'; // enkel hier blijft bellen de hoofdactie
 const bijgewerkt = new Date(dienst.bijgewerkt).toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -138,7 +140,7 @@ const serviceSchema = {
         </div>
       ) : (
         <div class="reveal grid gap-4 sm:grid-cols-2">
-          {dienst.fotos.map((b) => <Beeld beeld={b} class="aspect-[4/5] sm:aspect-auto sm:min-h-80" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw" />)}
+          {echteFotos.map((b) => <Beeld beeld={b} class="aspect-[4/5] sm:aspect-auto sm:min-h-80" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw" />)}
         </div>
       )}
     </div>
@@ -153,7 +155,7 @@ const serviceSchema = {
           <a href="/realisaties/" class="inline-flex items-center gap-2 font-display font-semibold text-brand">Alle realisaties <span aria-hidden="true">→</span></a>
         </div>
         <ul class="mt-8 grid gap-6 md:grid-cols-2">
-          {dienst.fotos.map((b) => {
+          {echteFotos.map((b) => {
             const r = typeof b === 'string' ? realisatieVoorFoto(b) : undefined;
             const inhoud = (
               <>

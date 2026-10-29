@@ -5,7 +5,7 @@ import type { Vraag } from '../lib/schema';
 
 export const usps = [
   { titel: 'Eén vast aanspreekpunt', tekst: 'U heeft één vast aanspreekpunt. We komen eerst langs voor een verkennend gesprek.' },
-  { titel: 'Vakkennis', tekst: '10+ jaar ervaring als erkend elektricien, van nieuwbouw en renovatie tot domotica.' },
+  { titel: 'Vakkennis', tekst: '10+ jaar ervaring als elektricien, van nieuwbouw en renovatie tot domotica.' },
   { titel: 'Meedenken met de klant', tekst: 'We nemen de tijd om mee te denken. Geen snelle oplossing, maar een installatie die ook op lange termijn positief uitdraait voor u.' },
 ]
 

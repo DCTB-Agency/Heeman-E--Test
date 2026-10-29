@@ -45,7 +45,7 @@ const anderen = realisaties.filter((x) => x.slug !== r.slug).slice(0, 3);
 
 <Base
   title={`${titelVolledig} · Realisatie Heeman Electrics`.slice(0, 60)}
-  description={`${titelVolledig}: ${dienst.name.toLowerCase()} door Heeman Electrics, erkend elektricien in Schilde en omgeving.`}
+  description={`${titelVolledig}: ${dienst.name.toLowerCase()} door Heeman Electrics, elektricien in Schilde en omgeving.`}
   ogImage={`/og/${typeof r.fotos.hoofd === 'string' ? r.fotos.hoofd : 'home'}.jpg`}
   noindex={noindexUrls.has(url)}
   schema={[schema, breadcrumbSchema(kruimels)]}

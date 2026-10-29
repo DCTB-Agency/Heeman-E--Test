@@ -39,7 +39,7 @@ const blokken: { titel: string; rijen: [string, string][] }[] = [
     ['Telefoon', business.phone.international],
     ['E-mail', business.email],
     ['Openingsuren', `${business.hours.label}; 24/7 bereikbaar voor dringende herstellingen`],
-    ['Google Bedrijfsprofiel', business.sameAs.length ? business.sameAs.join(' · ') : '[AANVULLEN: link naar het Google Bedrijfsprofiel]'],
+    ...(business.sameAs.length ? [['Google Bedrijfsprofiel', business.sameAs.join(' · ')] as [string, string]] : []),
   ] },
 ];
 const orgSchema = {
@@ -54,7 +54,7 @@ const orgSchema = {
 
 <Base
   title="Heeman Electrics – feiten & kerngegevens"
-  description="Feiten over Heeman Electrics: erkend elektricien in Schilde sinds 2018, diensten, werkgebied, werkwijze, contactgegevens en ondernemingsnummer."
+  description="Feiten over Heeman Electrics: elektricien in Schilde sinds 2018, diensten, werkgebied, werkwijze, contactgegevens en ondernemingsnummer."
   ogImage="/og/home.jpg"
   schema={[orgSchema, breadcrumbSchema(kruimels)]}
 >
@@ -62,7 +62,7 @@ const orgSchema = {
     <Kruimels kruimels={kruimels} class="text-muted" />
     <h1 class="mt-6 text-[clamp(2.25rem,1.5rem+3vw,4rem)] leading-[1.03] tracking-tight">Heeman Electrics – feiten & kerngegevens</h1>
     <p class="mt-6 text-xl leading-relaxed">
-      {business.name} is een erkende elektricien in Schilde met {business.experience}. We doen algemene elektriciteitswerken en
+      {business.name} is een elektricien in Schilde met {business.experience}. We doen algemene elektriciteitswerken en
       renovatieprojecten, nieuwbouw en domotica, plaatsen laadpalen en maken installaties keuringsklaar,
       voor particulieren, bedrijven, syndici en aannemers in de oostrand van Antwerpen.
     </p>

@@ -10,7 +10,8 @@ import DienstIcoon from '../components/DienstIcoon.astro';
 import { realisaties, realisatieUrl } from '../data/realisaties';
 import Werkgebied from '../components/Werkgebied.astro';
 import Faq from '../components/Faq.astro';
-import { business, areas, areaUrl, services, serviceUrl, antwoordTermijn } from '../data/site';
+import SnelContact from '../components/SnelContact.astro';
+import { business, areas, areaUrl, services, serviceUrl, antwoordTermijn, contactUrl } from '../data/site';
 import { usps, dienstTekst, homeFaq } from '../data/home';
 import { faqSchema } from '../lib/schema';
 import { metTodo } from '../lib/tekst';
@@ -48,14 +49,12 @@ const zakelijk = [
       <ul class="fade-up mt-5 flex flex-wrap gap-2" style="--d:620ms" aria-label="Specialisaties">
         {['Nieuwbouw', 'Renovatie', 'Domotica'].map((s) => <li class="rounded-full border border-ink/15 bg-white/70 px-3 py-1 text-sm font-semibold">{s}</li>)}
       </ul>
-      <div class="fade-up mt-8 flex flex-wrap gap-3" style="--d:700ms">
-        <a href={business.phone.href} class="btn btn-primary" data-event="click_to_call">
-          <svg viewBox="0 0 24 24" class="size-5" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" /></svg>
-          Bel {business.phone.display}
-        </a>
-        <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
-        <a href="/offerte/" class="btn btn-ghost">Vrijblijvende offerte</a>
-      </div>
+      <!-- 29-10-2026: mini-contactformulier i.p.v. de belknop (Bert neemt onbekende nummers niet graag op). -->
+      <SnelContact class="fade-up mt-8" style="--d:700ms" />
+      <p class="fade-up mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold" style="--d:800ms">
+        <a href={business.whatsapp.href} class="inline-flex items-center gap-1.5 hover:text-brand" target="_blank" rel="noopener" data-event="whatsapp_click">Liever WhatsApp? <span class="text-brand" aria-hidden="true">→</span></a>
+        <a href="/offerte/" class="inline-flex items-center gap-1.5 hover:text-brand">Uitgebreide offerte aanvragen <span class="text-brand" aria-hidden="true">→</span></a>
+      </p>
     </div>
   </section>
 
@@ -154,7 +153,7 @@ const zakelijk = [
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a href="/offerte/" class="btn btn-primary">Bespreek uw project</a>
-          <a href={business.phone.href} class="btn btn-ghost" data-event="click_to_call">Bel {business.phone.display}</a>
+          <a href={contactUrl} class="btn btn-ghost" data-event="contact_click">Contacteer ons</a>
         </div>
         </div>
       </div>
@@ -242,9 +241,9 @@ const zakelijk = [
     <div class="container-site relative py-20 sm:py-24">
       <div class="reveal mx-auto max-w-3xl rounded-3xl bg-ink px-2 py-4 text-center">
         <h2 id="cta" class="h2">Vraag uw vrijblijvende offerte aan</h2>
-        <p class="mt-4 text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een vrijblijvende offerte. We antwoorden binnen {antwoordTermijn}.</p>
+        <p class="mt-4 text-lg text-on-ink-muted">Stuur een bericht, een WhatsApp of vraag een vrijblijvende offerte. We antwoorden binnen {antwoordTermijn}.</p>
         <div class="mt-8 flex flex-wrap justify-center gap-3">
-          <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
+          <a href={contactUrl} class="btn btn-accent" data-event="contact_click">Contacteer ons</a>
           <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
           <a href="/offerte/" class="btn btn-ghost">Vrijblijvende offerte</a>
         </div>

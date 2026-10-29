@@ -18,3 +18,9 @@ oude_url,nieuwe_url,status,opmerking
 /wp-admin/,/,301,na migratie
 /wp-login.php,/,301,na migratie
 /llms.txt,/llms.txt,200,"vervangen door eigen versie"
+/category/*,/,301,"WordPress-archief (29-10-2026)"
+/author/*,/over-ons/,301,"WordPress-auteurspagina"
+/comments/feed/,/,301,WordPress-standaard
+/wp-content/*,/,301,"oude uploads (logo/favicons) — niet meer gebruikt"
+/wp-json/*,/,301,"WordPress REST-API (o.a. SureForms)"
+/xmlrpc.php,/,301,WordPress

@@ -1,5 +1,5 @@
 ---
-import { business, job, whatsappSollicitatie } from '../data/site';
+import { business, job, whatsappSollicitatie, contactUrl } from '../data/site';
 
 interface Props {
   variant: 'default' | 'jobs';
@@ -24,7 +24,7 @@ const items =
         { label: 'Alle jobs', href: job.url, icon: icons.quote, event: 'job_overview_click', stroke: true },
       ]
     : [
-        { label: 'Bel', href: business.phone.href, icon: icons.phone, primary: true, event: 'click_to_call' },
+        { label: 'Contact', href: contactUrl, icon: icons.mail, primary: true, event: 'contact_click', stroke: true },
         { label: 'WhatsApp', href: business.whatsapp.href, icon: icons.whatsapp, event: 'whatsapp_click' },
         { label: 'Offerte', href: '/offerte/', icon: icons.quote, event: 'offerte_click', stroke: true },
       ];

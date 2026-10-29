@@ -4,7 +4,7 @@
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
 import Faq from '../../components/Faq.astro';
-import { business, serviceUrl, job } from '../../data/site';
+import { serviceUrl, job } from '../../data/site';
 import { homeFaq } from '../../data/home';
 import { diensten } from '../../data/diensten';
 import { jobsFaq } from '../../data/vacature';
@@ -38,7 +38,7 @@ const uniek = [...new Map(groepen.flatMap((g) => g.vragen).map((v) => [v.vraag, 
     </h1>
     <p class="fade-up mt-6 max-w-2xl text-lg text-muted" style="--d:300ms">
       Kort en eerlijk antwoord op wat klanten ons het vaakst vragen. Staat uw vraag er niet bij?
-      Bel <a href={business.phone.href} class="font-semibold text-brand underline-offset-4 hover:underline" data-event="click_to_call">{business.phone.display}</a>.
+      <a href="/contact/#bericht" class="font-semibold text-brand underline-offset-4 hover:underline" data-event="contact_click">Stuur ons een bericht</a>.
     </p>
 
     <div class="mt-14 grid gap-12 lg:grid-cols-[16rem_1fr] lg:gap-16">

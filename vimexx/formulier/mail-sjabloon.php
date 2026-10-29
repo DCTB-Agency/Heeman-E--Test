@@ -21,6 +21,13 @@ function he_formulieren(): array
             'verplicht' => ['klanttype', 'dienst', 'gemeente', 'omschrijving', 'naam', 'gsm', 'privacy'],
             'bedankt' => '/offerte/bedankt/',
         ],
+        'snelcontact' => [
+            'titel' => 'Nieuwe contactaanvraag',
+            'intro' => 'Iemand vroeg via het korte formulier op de homepage om gecontacteerd te worden.',
+            'velden' => ['onderwerp' => 'Onderwerp', 'naam' => 'Naam', 'contact' => 'Gsm of e-mail'],
+            'verplicht' => ['onderwerp', 'naam', 'contact', 'privacy'],
+            'bedankt' => '/contact/bedankt/',
+        ],
         'contact' => [
             'titel' => 'Nieuw bericht',
             'intro' => 'Er is een bericht binnengekomen via het contactformulier.',
@@ -48,6 +55,8 @@ function he_onderwerp(string $formulier, array $d): string
         case 'offerte':
             $kt = !empty($d['klanttype']) ? " ({$d['klanttype']})" : '';
             return trim("Offerteaanvraag{$kt}: " . ($d['dienst'] ?? 'dienst') . ' – ' . ($d['gemeente'] ?? 'gemeente') . " · {$n}");
+        case 'snelcontact':
+            return trim('Contactaanvraag: ' . ($d['onderwerp'] ?? 'vraag') . " · {$n}");
         case 'sollicitatie':
             $f = !empty($d['functie']) ? mb_strtolower($d['functie']) . ' ' : '';
             return trim("Sollicitatie {$f}· {$n}");
@@ -88,6 +97,13 @@ function he_bouw_mail(string $formulier, array $d, array $bestanden, string $sit
 {
     $k = HE_KLEUR;
     $f = he_formulieren()[$formulier];
+    // Snelcontact: één veld "gsm of e-mail" → als gsm of e-mail tonen (met de juiste knoppen).
+    if (!empty($d['contact'])) {
+        if (str_contains($d['contact'], '@')) $d['email'] = $d['email'] ?? $d['contact'];
+        else $d['gsm'] = $d['gsm'] ?? $d['contact'];
+        unset($d['contact']);
+        $f['velden'] += ['gsm' => 'Gsm', 'email' => 'E-mail'];
+    }
     $verborgen = ['form-name', 'bot-field', 'privacy', 'geladen'];
     $alle = $d + $bestanden;
     $sleutels = array_values(array_filter(

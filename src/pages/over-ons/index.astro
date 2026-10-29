@@ -4,7 +4,7 @@
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
 import Foto from '../../components/Foto.astro';
-import { SITE_URL, business, job } from '../../data/site';
+import { SITE_URL, business, job, contactUrl } from '../../data/site';
 import { breadcrumbSchema } from '../../lib/schema';
 
 const kruimels = [
@@ -65,7 +65,7 @@ const werkwijze = [
         voor particulieren, bedrijven, syndici en aannemers in Schilde en de oostrand van Antwerpen.
       </p>
       <div class="fade-up mt-8 flex flex-wrap gap-3" style="--d:450ms">
-        <a href={business.phone.href} class="btn btn-primary" data-event="click_to_call">Bel {business.phone.display}</a>
+        <a href={contactUrl} class="btn btn-primary" data-event="contact_click">Contacteer ons</a>
         <a href="/offerte/" class="btn btn-ghost">Vrijblijvende offerte</a>
       </div>
     </div>

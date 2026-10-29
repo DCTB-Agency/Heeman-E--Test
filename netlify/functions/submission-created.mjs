@@ -10,7 +10,7 @@
 //   MAIL_TO    (optioneel) ontvanger, standaard info@heeman-electrics.be
 //   MAIL_FROM  (optioneel) afzender, standaard SMTP_USER
 import nodemailer from 'nodemailer';
-import { bouwMail, tekst } from '../lib/mail-sjabloon.mjs';
+import { bouwMail, tekst, splitsContact } from '../lib/mail-sjabloon.mjs';
 import { LOGO_CID, LOGO_PNG_BASE64 } from '../lib/logo-mail.mjs';
 
 const MAX_BIJLAGE = 8 * 1024 * 1024;
@@ -57,7 +57,7 @@ export const handler = async (event) => {
     auth: { user: env.SMTP_USER, pass: env.SMTP_PASS },
   });
 
-  const bezoekerMail = tekst(data.email);
+  const bezoekerMail = splitsContact({ email: tekst(data.email), contact: tekst(data.contact) }).email || '';
   try {
     await transport.sendMail({
       from: { name: 'Website Heeman Electrics', address: env.MAIL_FROM || env.SMTP_USER },

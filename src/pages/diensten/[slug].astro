@@ -8,7 +8,7 @@ import Beeld from '../../components/Beeld.astro';
 import { fotos } from '../../data/fotos';
 import { realisatieVoorFoto, realisatieUrl } from '../../data/realisaties';
 import StroomLijn from '../../components/StroomLijn.astro';
-import { SITE_URL, business, areas, services, serviceUrl, job } from '../../data/site';
+import { SITE_URL, business, areas, services, serviceUrl, job, contactUrl } from '../../data/site';
 import { diensten, STANDAARD_STAPPEN, PREMIES_GECONTROLEERD, type Dienst } from '../../data/diensten';
 import { breadcrumbSchema, faqSchema } from '../../lib/schema';
 import { metTodo } from '../../lib/tekst';
@@ -21,6 +21,7 @@ const { dienst } = Astro.props as { dienst: Dienst };
 const url = serviceUrl(dienst.slug);
 const stappen = dienst.stappen ?? STANDAARD_STAPPEN;
 const anderen = services.filter((s) => s.slug !== dienst.slug);
+const dringend = dienst.slug === 'dringende-herstellingen'; // enkel hier blijft bellen de hoofdactie
 const bijgewerkt = new Date(dienst.bijgewerkt).toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const kruimels = [
@@ -63,7 +64,9 @@ const serviceSchema = {
         <p class="font-display text-2xl font-semibold">Vraag een gratis offerte</p>
         <p class="mt-2 text-on-ink-muted">We komen eerst langs voor een bezoek en de inschatting.</p>
         <div class="mt-6 grid gap-3">
-          <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
+          {dringend
+            ? <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
+            : <a href={contactUrl} class="btn btn-accent" data-event="contact_click">Contacteer ons</a>}
           <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
           <a href={`/offerte/?dienst=${dienst.slug}`} class="btn btn-ghost">Offerte aanvragen</a>
         </div>
@@ -196,9 +199,11 @@ const serviceSchema = {
     <div class="container-site relative grid gap-10 py-20 sm:py-24 lg:grid-cols-[1.4fr_1fr] lg:items-center">
       <div class="reveal rounded-3xl bg-ink py-2">
         <h2 id="cta" class="h2">Vraag uw gratis offerte aan</h2>
-        <p class="mt-4 max-w-xl text-lg text-on-ink-muted">Bel, stuur een WhatsApp of vraag een offerte. We komen eerst langs voor een bezoek.</p>
+        <p class="mt-4 max-w-xl text-lg text-on-ink-muted">Stuur een bericht, een WhatsApp of vraag een offerte. We komen eerst langs voor een bezoek.</p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
+          {dringend
+            ? <a href={business.phone.href} class="btn btn-accent" data-event="click_to_call">Bel {business.phone.display}</a>
+            : <a href={contactUrl} class="btn btn-accent" data-event="contact_click">Contacteer ons</a>}
           <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
           <a href={`/offerte/?dienst=${dienst.slug}`} class="btn btn-ghost">Gratis offerte</a>
         </div>

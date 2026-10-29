@@ -114,6 +114,15 @@ foreach ($cfg['verplicht'] as $veld) {
     $ingevuld = $veld === 'cv' || $veld === 'foto' ? isset($bestanden[$veld]) : (($d[$veld] ?? '') !== '');
     if (!$ingevuld) he_fout('Niet alle verplichte velden zijn ingevuld.');
 }
+// Snelcontact: één veld "gsm of e-mail".
+if (($d['contact'] ?? '') !== '') {
+    if (str_contains($d['contact'], '@')) {
+        if (!filter_var($d['contact'], FILTER_VALIDATE_EMAIL)) he_fout('Het e-mailadres lijkt niet te kloppen.');
+        $d['email'] = $d['contact'];
+    } elseif (strlen(preg_replace('/\D/', '', $d['contact']) ?? '') < 8) {
+        he_fout('Het gsm-nummer lijkt niet te kloppen.');
+    }
+}
 if (($d['email'] ?? '') !== '' && !filter_var($d['email'], FILTER_VALIDATE_EMAIL)) he_fout('Het e-mailadres lijkt niet te kloppen.');
 $tekst_alles = implode(' ', $d);
 if (preg_match_all('#https?://#i', $tekst_alles) > 2) he_fout('Uw bericht bevat te veel links.');

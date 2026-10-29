@@ -1,5 +1,5 @@
 // Voorbeeld van de formuliermails bekijken zonder iets te versturen: node scripts/mail-voorbeeld.mjs
-// Schrijft docs/mail-voorbeeld-{offerte,contact,sollicitatie}.html.
+// Schrijft docs/mail-voorbeeld-{offerte,snelcontact,contact,sollicitatie}.html.
 import { writeFile, mkdir } from 'node:fs/promises';
 import { bouwMail } from '../netlify/lib/mail-sjabloon.mjs';
 import { LOGO_PNG_BASE64 } from '../netlify/lib/logo-mail.mjs';
@@ -14,6 +14,7 @@ const voorbeelden = {
     naam: 'Voorbeeld Klant', gsm: '0470 12 34 56', email: 'klant@voorbeeld.be', voorkeur: 'Bellen',
     foto: { url: 'https://example.com/verdeelkast.jpg', filename: 'verdeelkast.jpg' }, privacy: 'on',
   },
+  snelcontact: { onderwerp: 'Domotica', naam: 'Voorbeeld Klant', contact: '0470 12 34 56', privacy: 'on' },
   contact: { naam: 'Voorbeeld Klant', gsm: '0470 12 34 56', email: 'klant@voorbeeld.be', bericht: 'Komen jullie ook in Malle voor een herstelling?' },
   sollicitatie: {
     functie: 'Ervaren elektricien', naam: 'Voorbeeld Kandidaat', gsm: '0470 65 43 21', email: 'kandidaat@voorbeeld.be',

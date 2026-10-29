@@ -3,7 +3,7 @@
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
 import DienstIcoon from '../../components/DienstIcoon.astro';
-import { SITE_URL, services, serviceUrl, business } from '../../data/site';
+import { SITE_URL, services, serviceUrl, business, contactUrl } from '../../data/site';
 import { dienstTekst } from '../../data/home';
 import { breadcrumbSchema } from '../../lib/schema';
 
@@ -71,10 +71,10 @@ const lijstSchema = {
     <div class="reveal mt-20 flex flex-col gap-6 rounded-3xl bg-accent p-8 text-ink sm:flex-row sm:items-center sm:justify-between">
       <div>
         <p class="font-display text-2xl font-semibold">Twijfelt u wat u nodig heeft?</p>
-        <p class="mt-1">Bel of stuur een WhatsApp. We denken graag mee.</p>
+        <p class="mt-1">Stuur een bericht of een WhatsApp. We denken graag mee.</p>
       </div>
       <div class="flex flex-wrap gap-3">
-        <a href={business.phone.href} class="btn bg-ink text-white hover:bg-ink-soft" data-event="click_to_call">Bel {business.phone.display}</a>
+        <a href={contactUrl} class="btn bg-ink text-white hover:bg-ink-soft" data-event="contact_click">Contacteer ons</a>
         <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
       </div>
     </div>

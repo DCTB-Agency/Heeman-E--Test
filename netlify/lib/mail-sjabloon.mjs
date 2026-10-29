@@ -23,6 +23,12 @@ export const FORMULIEREN = {
     },
     onderwerp: (d) => `Offerteaanvraag${d.klanttype ? ` (${d.klanttype})` : ''}: ${d.dienst || 'dienst'} – ${d.gemeente || 'gemeente'} · ${d.naam || ''}`.trim(),
   },
+  snelcontact: {
+    titel: 'Nieuwe contactaanvraag',
+    intro: 'Iemand vroeg via het korte formulier op de homepage om gecontacteerd te worden.',
+    velden: { onderwerp: 'Onderwerp', naam: 'Naam', gsm: 'Gsm', email: 'E-mail' },
+    onderwerp: (d) => `Contactaanvraag: ${d.onderwerp || 'vraag'} · ${d.naam || ''}`.trim(),
+  },
   contact: {
     titel: 'Nieuw bericht',
     intro: 'Er is een bericht binnengekomen via het contactformulier.',
@@ -60,6 +66,16 @@ export function tekst(waarde) {
   return String(waarde).trim();
 }
 
+/** Veld "contact" (gsm óf e-mail, snelcontact) omzetten naar gsm of email. Werkt in-place. */
+export function splitsContact(d) {
+  const c = (d.contact || '').trim();
+  if (!c) return d;
+  if (c.includes('@')) d.email ||= c;
+  else d.gsm ||= c;
+  delete d.contact;
+  return d;
+}
+
 /** Belgisch gsm-nummer → internationaal formaat zonder spaties (voor tel: en WhatsApp). */
 export function internationaal(gsm) {
   let n = String(gsm || '').replace(/[^\d+]/g, '');
@@ -82,6 +98,7 @@ function knop(href, label, primair = false) {
 export function bouwMail({ formulier, data, ontvangen = new Date(), logoUrl, siteUrl }) {
   const f = FORMULIEREN[formulier] ?? { titel: 'Nieuwe inzending', intro: `Formulier: ${formulier}`, velden: {}, onderwerp: () => `Formulier ${formulier}` };
   const d = Object.fromEntries(Object.entries(data).map(([k, v]) => [k, tekst(v)]));
+  splitsContact(d);
 
   const sleutels = [...Object.keys(f.velden), ...Object.keys(d).filter((k) => !(k in f.velden))].filter(
     (k) => !VERBORGEN.has(k) && d[k],

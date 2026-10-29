@@ -2,7 +2,7 @@
 // /offerte/ — gratis offerte (CLAUDE.md § 8). Formulier opent een ingevulde mail naar info@ (geen server nodig).
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
-import { business, areas, services, antwoordTermijn } from '../../data/site';
+import { business, areas, services, antwoordTermijn, contactUrl } from '../../data/site';
 import { breadcrumbSchema } from '../../lib/schema';
 import { formAttrs } from '../../lib/formulier';
 import { metTodo } from '../../lib/tekst';
@@ -41,7 +41,7 @@ const label = 'block font-semibold';
       <div class="fade-up mt-10 rounded-2xl bg-sand/60 p-5" style="--d:500ms">
         <p class="font-semibold">Liever meteen contact?</p>
         <div class="mt-3 flex flex-wrap gap-3">
-          <a href={business.phone.href} class="btn btn-primary" data-event="click_to_call">Bel {business.phone.display}</a>
+          <a href={contactUrl} class="btn btn-primary" data-event="contact_click">Stuur een bericht</a>
           <a href={business.whatsapp.href} class="btn btn-ghost" target="_blank" rel="noopener" data-event="whatsapp_click">WhatsApp</a>
         </div>
       </div>

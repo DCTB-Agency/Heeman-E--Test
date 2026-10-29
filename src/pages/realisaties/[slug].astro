@@ -6,7 +6,7 @@ import Kruimels from '../../components/Kruimels.astro';
 import Beeld from '../../components/Beeld.astro';
 import type { FotoId } from '../../data/fotos';
 import VoorNa from '../../components/VoorNa.astro';
-import { SITE_URL, business, services, serviceUrl } from '../../data/site';
+import { SITE_URL, services, serviceUrl, contactUrl } from '../../data/site';
 import { realisaties, realisatieUrl, type Realisatie } from '../../data/realisaties';
 import { noindexUrls } from '../../data/noindex';
 import { breadcrumbSchema } from '../../lib/schema';
@@ -77,7 +77,7 @@ const anderen = realisaties.filter((x) => x.slug !== r.slug).slice(0, 3);
           <p class="font-display text-xl font-semibold">Ook zoiets nodig?</p>
           <div class="mt-4 flex flex-wrap gap-3">
             <a href={`/offerte/?dienst=${dienst.slug}`} class="btn btn-accent">Gratis offerte</a>
-            <a href={business.phone.href} class="btn btn-ghost" data-event="click_to_call">Bel {business.phone.display}</a>
+            <a href={contactUrl} class="btn btn-ghost" data-event="contact_click">Contacteer ons</a>
           </div>
         </div>
       </div>

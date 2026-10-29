@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo-heeman-electrics.png';
-import { business, nav, services, serviceUrl, dienstGroepen } from '../data/site';
+import { business, nav, services, serviceUrl, dienstGroepen, contactUrl } from '../data/site';
 import DienstIcoon from './DienstIcoon.astro';
 
 const path = Astro.url.pathname;
@@ -64,9 +64,9 @@ const extra = services.filter((s) => s.priority > 5);
       ))}
     </nav>
 
-    <a href={business.phone.href} class="btn btn-primary hidden whitespace-nowrap lg:inline-flex" data-event="click_to_call">
-      <svg viewBox="0 0 24 24" class="size-5" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" /></svg>
-      Bel {business.phone.display}
+    <a href={contactUrl} class="btn btn-primary hidden whitespace-nowrap lg:inline-flex" data-event="contact_click">
+      <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+      Contacteer ons
     </a>
 
     <!-- Mobiel -->

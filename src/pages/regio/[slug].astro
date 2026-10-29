@@ -4,7 +4,7 @@
 import Base from '../../layouts/Base.astro';
 import Kruimels from '../../components/Kruimels.astro';
 import Beeld from '../../components/Beeld.astro';
-import { SITE_URL, business, services, serviceUrl, job } from '../../data/site';
+import { SITE_URL, business, services, serviceUrl, job, contactUrl } from '../../data/site';
 import { dienstTekst } from '../../data/home';
 import { regios, regioUrl, afstandVanSchilde, type Regio } from '../../data/regio';
 import { realisaties, realisatieUrl } from '../../data/realisaties';
@@ -53,7 +53,7 @@ const schema = {
         <p class="fade-up mt-4 text-muted" style="--d:380ms">Ook in {r.deelgemeenten.join(', ').replace(/, ([^,]*)$/, ' en $1')}.</p>
       )}
       <div class="fade-up mt-8 flex flex-wrap gap-3" style="--d:450ms">
-        <a href={business.phone.href} class="btn btn-primary" data-event="click_to_call">Bel {business.phone.display}</a>
+        <a href={contactUrl} class="btn btn-primary" data-event="contact_click">Contacteer ons</a>
         <a href="/offerte/" class="btn btn-ghost">Gratis offerte</a>
       </div>
     </div>

@@ -90,6 +90,10 @@ export const dienstGroepen = [
 export const whatsappSollicitatie = (functie: string) =>
   `https://wa.me/32485190027?text=${encodeURIComponent(`Hallo, ik wil graag solliciteren als ${functie.toLowerCase()}. Mijn cv stuur ik mee.`)}`;
 
+// 29-10-2026: Bert neemt onbekende nummers niet graag op → overal "Contacteer ons" (formulier) i.p.v. "Bel".
+// Bellen blijft mogelijk via de contactpagina en voor dringende herstellingen.
+export const contactUrl = '/contact/#bericht';
+
 export const serviceUrl = (slug: string) => `/diensten/${slug}/`;
 export const areaUrl = (slug: string) => `/regio/${slug}/`;
 

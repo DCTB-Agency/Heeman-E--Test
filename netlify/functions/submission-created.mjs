@@ -11,6 +11,7 @@
 //   MAIL_FROM  (optioneel) afzender, standaard SMTP_USER
 import nodemailer from 'nodemailer';
 import { bouwMail, tekst } from '../lib/mail-sjabloon.mjs';
+import { LOGO_CID, LOGO_PNG_BASE64 } from '../lib/logo-mail.mjs';
 
 const MAX_BIJLAGE = 8 * 1024 * 1024;
 
@@ -30,12 +31,13 @@ export const handler = async (event) => {
     formulier,
     data,
     ontvangen: created_at ? new Date(created_at) : new Date(),
-    logoUrl: `${siteUrl}/logo.png`,
+    // Logo ingesloten in de mail (cid:), zodat het altijd zichtbaar is — ook als mailprogramma's externe afbeeldingen blokkeren.
+    logoUrl: `cid:${LOGO_CID}`,
     siteUrl,
   });
 
   // Geüploade bestanden (cv, foto) als bijlage meesturen; lukt dat niet, dan staat de link in de mail.
-  const bijlagen = [];
+  const bijlagen = [{ filename: 'logo.png', content: Buffer.from(LOGO_PNG_BASE64, 'base64'), contentType: 'image/png', cid: LOGO_CID }];
   for (const waarde of Object.values(data)) {
     if (!waarde || typeof waarde !== 'object' || !waarde.url) continue;
     try {

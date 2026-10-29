@@ -87,6 +87,7 @@ await writeFile(`${DIST}/_astro/.htaccess`, '<IfModule mod_headers.c>\n  Header 
 await cp('vimexx/formulier.php', `${DIST}/formulier.php`);
 await mkdir(`${DIST}/formulier`, { recursive: true });
 await cp('vimexx/formulier/mail-sjabloon.php', `${DIST}/formulier/mail-sjabloon.php`);
+await cp('vimexx/formulier/logo-mail.png', `${DIST}/formulier/logo-mail.png`);
 await writeFile(`${DIST}/formulier/.htaccess`, 'Require all denied\n');
 
 // Netlify-specifiek weg

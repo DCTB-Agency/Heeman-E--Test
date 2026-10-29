@@ -2,6 +2,10 @@
 // Schrijft docs/mail-voorbeeld-{offerte,contact,sollicitatie}.html.
 import { writeFile, mkdir } from 'node:fs/promises';
 import { bouwMail } from '../netlify/lib/mail-sjabloon.mjs';
+import { LOGO_PNG_BASE64 } from '../netlify/lib/logo-mail.mjs';
+
+// In het voorbeeld staat het logo als data-URI in de HTML (in de echte mail: ingesloten bijlage met cid:).
+const logo = `data:image/png;base64,${LOGO_PNG_BASE64}`;
 
 const voorbeelden = {
   offerte: {
@@ -20,7 +24,7 @@ const voorbeelden = {
 
 await mkdir('docs', { recursive: true });
 for (const [formulier, data] of Object.entries(voorbeelden)) {
-  const m = bouwMail({ formulier, data, logoUrl: '../public/logo.png', siteUrl: 'https://www.heeman-electrics.be' });
+  const m = bouwMail({ formulier, data, logoUrl: logo, siteUrl: 'https://www.heeman-electrics.be' });
   await writeFile(`docs/mail-voorbeeld-${formulier}.html`, m.html);
   console.log(`docs/mail-voorbeeld-${formulier}.html — onderwerp: ${m.onderwerp}`);
 }

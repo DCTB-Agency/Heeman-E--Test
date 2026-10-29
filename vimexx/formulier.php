@@ -132,10 +132,18 @@ $headers = [
 if (($d['email'] ?? '') !== '') {
     $headers[] = 'Reply-To: =?UTF-8?B?' . base64_encode($naam_bezoeker ?: $d['email']) . '?= <' . $d['email'] . '>';
 }
-$body = "--{$grens}\r\nContent-Type: multipart/alternative; boundary=\"{$alt}\"\r\n\r\n"
+// Structuur: mixed { related { alternative { tekst, html }, logo (cid) }, bijlagen }
+$rel = 'he-rel-' . bin2hex(random_bytes(8));
+$logo = (string) @file_get_contents(__DIR__ . '/formulier/logo-mail.png');
+$body = "--{$grens}\r\nContent-Type: multipart/related; boundary=\"{$rel}\"\r\n\r\n"
+    . "--{$rel}\r\nContent-Type: multipart/alternative; boundary=\"{$alt}\"\r\n\r\n"
     . "--{$alt}\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($mail['tekst']))
     . "--{$alt}\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($mail['html']))
     . "--{$alt}--\r\n";
+if ($logo !== '') {
+    $body .= "--{$rel}\r\nContent-Type: image/png; name=\"logo.png\"\r\nContent-Transfer-Encoding: base64\r\nContent-ID: <" . HE_LOGO_CID . ">\r\nContent-Disposition: inline; filename=\"logo.png\"\r\n\r\n" . chunk_split(base64_encode($logo));
+}
+$body .= "--{$rel}--\r\n";
 foreach ($bijlagen as $b) {
     $bn = '=?UTF-8?B?' . base64_encode($b['naam']) . '?=';
     $body .= "--{$grens}\r\nContent-Type: {$b['type']}; name=\"{$bn}\"\r\nContent-Transfer-Encoding: base64\r\nContent-Disposition: attachment; filename=\"{$bn}\"\r\n\r\n" . chunk_split(base64_encode($b['inhoud']));

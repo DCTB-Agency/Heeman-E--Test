@@ -3,6 +3,7 @@
 // Wordt enkel ingeladen door formulier.php; rechtstreeks openen wordt geweigerd (.htaccess).
 declare(strict_types=1);
 
+const HE_LOGO_CID = 'logo@heeman-electrics.be';
 const HE_KLEUR = ['brand' => '#be4516', 'accent' => '#ff5a1f', 'ink' => '#1c0d0a', 'paper' => '#f6f5f1', 'muted' => '#5a4f4b', 'lijn' => '#e5d7d1'];
 
 /** Per formulier: titel, intro en volgorde + labels van de velden. */
@@ -127,7 +128,8 @@ function he_bouw_mail(string $formulier, array $d, array $bestanden, string $sit
     }
 
     $titel = he_esc($f['titel']) . ($naam !== '' ? ' van ' . he_esc($naam) : '');
-    $logo = he_esc(rtrim($siteUrl, '/') . '/logo.png');
+    // Logo ingesloten in de mail (multipart/related, Content-ID), zodat het altijd zichtbaar is.
+    $logo = 'cid:' . HE_LOGO_CID;
     $siteKort = he_esc(preg_replace('#^https?://#', '', $siteUrl) ?? $siteUrl);
     $antwoord = !empty($d['email']) ? he_esc($naam ?: 'de afzender') : 'Heeman Electrics (de bezoeker gaf geen e-mailadres)';
 

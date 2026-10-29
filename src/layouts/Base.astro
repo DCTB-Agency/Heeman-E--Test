@@ -24,7 +24,7 @@ const is404 = Astro.url.pathname.startsWith('/404');
 const publiek = import.meta.env.PUBLIEK === 'true' || process.env.PUBLIEK === 'true';
 // Deelbeeld (og:image) moet bereikbaar zijn op het adres dat gedeeld wordt. Vóór livegang draait www.heeman-electrics.be
 // nog de oude site, dus gebruiken we dan het Netlify-adres van deze build (DEPLOY_PRIME_URL / URL, gezet door Netlify).
-const beeldBasis = publiek ? SITE_URL : (process.env.DEPLOY_PRIME_URL || process.env.URL || SITE_URL);
+const beeldBasis = publiek ? SITE_URL : (process.env.PREVIEW_URL || process.env.DEPLOY_PRIME_URL || process.env.URL || SITE_URL);
 const robots = noindex || !publiek ? 'noindex,follow' : 'index,follow,max-image-preview:large';
 
 // Sitebrede graaf (CLAUDE.md § 10) — vaste @id's zodat alles aan elkaar hangt.

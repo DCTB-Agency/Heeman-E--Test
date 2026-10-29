@@ -9,7 +9,10 @@
     "preview": "astro preview",
     "scrape": "python3 scrape/scrape.py",
     "check": "astro check && astro build && node scripts/check-links.mjs",
-    "fotos": "node scripts/fotos.mjs"
+    "fotos": "node scripts/fotos.mjs",
+    "build:vimexx": "HOSTING=vimexx astro build && node scripts/vimexx-pakket.mjs",
+    "build:vimexx:live": "HOSTING=vimexx PUBLIEK=true astro build && PUBLIEK=true node scripts/vimexx-pakket.mjs",
+    "mail:voorbeeld": "node scripts/mail-voorbeeld.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

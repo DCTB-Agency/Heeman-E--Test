@@ -48,7 +48,7 @@ export const FORMULIEREN = {
 };
 
 // Velden die nooit in de mail horen (Netlify, honeypot, akkoord-vinkjes).
-const VERBORGEN = new Set(['form-name', 'bot-field', 'privacy', 'ip', 'user_agent', 'referrer']);
+const VERBORGEN = new Set(['form-name', 'bot-field', 'geladen', 'privacy', 'ip', 'user_agent', 'referrer']);
 
 export const esc = (s) =>
   String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);

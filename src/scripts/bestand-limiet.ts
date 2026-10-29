@@ -7,3 +7,6 @@ document.querySelectorAll<HTMLInputElement>('input[type=file][data-max-mb]').for
     input.reportValidity();
   });
 });
+
+// Tijdstip waarop het formulier geladen werd (spamcontrole in formulier.php: bots versturen binnen enkele seconden).
+document.querySelectorAll<HTMLInputElement>('input[data-geladen]').forEach((i) => (i.value = String(Date.now())));

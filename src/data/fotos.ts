@@ -17,14 +17,20 @@ import binnenpost from '../assets/fotos/ai-binnenpost-videofoon.jpg';
 import sfeerverlichting from '../assets/fotos/ai-sfeerverlichting-woonkamer.jpg';
 import tuinverlichting from '../assets/fotos/ai-tuinverlichting.jpg';
 import teamWerf from '../assets/fotos/ai-team-werf.jpg';
+import vakmanLadder from '../assets/fotos/gen-vakman-ladder.jpg';
+import testerSchema from '../assets/fotos/gen-tester-schema.jpg';
+import dradenPlafond from '../assets/fotos/gen-draden-plafond.jpg';
+import schroevendraaierKast from '../assets/fotos/gen-schroevendraaier-kast.jpg';
+import kabeladers from '../assets/fotos/gen-kabeladers.jpg';
+import stroomtang from '../assets/fotos/gen-stroomtang.jpg';
 import lichtpaalSpots from '../assets/fotos/lichtpaal-spots.jpg';
 import lichtpaalOprit from '../assets/fotos/lichtpaal-oprit.jpg';
 import stopcontactenAf from '../assets/fotos/stopcontacten-travertin-afgewerkt.jpg';
 import stopcontactenPlaatsing from '../assets/fotos/stopcontacten-travertin-plaatsing.jpg';
 import schakelaars from '../assets/fotos/schakelaars-inbouw.jpg';
 
-/** `ai: true` = AI-sfeerbeeld: nooit als realisatie of eigen werk tonen (label "Sfeerbeeld"). */
-export type Foto = { src: ImageMetadata; alt: string; focus: string; titel: string; ai?: boolean };
+/** `sfeer: true` = AI-beeld of generieke foto: nooit als realisatie of eigen werk tonen (label "Sfeerbeeld"). */
+export type Foto = { src: ImageMetadata; alt: string; focus: string; titel: string; sfeer?: boolean };
 
 export const fotos = {
   bekabeling: {
@@ -83,16 +89,23 @@ export const fotos = {
     titel: 'Videofoon aan de voordeur',
   },
   // AI-sfeerbeelden (30-10-2026)
-  verdeelkastNieuw: { src: verdeelkastNieuw, ai: true, alt: 'Nieuwe, netjes gelabelde verdeelkast met automaten en differentieelschakelaars', focus: '50% 50%', titel: 'Nieuwe verdeelkast' },
-  oudeVerdeelkast: { src: oudeVerdeelkast, ai: true, alt: 'Verouderde zekeringkast met porseleinen smeltzekeringen op een kelder­muur', focus: '45% 45%', titel: 'Verouderde zekeringkast' },
-  zonnepanelen: { src: zonnepanelen, ai: true, alt: 'Zwarte zonnepanelen op het pannendak van een bakstenen woning', focus: '55% 40%', titel: 'Zonnepanelen op een woning' },
-  omvormerBatterij: { src: omvormerBatterij, ai: true, alt: 'Omvormer en thuisbatterij naast elkaar aan de muur van een garage', focus: '50% 50%', titel: 'Omvormer en thuisbatterij' },
-  laadpuntenParking: { src: laadpuntenParking, ai: true, alt: 'Drie laadpalen aan de muur van een ondergrondse parking, één wagen aan het laden', focus: '35% 50%', titel: 'Laadpunten in een gemeenschappelijke parking' },
-  domoticaKast: { src: domoticaKast, ai: true, alt: 'Verdeelkast met domotica-modules en automaten', focus: '50% 50%', titel: 'Verdeelkast met domotica' },
-  binnenpost: { src: binnenpost, ai: true, alt: 'Binnenpost van een videofoon met scherm in een hal', focus: '30% 50%', titel: 'Binnenpost met scherm' },
-  sfeerverlichting: { src: sfeerverlichting, ai: true, alt: 'Woonkamer met hanglamp boven de eettafel, inbouwspots en indirecte ledverlichting', focus: '35% 40%', titel: 'Sfeerverlichting in de woonkamer' },
-  tuinverlichting: { src: tuinverlichting, ai: true, alt: 'Tuinverlichting met paaltjes langs een grindpad, aangelichte bomen en wandlampen', focus: '40% 55%', titel: 'Tuinverlichting' },
-  teamWerf: { src: teamWerf, ai: true, alt: 'Twee elektriciens trekken buizen en kabels tijdens een renovatie', focus: '55% 35%', titel: 'Aan het werk op de werf' },
+  verdeelkastNieuw: { src: verdeelkastNieuw, sfeer: true, alt: 'Nieuwe, netjes gelabelde verdeelkast met automaten en differentieelschakelaars', focus: '50% 50%', titel: 'Nieuwe verdeelkast' },
+  oudeVerdeelkast: { src: oudeVerdeelkast, sfeer: true, alt: 'Verouderde zekeringkast met porseleinen smeltzekeringen op een kelder­muur', focus: '45% 45%', titel: 'Verouderde zekeringkast' },
+  zonnepanelen: { src: zonnepanelen, sfeer: true, alt: 'Zwarte zonnepanelen op het pannendak van een bakstenen woning', focus: '55% 40%', titel: 'Zonnepanelen op een woning' },
+  omvormerBatterij: { src: omvormerBatterij, sfeer: true, alt: 'Omvormer en thuisbatterij naast elkaar aan de muur van een garage', focus: '50% 50%', titel: 'Omvormer en thuisbatterij' },
+  laadpuntenParking: { src: laadpuntenParking, sfeer: true, alt: 'Drie laadpalen aan de muur van een ondergrondse parking, één wagen aan het laden', focus: '35% 50%', titel: 'Laadpunten in een gemeenschappelijke parking' },
+  domoticaKast: { src: domoticaKast, sfeer: true, alt: 'Verdeelkast met domotica-modules en automaten', focus: '50% 50%', titel: 'Verdeelkast met domotica' },
+  binnenpost: { src: binnenpost, sfeer: true, alt: 'Binnenpost van een videofoon met scherm in een hal', focus: '30% 50%', titel: 'Binnenpost met scherm' },
+  sfeerverlichting: { src: sfeerverlichting, sfeer: true, alt: 'Woonkamer met hanglamp boven de eettafel, inbouwspots en indirecte ledverlichting', focus: '35% 40%', titel: 'Sfeerverlichting in de woonkamer' },
+  tuinverlichting: { src: tuinverlichting, sfeer: true, alt: 'Tuinverlichting met paaltjes langs een grindpad, aangelichte bomen en wandlampen', focus: '40% 55%', titel: 'Tuinverlichting' },
+  teamWerf: { src: teamWerf, sfeer: true, alt: 'Twee elektriciens trekken buizen en kabels tijdens een renovatie', focus: '55% 35%', titel: 'Aan het werk op de werf' },
+  // Generieke foto's (DCTB, 30-10-2026)
+  vakmanLadder: { src: vakmanLadder, sfeer: true, alt: 'Elektricien op een ladder in een ruimte met hanglampen', focus: '35% 45%', titel: 'Aan het werk' },
+  testerSchema: { src: testerSchema, sfeer: true, alt: 'Spanningstester, tang en schroevendraaier op een elektrisch schema', focus: '45% 55%', titel: 'Schema\u2019s en metingen voor de keuring' },
+  dradenPlafond: { src: dradenPlafond, sfeer: true, alt: 'Elektricien met tang bij nieuwe draden uit het plafond', focus: '55% 45%', titel: 'Nieuwe aansluitpunten in het plafond' },
+  schroevendraaierKast: { src: schroevendraaierKast, sfeer: true, alt: 'Handen met een schroevendraaier aan een verdeelkast', focus: '40% 50%', titel: 'Herstelling aan de verdeelkast' },
+  kabeladers: { src: kabeladers, sfeer: true, alt: 'Close-up van gestripte kabeladers in de kleuren van een elektrische installatie', focus: '50% 50%', titel: 'Kabels en aders' },
+  stroomtang: { src: stroomtang, sfeer: true, alt: 'Stroomtang, tangen en kabels op een tegelvloer', focus: '40% 45%', titel: 'Opsporen van de oorzaak' },
 } satisfies Record<string, Foto>;
 
 export type FotoId = keyof typeof fotos;

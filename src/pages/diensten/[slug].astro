@@ -23,8 +23,8 @@ const stappen = dienst.stappen ?? STANDAARD_STAPPEN;
 const anderen = services.filter((s) => s.slug !== dienst.slug);
 // Enkel echte foto's tonen; placeholders komen terug als de AI-beelden er zijn (docs/beelden-briefing.md).
 const echteFotos = dienst.fotos.filter((b): b is FotoId => typeof b === 'string');
-// AI-sfeerbeelden nooit als realisatie: blok heet dan "In beeld" en het beeld krijgt het label Sfeerbeeld.
-const metAi = echteFotos.some((b) => 'ai' in fotos[b] && fotos[b].ai);
+// Sfeerbeelden (AI of generiek) nooit als realisatie: blok heet dan "In beeld" en het beeld krijgt het label Sfeerbeeld.
+const metSfeer = echteFotos.some((b) => 'sfeer' in fotos[b] && fotos[b].sfeer);
 const dringend = dienst.slug === 'dringende-herstellingen'; // enkel hier blijft bellen de hoofdactie
 const bijgewerkt = new Date(dienst.bijgewerkt).toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -153,18 +153,18 @@ const serviceSchema = {
     <section class="section pt-0" aria-labelledby="realisaties">
       <div class="container-site">
         <div class="reveal flex flex-wrap items-end justify-between gap-4">
-          <h2 id="realisaties" class="h2">{metAi ? 'In beeld' : 'Realisaties'}</h2>
+          <h2 id="realisaties" class="h2">{metSfeer ? 'In beeld' : 'Realisaties'}</h2>
           <a href="/realisaties/" class="inline-flex items-center gap-2 font-display font-semibold text-brand">Alle realisaties <span aria-hidden="true">→</span></a>
         </div>
         <ul class="mt-8 grid gap-6 md:grid-cols-2">
           {echteFotos.map((b) => {
-            const ai = 'ai' in fotos[b] && fotos[b].ai;
-            const r = ai ? undefined : realisatieVoorFoto(b);
+            const sfeer = 'sfeer' in fotos[b] && fotos[b].sfeer;
+            const r = sfeer ? undefined : realisatieVoorFoto(b);
             const inhoud = (
               <>
                 <Beeld beeld={b} class="aspect-[16/10]" sizes="(min-width: 768px) 45vw, 100vw" />
                 <p class="mt-3 font-display text-lg font-semibold group-hover:text-brand">
-                  {r ? <>{r.titel} · <span class="text-brand">{r.gemeente}</span></> : <>{fotos[b].titel}{ai && <span class="ml-2 align-middle text-xs font-normal tracking-wider text-muted uppercase">Sfeerbeeld</span>}</>}
+                  {r ? <>{r.titel} · <span class="text-brand">{r.gemeente}</span></> : <>{fotos[b].titel}{sfeer && <span class="ml-2 align-middle text-xs font-normal tracking-wider text-muted uppercase">Sfeerbeeld</span>}</>}
                 </p>
               </>
             );

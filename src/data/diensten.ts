@@ -167,7 +167,7 @@ export const diensten: Dienst[] = [
           'Ja. We komen langs, bekijken uw installatie en zeggen u wat er moet gebeuren voordat u de keuring aanvraagt. Zo voorkomt u verrassingen.',
       },
     ],
-    fotos: ['oudeVerdeelkast', 'verdeelkast'],
+    fotos: ['testerSchema', 'verdeelkast'],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -519,7 +519,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja, stuur gerust een foto via WhatsApp naar 0485 19 00 27. Zo kunnen we sneller inschatten wat er aan de hand is.',
       },
     ],
-    fotos: ['oudeVerdeelkast', 'verdeelkastNieuw'],
+    fotos: ['schroevendraaierKast', 'stroomtang'],
     bijgewerkt: BIJGEWERKT,
   },
 ];

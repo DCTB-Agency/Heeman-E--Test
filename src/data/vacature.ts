@@ -85,7 +85,7 @@ export const vacatures: Vacature[] = [
       vragenVervoer,
     ],
     ervaringMaanden: 36,
-    kaart: 'stopcontactenPlaatsing',
+    kaart: 'dradenPlafond',
   },
   {
     slug: 'junior-elektricien',
@@ -118,7 +118,7 @@ export const vacatures: Vacature[] = [
       vragenVervoer,
     ],
     ervaringMaanden: 0,
-    kaart: 'teamWerf',
+    kaart: 'kabeladers',
   },
 ];
 

@@ -30,6 +30,13 @@ const FOTOS = [
   { id: 'sfeerverlichting', in: 'assets-in/ai/sfeerverlichting-woonkamer.jpg', out: 'ai-sfeerverlichting-woonkamer.jpg', ogY: 40 },
   { id: 'tuinverlichting', in: 'assets-in/ai/tuinverlichting.jpg', out: 'ai-tuinverlichting.jpg', ogY: 50 },
   { id: 'teamWerf', in: 'assets-in/ai/team-werf.jpg', out: 'ai-team-werf.jpg', ogY: 35 },
+  // Generieke foto's aangeleverd door DCTB (30-10-2026). Sfeerbeeld, nooit als realisatie.
+  { id: 'vakmanLadder', in: 'assets-in/generiek/vakman-ladder.webp', out: 'gen-vakman-ladder.jpg', ogY: 40 },
+  { id: 'testerSchema', in: 'assets-in/generiek/tester-schema.webp', out: 'gen-tester-schema.jpg', ogY: 55 },
+  { id: 'dradenPlafond', in: 'assets-in/generiek/draden-plafond.webp', out: 'gen-draden-plafond.jpg', ogY: 40 },
+  { id: 'schroevendraaierKast', in: 'assets-in/generiek/schroevendraaier-kast.webp', out: 'gen-schroevendraaier-kast.jpg', ogY: 50 },
+  { id: 'kabeladers', in: 'assets-in/generiek/kabeladers.webp', out: 'gen-kabeladers.jpg', ogY: 50 },
+  { id: 'stroomtang', in: 'assets-in/generiek/stroomtang.webp', out: 'gen-stroomtang.jpg', ogY: 45 },
 ];
 
 for (const f of FOTOS) {

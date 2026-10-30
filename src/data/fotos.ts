@@ -23,6 +23,7 @@ import dradenPlafond from '../assets/fotos/gen-draden-plafond.jpg';
 import schroevendraaierKast from '../assets/fotos/gen-schroevendraaier-kast.jpg';
 import kabeladers from '../assets/fotos/gen-kabeladers.jpg';
 import stroomtang from '../assets/fotos/gen-stroomtang.jpg';
+import kastBekabeling from '../assets/fotos/gen-verdeelkast-bekabeling.jpg';
 import lichtpaalSpots from '../assets/fotos/lichtpaal-spots.jpg';
 import lichtpaalOprit from '../assets/fotos/lichtpaal-oprit.jpg';
 import stopcontactenAf from '../assets/fotos/stopcontacten-travertin-afgewerkt.jpg';
@@ -105,6 +106,7 @@ export const fotos = {
   dradenPlafond: { src: dradenPlafond, sfeer: true, alt: 'Elektricien met tang bij nieuwe draden uit het plafond', focus: '55% 45%', titel: 'Nieuwe aansluitpunten in het plafond' },
   schroevendraaierKast: { src: schroevendraaierKast, sfeer: true, alt: 'Handen met een schroevendraaier aan een verdeelkast', focus: '40% 50%', titel: 'Herstelling aan de verdeelkast' },
   kabeladers: { src: kabeladers, sfeer: true, alt: 'Close-up van gestripte kabeladers in de kleuren van een elektrische installatie', focus: '50% 50%', titel: 'Kabels en aders' },
+  kastBekabeling: { src: kastBekabeling, sfeer: true, alt: 'Verdeelkast met automaten en netjes gebundelde, gekleurde bedrading', focus: '40% 72%', titel: 'Bedrading in de verdeelkast' },
   stroomtang: { src: stroomtang, sfeer: true, alt: 'Stroomtang, tangen en kabels op een tegelvloer', focus: '40% 45%', titel: 'Opsporen van de oorzaak' },
 } satisfies Record<string, Foto>;
 

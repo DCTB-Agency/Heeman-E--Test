@@ -36,6 +36,7 @@ const FOTOS = [
   { id: 'dradenPlafond', in: 'assets-in/generiek/draden-plafond.webp', out: 'gen-draden-plafond.jpg', ogY: 40 },
   { id: 'schroevendraaierKast', in: 'assets-in/generiek/schroevendraaier-kast.webp', out: 'gen-schroevendraaier-kast.jpg', ogY: 50 },
   { id: 'kabeladers', in: 'assets-in/generiek/kabeladers.webp', out: 'gen-kabeladers.jpg', ogY: 50 },
+  { id: 'kastBekabeling', in: 'assets-in/generiek/verdeelkast-bekabeling.webp', out: 'gen-verdeelkast-bekabeling.jpg', ogY: 65 },
   { id: 'stroomtang', in: 'assets-in/generiek/stroomtang.webp', out: 'gen-stroomtang.jpg', ogY: 45 },
 ];
 

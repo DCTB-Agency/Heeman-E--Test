@@ -1,5 +1,18 @@
 # Hosting bij Vimexx
 
+> **LIVE sinds 30-10-2026.** WordPress-bestanden staan in `~/domains/heeman-electrics.be/oud-wordpress-20261030/`
+> (buiten de website; database ongewijzigd). Mail, DNS en MX zijn niet aangeraakt. Server: web0165.zxcs.nl (DirectAdmin).
+
+## Automatisch publiceren via GitHub (live koppeling)
+Elke push naar `main` → GitHub Actions (`.github/workflows/deploy-vimexx.yml`) bouwt de site en zet enkel de gewijzigde
+bestanden via FTPS in `public_html`. Eenmalig nodig:
+1. DirectAdmin → **FTP Management** → *Create FTP account*: bv. `deploy`, map **`/domains/heeman-electrics.be/public_html`** (eigen sterk wachtwoord).
+2. GitHub → repo → **Settings → Secrets and variables → Actions** → vier secrets:
+   `VIMEXX_FTP_SERVER` = `web0165.zxcs.nl` · `VIMEXX_FTP_USER` = de volledige FTP-gebruikersnaam (bv. `deploy@heeman-electrics.be`) ·
+   `VIMEXX_FTP_PASSWORD` = het wachtwoord · `VIMEXX_FTP_DIR` = `./`
+3. GitHub → Actions → "Publiceren op Vimexx" → *Run workflow* (of gewoon een volgende push).
+Zonder die secrets bouwt de workflow wel, maar publiceert niets.
+
 De site is statisch (Astro). Bij Vimexx draait ze op de bestaande hosting (Apache + PHP 8.3). Alleen de formulieren
 gebruiken PHP: `formulier.php` verstuurt de opgemaakte mail naar info@, net zoals SureForms dat nu doet in WordPress.
 **DNS en mail blijven ongewijzigd**: alles blijft bij Vimexx.

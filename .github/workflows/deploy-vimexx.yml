@@ -1,0 +1,65 @@
+# Live koppeling (30-10-2026): elke push naar main bouwt de site en zet ze via FTPS op de hosting bij Vimexx.
+# Enkel public_html wordt bijgewerkt — mail, DNS en de map oud-wordpress-* worden nooit aangeraakt.
+#
+# Eenmalig instellen in GitHub → repo → Settings → Secrets and variables → Actions → New repository secret:
+#   VIMEXX_FTP_SERVER    web0165.zxcs.nl
+#   VIMEXX_FTP_USER      FTP-gebruiker (bv. een apart FTP-account met als map public_html)
+#   VIMEXX_FTP_PASSWORD  wachtwoord van dat FTP-account
+#   VIMEXX_FTP_DIR       map op de server, eindigend op / — bij een FTP-account dat in public_html start: ./
+#                        bij het hoofdaccount: ./domains/heeman-electrics.be/public_html/
+# Zolang die secrets ontbreken, wordt er enkel gebouwd en niets gepubliceerd.
+name: Publiceren op Vimexx
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: vimexx-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Installeren
+        run: npm ci
+
+      - name: Bouwen (live, Vimexx)
+        run: npm run build:vimexx:live
+
+      - name: Controleren of FTP-gegevens ingesteld zijn
+        id: ftp
+        env:
+          SERVER: ${{ secrets.VIMEXX_FTP_SERVER }}
+        run: echo "klaar=$([ -n "$SERVER" ] && echo ja || echo nee)" >> "$GITHUB_OUTPUT"
+
+      - name: Publiceren via FTPS
+        if: steps.ftp.outputs.klaar == 'ja'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.VIMEXX_FTP_SERVER }}
+          username: ${{ secrets.VIMEXX_FTP_USER }}
+          password: ${{ secrets.VIMEXX_FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: ${{ secrets.VIMEXX_FTP_DIR }}
+          # Enkel gewijzigde bestanden worden geüpload (state-bestand op de server).
+          exclude: |
+            **/.DS_Store
+            cgi-bin/**
+
+      - name: Live controle
+        if: steps.ftp.outputs.klaar == 'ja'
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' https://www.heeman-electrics.be/)
+          echo "Homepage: $code"
+          test "$code" = "200"

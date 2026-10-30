@@ -1,5 +1,5 @@
 // Pakket voor hosting bij Vimexx (Apache + PHP). Draait na `HOSTING=vimexx astro build` (npm run build:vimexx).
-// - .htaccess: https + www, redirects uit scrape/redirects.csv, beveiligingsheaders, caching, 404-pagina
+// - .htaccess: https + www (doorverwijzingen meteen naar https, achter de proxy van Vimexx), redirects uit scrape/redirects.csv, beveiligingsheaders, caching, 404-pagina
 // - formulier.php + formulier/mail-sjabloon.php (vervangt Netlify Forms)
 // - verwijdert Netlify-bestanden (_redirects)
 // - maakt vimexx-pakket/heeman-electrics-<datum>.zip om in public_html te uploaden
@@ -20,16 +20,16 @@ for (const lijn of csv) {
   if (status !== '301' || oud === nieuw) continue;
   const q = oud.match(/^\/\?(\w+)=(.+)$/);
   if (q) {
-    regels.push(`RewriteCond %{QUERY_STRING} (^|&)${q[1]}=${rx(q[2])}(&|$)`, `RewriteRule ^$ ${nieuw}? [L,R=301]`);
+    regels.push(`RewriteCond %{QUERY_STRING} (^|&)${q[1]}=${rx(q[2])}(&|$)`, `RewriteRule ^$ https://%{HTTP_HOST}${nieuw}? [L,R=301]`);
   } else if (oud.endsWith('/*')) {
-    regels.push(`RewriteRule ^${rx(oud.slice(1, -2))}(/.*)?$ ${nieuw} [L,R=301]`);
+    regels.push(`RewriteRule ^${rx(oud.slice(1, -2))}(/.*)?$ https://%{HTTP_HOST}${nieuw} [L,R=301]`);
   } else {
     const pad = rx(oud.slice(1).replace(/\/$/, ''));
-    regels.push(`RewriteRule ^${pad}/?$ ${nieuw} [L,R=301]`);
+    regels.push(`RewriteRule ^${pad}/?$ https://%{HTTP_HOST}${nieuw} [L,R=301]`);
   }
 }
 
-const htaccess = `# Gegenereerd door scripts/vimexx-pakket.mjs — niet met de hand wijzigen (pas scrape/redirects.csv aan).
+const htaccess = `# Gegenereerd door scripts/vimexx-pakket.mjs - niet met de hand wijzigen (pas scrape/redirects.csv aan).
 Options -Indexes
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
@@ -38,7 +38,7 @@ AddDefaultCharset UTF-8
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Eén domeinvariant: https://www.heeman-electrics.be (enkel voor het echte domein; een test-subdomein blijft zoals het is)
+  # Een domeinvariant: https://www.heeman-electrics.be (enkel voor het echte domein; een test-subdomein blijft zoals het is)
   RewriteCond %{HTTP_HOST} ^heeman-electrics\\.be$ [NC]
   RewriteRule ^ https://www.heeman-electrics.be%{REQUEST_URI} [L,R=301]
   RewriteCond %{HTTPS} !=on
@@ -50,7 +50,7 @@ AddDefaultCharset UTF-8
 
   # Mappen altijd met slash (zoals de rest van de site)
   RewriteCond %{REQUEST_FILENAME} -d
-  RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
+  RewriteRule ^(.*[^/])$ https://%{HTTP_HOST}/$1/ [L,R=301]
 </IfModule>
 
 # Interne bestanden van het formulier niet rechtstreeks bereikbaar
@@ -59,7 +59,7 @@ AddDefaultCharset UTF-8
 </FilesMatch>
 
 <IfModule mod_headers.c>
-  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set Strict-Transport-Security "max-age=31536000"
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"

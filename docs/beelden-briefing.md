@@ -1,5 +1,7 @@
 # Briefing: beelden laten maken met AI — Heeman Electrics
 
+> **Status 30-10-2026:** alle 10 beelden aangeleverd en verwerkt (assets-in/ai/). Op de site gemarkeerd als *Sfeerbeeld*; nooit als realisatie.
+
 Opgemaakt op 29-10-2026. Bruikbaar in Midjourney, DALL·E / ChatGPT, Adobe Firefly, Gemini, enzovoort.
 De prompts staan in het Engels: daar werken de meeste beeldgeneratoren het best mee.
 

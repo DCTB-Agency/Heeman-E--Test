@@ -9,7 +9,6 @@ Deze blokken stonden in het geel op de site en zijn voorlopig verwijderd. Zodra 
 | **Opleiding en ervaring van de oprichter vóór 2018** | Wie we zijn → blok "Opgericht in 2018" | Opleiding, vorige werkgevers/ervaring (samen 10+ jaar) | Alinea toevoegen in `src/pages/over-ons/index.astro` |
 | **Erkenning ("erkend door / waarvoor")** | Wie we zijn | Door wie erkend en waarvoor (bv. keuringsorganisme, installateursattest) | Pas dan "erkend elektricien" opnieuw gebruiken (29-10-2026 overal verwijderd) |
 | **Juridisch nazicht privacy & cookies** | Onderaan /privacy/ en /cookies/ (interne notitie) | Nazicht door DCTB of een jurist | Geen tekst terugzetten; enkel nakijken |
-| **4 foto's** | Dienstpagina's (laadpaal, domotica, zonnepanelen, video-parlofonie) | Zie docs/beelden-briefing.md | Bestanden in `assets-in/ai/`, daarna `npm run fotos` |
 
 Nog niet ingevuld, maar niet zichtbaar op de site:
 - GA4: bewaartermijn op 14 maanden zetten in Google Analytics (staat zo in de privacyverklaring).

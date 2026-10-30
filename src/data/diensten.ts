@@ -22,7 +22,7 @@ export type Dienst = {
   premies?: { titel: string; tekst: string; bronnen: Bron[] };
   faq: Vraag[];
   /** Twee beelden: een echte foto (FotoId) of, zolang die ontbreekt, een omschrijving voor een placeholder. */
-  fotos: [FotoId | { placeholder: string }, FotoId | { placeholder: string }];
+  fotos: (FotoId | { placeholder: string })[];
   bijgewerkt: string;
 };
 
@@ -104,7 +104,7 @@ export const diensten: Dienst[] = [
           'Voor particulieren is de belastingvermindering voor een thuislaadpaal gestopt op 1 september 2024. In een woning van minstens 10 jaar oud betaalt u wel meestal 6% btw. Voor bedrijven geldt onder voorwaarden nog een fiscale aftrek voor publiek toegankelijke laadpalen. Vraag ook na bij uw gemeente of er een lokale premie is.',
       },
     ],
-    fotos: ['laadpaal', { placeholder: 'laadpunten in een bedrijfsparking of gemeenschappelijke parking' }],
+    fotos: ['laadpaal', 'laadpuntenParking'],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -217,7 +217,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja. Een Niko Home Control-installatie kan later worden aangepast of uitgebreid. Bel of stuur een WhatsApp.',
       },
     ],
-    fotos: ['schakelaars', { placeholder: 'verdeelkast met domotica-modules' }],
+    fotos: ['schakelaars', 'domoticaKast'],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -328,7 +328,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Soms wel. Dat hangt af van uw huidige verdeelkast en beveiliging. We bekijken het bij het bezoek en nemen het mee in de offerte.',
       },
     ],
-    fotos: ['zonnepanelen', { placeholder: 'omvormer en thuisbatterij netjes aangesloten' }],
+    fotos: ['zonnepanelen', 'omvormerBatterij'],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -420,7 +420,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Dat hangt af van het systeem. Als u dat al weet, houden we er bij de keuze van het systeem rekening mee.',
       },
     ],
-    fotos: ['buitenpost', { placeholder: 'binnenpost met scherm' }],
+    fotos: ['buitenpost', 'binnenpost'],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -467,7 +467,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja, we plaatsen schakelaars en dimmers die passen bij uw verlichting.',
       },
     ],
-    fotos: ['lichtpaalSpots', 'lichtpaalOprit'],
+    fotos: ['sfeerverlichting', 'tuinverlichting', 'lichtpaalSpots', 'lichtpaalOprit'],
     bijgewerkt: BIJGEWERKT,
   },
   {
@@ -519,7 +519,7 @@ export const diensten: Dienst[] = [
         antwoord: 'Ja, stuur gerust een foto via WhatsApp naar 0485 19 00 27. Zo kunnen we sneller inschatten wat er aan de hand is.',
       },
     ],
-    fotos: ['verdeelkast', 'oudeVerdeelkast'],
+    fotos: ['oudeVerdeelkast', 'verdeelkastNieuw'],
     bijgewerkt: BIJGEWERKT,
   },
 ];

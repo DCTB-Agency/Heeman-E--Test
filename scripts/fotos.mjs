@@ -19,9 +19,17 @@ const FOTOS = [
   { id: 'lichtpaalOprit', in: 'assets-in/eigen/lichtpaal-oprit.jpg', out: 'lichtpaal-oprit.jpg', ogY: 40 },
   // Rechtenvrije foto's (CC0 / publiek domein / Pexels- of Unsplash-licentie): bron en licentie in assets-in/stock/bronnen.json.
   { id: 'buitenpost', in: 'assets-in/stock/videofoon-buitenpost.jpg', out: 'videofoon-buitenpost.jpg', ogY: 45 },
-  { id: 'sfeerverlichting', in: 'assets-in/stock/sfeerverlichting.jpg', out: 'sfeerverlichting.jpg', ogY: 40 },
-  { id: 'zonnepanelen', in: 'assets-in/stock/zonnepanelen-dak.jpg', out: 'zonnepanelen-dak.jpg', ogY: 50 },
-  { id: 'oudeVerdeelkast', in: 'assets-in/stock/oude-verdeelkast.jpg', out: 'oude-verdeelkast.jpg', ogY: 50 },
+  // AI-sfeerbeelden (aangeleverd 30-10-2026, briefing docs/beelden-briefing.md). Nooit als realisatie tonen.
+  { id: 'verdeelkastNieuw', in: 'assets-in/ai/verdeelkast-nieuw.jpg', out: 'ai-verdeelkast-nieuw.jpg', ogY: 50 },
+  { id: 'oudeVerdeelkast', in: 'assets-in/ai/verdeelkast-oud.jpg', out: 'ai-verdeelkast-oud.jpg', ogY: 45 },
+  { id: 'zonnepanelen', in: 'assets-in/ai/zonnepanelen-woning.jpg', out: 'ai-zonnepanelen-woning.jpg', ogY: 40 },
+  { id: 'omvormerBatterij', in: 'assets-in/ai/omvormer-thuisbatterij.jpg', out: 'ai-omvormer-thuisbatterij.jpg', ogY: 45 },
+  { id: 'laadpuntenParking', in: 'assets-in/ai/laadpunten-parking.jpg', out: 'ai-laadpunten-parking.jpg', ogY: 50 },
+  { id: 'domoticaKast', in: 'assets-in/ai/domotica-verdeelkast.jpg', out: 'ai-domotica-verdeelkast.jpg', ogY: 45 },
+  { id: 'binnenpost', in: 'assets-in/ai/binnenpost-videofoon.jpg', out: 'ai-binnenpost-videofoon.jpg', ogY: 45 },
+  { id: 'sfeerverlichting', in: 'assets-in/ai/sfeerverlichting-woonkamer.jpg', out: 'ai-sfeerverlichting-woonkamer.jpg', ogY: 40 },
+  { id: 'tuinverlichting', in: 'assets-in/ai/tuinverlichting.jpg', out: 'ai-tuinverlichting.jpg', ogY: 50 },
+  { id: 'teamWerf', in: 'assets-in/ai/team-werf.jpg', out: 'ai-team-werf.jpg', ogY: 35 },
 ];
 
 for (const f of FOTOS) {

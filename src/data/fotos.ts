@@ -7,16 +7,24 @@ import bekabeling from '../assets/fotos/bekabeling-renovatie.jpg';
 import laadpaal from '../assets/fotos/laadpaal-gevel-baksteen.jpg';
 import verdeelkast from '../assets/fotos/verdeelkast.jpg';
 import buitenpost from '../assets/fotos/videofoon-buitenpost.jpg';
-import sfeerverlichting from '../assets/fotos/sfeerverlichting.jpg';
-import zonnepanelen from '../assets/fotos/zonnepanelen-dak.jpg';
-import oudeVerdeelkast from '../assets/fotos/oude-verdeelkast.jpg';
+import verdeelkastNieuw from '../assets/fotos/ai-verdeelkast-nieuw.jpg';
+import oudeVerdeelkast from '../assets/fotos/ai-verdeelkast-oud.jpg';
+import zonnepanelen from '../assets/fotos/ai-zonnepanelen-woning.jpg';
+import omvormerBatterij from '../assets/fotos/ai-omvormer-thuisbatterij.jpg';
+import laadpuntenParking from '../assets/fotos/ai-laadpunten-parking.jpg';
+import domoticaKast from '../assets/fotos/ai-domotica-verdeelkast.jpg';
+import binnenpost from '../assets/fotos/ai-binnenpost-videofoon.jpg';
+import sfeerverlichting from '../assets/fotos/ai-sfeerverlichting-woonkamer.jpg';
+import tuinverlichting from '../assets/fotos/ai-tuinverlichting.jpg';
+import teamWerf from '../assets/fotos/ai-team-werf.jpg';
 import lichtpaalSpots from '../assets/fotos/lichtpaal-spots.jpg';
 import lichtpaalOprit from '../assets/fotos/lichtpaal-oprit.jpg';
 import stopcontactenAf from '../assets/fotos/stopcontacten-travertin-afgewerkt.jpg';
 import stopcontactenPlaatsing from '../assets/fotos/stopcontacten-travertin-plaatsing.jpg';
 import schakelaars from '../assets/fotos/schakelaars-inbouw.jpg';
 
-export type Foto = { src: ImageMetadata; alt: string; focus: string; titel: string };
+/** `ai: true` = AI-sfeerbeeld: nooit als realisatie of eigen werk tonen (label "Sfeerbeeld"). */
+export type Foto = { src: ImageMetadata; alt: string; focus: string; titel: string; ai?: boolean };
 
 export const fotos = {
   bekabeling: {
@@ -74,24 +82,17 @@ export const fotos = {
     focus: '50% 45%',
     titel: 'Videofoon aan de voordeur',
   },
-  sfeerverlichting: {
-    src: sfeerverlichting,
-    alt: 'Hanglampen met warm licht boven een eettafel',
-    focus: '45% 40%',
-    titel: 'Sfeerverlichting met warm licht',
-  },
-  zonnepanelen: {
-    src: zonnepanelen,
-    alt: 'Zonnepanelen op het dak van een woning',
-    focus: '60% 45%',
-    titel: 'Zonnepanelen op een dak',
-  },
-  oudeVerdeelkast: {
-    src: oudeVerdeelkast,
-    alt: 'Verouderde verdeelkast met losse zekeringkasten en opbouwleidingen tegen een muur',
-    focus: '22% 50%',
-    titel: 'Verouderde verdeelkast',
-  },
+  // AI-sfeerbeelden (30-10-2026)
+  verdeelkastNieuw: { src: verdeelkastNieuw, ai: true, alt: 'Nieuwe, netjes gelabelde verdeelkast met automaten en differentieelschakelaars', focus: '50% 50%', titel: 'Nieuwe verdeelkast' },
+  oudeVerdeelkast: { src: oudeVerdeelkast, ai: true, alt: 'Verouderde zekeringkast met porseleinen smeltzekeringen op een kelder­muur', focus: '45% 45%', titel: 'Verouderde zekeringkast' },
+  zonnepanelen: { src: zonnepanelen, ai: true, alt: 'Zwarte zonnepanelen op het pannendak van een bakstenen woning', focus: '55% 40%', titel: 'Zonnepanelen op een woning' },
+  omvormerBatterij: { src: omvormerBatterij, ai: true, alt: 'Omvormer en thuisbatterij naast elkaar aan de muur van een garage', focus: '50% 50%', titel: 'Omvormer en thuisbatterij' },
+  laadpuntenParking: { src: laadpuntenParking, ai: true, alt: 'Drie laadpalen aan de muur van een ondergrondse parking, één wagen aan het laden', focus: '35% 50%', titel: 'Laadpunten in een gemeenschappelijke parking' },
+  domoticaKast: { src: domoticaKast, ai: true, alt: 'Verdeelkast met domotica-modules en automaten', focus: '50% 50%', titel: 'Verdeelkast met domotica' },
+  binnenpost: { src: binnenpost, ai: true, alt: 'Binnenpost van een videofoon met scherm in een hal', focus: '30% 50%', titel: 'Binnenpost met scherm' },
+  sfeerverlichting: { src: sfeerverlichting, ai: true, alt: 'Woonkamer met hanglamp boven de eettafel, inbouwspots en indirecte ledverlichting', focus: '35% 40%', titel: 'Sfeerverlichting in de woonkamer' },
+  tuinverlichting: { src: tuinverlichting, ai: true, alt: 'Tuinverlichting met paaltjes langs een grindpad, aangelichte bomen en wandlampen', focus: '40% 55%', titel: 'Tuinverlichting' },
+  teamWerf: { src: teamWerf, ai: true, alt: 'Twee elektriciens trekken buizen en kabels tijdens een renovatie', focus: '55% 35%', titel: 'Aan het werk op de werf' },
 } satisfies Record<string, Foto>;
 
 export type FotoId = keyof typeof fotos;

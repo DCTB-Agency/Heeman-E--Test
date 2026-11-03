@@ -20,20 +20,38 @@ await sharp({ create: { width: 1200, height: 630, channels: 4, background: PAPER
   .toFile('public/og/home.jpg');
 console.log('public/og/home.jpg 1200×630 (logo)');
 
-// 2. Favicons: het beeldmerk links in het logo (kabel, stekkerpin en schuine streep), nagetekend met dikkere lijnen
-//    zodat het ook op 16–48 px leesbaar blijft. Coördinaten volgen het logo (1536 × 484).
-const merkSvg = (dik) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 20 460 460">
-  <rect x="-80" y="20" width="460" height="460" rx="84" fill="#f6f5f1"/>
-  <g fill="none" stroke-linecap="square" stroke-linejoin="miter">
-    <path d="M14 70 V 440 L 108 236 H 330" stroke="${BRAND}" stroke-width="${dik}"/>
-    <path d="M272 70 V 420" stroke="${BRAND}" stroke-width="${dik}"/>
-    <path d="M182 262 L 108 422" stroke="#1c0d0a" stroke-width="${dik}"/>
-  </g>
+// 2. Favicons (03-11-2026, variant D): een zware H waarvan de dwarslijn de oranje kabel met stekker is, zoals in het logo.
+//    Vervangt het nagetekende beeldmerk van 04-10-2026. Voorstel: docs/favicon-voorstel/.
+const INK = '#1c0d0a';
+const merkSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="20" fill="#f6f5f1"/>
+  <rect x="14" y="16" width="15" height="68" fill="${INK}"/>
+  <rect x="46" y="16" width="15" height="68" fill="${INK}"/>
+  <rect x="14" y="45" width="58" height="10" fill="${BRAND}"/>
+  <path d="M70 36 h10 a6 6 0 0 1 6 6 v16 a6 6 0 0 1 -6 6 h-10 z" fill="${BRAND}"/>
+  <rect x="86" y="40" width="8" height="6" fill="${BRAND}"/>
+  <rect x="86" y="54" width="8" height="6" fill="${BRAND}"/>
 </svg>`;
 import { writeFile } from 'node:fs/promises';
-await writeFile('public/favicon.svg', merkSvg(40));
+await writeFile('public/favicon.svg', merkSvg);
 console.log('public/favicon.svg');
-for (const [maat, bestand, dik] of [[48, 'public/favicon.png', 46], [192, 'public/icon-192.png', 34], [180, 'public/apple-touch-icon.png', 34]]) {
-  await sharp(Buffer.from(merkSvg(dik)), { density: 300 }).resize(maat, maat).png().toFile(bestand);
+const png = (maat) => sharp(Buffer.from(merkSvg), { density: 600 }).resize(maat, maat).png().toBuffer();
+for (const [maat, bestand] of [[48, 'public/favicon.png'], [192, 'public/icon-192.png'], [180, 'public/apple-touch-icon.png']]) {
+  await writeFile(bestand, await png(maat));
   console.log(bestand, `${maat}×${maat}`);
 }
+
+// 3. favicon.ico (16, 32, 48) voor oudere browsers en crawlers die /favicon.ico opvragen. ICO met PNG-afbeeldingen erin.
+const maten = [16, 32, 48];
+const beelden = await Promise.all(maten.map(png));
+const kop = Buffer.alloc(6 + 16 * maten.length);
+kop.writeUInt16LE(0, 0); kop.writeUInt16LE(1, 2); kop.writeUInt16LE(maten.length, 4);
+let offset = kop.length;
+maten.forEach((m, i) => {
+  const o = 6 + 16 * i;
+  kop.writeUInt8(m, o); kop.writeUInt8(m, o + 1); kop.writeUInt16LE(1, o + 4); kop.writeUInt16LE(32, o + 6);
+  kop.writeUInt32LE(beelden[i].length, o + 8); kop.writeUInt32LE(offset, o + 12);
+  offset += beelden[i].length;
+});
+await writeFile('public/favicon.ico', Buffer.concat([kop, ...beelden]));
+console.log('public/favicon.ico 16/32/48');

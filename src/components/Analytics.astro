@@ -4,7 +4,8 @@
 // - Cookiebanner in het Nederlands; "Weigeren" is even groot en even makkelijk als "Aanvaarden" (GBA).
 // - Keuze wordt onthouden (localStorage, max. `toestemmingGeldigDagen`) en is te wijzigen via
 //   elk element met [data-cookie-instellingen] (o.a. in de footer).
-// - Conversies: klik op [data-event] (bel, WhatsApp, offerte…) en verzenden van form[data-event].
+// - Conversies: klik op [data-event] (bel, WhatsApp, offerte…), verzenden van form[data-event] en
+//   het bereiken van een bedankpagina (body[data-conversie], enkel na een geslaagde inzending).
 import { analytics } from '../data/site';
 ---
 
@@ -76,6 +77,18 @@ import { analytics } from '../data/site';
     s.async = true;
     s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(tagId)}`;
     document.head.appendChild(s);
+    meldConversie();
+  }
+
+  // Bedankpagina: telt enkel geslaagde inzendingen. Eén keer per sessie, zodat herladen niet dubbel telt.
+  function meldConversie() {
+    const naam = document.body.dataset.conversie;
+    if (!naam) return;
+    try {
+      if (sessionStorage.getItem(`he-conversie:${naam}`)) return;
+      sessionStorage.setItem(`he-conversie:${naam}`, '1');
+    } catch {}
+    window.gtag?.('event', naam, { page_path: location.pathname });
   }
 
   function intrekken() {

@@ -14,9 +14,11 @@ interface Props {
   noindex?: boolean;
   /** Extra JSON-LD nodes voor deze pagina (Service, FAQPage, JobPosting, …) */
   schema?: Record<string, unknown>[];
+  /** Bedankpagina: GA4-event na een geslaagde inzending (offerte_verzonden, …) */
+  conversie?: string;
 }
 
-const { title, description, ogImage = '/og/home.jpg', noindex = false, schema = [] } = Astro.props;
+const { title, description, ogImage = '/og/home.jpg', noindex = false, schema = [], conversie } = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
 const isJobs = Astro.url.pathname.startsWith('/jobs/');
 const is404 = Astro.url.pathname.startsWith('/404');
@@ -130,7 +132,7 @@ const graph = {
     <!-- Vóór de eerste render: zo weet de CSS dat JavaScript actief is (anders blijft alles gewoon zichtbaar). -->
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
-  <body class="flex min-h-dvh flex-col pb-[calc(4.5rem+env(safe-area-inset-bottom))] lg:pb-0">
+  <body data-conversie={conversie} class="flex min-h-dvh flex-col pb-[calc(4.5rem+env(safe-area-inset-bottom))] lg:pb-0">
     <a href="#inhoud" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded focus:bg-ink focus:px-4 focus:py-2 focus:text-white">
       Naar de inhoud
     </a>

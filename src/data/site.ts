@@ -42,10 +42,10 @@ export const business = {
   sameAs: [] as string[], // [AANVULLEN: link naar het Google Bedrijfsprofiel] (12-10-2026: enkel Google, geen andere sociale media)
 } as const;
 
-// Google Analytics (CLAUDE.md § 13): Google-tag uit de huidige site (Site Kit), stuurt door naar GA4.
-// Laadt pas na toestemming (Consent Mode v2, basisversie). [TE BEVESTIGEN: GA4-property + eventueel G-meet-ID]
+// Google Analytics (CLAUDE.md § 13): eigen GA4-property (sinds 03-11-2026; vroeger GT-KDTJ593M via Site Kit).
+// Laadt pas na toestemming (Consent Mode v2, basisversie).
 export const analytics = {
-  tagId: 'GT-KDTJ593M',
+  tagId: 'G-SQRCYGBTYX',
   toestemmingGeldigDagen: 180, // daarna opnieuw vragen
 } as const;
 

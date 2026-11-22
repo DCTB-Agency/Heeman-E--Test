@@ -93,6 +93,8 @@ const blokken = [
         </ul>
       </div>
       <div id="solliciteer" class="fade-up scroll-mt-24 self-start rounded-3xl border border-ink/10 bg-white p-6 shadow-[0_24px_60px_-40px_rgb(28_13_10/0.45)] sm:p-8" style="--d:250ms">
+        {/* Anker voor de sitelink "Stageplaats" in Google Ads (22-11-2026): stagiairs solliciteren via hetzelfde formulier. */}
+        {v.slug === 'junior-elektricien' && <span id="stage" class="block scroll-mt-24" aria-hidden="true"></span>}
         <h2 class="font-display text-2xl font-semibold">Solliciteer</h2>
         <div class="mt-4 grid gap-3 sm:grid-cols-2">
           <p class="rounded-2xl bg-paper p-4 text-sm"><span class="font-display font-semibold text-brand">Optie A</span><br />Vul het formulier hieronder in en voeg je cv toe.</p>

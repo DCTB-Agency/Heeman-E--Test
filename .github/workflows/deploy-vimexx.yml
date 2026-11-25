@@ -25,6 +25,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Formulieren: PHP-syntax en spamfilter testen; faalt dit, dan wordt er niets gepubliceerd.
+      - name: Formulieren controleren (PHP)
+        run: |
+          php -v | head -1
+          for f in vimexx/formulier.php vimexx/formulier/*.php tests/*.php; do php -l "$f"; done
+          php tests/formulier-spam.php
+
       - uses: actions/setup-node@v4
         with:
           node-version: 24

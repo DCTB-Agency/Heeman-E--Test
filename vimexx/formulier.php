@@ -9,6 +9,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/formulier/mail-sjabloon.php';
+require __DIR__ . '/formulier/spam.php';
 
 const HE_ONTVANGER = 'info@heeman-electrics.be';
 const HE_AFZENDER = 'website@heeman-electrics.be'; // apart afzenderadres: staat op de witte lijst van SpamAssassin (25-11-2026)
@@ -127,6 +128,17 @@ if (($d['email'] ?? '') !== '' && !filter_var($d['email'], FILTER_VALIDATE_EMAIL
 $tekst_alles = implode(' ', $d);
 if (preg_match_all('#https?://#i', $tekst_alles) > 2) he_fout('Uw bericht bevat te veel links.');
 
+// Spamscore. Sollicitaties worden nooit tegengehouden (cv verplicht, Google Ads-conversies), hoogstens gemarkeerd.
+[$spamscore, $spamredenen] = he_spamscore($d, $geladen);
+if ($spamscore >= 3 && $formulier !== 'sollicitatie') {
+    // Niet mailen, wel bewaren buiten de website (na te kijken in ../formulier-archief/spam/), en stil doorsturen.
+    $map = dirname(__DIR__) . '/formulier-archief/spam';
+    if (!is_dir($map)) @mkdir($map, 0700, true);
+    @file_put_contents($map . '/' . date('Ymd-His') . "-{$formulier}-" . bin2hex(random_bytes(3)) . '.json', json_encode(['formulier' => $formulier, 'score' => $spamscore, 'redenen' => $spamredenen, 'ip' => $_SERVER['REMOTE_ADDR'] ?? '', 'velden' => $d], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    header('Location: ' . $cfg['bedankt'], true, 303);
+    exit;
+}
+
 // Mail opbouwen.
 $mail = he_bouw_mail($formulier, $d, $bestanden, HE_SITE);
 $grens = 'he-' . bin2hex(random_bytes(12));
@@ -159,7 +171,8 @@ foreach ($bijlagen as $b) {
 }
 $body .= "--{$grens}--\r\n";
 
-$onderwerp = '=?UTF-8?B?' . base64_encode($mail['onderwerp']) . '?=';
+$onderwerp = '=?UTF-8?B?' . base64_encode(($spamscore > 0 ? '[Mogelijk spam] ' : '') . $mail['onderwerp']) . '?=';
+$headers[] = 'X-Heeman-Spamscore: ' . $spamscore . ($spamredenen ? ' (' . he_regel(implode('; ', $spamredenen), 300) . ')' : '');
 $ok = he_verstuur(HE_ONTVANGER, $onderwerp, $body, implode("\r\n", $headers));
 
 if (!$ok) {

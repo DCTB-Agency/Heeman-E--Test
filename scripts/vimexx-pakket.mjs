@@ -53,8 +53,8 @@ AddDefaultCharset UTF-8
   RewriteRule ^(.*[^/])$ https://%{HTTP_HOST}/$1/ [L,R=301]
 </IfModule>
 
-# Interne bestanden van het formulier niet rechtstreeks bereikbaar
-<FilesMatch "^(mail-sjabloon\\.php|bronnen\\.json)$">
+# Interne bestanden (formulier, publicatie via GitHub) niet rechtstreeks bereikbaar
+<FilesMatch "^(mail-sjabloon\\.php|bronnen\\.json|\\.ftp-deploy-sync-state\\.json)$">
   Require all denied
 </FilesMatch>
 

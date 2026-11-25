@@ -47,7 +47,7 @@ jobs:
         id: ftp
         env:
           SERVER: ${{ secrets.VIMEXX_FTP_SERVER }}
-        run: echo "klaar=$([ -n "$SERVER" ] && echo ja || echo nee)" >> "$GITHUB_OUTPUT"
+        run: echo "klaar=$([ -n "$SERVER" ] && [ "$GITHUB_REF" = refs/heads/main ] && echo ja || echo nee)" >> "$GITHUB_OUTPUT"
 
       - name: Publiceren via FTPS
         if: steps.ftp.outputs.klaar == 'ja'

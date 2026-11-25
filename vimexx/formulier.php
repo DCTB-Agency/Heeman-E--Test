@@ -11,7 +11,7 @@ declare(strict_types=1);
 require __DIR__ . '/formulier/mail-sjabloon.php';
 
 const HE_ONTVANGER = 'info@heeman-electrics.be';
-const HE_AFZENDER = 'info@heeman-electrics.be';
+const HE_AFZENDER = 'website@heeman-electrics.be'; // apart afzenderadres: staat op de witte lijst van SpamAssassin (25-11-2026)
 const HE_SITE = 'https://www.heeman-electrics.be';
 const HE_MAX_BESTAND = 8 * 1024 * 1024;
 const HE_TOEGELATEN = ['pdf', 'docx', 'doc', 'jpg', 'jpeg', 'png', 'webp', 'heic', 'heif'];

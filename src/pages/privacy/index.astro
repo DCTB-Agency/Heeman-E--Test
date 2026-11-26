@@ -11,7 +11,7 @@ const kruimels = [
   { naam: 'Home', url: '/' },
   { naam: 'Privacyverklaring', url: '/privacy/' },
 ];
-const bijgewerkt = '12 oktober 2026';
+const bijgewerkt = '26 november 2026';
 
 const verwerkingen = [
   {
@@ -39,10 +39,10 @@ const verwerkingen = [
     termijn: '1 jaar na het laatste contact, tenzij er een opdracht volgt (dan zoals bij het offerteformulier).',
   },
   {
-    titel: 'Websitestatistieken (Google Analytics)',
+    titel: 'Websitestatistieken en advertentiemeting (Google Analytics, Google Ads)',
     gegevens: 'Gebruiksgegevens zoals bezochte pagina’s, klikken op knoppen, apparaat- en browsertype en een afgeleide, niet-precieze locatie.',
-    hoe: `Alleen als u daar via de cookiebanner toestemming voor geeft. Advertentiefuncties staan uit. U kan uw keuze altijd wijzigen.`,
-    doel: 'Begrijpen welke pagina’s nuttig zijn en de website verbeteren.',
+    hoe: `Alleen als u daar via de cookiebanner toestemming voor geeft. Gepersonaliseerde advertenties staan uit. U kan uw keuze altijd wijzigen.`,
+    doel: 'Begrijpen welke pagina’s nuttig zijn, de website verbeteren en meten of onze advertenties (bv. voor vacatures) tot aanvragen of sollicitaties leiden.',
     grond: 'Uw toestemming (art. 6.1.a AVG).',
     termijn: '14 maanden; daarna worden de gegevens automatisch verwijderd door Google Analytics.',
   },
@@ -50,7 +50,7 @@ const verwerkingen = [
 
 const verwerkers = [
   { naam: 'Netlify, Inc.', rol: 'Hosting van de website en verwerking van de formulieren (offerte, contact, sollicitatie)', waar: 'Verenigde Staten — doorgifte op basis van het EU-VS-gegevensprivacykader en standaardcontractbepalingen' },
-  { naam: 'Google Ireland Ltd.', rol: 'Google Analytics, alleen na toestemming', waar: 'EU; mogelijke doorgifte naar de VS op basis van het EU-VS-gegevensprivacykader' },
+  { naam: 'Google Ireland Ltd.', rol: 'Google Analytics en conversiemeting van Google Ads, alleen na toestemming', waar: 'EU; mogelijke doorgifte naar de VS op basis van het EU-VS-gegevensprivacykader' },
   { naam: 'Vimexx B.V.', rol: 'Mailbox info@heeman-electrics.be: ontvangen en bewaren van e-mail, ook de mails van de formulieren', waar: 'Nederland (EU)' },
   { naam: 'WhatsApp Ireland Ltd.', rol: 'Berichten die u ons via WhatsApp stuurt', waar: 'EU; mogelijke doorgifte naar de VS op basis van het EU-VS-gegevensprivacykader' },
 ];
@@ -120,7 +120,7 @@ const rechten = [
 
     <h2 class="mt-12 font-display text-2xl font-semibold">Cookies</h2>
     <p class="mt-3">
-      Google Analytics wordt alleen geladen na uw toestemming; uw keuze wordt {analytics.toestemmingGeldigDagen} dagen onthouden.
+      Google Analytics en de meting van Google Ads worden alleen geladen na uw toestemming; uw keuze wordt {analytics.toestemmingGeldigDagen} dagen onthouden.
       Alle details staan op de pagina <a href="/cookies/" class="font-semibold text-brand underline underline-offset-4">Cookies</a>.
     </p>
     <button type="button" class="btn btn-ghost mt-4" data-cookie-instellingen>Cookie-instellingen wijzigen</button>

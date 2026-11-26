@@ -10,10 +10,12 @@ const kruimels = [
   { naam: 'Cookies', url: '/cookies/' },
 ];
 const rijen = [
-  { naam: 'he-toestemming', soort: 'Lokale opslag (browser)', doel: 'Onthoudt of u statistieken aanvaardt of weigert', duur: `${analytics.toestemmingGeldigDagen} dagen`, wanneer: 'Altijd (noodzakelijk)' },
+  { naam: 'he-toestemming-v2', soort: 'Lokale opslag (browser)', doel: 'Onthoudt of u de metingen aanvaardt of weigert', duur: `${analytics.toestemmingGeldigDagen} dagen`, wanneer: 'Altijd (noodzakelijk)' },
   { naam: 'he-job-bar', soort: 'Lokale opslag (browser)', doel: 'Onthoudt dat u de melding over de vacature sloot', duur: 'Tot u uw browsergegevens wist', wanneer: 'Als u de melding sluit' },
   { naam: '_ga', soort: 'Cookie van Google Analytics', doel: 'Onderscheidt bezoekers voor anonieme statistieken', duur: '2 jaar', wanneer: 'Alleen na “Aanvaarden”' },
   { naam: '_ga_…', soort: 'Cookie van Google Analytics', doel: 'Bewaart de sessie voor statistieken', duur: '2 jaar', wanneer: 'Alleen na “Aanvaarden”' },
+  { naam: '_gcl_au', soort: 'Cookie van Google Ads', doel: 'Meet of een bezoek via onze advertenties tot een aanvraag of sollicitatie leidt', duur: '90 dagen', wanneer: 'Alleen na “Aanvaarden”' },
+  { naam: '_gcl_aw', soort: 'Cookie van Google Ads', doel: 'Onthoudt dat u via een advertentie van ons op de site kwam (enkel na een klik op die advertentie)', duur: '90 dagen', wanneer: 'Alleen na “Aanvaarden”' },
 ];
 ---
 
@@ -22,8 +24,8 @@ const rijen = [
     <Kruimels kruimels={kruimels} class="text-muted" />
     <h1 class="mt-6 text-display">Cookies</h1>
     <p class="mt-6 text-lg text-muted">
-      Deze website gebruikt zo weinig mogelijk cookies. Google Analytics wordt pas geladen als u daar toestemming voor geeft.
-      We gebruiken het niet voor advertenties.
+      Deze website gebruikt zo weinig mogelijk cookies. Google Analytics en de meting van Google Ads worden pas geladen als u daar toestemming voor geeft.
+      We tonen u geen gepersonaliseerde advertenties.
     </p>
     <button type="button" class="btn btn-primary mt-8" data-cookie-instellingen>Mijn keuze wijzigen</button>
 
@@ -40,11 +42,13 @@ const rijen = [
       </table>
     </div>
 
-    <h2 class="mt-12 font-display text-2xl font-semibold">Google Analytics</h2>
+    <h2 class="mt-12 font-display text-2xl font-semibold">Google Analytics en Google Ads</h2>
     <p class="mt-3 text-muted">
       Na uw toestemming verzamelt Google Analytics (Google Ireland Ltd.) statistieken over het gebruik van deze site, zoals bezochte pagina's
-      en klikken op de bel- en WhatsApp-knoppen. Advertentiefuncties staan uit (Consent Mode: advertentieopslag en -personalisatie geweigerd).
-      Trekt u uw toestemming in, dan worden de Google Analytics-cookies van deze site verwijderd.
+      en klikken op de bel- en WhatsApp-knoppen. Met dezelfde toestemming meten we via Google Ads of een bezoek via onze advertenties
+      (bijvoorbeeld voor een vacature) tot een aanvraag of sollicitatie leidt. Gepersonaliseerde advertenties staan uit
+      (Consent Mode: advertentiepersonalisatie geweigerd): we gebruiken uw bezoek niet om u later advertenties te tonen.
+      Trekt u uw toestemming in, dan worden de cookies van Google Analytics en Google Ads van deze site verwijderd.
     </p>
 
     <h2 class="mt-10 font-display text-2xl font-semibold">Vragen?</h2>

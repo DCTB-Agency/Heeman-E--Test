@@ -1,5 +1,8 @@
 ---
 // Google Analytics met Consent Mode v2 (basisversie) — CLAUDE.md § 13.
+// - 26-11-2026: "Aanvaarden" geldt ook voor advertentiemeting (ad_storage + ad_user_data), zodat sollicitaties en
+//   aanvragen als conversie in Google Ads tellen. Gepersonaliseerde advertenties (ad_personalization) blijven uit.
+//   Sleutel he-toestemming-v2: wie eerder enkel statistieken aanvaardde, krijgt de nieuwe vraag opnieuw.
 // - Vóór toestemming wordt er NIETS geladen of verzonden (geen gtag.js, geen cookies).
 // - Cookiebanner in het Nederlands; "Weigeren" is even groot en even makkelijk als "Aanvaarden" (GBA).
 // - Keuze wordt onthouden (localStorage, max. `toestemmingGeldigDagen`) en is te wijzigen via
@@ -19,10 +22,10 @@ import { analytics } from '../data/site';
   data-geldig-dagen={analytics.toestemmingGeldigDagen}
   hidden
 >
-  <p id="cookie-titel" class="font-display text-lg font-semibold">Mogen we bezoekersstatistieken bijhouden?</p>
+  <p id="cookie-titel" class="font-display text-lg font-semibold">Mogen we uw bezoek meten?</p>
   <p id="cookie-tekst" class="mt-2 text-sm text-on-ink-muted">
-    Met Google Analytics zien we welke pagina's nuttig zijn. We gebruiken het niet voor advertenties.
-    Weigert u, dan wordt er niets bijgehouden. <a href="/cookies/" class="font-semibold text-white underline underline-offset-4">Meer info</a>
+    Met Google Analytics en Google Ads zien we welke pagina's nuttig zijn en of onze advertenties (bv. voor vacatures) iets opleveren.
+    We tonen u geen gepersonaliseerde advertenties. Weigert u, dan wordt er niets bijgehouden. <a href="/cookies/" class="font-semibold text-white underline underline-offset-4">Meer info</a>
   </p>
   <div class="mt-4 grid grid-cols-2 gap-3">
     <button type="button" class="btn border-2 border-white/80 bg-transparent text-white hover:bg-white hover:text-ink" data-cookie-keuze="nee">Weigeren</button>
@@ -38,7 +41,7 @@ import { analytics } from '../data/site';
 
 <script>
   type Keuze = 'ja' | 'nee';
-  const SLEUTEL = 'he-toestemming';
+  const SLEUTEL = 'he-toestemming-v2';
   const banner = document.getElementById('cookiebanner')!;
   const tagId = banner.dataset.tagId!;
   const geldigMs = Number(banner.dataset.geldigDagen) * 864e5;
@@ -68,9 +71,9 @@ import { analytics } from '../data/site';
     geladen = true;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
-    // Consent Mode v2: alles standaard geweigerd, enkel statistiek wordt toegestaan. Geen advertentiesignalen.
+    // Consent Mode v2: alles standaard geweigerd; na toestemming statistiek en advertentiemeting, nooit personalisatie.
     window.gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
-    window.gtag('consent', 'update', { analytics_storage: 'granted' });
+    window.gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted' });
     window.gtag('js', new Date());
     window.gtag('config', tagId);
     const s = document.createElement('script');
@@ -93,8 +96,8 @@ import { analytics } from '../data/site';
 
   function intrekken() {
     // Na weigeren: verdere metingen uitzetten en bestaande GA-cookies opruimen.
-    window.gtag?.('consent', 'update', { analytics_storage: 'denied' });
-    document.cookie.split(';').map((c) => c.split('=')[0].trim()).filter((n) => n === '_ga' || n.startsWith('_ga_')).forEach((n) => {
+    window.gtag?.('consent', 'update', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied' });
+    document.cookie.split(';').map((c) => c.split('=')[0].trim()).filter((n) => n === '_ga' || n.startsWith('_ga_') || n.startsWith('_gcl_')).forEach((n) => {
       const domein = location.hostname.replace(/^www\./, '');
       document.cookie = `${n}=; Max-Age=0; path=/`;
       document.cookie = `${n}=; Max-Age=0; path=/; domain=.${domein}`;
